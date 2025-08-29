@@ -3,22 +3,23 @@ using System.Collections.Generic;
 
 
 
-public enum ChessPieceType
+public enum ChessPieceID
 {
     None = 0,
-    Pawn = 1,
-    Rook = 2,
-    Knight = 3,
-    Bishop = 4,
-    Queen = 5,
-    King = 6
+    StandardPawn = 1,
+    StandardRook = 2,
+    StandardKnight = 3,
+    StandardBishop = 4,
+    StandardQueen = 5,
+    StandardKing = 6,
+    NecroQueen = 7,
 }
-public class ChessPiece : MonoBehaviour
+public abstract class ChessPiece : MonoBehaviour
 {
     public int team;
     public int currentX;
     public int currentY;
-    public ChessPieceType type;
+    public ChessPieceID ID;
 
     private Vector3 desiredPosition;
     private Vector3 desiredScale = Vector3.one;
@@ -38,10 +39,10 @@ public class ChessPiece : MonoBehaviour
     {
         List<Vector2Int> r = new List<Vector2Int>();
 
-        r.Add(new Vector2Int(3, 3));
-        r.Add(new Vector2Int(4, 4));
-        r.Add(new Vector2Int(3, 4));
-        r.Add(new Vector2Int(4, 3));
+        //r.Add(new Vector2Int(3, 3));
+        //r.Add(new Vector2Int(4, 4));
+        //r.Add(new Vector2Int(3, 4));
+        //r.Add(new Vector2Int(4, 3));
 
         return r;
     }

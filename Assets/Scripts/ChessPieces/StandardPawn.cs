@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Pawn : ChessPiece
+public class StandardPawn : ChessPiece
 {
     public override List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
     {
@@ -63,7 +63,7 @@ public class Pawn : ChessPiece
         if (moveList.Count > 0)
         {
             Vector2Int[] lastMove = moveList[moveList.Count - 1];
-            if (board[lastMove[1].x, lastMove[1].y].type == ChessPieceType.Pawn) //If last piece was pawn
+            if (board[lastMove[1].x, lastMove[1].y].ID == ChessPieceID.StandardPawn) //If last piece was pawn
             {
                 if (Mathf.Abs(lastMove[0].y - lastMove[1].y) == 2) //If last piece was +2 either direction
                 {

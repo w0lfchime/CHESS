@@ -209,39 +209,39 @@ public class Chessboard : MonoBehaviour
         int blackTeam = 1;
 
         //White Team
-        chessPieces[0, 0] = SpawnSinglePiece(ChessPieceType.Rook, whiteTeam);
-        chessPieces[1, 0] = SpawnSinglePiece(ChessPieceType.Knight, whiteTeam);
-        chessPieces[2, 0] = SpawnSinglePiece(ChessPieceType.Bishop, whiteTeam);
-        chessPieces[3, 0] = SpawnSinglePiece(ChessPieceType.Queen, whiteTeam);
-        chessPieces[4, 0] = SpawnSinglePiece(ChessPieceType.King, whiteTeam);
-        chessPieces[5, 0] = SpawnSinglePiece(ChessPieceType.Bishop, whiteTeam);
-        chessPieces[6, 0] = SpawnSinglePiece(ChessPieceType.Knight, whiteTeam);
-        chessPieces[7, 0] = SpawnSinglePiece(ChessPieceType.Rook, whiteTeam);
+        chessPieces[0, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, whiteTeam);
+        chessPieces[1, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, whiteTeam);
+        chessPieces[2, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, whiteTeam);
+        chessPieces[3, 0] = SpawnSinglePiece(ChessPieceID.StandardQueen, whiteTeam);
+        chessPieces[4, 0] = SpawnSinglePiece(ChessPieceID.StandardKing, whiteTeam);
+        chessPieces[5, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, whiteTeam);
+        chessPieces[6, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, whiteTeam);
+        chessPieces[7, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, whiteTeam);
         for (int i = 0; i < TILE_COUNT_X; i++)
         {
-            chessPieces[i, 1] = SpawnSinglePiece(ChessPieceType.Pawn, whiteTeam);
+            chessPieces[i, 1] = SpawnSinglePiece(ChessPieceID.StandardPawn, whiteTeam);
         }
 
         //Black Team
-        chessPieces[0, 7] = SpawnSinglePiece(ChessPieceType.Rook, blackTeam);
-        chessPieces[1, 7] = SpawnSinglePiece(ChessPieceType.Knight, blackTeam);
-        chessPieces[2, 7] = SpawnSinglePiece(ChessPieceType.Bishop, blackTeam);
-        chessPieces[3, 7] = SpawnSinglePiece(ChessPieceType.Queen, blackTeam);
-        chessPieces[4, 7] = SpawnSinglePiece(ChessPieceType.King, blackTeam);
-        chessPieces[5, 7] = SpawnSinglePiece(ChessPieceType.Bishop, blackTeam);
-        chessPieces[6, 7] = SpawnSinglePiece(ChessPieceType.Knight, blackTeam);
-        chessPieces[7, 7] = SpawnSinglePiece(ChessPieceType.Rook, blackTeam);
+        chessPieces[0, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, blackTeam);
+        chessPieces[1, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, blackTeam);
+        chessPieces[2, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, blackTeam);
+        chessPieces[3, 7] = SpawnSinglePiece(ChessPieceID.StandardQueen, blackTeam);
+        chessPieces[4, 7] = SpawnSinglePiece(ChessPieceID.StandardKing, blackTeam);
+        chessPieces[5, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, blackTeam);
+        chessPieces[6, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, blackTeam);
+        chessPieces[7, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, blackTeam);
         for (int i = 0; i < TILE_COUNT_X; i++)
         {
-            chessPieces[i, 6] = SpawnSinglePiece(ChessPieceType.Pawn, blackTeam);
+            chessPieces[i, 6] = SpawnSinglePiece(ChessPieceID.StandardPawn, blackTeam);
         }
     }
 
-    private ChessPiece SpawnSinglePiece(ChessPieceType type, int team)
+    private ChessPiece SpawnSinglePiece(ChessPieceID type, int team)
     {
         ChessPiece cp = Instantiate(prefabs[(int)type - 1], transform).GetComponent<ChessPiece>();
         cp.team = team;
-        cp.type = type;
+        cp.ID = type;
         cp.GetComponent<MeshRenderer>().material = teamMaterials[team];
 
 
@@ -444,12 +444,12 @@ public class Chessboard : MonoBehaviour
             Vector2Int[] lastMove = moveList[moveList.Count - 1];
             ChessPiece targetPawn = chessPieces[lastMove[1].x, lastMove[1].y];
 
-            if (targetPawn.type == ChessPieceType.Pawn)
+            if (targetPawn.ID == ChessPieceID.StandardPawn)
             {
                 // Check if the pawn has reached the promotion row
                 if ((targetPawn.team == 0 && targetPawn.currentY == 7))
                 {
-                    ChessPiece newQueen = SpawnSinglePiece(ChessPieceType.Queen, 0);
+                    ChessPiece newQueen = SpawnSinglePiece(ChessPieceID.StandardQueen, 0);
                     newQueen.transform.position = chessPieces[lastMove[1].x, lastMove[1].y].transform.position; // Place the new queen at the same position
                     Destroy(chessPieces[lastMove[1].x, lastMove[1].y].gameObject);
                     chessPieces[lastMove[1].x, lastMove[1].y] = newQueen;
@@ -457,7 +457,7 @@ public class Chessboard : MonoBehaviour
                 }
                 else if ((targetPawn.team == 1 && targetPawn.currentY == 0))
                 {
-                    ChessPiece newQueen = SpawnSinglePiece(ChessPieceType.Queen, 1);
+                    ChessPiece newQueen = SpawnSinglePiece(ChessPieceID.StandardQueen, 1);
                     newQueen.transform.position = chessPieces[lastMove[1].x, lastMove[1].y].transform.position; // Place the new queen at the same position
                     Destroy(chessPieces[lastMove[1].x, lastMove[1].y].gameObject);
                     chessPieces[lastMove[1].x, lastMove[1].y] = newQueen;
@@ -476,7 +476,7 @@ public class Chessboard : MonoBehaviour
         {
             for (int y = 0; y < TILE_COUNT_Y; y++)
             {
-                if (chessPieces[x, y] != null && chessPieces[x, y].type == ChessPieceType.King && chessPieces[x, y].team == currentlyDragging.team)
+                if (chessPieces[x, y] != null && chessPieces[x, y].ID == ChessPieceID.StandardKing && chessPieces[x, y].team == currentlyDragging.team)
                 {
                     targetKing = chessPieces[x, y];
                     break;
@@ -501,7 +501,7 @@ public class Chessboard : MonoBehaviour
 
             Vector2Int kingPositionThisSim = new Vector2Int(targetKing.currentX, targetKing.currentY);
             //Did we sim king move
-            if (cp.type == ChessPieceType.King)
+            if (cp.ID == ChessPieceID.StandardKing)
             {
                 kingPositionThisSim = new Vector2Int(simX, simY);
             }
@@ -585,7 +585,7 @@ public class Chessboard : MonoBehaviour
                     if (chessPieces[x, y].team == targetTeam)
                     {
                         defendingPieces.Add(chessPieces[x, y]);
-                        if (chessPieces[x, y].type == ChessPieceType.King)
+                        if (chessPieces[x, y].ID == ChessPieceID.StandardKing)
                         {
                             targetKing = chessPieces[x, y];
                         }
@@ -611,7 +611,7 @@ public class Chessboard : MonoBehaviour
 
         if (ContainsValidMove(ref currentAvailableMoves, new Vector2Int(targetKing.currentX, targetKing.currentY)))
         {
-            //King is in check
+            //StandardKing is in check
             //Check if we can move any piece to prevent check
             for (int i = 0; i < defendingPieces.Count; i++)
             {
@@ -655,7 +655,7 @@ public class Chessboard : MonoBehaviour
             //If enemey piece, remove it
             if (ocp.team == 0)
             {
-                if (ocp.type == ChessPieceType.King)
+                if (ocp.ID == ChessPieceID.StandardKing)
                 {
                     CheckMate(1);
                 }
@@ -670,7 +670,7 @@ public class Chessboard : MonoBehaviour
             }
             else
             {
-                if (ocp.type == ChessPieceType.King)
+                if (ocp.ID == ChessPieceID.StandardKing)
                 {
                     CheckMate(0);
                 }

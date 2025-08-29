@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Queen : ChessPiece
+public class StandardQueen : ChessPiece
 {
     public override List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 
-        // Rook-like moves
+        // StandardRook-like moves
         for (int i = currentY - 1; i >= 0; i--)
         {
             if (board[currentX, i] == null)
@@ -75,7 +75,7 @@ public class Queen : ChessPiece
             }
         }
 
-        // Bishop-like moves
+        // StandardBishop-like moves
         //Top right
         for (int x = currentX + 1, y = currentY + 1; x < tileCountX && y < tileCountY; x++, y++)
         {

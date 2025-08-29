@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class King : ChessPiece
+public class StandardKing : ChessPiece
 {
     public override List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
     {
@@ -9,7 +9,7 @@ public class King : ChessPiece
 
 
         //Cleaner than tutorial code
-        // Check all 8 possible moves for the King
+        // Check all 8 possible moves for the StandardKing
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
@@ -48,7 +48,7 @@ public class King : ChessPiece
                 //Left rook
                 if (leftRook == null)
                 {
-                    if (board[0, 0].type == ChessPieceType.Rook)
+                    if (board[0, 0].ID == ChessPieceID.StandardRook)
                     {
                         if (board[0, 0].team == 0)
                         {
@@ -63,7 +63,7 @@ public class King : ChessPiece
                 //Right rook
                 if (rightRook == null)
                 {
-                    if (board[7, 0].type == ChessPieceType.Rook)
+                    if (board[7, 0].ID == ChessPieceID.StandardRook)
                     {
                         if (board[7, 0].team == 0)
                         {
@@ -82,7 +82,7 @@ public class King : ChessPiece
                 //Left rook
                 if (leftRook == null)
                 {
-                    if (board[0, 7].type == ChessPieceType.Rook)
+                    if (board[0, 7].ID == ChessPieceID.StandardRook)
                     {
                         if (board[0, 7].team == 1)
                         {
@@ -97,7 +97,7 @@ public class King : ChessPiece
                 //Right rook
                 if (rightRook == null)
                 {
-                    if (board[7, 7].type == ChessPieceType.Rook)
+                    if (board[7, 7].ID == ChessPieceID.StandardRook)
                     {
                         if (board[7, 7].team == 1)
                         {
@@ -112,7 +112,7 @@ public class King : ChessPiece
             }
         }
 
-        // King does not have special moves in this implementation
+        // StandardKing does not have special moves in this implementation
         return r;
     }
 }
