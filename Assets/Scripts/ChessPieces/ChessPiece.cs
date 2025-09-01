@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 public enum ChessPieceID
 {
-    None = 0,
-    StandardPawn = 1,
-    StandardRook = 2,
-    StandardKnight = 3,
-    StandardBishop = 4,
-    StandardQueen = 5,
-    StandardKing = 6,
-    NecroQueen = 7,
+    None,
+    StandardPawn,
+    StandardRook,
+    StandardKnight,
+    StandardBishop,
+    StandardQueen,
+    StandardKing,
+    NecroQueen,
 }
 public abstract class ChessPiece : MonoBehaviour
 {
@@ -27,6 +27,8 @@ public abstract class ChessPiece : MonoBehaviour
     private void Start()
     {
         transform.rotation = Quaternion.Euler((team == 0) ? Vector3.zero : new Vector3(0f, 180f, 0f));
+
+        
     }
 
     private void Update()
