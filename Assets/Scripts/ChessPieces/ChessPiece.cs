@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 
 
@@ -14,12 +15,27 @@ public enum ChessPieceID
     StandardKing,
     NecroQueen,
 }
+public enum ChessPieceType
+{
+    /// <summary>
+    /// Most pieces are this type.
+    /// </summary>
+    Normal,
+    /// <summary>
+    /// The piece/pieces required to take to win the game.
+    /// One team wins when they checkmate the last lifeline piece of the other team.
+    /// </summary>
+    Lifeline,
+}
 public abstract class ChessPiece : MonoBehaviour
 {
     public int team;
     public int currentX;
     public int currentY;
     public ChessPieceID ID;
+    public ChessPieceType pieceType;
+    protected HashSet<String> pieceTags;
+    public String[] initialTags;
 
     private Vector3 desiredPosition;
     private Vector3 desiredScale = Vector3.one;
@@ -28,13 +44,25 @@ public abstract class ChessPiece : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler((team == 0) ? Vector3.zero : new Vector3(0f, 180f, 0f));
 
-        
+        foreach (String tag in initialTags)
+        {
+            pieceTags.Add(tag);
+        }
     }
 
     private void Update()
     {
         transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 10f);
         transform.localScale = Vector3.Lerp(transform.localScale, desiredScale, Time.deltaTime * 10f);
+    }
+    /// <summary>
+    /// Tests if the piece has a specific tag.
+    /// </summary>
+    /// <param name="tag">The string tag being tested.</param>
+    /// <returns>Whether the piece has the tag.</returns>
+    public bool HasTag(String tag)
+    {
+        return pieceTags.Contains(tag);
     }
 
     public virtual List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)

@@ -102,4 +102,6 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
-  type: 0
+  ID: 6
+  pieceType: 1
+  initialTags: []
