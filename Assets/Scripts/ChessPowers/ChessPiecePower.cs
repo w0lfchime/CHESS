@@ -1,0 +1,39 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+/// <summary>
+/// Behavior used for chess piece active abilities.
+/// <para>
+/// INTENDED FUNCTIONALITY: Secondary interact button (right-click) selects piece for active ability use.
+/// Secondary interact again to deselect. Primary interact (left-click) square for active ability use.
+/// For abilities always centered on the piece, click the piece again.
+/// </para>
+/// </summary>
+
+public abstract class ChessPiecePower
+{
+    /// <summary>
+    /// Returns whether the active ability can be used.
+    /// </summary>
+    /// <param name="board">The array of pieces on the board.</param>
+    /// <param name="position">The position of the active piece.</param>
+    /// <returns></returns>
+    public virtual bool CanUse(ref ChessPiece[,] board, Vector2Int position)
+    {
+        return GetAvailableTargets(ref board, position).Count > 0;
+    }
+    /// <summary>
+    /// Generates a list of valid target locations for active ability.
+    /// </summary>
+    /// <param name="board">The array of pieces on the board.</param>
+    /// <param name="position">The position of the active piece.</param>
+    /// <returns></returns>
+    public abstract List<Vector2Int> GetAvailableTargets(ref ChessPiece[,] board, Vector2Int position);
+    /// <summary>
+    /// Uses the active ability.
+    /// </summary>
+    /// <param name="board">The array of pieces on the board.</param>
+    /// <param name="position">The position of the moving piece.</param>
+    /// <param name="targetPosition">The target of the active ability.</param>
+    public abstract void Use(ref ChessPiece[,] board, Vector2Int position, Vector2Int targetPosition);
+}
