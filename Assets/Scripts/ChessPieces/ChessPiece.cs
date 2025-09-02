@@ -34,7 +34,6 @@ public abstract class ChessPiece : MonoBehaviour
     public int currentY;
     public ChessPieceID ID;
     public ChessPieceType pieceType;
-    protected HashSet<String> pieceTags;
     public String[] initialTags;
 
     private Vector3 desiredPosition;
@@ -43,11 +42,6 @@ public abstract class ChessPiece : MonoBehaviour
     private void Start()
     {
         transform.rotation = Quaternion.Euler((team == 0) ? Vector3.zero : new Vector3(0f, 180f, 0f));
-
-        foreach (String tag in initialTags)
-        {
-            pieceTags.Add(tag);
-        }
     }
 
     private void Update()
@@ -62,7 +56,15 @@ public abstract class ChessPiece : MonoBehaviour
     /// <returns>Whether the piece has the tag.</returns>
     public bool HasTag(String tag)
     {
-        return pieceTags.Contains(tag);
+        foreach (String t in initialTags)
+        {
+            if (t == tag)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public virtual List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
