@@ -32,6 +32,6 @@ public class EnPassantPath : ChessPiecePath
 
     public override MoveEffect Move()
     {
-        return MoveEffects.EN_PASSANT;
+        return MoveEffects.EnPassant;
     }
 }

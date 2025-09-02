@@ -24,6 +24,6 @@ public class DoublePawnPath : ChessPiecePath
 
     public override MoveEffect Move()
     {
-        return MoveEffects.PASSING_MOVE;
+        return MoveEffects.PassingMove;
     }
 }

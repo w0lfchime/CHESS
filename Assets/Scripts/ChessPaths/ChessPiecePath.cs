@@ -20,6 +20,6 @@ public abstract class ChessPiecePath
     /// <return>Returns the movement effect of this path.</return>
     public virtual MoveEffect Move()
     {
-        return MoveEffects.STANDARD_CAPTURE;
+        return MoveEffects.StandardCapture;
     }
 }
