@@ -15,6 +15,12 @@ public enum ChessPieceID
     StandardKing,
     NecroQueen,
 }
+
+public enum Team
+{
+    White = 0,
+    Black = 1,
+}
 public enum ChessPieceType
 {
     /// <summary>
@@ -29,12 +35,13 @@ public enum ChessPieceType
 }
 public abstract class ChessPiece : MonoBehaviour
 {
-    public int team;
+    public Team team;
     public int currentX;
     public int currentY;
     public ChessPieceID ID;
     public ChessPieceType pieceType;
-    public String[] initialTags;
+    public HashSet<String> PieceTags { get; private set; }
+    public List<ChessPiecePath> PiecePaths { get; private set; }
 
     private Vector3 desiredPosition;
     private Vector3 desiredScale = Vector3.one;
@@ -42,6 +49,26 @@ public abstract class ChessPiece : MonoBehaviour
     private void Start()
     {
         transform.rotation = Quaternion.Euler((team == 0) ? Vector3.zero : new Vector3(0f, 180f, 0f));
+        PieceTags = new();
+        PiecePaths = new();
+        SetupPiece();
+    }
+
+    /// <summary>
+    /// Use to set piece tags and behaviors.
+    /// </summary>
+    public virtual void SetupPiece()
+    {
+        AddTag("InitialPosition");
+    }
+
+    public void AddTag(String tag)
+    {
+        PieceTags.Add(tag);
+    }
+    public void RemoveTag(String tag)
+    {
+        PieceTags.Remove(tag);
     }
 
     private void Update()
@@ -49,6 +76,7 @@ public abstract class ChessPiece : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 10f);
         transform.localScale = Vector3.Lerp(transform.localScale, desiredScale, Time.deltaTime * 10f);
     }
+
     /// <summary>
     /// Tests if the piece has a specific tag.
     /// </summary>
@@ -56,15 +84,7 @@ public abstract class ChessPiece : MonoBehaviour
     /// <returns>Whether the piece has the tag.</returns>
     public bool HasTag(String tag)
     {
-        foreach (String t in initialTags)
-        {
-            if (t == tag)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return PieceTags.Contains(tag);
     }
 
     public virtual List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
@@ -101,5 +121,10 @@ public abstract class ChessPiece : MonoBehaviour
         {
             transform.localScale = desiredScale;
         }
+    }
+
+    public void Capture(PieceBoard board, Vector2Int position, bool fromCapture = true)
+    {
+        Destroy(gameObject);
     }
 }

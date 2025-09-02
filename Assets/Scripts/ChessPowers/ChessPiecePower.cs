@@ -17,23 +17,26 @@ public abstract class ChessPiecePower
     /// </summary>
     /// <param name="board">The array of pieces on the board.</param>
     /// <param name="position">The position of the active piece.</param>
+    /// <param name="team">The active team.</param>
     /// <returns></returns>
-    public virtual bool CanUse(PieceBoard board, Vector2Int position)
+    public virtual bool CanUse(PieceBoard board, Vector2Int position, Team team)
     {
-        return GetAvailableTargets(board, position).Count > 0;
+        return GetAvailableTargets(board, position, team).Count > 0;
     }
     /// <summary>
     /// Generates a list of valid target locations for active ability.
     /// </summary>
     /// <param name="board">The array of pieces on the board.</param>
     /// <param name="position">The position of the active piece.</param>
+    /// <param name="team">The active team.</param>
     /// <returns></returns>
-    public abstract List<Vector2Int> GetAvailableTargets(PieceBoard board, Vector2Int position);
+    public abstract List<Vector2Int> GetAvailableTargets(PieceBoard board, Vector2Int position, Team team);
     /// <summary>
     /// Uses the active ability.
     /// </summary>
     /// <param name="board">The array of pieces on the board.</param>
     /// <param name="position">The position of the moving piece.</param>
+    /// <param name="team">The active team.</param>
     /// <param name="targetPosition">The target of the active ability.</param>
-    public abstract void Use(PieceBoard board, Vector2Int position, Vector2Int targetPosition);
+    public abstract void Use(PieceBoard board, Vector2Int position, Team team, Vector2Int targetPosition);
 }

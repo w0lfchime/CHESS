@@ -32,6 +32,17 @@ public class Chessboard : MonoBehaviour
     [Header("Piece Placement")]
     [SerializeField] private float pieceOffset = 0.1f; // Offset for piece placement above the tile]
 
+
+    /// <summary>
+    /// Singleton for the active chessboard instance.
+    /// <para>
+    /// FOR PROGRAMMERS: Statically import Chessboard into files that
+    /// will access this singleton.
+    /// </para>
+    /// </summary>
+    public static Chessboard CHESSBOARD;
+
+
     //Logic
     private ChessPiece[,] chessPieces;
     private ChessPiece currentlyDragging;
@@ -54,6 +65,8 @@ public class Chessboard : MonoBehaviour
         GenerateAllTiles(tileSize, TILE_COUNT_X, TILE_COUNT_Y);
         SpawnAllPieces();
         PositionAllPieces();
+
+        CHESSBOARD = this;
     }
 
     private void Update()
@@ -88,7 +101,7 @@ public class Chessboard : MonoBehaviour
                 if (chessPieces[hitPosition.x, hitPosition.y] != null)
                 {
                     //Is it our turn?
-                    if ((chessPieces[hitPosition.x, hitPosition.y].team == 0 && isWhiteTurn) || (chessPieces[hitPosition.x, hitPosition.y].team == 1 && !isWhiteTurn))
+                    if ((chessPieces[hitPosition.x, hitPosition.y].team == Team.White && isWhiteTurn) || (chessPieces[hitPosition.x, hitPosition.y].team == Team.Black && !isWhiteTurn))
                     {
                         currentlyDragging = chessPieces[hitPosition.x, hitPosition.y];
                         //List of available moves
@@ -205,44 +218,41 @@ public class Chessboard : MonoBehaviour
     {
         chessPieces = new ChessPiece[TILE_COUNT_X, TILE_COUNT_Y];
 
-        int whiteTeam = 0;
-        int blackTeam = 1;
-
         //White Team
-        chessPieces[0, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, whiteTeam);
-        chessPieces[1, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, whiteTeam);
-        chessPieces[2, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, whiteTeam);
-        chessPieces[3, 0] = SpawnSinglePiece(ChessPieceID.StandardQueen, whiteTeam);
-        chessPieces[4, 0] = SpawnSinglePiece(ChessPieceID.StandardKing, whiteTeam);
-        chessPieces[5, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, whiteTeam);
-        chessPieces[6, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, whiteTeam);
-        chessPieces[7, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, whiteTeam);
+        chessPieces[0, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, Team.White);
+        chessPieces[1, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, Team.White);
+        chessPieces[2, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, Team.White);
+        chessPieces[3, 0] = SpawnSinglePiece(ChessPieceID.StandardQueen, Team.White);
+        chessPieces[4, 0] = SpawnSinglePiece(ChessPieceID.StandardKing, Team.White);
+        chessPieces[5, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, Team.White);
+        chessPieces[6, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, Team.White);
+        chessPieces[7, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, Team.White);
         for (int i = 0; i < TILE_COUNT_X; i++)
         {
-            chessPieces[i, 1] = SpawnSinglePiece(ChessPieceID.StandardPawn, whiteTeam);
+            chessPieces[i, 1] = SpawnSinglePiece(ChessPieceID.StandardPawn, Team.White);
         }
 
         //Black Team
-        chessPieces[0, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, blackTeam);
-        chessPieces[1, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, blackTeam);
-        chessPieces[2, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, blackTeam);
-        chessPieces[3, 7] = SpawnSinglePiece(ChessPieceID.StandardQueen, blackTeam);
-        chessPieces[4, 7] = SpawnSinglePiece(ChessPieceID.StandardKing, blackTeam);
-        chessPieces[5, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, blackTeam);
-        chessPieces[6, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, blackTeam);
-        chessPieces[7, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, blackTeam);
+        chessPieces[0, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, Team.Black);
+        chessPieces[1, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, Team.Black);
+        chessPieces[2, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, Team.Black);
+        chessPieces[3, 7] = SpawnSinglePiece(ChessPieceID.StandardQueen, Team.Black);
+        chessPieces[4, 7] = SpawnSinglePiece(ChessPieceID.StandardKing, Team.Black);
+        chessPieces[5, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, Team.Black);
+        chessPieces[6, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, Team.Black);
+        chessPieces[7, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, Team.Black);
         for (int i = 0; i < TILE_COUNT_X; i++)
         {
-            chessPieces[i, 6] = SpawnSinglePiece(ChessPieceID.StandardPawn, blackTeam);
+            chessPieces[i, 6] = SpawnSinglePiece(ChessPieceID.StandardPawn, Team.Black);
         }
     }
 
-    private ChessPiece SpawnSinglePiece(ChessPieceID type, int team)
+    public ChessPiece SpawnSinglePiece(ChessPieceID type, Team team)
     {
         ChessPiece cp = Instantiate(prefabs[(int)type - 1], transform).GetComponent<ChessPiece>();
         cp.team = team;
         cp.ID = type;
-        cp.GetComponent<MeshRenderer>().material = teamMaterials[team];
+        cp.GetComponent<MeshRenderer>().material = teamMaterials[(int)team];
 
 
         Vector3 pos = cp.transform.localPosition;
@@ -267,7 +277,7 @@ public class Chessboard : MonoBehaviour
             }
         }
     }
-    private void PositionSinglePiece(int x, int y, bool force = false)
+    public void PositionSinglePiece(int x, int y, bool force = false)
     {
         chessPieces[x, y].currentX = x;
         chessPieces[x, y].currentY = y;
@@ -299,14 +309,14 @@ public class Chessboard : MonoBehaviour
 
 
     //Checkmate
-    private void CheckMate(int team)
+    private void CheckMate(Team team)
     {
         DisplayVictory(team);
     }
-    private void DisplayVictory(int winningTeam)
+    private void DisplayVictory(Team winningTeam)
     {
         victoryScreen.SetActive(true);
-        victoryScreen.transform.GetChild(winningTeam).gameObject.SetActive(true);
+        victoryScreen.transform.GetChild((int)winningTeam).gameObject.SetActive(true);
     }
     public void OnResetButton()
     {
@@ -447,17 +457,17 @@ public class Chessboard : MonoBehaviour
             if (targetPawn.ID == ChessPieceID.StandardPawn)
             {
                 // Check if the pawn has reached the promotion row
-                if ((targetPawn.team == 0 && targetPawn.currentY == 7))
+                if (targetPawn.team == Team.White && targetPawn.currentY == 7)
                 {
-                    ChessPiece newQueen = SpawnSinglePiece(ChessPieceID.StandardQueen, 0);
+                    ChessPiece newQueen = SpawnSinglePiece(ChessPieceID.StandardQueen, Team.White);
                     newQueen.transform.position = chessPieces[lastMove[1].x, lastMove[1].y].transform.position; // Place the new queen at the same position
                     Destroy(chessPieces[lastMove[1].x, lastMove[1].y].gameObject);
                     chessPieces[lastMove[1].x, lastMove[1].y] = newQueen;
                     PositionSinglePiece(lastMove[1].x, lastMove[1].y);
                 }
-                else if ((targetPawn.team == 1 && targetPawn.currentY == 0))
+                else if (targetPawn.team == Team.Black && targetPawn.currentY == 0)
                 {
-                    ChessPiece newQueen = SpawnSinglePiece(ChessPieceID.StandardQueen, 1);
+                    ChessPiece newQueen = SpawnSinglePiece(ChessPieceID.StandardQueen, Team.Black);
                     newQueen.transform.position = chessPieces[lastMove[1].x, lastMove[1].y].transform.position; // Place the new queen at the same position
                     Destroy(chessPieces[lastMove[1].x, lastMove[1].y].gameObject);
                     chessPieces[lastMove[1].x, lastMove[1].y] = newQueen;
@@ -570,7 +580,7 @@ public class Chessboard : MonoBehaviour
     private bool CheckForCheckmate()
     {
         var lastMove = moveList[moveList.Count - 1];
-        int targetTeam = (chessPieces[lastMove[1].x, lastMove[1].y].team == 0) ? 1 : 0; // Get the team of the last moved piece
+        Team targetTeam = (chessPieces[lastMove[1].x, lastMove[1].y].team == Team.White) ? Team.Black : Team.White; // Get the team of the last moved piece
 
 
         List<ChessPiece> attackingPieces = new List<ChessPiece>();
@@ -653,11 +663,11 @@ public class Chessboard : MonoBehaviour
             }
 
             //If enemey piece, remove it
-            if (ocp.team == 0)
+            if (ocp.team == Team.White)
             {
                 if (ocp.ID == ChessPieceID.StandardKing)
                 {
-                    CheckMate(1);
+                    CheckMate(Team.Black);
                 }
 
                 deadWhitePieces.Add(ocp);
@@ -672,7 +682,7 @@ public class Chessboard : MonoBehaviour
             {
                 if (ocp.ID == ChessPieceID.StandardKing)
                 {
-                    CheckMate(0);
+                    CheckMate(Team.White);
                 }
 
                 deadBlackPieces.Add(ocp);
