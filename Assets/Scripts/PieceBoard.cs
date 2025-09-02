@@ -1,0 +1,51 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+/// <summary>
+/// Represents the board of chess pieces. Can be indexed like a 2D array.
+/// 
+/// <para>
+/// PROGRAMMER'S NOTE: Currently backed by a 2D array. This may change in the future
+/// to allow for off-board pieces.
+/// </para>
+/// </summary>
+public class PieceBoard : IEnumerable<ChessPiece>
+{
+    private readonly ChessPiece[,] chessPieces;
+    public int Width => chessPieces.GetLength(0);
+    public int Height => chessPieces.GetLength(1);
+
+    public PieceBoard(int width, int height)
+    {
+        chessPieces = new ChessPiece[width, height];
+    }
+
+    public ChessPiece this[int i, int j]
+    {
+        get => chessPieces[i, j];
+        set => chessPieces[i, j] = value;
+    }
+
+    public IEnumerator GetEnumerator()
+    {
+        for (int i = 0; i < chessPieces.GetLength(0); i++)
+        {
+            for (int j = 0; j < chessPieces.GetLength(1); j++)
+            {
+                yield return chessPieces[i, j];
+            }
+        }
+    }
+
+    IEnumerator<ChessPiece> IEnumerable<ChessPiece>.GetEnumerator()
+    {
+        for (int i = 0; i < chessPieces.GetLength(0); i++)
+        {
+            for (int j = 0; j < chessPieces.GetLength(1); j++)
+            {
+                yield return chessPieces[i, j];
+            }
+        }
+    }
+}

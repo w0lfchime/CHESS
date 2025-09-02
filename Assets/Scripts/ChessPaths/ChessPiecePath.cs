@@ -12,22 +12,13 @@ public abstract class ChessPiecePath
     /// </summary>
     /// <param name="board">The array of pieces on the board.</param>
     /// <param name="position">The position of the moving piece.</param>
-    public abstract List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, Vector2Int position);
+    public abstract List<Vector2Int> GetAvailableMoves(PieceBoard board, Vector2Int position);
     /// <summary>
-    /// Executes the movement of a piece. Should capture or otherwise interact with
-    /// a piece in the target position if present.
+    /// Gets the movement effect that this path should use when a piece moves along it.
     /// </summary>
-    /// <param name="board"></param>
-    /// <param name="piece"></param>
-    /// <param name="targetPosition"></param>
-    
-    /* 
-     * Programmers note: For alternative means of interaction, override this method
-     * in another abstract class if that means of interaction will be reused,
-     * such as ramming pieces.
-     */
-    public virtual void Move(ref ChessPiece[,] board, ChessPiece piece, Vector2Int targetPosition)
+    /// <return>Returns the movement effect of this path.</return>
+    public virtual MoveEffect Move()
     {
-        // Logic needed for base move.
+        return MoveEffects.STANDARD_CAPTURE;
     }
 }
