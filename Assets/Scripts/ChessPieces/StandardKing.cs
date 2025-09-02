@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using static Team;
 
 public class StandardKing : ChessPiece
 {
@@ -50,7 +51,7 @@ public class StandardKing : ChessPiece
                 {
                     if (board[0, 0].ID == ChessPieceID.StandardRook)
                     {
-                        if (board[0, 0].team == 0)
+                        if (board[0, 0].team == White)
                         {
                             if (board[3, 0] == null && board[2, 0] == null && board[1, 0] == null)
                             {
@@ -65,7 +66,7 @@ public class StandardKing : ChessPiece
                 {
                     if (board[7, 0].ID == ChessPieceID.StandardRook)
                     {
-                        if (board[7, 0].team == 0)
+                        if (board[7, 0].team == White)
                         {
                             if (board[5, 0] == null && board[6, 0] == null)
                             {
@@ -84,7 +85,7 @@ public class StandardKing : ChessPiece
                 {
                     if (board[0, 7].ID == ChessPieceID.StandardRook)
                     {
-                        if (board[0, 7].team == 1)
+                        if (board[0, 7].team == Black)
                         {
                             if (board[3, 7] == null && board[2, 7] == null && board[1, 7] == null)
                             {
@@ -99,7 +100,7 @@ public class StandardKing : ChessPiece
                 {
                     if (board[7, 7].ID == ChessPieceID.StandardRook)
                     {
-                        if (board[7, 7].team == 1)
+                        if (board[7, 7].team == Black)
                         {
                             if (board[5, 7] == null && board[6, 7] == null)
                             {
