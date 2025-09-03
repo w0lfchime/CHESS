@@ -4,7 +4,7 @@ using static Team;
 
 public class StandardKing : ChessPiece
 {
-    public override List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
+    public override List<Vector2Int> GetAvailableMoves(PieceBoard board, int tileCountX, int tileCountY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 
@@ -33,7 +33,7 @@ public class StandardKing : ChessPiece
         return r;
     }
 
-    public override SpecialMove GetSpecialMoves(ref ChessPiece[,] board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
+    public override SpecialMove GetSpecialMoves(PieceBoard board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
     {
         SpecialMove r = SpecialMove.None;
 

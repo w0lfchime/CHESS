@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class StandardRook : ChessPiece
 {
-    public override List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
+    public override List<Vector2Int> GetAvailableMoves(PieceBoard board, int tileCountX, int tileCountY)
     {
-        List<Vector2Int> r = new List<Vector2Int>();
+        List<Vector2Int> r = new();
 
         //Down
         for (int i = currentY - 1; i >= 0; i--)

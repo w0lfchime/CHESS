@@ -45,7 +45,7 @@ public class Chessboard : MonoBehaviour
 
     //Logic
     private Dictionary<String, GameObject> piecePrefabTable;
-    private ChessPiece[,] chessPieces;
+    private PieceBoard chessPieces;
     private ChessPiece currentlyDragging;
     private const int TILE_COUNT_X = 8;
     private const int TILE_COUNT_Y = 8;
@@ -114,9 +114,9 @@ public class Chessboard : MonoBehaviour
                     {
                         currentlyDragging = chessPieces[hitPosition.x, hitPosition.y];
                         //List of available moves
-                        availableMoves = currentlyDragging.GetAvailableMoves(ref chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
+                        availableMoves = currentlyDragging.GetAvailableMoves(chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
                         //Get list of special moves
-                        specialMove = currentlyDragging.GetSpecialMoves(ref chessPieces, ref moveList, ref availableMoves);
+                        specialMove = currentlyDragging.GetSpecialMoves(chessPieces, ref moveList, ref availableMoves);
 
                         PreventCheck();
                         HighlightTiles();
@@ -225,7 +225,7 @@ public class Chessboard : MonoBehaviour
     //Spawning of Pieces
     private void SpawnAllPieces()
     {
-        chessPieces = new ChessPiece[TILE_COUNT_X, TILE_COUNT_Y];
+        chessPieces = new PieceBoard(TILE_COUNT_X, TILE_COUNT_Y);
 
         //White Team
         chessPieces[0, 0] = SpawnSinglePiece("StandardRook", Team.White);
@@ -522,7 +522,7 @@ public class Chessboard : MonoBehaviour
             }
 
             //Copy 2D array and not ref
-            ChessPiece[,] simulation = new ChessPiece[TILE_COUNT_X, TILE_COUNT_Y];
+            PieceBoard simulation = new PieceBoard(TILE_COUNT_X, TILE_COUNT_Y);
             List<ChessPiece> simAttackingPieces = new List<ChessPiece>();
             for (int x = 0; x < TILE_COUNT_X; x++)
             {
@@ -556,7 +556,7 @@ public class Chessboard : MonoBehaviour
             List<Vector2Int> simulatedMoves = new List<Vector2Int>();
             for (int a = 0; a < simAttackingPieces.Count; a++)
             {
-                var pieceMoves = simAttackingPieces[a].GetAvailableMoves(ref simulation, TILE_COUNT_X, TILE_COUNT_Y);
+                var pieceMoves = simAttackingPieces[a].GetAvailableMoves(simulation, TILE_COUNT_X, TILE_COUNT_Y);
                 for (int b = 0; b < pieceMoves.Count; b++)
                 {
                     simulatedMoves.Add(pieceMoves[b]);
@@ -617,7 +617,7 @@ public class Chessboard : MonoBehaviour
         List<Vector2Int> currentAvailableMoves = new List<Vector2Int>();
         for (int i = 0; i < attackingPieces.Count; i++)
         {
-            var pieceMoves = attackingPieces[i].GetAvailableMoves(ref chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
+            var pieceMoves = attackingPieces[i].GetAvailableMoves(chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
             for (int j = 0; j < pieceMoves.Count; j++)
             {
                 currentAvailableMoves.Add(pieceMoves[j]);
@@ -630,7 +630,7 @@ public class Chessboard : MonoBehaviour
             //Check if we can move any piece to prevent check
             for (int i = 0; i < defendingPieces.Count; i++)
             {
-                List<Vector2Int> pieceMoves = defendingPieces[i].GetAvailableMoves(ref chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
+                List<Vector2Int> pieceMoves = defendingPieces[i].GetAvailableMoves(chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
                 SimulateMoveForSinglePiece(defendingPieces[i], ref pieceMoves, targetKing);
 
                 if (pieceMoves.Count != 0)

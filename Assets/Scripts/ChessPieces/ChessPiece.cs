@@ -62,6 +62,14 @@ public abstract class ChessPiece : MonoBehaviour
     {
         PieceTags.Remove(tag);
     }
+    public void AddPath(ChessPiecePath path)
+    {
+        PiecePaths.Add(path);
+    }
+    public void ClearPaths()
+    {
+        PiecePaths.Clear();
+    }
 
     private void Update()
     {
@@ -79,7 +87,7 @@ public abstract class ChessPiece : MonoBehaviour
         return PieceTags.Contains(tag);
     }
 
-    public virtual List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
+    public virtual List<Vector2Int> GetAvailableMoves(PieceBoard board, int tileCountX, int tileCountY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 
@@ -91,7 +99,7 @@ public abstract class ChessPiece : MonoBehaviour
         return r;
     }
 
-    public virtual SpecialMove GetSpecialMoves(ref ChessPiece[,] board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
+    public virtual SpecialMove GetSpecialMoves(PieceBoard board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
     {
         // Default implementation returns no special moves
         return SpecialMove.None;
