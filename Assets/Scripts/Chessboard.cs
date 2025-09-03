@@ -42,6 +42,8 @@ public class Chessboard : MonoBehaviour
     /// </summary>
     public static Chessboard CHESSBOARD;
 
+    public PieceList pieceList;
+
 
     //Logic
     private ChessPiece[,] chessPieces;

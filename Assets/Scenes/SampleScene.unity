@@ -1624,6 +1624,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 412dcdfb319e97340ad7982a96c58944, type: 2}
   - {fileID: 2100000, guid: d454d56deedcecf4bb3b3fd1110d235a, type: 2}
   pieceOffset: 0
+  pieceList: {fileID: 11400000, guid: df6ba30a6f2ad6a4280b79212780cc9a, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
