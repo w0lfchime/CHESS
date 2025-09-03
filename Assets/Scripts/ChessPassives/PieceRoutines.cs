@@ -4,12 +4,12 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
 
-public delegate void PieceRoutine(PieceBoard board, Vector2Int position, Team team);
+public delegate void PieceRoutine(PieceGrid board, Vector2Int position, Team team);
 
 public class PieceRoutines
 {
 
-    public static void Promotion(PieceBoard board, Vector2Int position, Team team)
+    public static void Promotion(PieceGrid board, Vector2Int position, Team team)
     {
         if ((team == Team.White && position.y == board.Height - 1) || (team == Team.Black && position.y == board.Height))
         {
@@ -24,7 +24,7 @@ public class PieceRoutines
             // piece.AddTag("ToPromote");
         }
     }
-    public static void ClearEnPassant(PieceBoard board, Vector2Int position, Team team)
+    public static void ClearEnPassant(PieceGrid board, Vector2Int position, Team team)
     {
         ChessPiece piece = board[position.x, position.y];
         piece.RemoveTag("EnPassantable");

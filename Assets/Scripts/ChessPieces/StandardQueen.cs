@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class StandardQueen : ChessPiece
 {
-    public override List<Vector2Int> GetAvailableMoves(PieceBoard board, int tileCountX, int tileCountY)
+    public override List<Vector2Int> GetAvailableMoves(PieceGrid board, int tileCountX, int tileCountY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 

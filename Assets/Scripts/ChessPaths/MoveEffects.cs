@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// <param name="piece"></param>
 /// <param name="position"></param>
 /// <param name="targetPosition"></param>
-public delegate void MoveEffect(PieceBoard board, ChessPiece piece, Vector2Int position, Vector2Int targetPosition);
+public delegate void MoveEffect(PieceGrid board, ChessPiece piece, Vector2Int position, Vector2Int targetPosition);
 
 public class MoveEffects
 {
@@ -16,7 +16,7 @@ public class MoveEffects
     /// The standard movement effect. Moves the select piece and captures the piece
     /// on the target position if present.
     /// </summary>
-    public static void StandardCapture(PieceBoard board, ChessPiece piece, Vector2Int position, Vector2Int target)
+    public static void StandardCapture(PieceGrid board, ChessPiece piece, Vector2Int position, Vector2Int target)
     {
         // Capture Logic
         // Movement
@@ -24,7 +24,7 @@ public class MoveEffects
     /// <summary>
     /// Enables the piece to be captured via en passant.
     /// </summary>
-    public static void PassingMove(PieceBoard board, ChessPiece piece, Vector2Int position, Vector2Int target)
+    public static void PassingMove(PieceGrid board, ChessPiece piece, Vector2Int position, Vector2Int target)
     {
         piece.AddTag("EnPassantable");
         StandardCapture(board, piece, position, target);
@@ -33,7 +33,7 @@ public class MoveEffects
     /// Captures the piece below the moving piece
     /// (relative to the current team)
     /// </summary>
-    public static void EnPassant(PieceBoard board, ChessPiece piece, Vector2Int position, Vector2Int target)
+    public static void EnPassant(PieceGrid board, ChessPiece piece, Vector2Int position, Vector2Int target)
     {
         StandardCapture(board, piece, position, target);
         int direction = piece.team == Team.White ? -1 : 1;

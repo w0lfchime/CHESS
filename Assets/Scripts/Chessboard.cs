@@ -45,7 +45,7 @@ public class Chessboard : MonoBehaviour
 
     //Logic
     private Dictionary<String, GameObject> piecePrefabTable;
-    private PieceBoard chessPieces;
+    private PieceGrid chessPieces;
     private ChessPiece currentlyDragging;
     private const int TILE_COUNT_X = 8;
     private const int TILE_COUNT_Y = 8;
@@ -225,7 +225,7 @@ public class Chessboard : MonoBehaviour
     //Spawning of Pieces
     private void SpawnAllPieces()
     {
-        chessPieces = new PieceBoard(TILE_COUNT_X, TILE_COUNT_Y);
+        chessPieces = new PieceGrid(TILE_COUNT_X, TILE_COUNT_Y);
 
         //White Team
         chessPieces[0, 0] = SpawnSinglePiece("StandardRook", Team.White);
@@ -522,7 +522,7 @@ public class Chessboard : MonoBehaviour
             }
 
             //Copy 2D array and not ref
-            PieceBoard simulation = new PieceBoard(TILE_COUNT_X, TILE_COUNT_Y);
+            PieceGrid simulation = new PieceGrid(TILE_COUNT_X, TILE_COUNT_Y);
             List<ChessPiece> simAttackingPieces = new List<ChessPiece>();
             for (int x = 0; x < TILE_COUNT_X; x++)
             {

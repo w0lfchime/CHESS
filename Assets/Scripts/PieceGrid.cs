@@ -11,13 +11,13 @@ using System.Collections.Generic;
 /// to allow for off-board pieces.
 /// </para>
 /// </summary>
-public class PieceBoard : IEnumerable<ChessPiece>
+public class PieceGrid : IEnumerable<ChessPiece>
 {
     private readonly ChessPiece[,] chessPieces;
     public int Width => chessPieces.GetLength(0);
     public int Height => chessPieces.GetLength(1);
 
-    public PieceBoard(int width, int height)
+    public PieceGrid(int width, int height)
     {
         chessPieces = new ChessPiece[width, height];
     }

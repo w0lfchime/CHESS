@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class DoublePawnPath : ChessPiecePath
 {
-    public override List<Vector2Int> GetAvailableMoves(PieceBoard board, Vector2Int position, Team team)
+    public override List<Vector2Int> GetAvailableMoves(PieceGrid board, Vector2Int position, Team team)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 

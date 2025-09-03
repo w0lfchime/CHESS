@@ -87,7 +87,7 @@ public abstract class ChessPiece : MonoBehaviour
         return PieceTags.Contains(tag);
     }
 
-    public virtual List<Vector2Int> GetAvailableMoves(PieceBoard board, int tileCountX, int tileCountY)
+    public virtual List<Vector2Int> GetAvailableMoves(PieceGrid board, int tileCountX, int tileCountY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 
@@ -99,7 +99,7 @@ public abstract class ChessPiece : MonoBehaviour
         return r;
     }
 
-    public virtual SpecialMove GetSpecialMoves(PieceBoard board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
+    public virtual SpecialMove GetSpecialMoves(PieceGrid board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
     {
         // Default implementation returns no special moves
         return SpecialMove.None;
@@ -123,7 +123,7 @@ public abstract class ChessPiece : MonoBehaviour
         }
     }
 
-    public void Capture(PieceBoard board, Vector2Int position, bool fromCapture = true)
+    public void Capture(PieceGrid board, Vector2Int position, bool fromCapture = true)
     {
         Destroy(gameObject);
     }
