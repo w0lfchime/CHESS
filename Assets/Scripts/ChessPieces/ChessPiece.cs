@@ -4,18 +4,6 @@ using System;
 
 
 
-public enum ChessPieceID
-{
-    None,
-    StandardPawn,
-    StandardRook,
-    StandardKnight,
-    StandardBishop,
-    StandardQueen,
-    StandardKing,
-    NecroQueen,
-}
-
 public enum Team
 {
     White = 0,
@@ -38,7 +26,11 @@ public abstract class ChessPiece : MonoBehaviour
     public Team team;
     public int currentX;
     public int currentY;
-    public ChessPieceID ID;
+    [SerializeField] private String _id;
+    public String ID
+    {
+        get => _id;
+    }
     public ChessPieceType pieceType;
     public HashSet<String> PieceTags { get; private set; }
     public List<ChessPiecePath> PiecePaths { get; private set; }

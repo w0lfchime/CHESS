@@ -49,7 +49,7 @@ public class StandardKing : ChessPiece
                 //Left rook
                 if (leftRook == null)
                 {
-                    if (board[0, 0].ID == ChessPieceID.StandardRook)
+                    if (board[0, 0].ID == "StandardRook")
                     {
                         if (board[0, 0].team == White)
                         {
@@ -64,7 +64,7 @@ public class StandardKing : ChessPiece
                 //Right rook
                 if (rightRook == null)
                 {
-                    if (board[7, 0].ID == ChessPieceID.StandardRook)
+                    if (board[7, 0].ID == "StandardRook")
                     {
                         if (board[7, 0].team == White)
                         {
@@ -83,7 +83,7 @@ public class StandardKing : ChessPiece
                 //Left rook
                 if (leftRook == null)
                 {
-                    if (board[0, 7].ID == ChessPieceID.StandardRook)
+                    if (board[0, 7].ID == "StandardRook")
                     {
                         if (board[0, 7].team == Black)
                         {
@@ -98,7 +98,7 @@ public class StandardKing : ChessPiece
                 //Right rook
                 if (rightRook == null)
                 {
-                    if (board[7, 7].ID == ChessPieceID.StandardRook)
+                    if (board[7, 7].ID == "StandardRook")
                     {
                         if (board[7, 7].team == Black)
                         {

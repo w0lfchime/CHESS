@@ -102,6 +102,5 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
-  ID: 5
+  _id: StandardQueen
   pieceType: 0
-  initialTags: []

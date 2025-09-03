@@ -70,7 +70,7 @@ public class StandardPawn : ChessPiece
         if (moveList.Count > 0)
         {
             Vector2Int[] lastMove = moveList[moveList.Count - 1];
-            if (board[lastMove[1].x, lastMove[1].y].ID == ChessPieceID.StandardPawn) //If last piece was pawn
+            if (board[lastMove[1].x, lastMove[1].y].ID == "StandardPawn") //If last piece was pawn
             {
                 if (Mathf.Abs(lastMove[0].y - lastMove[1].y) == 2) //If last piece was +2 either direction
                 {

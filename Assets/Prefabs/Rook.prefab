@@ -102,6 +102,5 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
-  ID: 2
+  _id: StandardRook
   pieceType: 0
-  initialTags: []

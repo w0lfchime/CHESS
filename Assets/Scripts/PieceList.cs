@@ -14,7 +14,10 @@ public class PieceList : ScriptableObject, IEnumerable<GameObject>
 
     public IEnumerator<GameObject> GetEnumerator()
     {
-        return (IEnumerator<GameObject>)piecePrefabs.GetEnumerator();
+        foreach (GameObject o in piecePrefabs)
+        {
+            yield return o;
+        }
     }
 
     IEnumerator IEnumerable.GetEnumerator()

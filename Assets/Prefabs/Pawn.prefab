@@ -102,6 +102,5 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
-  ID: 1
+  _id: StandardPawn
   pieceType: 0
-  initialTags: []
