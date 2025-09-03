@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PieceList", menuName = "Scriptable Objects/PieceList")]
-public class PieceList : ScriptableObject, IEnumerable<GameObject>
+[CreateAssetMenu(fileName = "PrefabList", menuName = "Scriptable Objects/PrefabList")]
+public class PrefabList : ScriptableObject, IEnumerable<GameObject>
 {
     [SerializeField] private GameObject[] piecePrefabs;
 

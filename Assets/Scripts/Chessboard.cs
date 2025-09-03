@@ -25,7 +25,7 @@ public class Chessboard : MonoBehaviour
     [SerializeField] private GameObject victoryScreen;
 
     [Header("Prefabs And Materials")]
-    [SerializeField] private PieceList piecePrefabs;
+    [SerializeField] private PrefabList piecePrefabs;
     [SerializeField] private Material[] teamMaterials;
 
     //Code I added for piece spawning offset
