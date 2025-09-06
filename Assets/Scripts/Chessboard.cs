@@ -44,7 +44,7 @@ public class Chessboard : MonoBehaviour
     private List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
     private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
     private List<Vector2Int> availableMoves = new List<Vector2Int>();
-    private bool isWhiteTurn;
+    public bool isWhiteTurn;
     private SpecialMove specialMove;
     private List<Vector2Int[]> moveList = new List<Vector2Int[]>();
 

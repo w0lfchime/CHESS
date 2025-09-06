@@ -2,14 +2,6 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public enum SpecialMove
-{
-    None = 0,
-    EnPassant,
-    Castling,
-    Promotion
-}
-
 public class FixedHighlightChessboard : MonoBehaviour
 {
     [Header("Art Settings")]
@@ -46,7 +38,7 @@ public class FixedHighlightChessboard : MonoBehaviour
     private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
     public List<Vector2Int> availableMoves = new List<Vector2Int>();
     public List<Vector2Int> specialMoves = new List<Vector2Int>();
-    private bool isWhiteTurn;
+    public bool isWhiteTurn;
     private SpecialMove specialMove;
     private List<Vector2Int[]> moveList = new List<Vector2Int[]>();
 
