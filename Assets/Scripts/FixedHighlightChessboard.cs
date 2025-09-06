@@ -2,14 +2,13 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-//public enum SpecialMove
-//{
-//    None = 0,
-//    EnPassant,
-//    Castling,
-//    Promotion
-//}
-
+public enum SpecialMove
+{
+    None = 0,
+    EnPassant,
+    Castling,
+    Promotion
+}
 
 public class FixedHighlightChessboard : MonoBehaviour
 {
@@ -34,9 +33,9 @@ public class FixedHighlightChessboard : MonoBehaviour
 
     //Logic
     private ChessPiece[,] chessPieces;
-    private ChessPiece currentlyDragging;
-    private ChessPiece previouslyHovering;
-    private ChessPiece currentlyHovering;
+    public ChessPiece currentlyDragging;
+    public ChessPiece previouslyHovering;
+    public ChessPiece currentlyHovering;
     private const int TILE_COUNT_X = 8;
     private const int TILE_COUNT_Y = 8;
     private GameObject[,] tiles;
@@ -45,7 +44,8 @@ public class FixedHighlightChessboard : MonoBehaviour
     private Vector3 bounds;
     private List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
     private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
-    private List<Vector2Int> availableMoves = new List<Vector2Int>();
+    public List<Vector2Int> availableMoves = new List<Vector2Int>();
+    public List<Vector2Int> specialMoves = new List<Vector2Int>();
     private bool isWhiteTurn;
     private SpecialMove specialMove;
     private List<Vector2Int[]> moveList = new List<Vector2Int[]>();
@@ -68,7 +68,7 @@ public class FixedHighlightChessboard : MonoBehaviour
 
         RaycastHit info;
         Ray ray = currentCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Tile", "Hover", "Highlight")))
+        if (Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Tile", "Hover", "Highlight", "OpponentHighlight", "SpecialHighlight")))
         {
             Vector2Int hitPosition = LookupTileIndex(info.transform.gameObject);
 
@@ -92,9 +92,22 @@ public class FixedHighlightChessboard : MonoBehaviour
                 {
                     currentlyHovering = chessPieces[hitPosition.x, hitPosition.y];
 
-                    if (previouslyHovering != currentlyHovering)
+                    if ((previouslyHovering == null && currentlyHovering == null) || (previouslyHovering != currentlyHovering))
                     {
                         RemoveHighlightTiles();
+
+                        //List of available moves
+                        availableMoves = currentlyHovering.GetAvailableMoves(ref chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
+                        //Get list of special moves
+                        specialMove = currentlyHovering.GetSpecialMoves(ref chessPieces, ref moveList, ref specialMoves);
+
+                        for (int i = 0; i < specialMoves.Count; i++)
+                        {
+                            availableMoves.Add(specialMoves[i]);
+                        }
+
+                        PreventCheck();
+                        HighlightTiles();
                     }
 
                     //Is it our turn?
@@ -106,18 +119,11 @@ public class FixedHighlightChessboard : MonoBehaviour
                             currentlyDragging = chessPieces[hitPosition.x, hitPosition.y];
                         }
                     }
-
-                    //List of available moves
-                    availableMoves = currentlyHovering.GetAvailableMoves(ref chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
-                    //Get list of special moves
-                    specialMove = currentlyHovering.GetSpecialMoves(ref chessPieces, ref moveList, ref availableMoves);
-
-                    PreventCheck();
-                    HighlightTiles();
                 }
                 else
                 {
                     currentlyHovering = null;
+                    previouslyHovering = null;
                     RemoveHighlightTiles();
                 }
             }
@@ -150,6 +156,7 @@ public class FixedHighlightChessboard : MonoBehaviour
                 tiles[currentHover.x, currentHover.y].layer = (ContainsValidMove(ref availableMoves, currentHover)) ? LayerMask.NameToLayer("Highlight") : LayerMask.NameToLayer("Tile");
                 currentHover = -Vector2Int.one;
                 currentlyHovering = null;
+                previouslyHovering = null;
                 RemoveHighlightTiles();
             }
 
@@ -157,6 +164,8 @@ public class FixedHighlightChessboard : MonoBehaviour
             {
                 // If we release the mouse while dragging, reset the piece position
                 currentlyDragging.SetPosition(GetTileCenter(currentlyDragging.currentX, currentlyDragging.currentY));
+                currentlyHovering = null;
+                previouslyHovering = null;
                 currentlyDragging = null;
                 //RemoveHighlightTiles();
             }
@@ -307,7 +316,14 @@ public class FixedHighlightChessboard : MonoBehaviour
         {
             if ((currentlyHovering.team == 0 && isWhiteTurn) || (currentlyHovering.team == 1 && !isWhiteTurn))
             {
-                tiles[availableMoves[i].x, availableMoves[i].y].layer = LayerMask.NameToLayer("Highlight");
+                if (!specialMoves.Contains(availableMoves[i]))
+                {
+                    tiles[availableMoves[i].x, availableMoves[i].y].layer = LayerMask.NameToLayer("Highlight");
+                }
+                else
+                {
+                    tiles[availableMoves[i].x, availableMoves[i].y].layer = LayerMask.NameToLayer("SpecialHighlight");
+                }
             }
             else
             {
@@ -325,6 +341,7 @@ public class FixedHighlightChessboard : MonoBehaviour
         }
 
         availableMoves.Clear();
+        specialMoves.Clear();
     }
 
 
