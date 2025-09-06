@@ -14,8 +14,8 @@ TagManager:
   - Tile
   - Hover
   - Highlight
-  - 
-  - 
+  - OpponentHighlight
+  - SpecialHighlight
   - 
   - 
   - 
