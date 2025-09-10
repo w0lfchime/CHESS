@@ -9,9 +9,9 @@ public class StandardPawn : ChessPiece
         base.SetupPiece();
         AddTag("Soldier");
 
-        AddPath(new StandardPawnPath());
-        AddPath(new DoublePawnPath());
-        AddPath(new EnPassantPath());
+        AddPath(new StandardPawnBehavior());
+        AddPath(new DoublePawnBehavior());
+        AddPath(new EnPassantBehavior());
     }
 
     public override List<Vector2Int> GetAvailableMoves(PieceGrid board, int tileCountX, int tileCountY)

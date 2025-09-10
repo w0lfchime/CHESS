@@ -13,7 +13,7 @@ public class PieceRoutines
     {
         if ((team == Team.White && position.y == board.Height - 1) || (team == Team.Black && position.y == board.Height))
         {
-            ChessPiece piece = board[position.x, position.y];
+            ChessPiece piece = board[position];
 
             ChessPiece newQueen = CHESSBOARD.SpawnSinglePiece("StandardQueen", team == Team.White ? Team.White : Team.Black);
             board[position.x, position.y] = newQueen;
@@ -21,12 +21,12 @@ public class PieceRoutines
 
             piece.Capture(board, position, false);
 
-            // piece.AddTag("ToPromote");
+            piece.AddTag("ToPromote");
         }
     }
     public static void ClearEnPassant(PieceGrid board, Vector2Int position, Team team)
     {
-        ChessPiece piece = board[position.x, position.y];
+        ChessPiece piece = board[position];
         piece.RemoveTag("EnPassantable");
     }
 }

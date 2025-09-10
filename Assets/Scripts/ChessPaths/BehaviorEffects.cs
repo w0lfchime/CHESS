@@ -8,9 +8,9 @@ using System.Collections.Generic;
 /// <param name="piece"></param>
 /// <param name="position"></param>
 /// <param name="targetPosition"></param>
-public delegate void MoveEffect(PieceGrid board, ChessPiece piece, Vector2Int position, Vector2Int targetPosition);
+public delegate void BehaviorEffect(PieceGrid board, ChessPiece piece, Vector2Int position, Vector2Int targetPosition);
 
-public class MoveEffects
+public class BehaviorEffects
 {
     /// <summary>
     /// The standard movement effect. Moves the select piece and captures the piece

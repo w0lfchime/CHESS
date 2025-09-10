@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class DoublePawnPath : ChessPiecePath
+public class DoublePawnBehavior : ChessPieceBehavior
 {
-    public override List<Vector2Int> GetAvailableMoves(PieceGrid board, Vector2Int position, Team team)
+    public override List<Vector2Int> GetAvailableTiles(PieceGrid board, Vector2Int position, Team team)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 
@@ -22,8 +22,8 @@ public class DoublePawnPath : ChessPiecePath
         return r;
     }
 
-    public override MoveEffect Move()
+    public override BehaviorEffect Effect()
     {
-        return MoveEffects.PassingMove;
+        return BehaviorEffects.PassingMove;
     }
 }
