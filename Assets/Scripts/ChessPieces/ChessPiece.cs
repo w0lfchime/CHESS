@@ -1,25 +1,39 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 
 
-public enum ChessPieceID
+public enum Team
 {
-    None = 0,
-    StandardPawn = 1,
-    StandardRook = 2,
-    StandardKnight = 3,
-    StandardBishop = 4,
-    StandardQueen = 5,
-    StandardKing = 6,
-    NecroQueen = 7,
+    White = 0,
+    Black = 1,
+}
+public enum ChessPieceType
+{
+    /// <summary>
+    /// Most pieces are this type.
+    /// </summary>
+    Normal,
+    /// <summary>
+    /// The piece/pieces required to take to win the game.
+    /// One team wins when they checkmate the last lifeline piece of the other team.
+    /// </summary>
+    Lifeline,
 }
 public abstract class ChessPiece : MonoBehaviour
 {
-    public int team;
+    public Team team;
     public int currentX;
     public int currentY;
-    public ChessPieceID ID;
+    [SerializeField] private String _id;
+    public String ID
+    {
+        get => _id;
+    }
+    public ChessPieceType pieceType;
+    public HashSet<String> PieceTags { get; private set; }
+    public List<ChessPiecePath> PiecePaths { get; private set; }
 
     private Vector3 desiredPosition;
     private Vector3 desiredScale = Vector3.one;
@@ -27,6 +41,34 @@ public abstract class ChessPiece : MonoBehaviour
     private void Start()
     {
         transform.rotation = Quaternion.Euler((team == 0) ? Vector3.zero : new Vector3(0f, 180f, 0f));
+        PieceTags = new();
+        PiecePaths = new();
+        SetupPiece();
+    }
+
+    /// <summary>
+    /// Use to set piece tags and behaviors.
+    /// </summary>
+    public virtual void SetupPiece()
+    {
+        AddTag("InitialPosition");
+    }
+
+    public void AddTag(String tag)
+    {
+        PieceTags.Add(tag);
+    }
+    public void RemoveTag(String tag)
+    {
+        PieceTags.Remove(tag);
+    }
+    public void AddPath(ChessPiecePath path)
+    {
+        PiecePaths.Add(path);
+    }
+    public void ClearPaths()
+    {
+        PiecePaths.Clear();
     }
 
     private void Update()
@@ -35,7 +77,17 @@ public abstract class ChessPiece : MonoBehaviour
         transform.localScale = Vector3.Lerp(transform.localScale, desiredScale, Time.deltaTime * 10f);
     }
 
-    public virtual List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
+    /// <summary>
+    /// Tests if the piece has a specific tag.
+    /// </summary>
+    /// <param name="tag">The string tag being tested.</param>
+    /// <returns>Whether the piece has the tag.</returns>
+    public bool HasTag(String tag)
+    {
+        return PieceTags.Contains(tag);
+    }
+
+    public virtual List<Vector2Int> GetAvailableMoves(PieceGrid board, int tileCountX, int tileCountY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 
@@ -47,7 +99,7 @@ public abstract class ChessPiece : MonoBehaviour
         return r;
     }
 
-    public virtual SpecialMove GetSpecialMoves(ref ChessPiece[,] board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
+    public virtual SpecialMove GetSpecialMoves(PieceGrid board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
     {
         // Default implementation returns no special moves
         return SpecialMove.None;
@@ -69,5 +121,10 @@ public abstract class ChessPiece : MonoBehaviour
         {
             transform.localScale = desiredScale;
         }
+    }
+
+    public void Capture(PieceGrid board, Vector2Int position, bool fromCapture = true)
+    {
+        Destroy(gameObject);
     }
 }

@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+using static Team;
 
 public class StandardKing : ChessPiece
 {
-    public override List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
+    public override List<Vector2Int> GetAvailableMoves(PieceGrid board, int tileCountX, int tileCountY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 
@@ -32,7 +33,7 @@ public class StandardKing : ChessPiece
         return r;
     }
 
-    public override SpecialMove GetSpecialMoves(ref ChessPiece[,] board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
+    public override SpecialMove GetSpecialMoves(PieceGrid board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
     {
         SpecialMove r = SpecialMove.None;
 
@@ -48,9 +49,9 @@ public class StandardKing : ChessPiece
                 //Left rook
                 if (leftRook == null)
                 {
-                    if (board[0, 0].ID == ChessPieceID.StandardRook)
+                    if (board[0, 0].ID == "StandardRook")
                     {
-                        if (board[0, 0].team == 0)
+                        if (board[0, 0].team == White)
                         {
                             if (board[3, 0] == null && board[2, 0] == null && board[1, 0] == null)
                             {
@@ -63,9 +64,9 @@ public class StandardKing : ChessPiece
                 //Right rook
                 if (rightRook == null)
                 {
-                    if (board[7, 0].ID == ChessPieceID.StandardRook)
+                    if (board[7, 0].ID == "StandardRook")
                     {
-                        if (board[7, 0].team == 0)
+                        if (board[7, 0].team == White)
                         {
                             if (board[5, 0] == null && board[6, 0] == null)
                             {
@@ -82,9 +83,9 @@ public class StandardKing : ChessPiece
                 //Left rook
                 if (leftRook == null)
                 {
-                    if (board[0, 7].ID == ChessPieceID.StandardRook)
+                    if (board[0, 7].ID == "StandardRook")
                     {
-                        if (board[0, 7].team == 1)
+                        if (board[0, 7].team == Black)
                         {
                             if (board[3, 7] == null && board[2, 7] == null && board[1, 7] == null)
                             {
@@ -97,9 +98,9 @@ public class StandardKing : ChessPiece
                 //Right rook
                 if (rightRook == null)
                 {
-                    if (board[7, 7].ID == ChessPieceID.StandardRook)
+                    if (board[7, 7].ID == "StandardRook")
                     {
-                        if (board[7, 7].team == 1)
+                        if (board[7, 7].team == Black)
                         {
                             if (board[5, 7] == null && board[6, 7] == null)
                             {

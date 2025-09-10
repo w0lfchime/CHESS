@@ -102,4 +102,5 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
-  type: 0
+  _id: StandardKing
+  pieceType: 1
