@@ -33,7 +33,8 @@ public abstract class ChessPiece : MonoBehaviour
     }
     public ChessPieceType pieceType;
     public HashSet<String> PieceTags { get; private set; }
-    public List<ChessPiecePath> PiecePaths { get; private set; }
+    public List<ChessPieceBehavior> PieceBehaviors { get; private set; }
+    public List<PieceRoutine> EndOfTurnRoutines { get; private set; }
 
     private Vector3 desiredPosition;
     private Vector3 desiredScale = Vector3.one;
@@ -42,7 +43,7 @@ public abstract class ChessPiece : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler((team == 0) ? Vector3.zero : new Vector3(0f, 180f, 0f));
         PieceTags = new();
-        PiecePaths = new();
+        PieceBehaviors = new();
         SetupPiece();
     }
 
@@ -62,13 +63,13 @@ public abstract class ChessPiece : MonoBehaviour
     {
         PieceTags.Remove(tag);
     }
-    public void AddPath(ChessPiecePath path)
+    public void AddPath(ChessPieceBehavior path)
     {
-        PiecePaths.Add(path);
+        PieceBehaviors.Add(path);
     }
     public void ClearPaths()
     {
-        PiecePaths.Clear();
+        PieceBehaviors.Clear();
     }
 
     private void Update()
