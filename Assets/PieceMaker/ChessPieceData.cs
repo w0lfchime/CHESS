@@ -1,60 +1,103 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using System.Collections.Generic;
 
+//All the action triggers. The chess board activates the triggers based on what is happening in the game.
 public enum TriggerType
 {
-    Manual,
-    Death,
+    TurnAction,
+    FirstTurnAction,
+    FirstActionAction,
+    OnDeath,
     OnMove,
-    OnAttack
+    OnTake,
+    OnPromote
+}
+
+//All the action traits. These are low level traits that determine how an action specifically interacts with the tiles around it.
+public enum ActionTrait
+{
+    //basic traits
+    apply_to_selected,
+    apply_to_all,
+
+    apply_to_empty_space,
+    apply_to_occupied_space,
+
+    go_to,
+    obstructable,
+
+    destroys_opposing_team,
+    destroys_own_team,
+
+    shift_focus,
+
+    //special traits
+    spawn_water
+    
+}
+
+
+[System.Serializable]
+public class Ability
+{
+    public string name;
+    public bool BasicMovement;
+    public TriggerType trigger;
+    public List<Action> actions = new List<Action>();
 }
 
 [System.Serializable]
-public class AbilityGrid
+public class Action
 {
-    public string abilityName;
-    public bool enabled;
-    public TriggerType trigger;
+    public string name;
 
+    public ActionTrait[] traits;
+
+    [HideInInspector]
     public Wrapper<Elements>[] visualGrid;
+
+    [HideInInspector]
     public int[] grid;
 
-    public void Init(int size)
+    public void Init(int gridSize)
     {
-        visualGrid = new Wrapper<Elements>[size];
-        for (int i = 0; i < size; i++)
+        visualGrid = new Wrapper<Elements>[gridSize];
+        for (int i = 0; i < gridSize; i++)
         {
             visualGrid[i] = new Wrapper<Elements>();
-            visualGrid[i].values = new Elements[size];
+            visualGrid[i].values = new Elements[gridSize];
         }
-        grid = new int[size * size];
+        grid = new int[gridSize * gridSize];
+    }
+
+    public Action Clone()
+    {
+        return new Action { name = this.name };
     }
 }
  
 public enum Elements { CanMove, CantMove }
 
-// Holds visualGridMoves and visualGridTakes data
-[CreateAssetMenu(fileName = "New Chess Piece", menuName = "Chess/ChessPiece")]
+// Holds general chess piece data
+[CreateAssetMenu(fileName = "New Chess Piece Data", menuName = "Chess/ChessPieceData")]
 public class ChessPieceData : ScriptableObject
 {
-    public int size = 11;
-    public Mesh model;
-    
 
-    public AbilityGrid[] abilities = new AbilityGrid[]
-    {
-        new AbilityGrid { abilityName = "moves" },
-        new AbilityGrid { abilityName = "takes" },
-        new AbilityGrid { abilityName = "friendlyFire" },
-        new AbilityGrid { abilityName = "explodes" },
-        new AbilityGrid { abilityName = "promotes" },
-        new AbilityGrid { abilityName = "firstMove" },
-        new AbilityGrid { abilityName = "firstTurnMove" }
-    };
+    public string name = "NoNameSet";
+
+    public Mesh model;
+
+    public int gridSize = 11;
+
+    public List<Ability> abilities = new List<Ability>();
+    
+    //All the actions
+    public ActionList actionList;
 
     public void SetSize(int setSize){
-        size = setSize;
+        gridSize = setSize;
     }
 }
 
@@ -79,85 +122,192 @@ public class ChessPieceDataEditor : Editor
             false
         );
 
-        //abilities
-
-        foreach (var ability in script.abilities)
-        {
-            ability.enabled = GUILayout.Toggle(ability.enabled, ability.abilityName);
-
-            if (ability.enabled)
-            {
-                // Dropdown for trigger type
-                ability.trigger = (TriggerType)EditorGUILayout.EnumPopup("Trigger", ability.trigger);
-
-                GUILayout.Label(ability.abilityName + " Grid", EditorStyles.boldLabel);
-                if (ability.visualGrid == null) ability.Init(script.size);
-
-                if (ability.visualGrid == null || ability.visualGrid.Length != script.size || ability.grid == null || ability.grid.Length != script.size * script.size)
-                {
-                    ability.Init(script.size);
-                }
-
-                DrawVisualGrid(script.size, ability.visualGrid, ability.grid);
-                if (GUILayout.Button("Reset " + ability.abilityName))
-                    ability.Init(script.size);
-            }
-        }
+        script.actionList = (ActionList)EditorGUILayout.ObjectField(
+            "Action List",
+            script.actionList,
+            typeof(ActionList),
+            false
+        );
 
 
         GUILayout.Space(10);
-        // copy button setup
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Copy All"))
-        {
-            clipboard = JsonUtility.ToJson(script, true);
-            EditorGUIUtility.systemCopyBuffer = clipboard;
-        }
-        // paste button setup
-        if (GUILayout.Button("Paste All"))
-        {
-            try
-            {
-                string json = EditorGUIUtility.systemCopyBuffer;
-                JsonUtility.FromJsonOverwrite(json, script);
-                EditorUtility.SetDirty(script);
-            }
-            catch
-            {
-                Debug.LogWarning("Paste failed: invalid JSON in clipboard.");
-            }
-        }
-        GUILayout.EndHorizontal();
 
+        ///////////////////////////////////
+        // List of abilities
+        for (int i = 0; i < script.abilities.Count; i++)
+        {
+            Ability ability = script.abilities[i];
+
+            Color oldColor = GUI.backgroundColor;
+            GUI.backgroundColor = new Color(0.0f, 0.0f, 0.0f); // light gray background
+            GUILayout.BeginVertical("box");
+            GUI.backgroundColor = oldColor;
+
+            ability.name = EditorGUILayout.TextField("Ability Name", ability.name);
+            ability.BasicMovement = EditorGUILayout.Toggle("Basic Movement", ability.BasicMovement);
+            ability.trigger = (TriggerType)EditorGUILayout.EnumPopup("Trigger", ability.trigger);
+
+            GUILayout.Space(5);
+            GUILayout.Label("Actions:", EditorStyles.boldLabel);
+
+            // Darker background for action list
+            oldColor = GUI.backgroundColor;
+            GUI.backgroundColor = new Color(0.85f, 0.85f, 0.85f); // light gray background
+            GUILayout.BeginVertical("box");
+            GUI.backgroundColor = oldColor;
+
+            // Show each action
+            for (int j = 0; j < ability.actions.Count; j++)
+            {
+                GUILayout.BeginHorizontal();
+
+                // Dropdown with available actions (match by name, not reference)
+                string[] options = (script.actionList == null) ? new string[1] : System.Array.ConvertAll(script.actionList.Actions, a => a.name);
+
+                int selectedIndex = System.Array.FindIndex(options, n => n == ability.actions[j].name);
+                if (selectedIndex < 0) selectedIndex = 0;
+
+                int newIndex = EditorGUILayout.Popup("Action " + j, selectedIndex, options);
+
+                // If changed, update the action’s name
+                if (newIndex != selectedIndex)
+                {
+                    ability.actions[j].name = options[newIndex];
+                    // optionally: reset grid when type changes
+                    ability.actions[j].Init(script.gridSize);
+                }
+
+                // Remove action
+                if (GUILayout.Button("-", GUILayout.Width(25)))
+                {
+                    ability.actions.RemoveAt(j);
+                    break;
+                }
+
+                GUILayout.EndHorizontal();
+
+                // Draw grid for this action
+                DrawAction(script, ability.actions[j]);
+
+                GUILayout.Space(20);
+            }
+
+
+            GUILayout.EndVertical(); // end action list box
+
+            GUILayout.Space(5);
+
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+
+            // Add button styled like Unity list "+"
+            if (GUILayout.Button("+", GUILayout.Width(30)))
+            {
+                if (script.actionList.Actions.Length > 0)
+                    ability.actions.Add(script.actionList.Actions[0].Clone());
+            }
+
+            GUILayout.EndHorizontal();
+
+            GUILayout.Space(20);
+
+            // Remove whole ability
+            if (GUILayout.Button("Remove Ability"))
+            {
+                script.abilities.RemoveAt(i);
+                break;
+            }
+
+            GUILayout.EndVertical();
+
+            GUILayout.Space(30);
+        }
+
+        GUILayout.Space(30);
+
+        if (GUILayout.Button("Add Ability"))
+        {
+            script.abilities.Add(new Ability());
+        }
+
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(script);
+        }
+
+
+        /////////////////////////////////////////////////
+        
  
         serializedObject.ApplyModifiedProperties();
     }
+
+    void DrawAction(ChessPieceData script, Action action){
+        // Dropdown for trigger type
+        GUILayout.Label(action.name + " Grid", EditorStyles.boldLabel);
+        if (action.visualGrid == null) action.Init(script.gridSize);
+
+        if (action.visualGrid == null || action.visualGrid.Length != script.gridSize || action.grid == null || action.grid.Length != script.gridSize * script.gridSize)
+        {
+            action.Init(script.gridSize);
+        }
+
+        DrawVisualGrid(script.gridSize, action.visualGrid, action.grid);
+
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Reset " + action.name))
+            action.Init(script.gridSize);
+
+        GUILayout.EndHorizontal();
+    }
  
-    private void DrawVisualGrid(int size, Wrapper<Elements>[] visualGrid, int[] intGrid)
+    private void DrawVisualGrid(int gridSize, Wrapper<Elements>[] visualGrid, int[] intGrid)
     {
         try
         {
+            int iterateColorValue = 0;
             GUILayout.BeginVertical();
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < gridSize; i++)
             {
                 GUILayout.BeginHorizontal();
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < gridSize; j++)
                 {
                     int cellValue = (int)visualGrid[i].values[j];
 
                     // --- Set button color ---
-                    Color oldColor = GUI.backgroundColor;
-                    if (i == size / 2 && j == size / 2)
-                        GUI.backgroundColor = Color.red;
-                    else if (cellValue == 1)
-                        GUI.backgroundColor = Color.green;
-                    else if (cellValue == 2)
-                        GUI.backgroundColor = new Color(1f, 0.5f, 0f); // orange
+                    Rect rect = GUILayoutUtility.GetRect(30, 30, GUILayout.ExpandWidth(false)); // reserve space
+
+                    // Draw background manually
+                    Color oldColor = GUI.color;
+
+                    if (iterateColorValue % 2 == 1)
+                    {
+                        GUI.color = new Color(0.255f, 0.255f, 0.255f, 1.000f);
+                    }
                     else
-                        GUI.backgroundColor = Color.white;
+                    {
+                        GUI.color = new Color(0.294f, 0.294f, 0.294f, 1.000f);
+                    }
+
+                    if (i == gridSize / 2 && j == gridSize / 2)
+                    {
+                        GUI.color = Color.red*3 * GUI.color;
+                    }
+                    else if (cellValue == 1)
+                    {
+                        GUI.color = Color.green*3 * GUI.color;
+                    }
+                    else if (cellValue == 2)
+                    {
+                        GUI.color = new Color(1.000f, 0.769f, 0.000f, 1.000f)*3 * GUI.color;
+                    }
+
+                    EditorGUI.DrawRect(rect, GUI.color);
+                    GUI.color = oldColor;
 
                     // --- Draw button ---
-                    if (GUILayout.Button("", GUILayout.Width(30), GUILayout.Height(30)))
+                    if (GUI.Button(rect, GUIContent.none, GUIStyle.none))
                     {
                         if (Event.current.button == 1) // right-click → orange
                         {
@@ -174,7 +324,9 @@ public class ChessPieceDataEditor : Editor
 
                     // --- Write back to both grids ---
                     visualGrid[i].values[j] = (Elements)cellValue;
-                    intGrid[i * size + j] = cellValue;
+                    intGrid[i * gridSize + j] = cellValue;
+
+                    iterateColorValue++;
                 }
                 GUILayout.EndHorizontal();
             }

@@ -20,68 +20,37 @@ public class ChessPieceObject : ChessPiece
         
         Vector2Int currentPos = new Vector2Int(currentX, currentY);
 
-        Vector2Int center = new Vector2Int(chessPieceData.size/2, chessPieceData.size/2);
+        Vector2Int center = new Vector2Int(chessPieceData.gridSize/2, chessPieceData.gridSize/2);
 
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
-        List<Vector2Int> possibleBlockedMoves = new List<Vector2Int>();
-        List<Vector2Int> possibleTakes = new List<Vector2Int>();
-        List<Vector2Int> possibleBlockedTakes = new List<Vector2Int>();
+        List<Vector2Int> possibleJumps = new List<Vector2Int>();
+        List<Vector2Int> possibleMoveTakes = new List<Vector2Int>();
+        List<Vector2Int> possibleJumpTakes = new List<Vector2Int>();
 
-        int[] gridMoves = chessPieceData.abilities.FirstOrDefault(data => data.abilityName == "moves").grid;
-        int[] gridTakes = chessPieceData.abilities.FirstOrDefault(data => data.abilityName == "takes").grid;
+        Dictionary<string, int[]> actionGrids = new Dictionary<string, int[]>();
 
-        for (int y = 0; y < chessPieceData.size; y++){
-            for (int x = 0; x < chessPieceData.size; x++){
-                if(gridMoves[y * chessPieceData.size + x] == 1){
-                    Vector2Int pos = new Vector2Int(x, y) - center;
-                    possibleMoves.Add(new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y))+ currentPos);
-                }
-                if(gridMoves[y * chessPieceData.size + x] == 2){
-                    Vector2Int pos = new Vector2Int(x, y) - center;
-                    possibleBlockedMoves.Add(new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y))+ currentPos);
-                }
-                if(gridTakes[y * chessPieceData.size + x] == 1){
-                    Vector2Int pos = new Vector2Int(x, y) - center;
-                    possibleTakes.Add(new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y))+ currentPos);
-                }
-                if(gridTakes[y * chessPieceData.size + x] == 2){
-                    Vector2Int pos = new Vector2Int(x, y) - center;
-                    possibleBlockedTakes.Add(new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y))+ currentPos);
+        List<(Vector2Int, ActionTrait[])> taggedTiles = new List<(Vector2Int, ActionTrait[])>();
+
+        
+        foreach(Ability ability in chessPieceData.abilities){
+            foreach(Action action in ability.actions){
+                for (int y = 0; y < chessPieceData.gridSize; y++){
+                    for (int x = 0; x < chessPieceData.gridSize; x++){
+                        if(action.grid[y * chessPieceData.gridSize + x] == 1){
+                            Vector2Int pos = new Vector2Int(x, y) - center;
+                            pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y))+ currentPos;
+
+                            taggedTiles.Add((pos, action.traits));
+                        }
+                    }
                 }
             }
         }
 
-        foreach (Vector2Int pos in possibleBlockedMoves){
-            if (pos.x >= 0 && pos.x <= tileCountX-1 && pos.y >= 0 && pos.y <= tileCountY-1){
-                if (board[pos.x, pos.y] == null && PathClear(currentPos, pos, ref board)){
-                    r.Add(pos);
-                }
-            }
-        }
-        foreach (Vector2Int pos in possibleBlockedTakes){
-            if (pos.x >= 0 && pos.x <= tileCountX-1 && pos.y >= 0 && pos.y <= tileCountY-1){
-                if (board[pos.x, pos.y] != null && (chessPieceData.abilities.FirstOrDefault(data => data.abilityName == "friendlyFire").enabled ? true : board[pos.x, pos.y].team != team)){
-                    r.Add(pos);
-                }
-            }
-        }
-        foreach(Vector2Int pos in possibleMoves){
-            if(pos.x >= 0 && pos.x <= tileCountX-1 && pos.y >= 0 && pos.y <= tileCountY-1){
-                if(board[pos.x, pos.y] == null){
-                    r.Add(pos);
-                }
-            }
-        }
-        foreach(Vector2Int pos in possibleTakes){
-            if(pos.x >= 0 && pos.x <= tileCountX-1 && pos.y >= 0 && pos.y <= tileCountY-1){
-                if(board[pos.x, pos.y] != null && (chessPieceData.abilities.FirstOrDefault(data => data.abilityName == "friendlyFire").enabled ? true : board[pos.x, pos.y].team != team)){
-                    r.Add(pos);
-                }
-            }
-        }
-
-        return r;
+        return r; // taggedTIles
     }
+
+
 
 
     private bool PathClear(Vector2Int start, Vector2Int end, ref ChessPiece[,] board)
@@ -106,5 +75,49 @@ public class ChessPieceObject : ChessPiece
         }
         return true;
     }
+
+    //These are the trigger conditions. When they are called by the manager, they will call on other actions and effects
+
+    //when a piece dies
+    public void OnDeath(){
+
+    }
+
+    //when a piece moves
+    public void OnMove(){
+
+    }
+
+    //when a piece takes another piece directly (explosions and other similar things will not count)
+    public void OnTake(){
+
+    }
+
+    //when a piece moves during the first turn of the game (black and white get a first turn)
+    public void OnFirstTurnMove(){
+
+    }
+
+    //the first move a piece makes, like a pawn's first move
+    public void OnFirstMove(){
+
+    }
+
+    //wwhen a piece reaches its team's end of the board
+    public void OnPromote(){
+
+    }
+
+    //
+
+    //These are actions that are called on by the trigger conditions. For the future, it would be nice to make effected tiles visible from actions effecting them.
+
+    public void Explode(){
+
+    }
+
+
+
+    //
 
 }
