@@ -32,7 +32,8 @@ public enum ActionTrait
     shift_focus,
 
     //traits that do something
-    spawn_water
+    spawn_water,
+    command_killpiece
     
 }
 
