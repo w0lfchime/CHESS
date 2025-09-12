@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Puzzle test scenes/Puzzle Chessboard.unity
+    guid: ca5dcaede38d2ec47813a3609a10b5ab
+  - enabled: 1
+    path: Assets/Scenes/Puzzle test scenes/Test Menu.unity
+    guid: e11b164ee6e84a54bb833f5f867f6727
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
