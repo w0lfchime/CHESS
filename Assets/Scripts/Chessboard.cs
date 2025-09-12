@@ -746,6 +746,12 @@ public class Chessboard : MonoBehaviour
             Vector2Int tilePosition = tile.Item1;
             List<ActionTrait> actionTraits = tile.Item2.ToList();
 
+            try{
+                var test = chessPieces[tilePosition.x, tilePosition.y];
+            }catch{
+                continue;
+            }
+
             bool add = false;
 
             //do all apply

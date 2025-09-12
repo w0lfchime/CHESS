@@ -18,7 +18,7 @@ MonoBehaviour:
     visualGrid: []
     grid: 
   - name: movetake
-    traits: 00000000040000000600000005000000
+    traits: 0000000004000000060000000500000009000000
     visualGrid: []
     grid: 
   - name: jump
@@ -26,10 +26,10 @@ MonoBehaviour:
     visualGrid: []
     grid: 
   - name: jumptake
-    traits: 000000000400000005000000
+    traits: 00000000040000000500000009000000
     visualGrid: []
     grid: 
   - name: explode
-    traits: 0100000002000000030000000600000007000000
+    traits: 0100000002000000030000000600000009000000
     visualGrid: []
     grid: 
