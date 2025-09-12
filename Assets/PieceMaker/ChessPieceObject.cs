@@ -14,46 +14,45 @@ public class ChessPieceObject : ChessPiece
         }
     }
 
-    public override List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
+    public override List<(Vector2Int, ActionTrait[])> GetTileTags(ref ChessPiece[,] board, int tileCountX, int tileCountY, TriggerType trigger = TriggerType.TurnAction)
     {
-        List<Vector2Int> r = new List<Vector2Int>();
+        List<(Vector2Int, ActionTrait[])> r = new List<(Vector2Int, ActionTrait[])>();
         
         Vector2Int currentPos = new Vector2Int(currentX, currentY);
 
         Vector2Int center = new Vector2Int(chessPieceData.gridSize/2, chessPieceData.gridSize/2);
 
-        List<Vector2Int> possibleMoves = new List<Vector2Int>();
-        List<Vector2Int> possibleJumps = new List<Vector2Int>();
-        List<Vector2Int> possibleMoveTakes = new List<Vector2Int>();
-        List<Vector2Int> possibleJumpTakes = new List<Vector2Int>();
-
-        Dictionary<string, int[]> actionGrids = new Dictionary<string, int[]>();
-
         List<(Vector2Int, ActionTrait[])> taggedTiles = new List<(Vector2Int, ActionTrait[])>();
 
-        
-        foreach(Ability ability in chessPieceData.abilities){
-            foreach(Action action in ability.actions){
-                for (int y = 0; y < chessPieceData.gridSize; y++){
-                    for (int x = 0; x < chessPieceData.gridSize; x++){
-                        if(action.grid[y * chessPieceData.gridSize + x] == 1){
-                            Vector2Int pos = new Vector2Int(x, y) - center;
-                            pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y))+ currentPos;
 
-                            taggedTiles.Add((pos, action.traits));
+        foreach(Ability ability in chessPieceData.abilities) //iterate through each ability (needs to be reworked in the future to only work on selected abilities)
+        {
+            if(ability.trigger == trigger){
+                foreach(Action action in ability.actions) // iterate through every action in that ability (maybe only the first action, this really depends on the effects of the ability)
+                {
+                    for (int y = 0; y < chessPieceData.gridSize; y++) // go through each y tile
+                    {
+                        for (int x = 0; x < chessPieceData.gridSize; x++){ // go through each x tile
+                            if(action.grid[y * chessPieceData.gridSize + x] == 1) //detect if ui tile is selected
+                            {
+                                Vector2Int pos = new Vector2Int(x, y) - center;
+                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y))+ currentPos; // flip direction based on team and convert local piece position to the chess board tile position
+
+                                taggedTiles.Add((pos, action.traits));
+                            }
                         }
                     }
                 }
             }
         }
 
-        return r; // taggedTIles
+        return taggedTiles; // can be r for testing
     }
 
 
 
 
-    private bool PathClear(Vector2Int start, Vector2Int end, ref ChessPiece[,] board)
+    private bool PathClear(Vector2Int start, Vector2Int end, ref ChessPiece[,] board) // old
     {
         Vector2Int dir = new Vector2Int(
             Math.Sign(end.x - start.x),

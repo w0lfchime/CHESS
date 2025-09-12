@@ -18,22 +18,20 @@ public enum TriggerType
 //All the action traits. These are low level traits that determine how an action specifically interacts with the tiles around it.
 public enum ActionTrait
 {
-    //basic traits
-    apply_to_selected,
+    //conditional traits
+    remove_unselected,
     apply_to_all,
 
     apply_to_empty_space,
-    apply_to_occupied_space,
+    apply_to_ownteam_space,
+    apply_to_opposingteam_space,
 
-    go_to,
-    obstructable,
-
-    destroys_opposing_team,
-    destroys_own_team,
+    command_goto,
+    remove_obstructed,
 
     shift_focus,
 
-    //special traits
+    //traits that do something
     spawn_water
     
 }
@@ -43,7 +41,7 @@ public enum ActionTrait
 public class Ability
 {
     public string name;
-    public bool BasicMovement;
+    public bool BasicMovement; // basically just for anything that should be shown without having to switch abilities, so multiple abilities and triggers can still be basicmovement
     public TriggerType trigger;
     public List<Action> actions = new List<Action>();
 }
@@ -74,7 +72,7 @@ public class Action
 
     public Action Clone()
     {
-        return new Action { name = this.name };
+        return new Action { name = this.name, traits = this.traits };
     }
 }
  
@@ -132,7 +130,6 @@ public class ChessPieceDataEditor : Editor
 
         GUILayout.Space(10);
 
-        ///////////////////////////////////
         // List of abilities
         for (int i = 0; i < script.abilities.Count; i++)
         {
@@ -173,6 +170,7 @@ public class ChessPieceDataEditor : Editor
                 if (newIndex != selectedIndex)
                 {
                     ability.actions[j].name = options[newIndex];
+                    ability.actions[j].traits = script.actionList.Actions[newIndex].traits;
                     // optionally: reset grid when type changes
                     ability.actions[j].Init(script.gridSize);
                 }
@@ -200,7 +198,7 @@ public class ChessPieceDataEditor : Editor
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
 
-            // Add button styled like Unity list "+"
+            // Add button "+"
             if (GUILayout.Button("+", GUILayout.Width(30)))
             {
                 if (script.actionList.Actions.Length > 0)
@@ -236,7 +234,6 @@ public class ChessPieceDataEditor : Editor
         }
 
 
-        /////////////////////////////////////////////////
         
  
         serializedObject.ApplyModifiedProperties();
@@ -275,7 +272,7 @@ public class ChessPieceDataEditor : Editor
                 {
                     int cellValue = (int)visualGrid[i].values[j];
 
-                    // --- Set button color ---
+                    // Set button color
                     Rect rect = GUILayoutUtility.GetRect(30, 30, GUILayout.ExpandWidth(false)); // reserve space
 
                     // Draw background manually
@@ -306,15 +303,15 @@ public class ChessPieceDataEditor : Editor
                     EditorGUI.DrawRect(rect, GUI.color);
                     GUI.color = oldColor;
 
-                    // --- Draw button ---
+                    // Draw button
                     if (GUI.Button(rect, GUIContent.none, GUIStyle.none))
                     {
-                        if (Event.current.button == 1) // right-click → orange
+                        if (Event.current.button == 1) // right click to orange
                         {
                             cellValue = Mathf.Clamp(-cellValue+2, 0, 2);
                             Event.current.Use();
                         }
-                        else // left-click → cycle 0 → 1 → 2 → 0
+                        else // left click to cycle
                         {
                             cellValue = Mathf.Clamp(-cellValue+1, 0, 1);
                         }
@@ -322,7 +319,7 @@ public class ChessPieceDataEditor : Editor
 
                     GUI.backgroundColor = oldColor;
 
-                    // --- Write back to both grids ---
+                    // Write back to both grid
                     visualGrid[i].values[j] = (Elements)cellValue;
                     intGrid[i * gridSize + j] = cellValue;
 

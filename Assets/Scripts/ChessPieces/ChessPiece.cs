@@ -19,6 +19,7 @@ public abstract class ChessPiece : MonoBehaviour
     public int team;
     public int currentX;
     public int currentY;
+    public Vector2Int startingPosition;
     public ChessPieceID ID;
 
     private Vector3 desiredPosition;
@@ -38,6 +39,18 @@ public abstract class ChessPiece : MonoBehaviour
     public virtual List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
+
+        //r.Add(new Vector2Int(3, 3));
+        //r.Add(new Vector2Int(4, 4));
+        //r.Add(new Vector2Int(3, 4));
+        //r.Add(new Vector2Int(4, 3));
+
+        return r;
+    }
+
+    public virtual List<(Vector2Int, ActionTrait[])> GetTileTags(ref ChessPiece[,] board, int tileCountX, int tileCountY, TriggerType trigger = TriggerType.TurnAction)
+    {
+        List<(Vector2Int, ActionTrait[])> r = new List<(Vector2Int, ActionTrait[])>();
 
         //r.Add(new Vector2Int(3, 3));
         //r.Add(new Vector2Int(4, 4));

@@ -12,4 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d11373d85aa8f045a9a59c0543bc143, type: 3}
   m_Name: New ActionList 1
   m_EditorClassIdentifier: 
-  Actions: []
+  Actions:
+  - name: move
+    traits: 00000000020000000600000005000000
+    visualGrid: []
+    grid: 
+  - name: movetake
+    traits: 00000000040000000600000005000000
+    visualGrid: []
+    grid: 
+  - name: jump
+    traits: 000000000200000005000000
+    visualGrid: []
+    grid: 
+  - name: jumptake
+    traits: 000000000400000005000000
+    visualGrid: []
+    grid: 
+  - name: explode
+    traits: 0100000002000000030000000600000007000000
+    visualGrid: []
+    grid: 
