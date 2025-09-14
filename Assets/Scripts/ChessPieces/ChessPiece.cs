@@ -36,6 +36,11 @@ public abstract class ChessPiece : MonoBehaviour
     {
         get => _value;
     }
+    [SerializeField] private bool _isLifeline;
+    public bool isLifeline
+    {
+        get => _isLifeline;
+    }
     public ChessPieceType pieceType;
     public HashSet<String> PieceTags { get; private set; }
     public List<ChessPieceBehavior> PieceBehaviors { get; private set; }
