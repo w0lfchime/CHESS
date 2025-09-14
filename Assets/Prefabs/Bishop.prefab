@@ -103,4 +103,5 @@ MonoBehaviour:
   currentX: 0
   currentY: 0
   _id: StandardBishop
+  _value: 3
   pieceType: 0

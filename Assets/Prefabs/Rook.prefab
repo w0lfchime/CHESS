@@ -103,4 +103,5 @@ MonoBehaviour:
   currentX: 0
   currentY: 0
   _id: StandardRook
+  _value: 5
   pieceType: 0
