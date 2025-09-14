@@ -233,7 +233,7 @@ public class Chessboard : MonoBehaviour
 
     public void SpawnPiecesFromLayout(PieceLayout pieceLayout, Team team)
     {
-        LayoutData layout = pieceLayout.GetLayout();
+        String[,] layout = pieceLayout.GetLayout();
         // Hard-coded team cases for now since currently we only plan on
         // two players
         if (team == Team.White)

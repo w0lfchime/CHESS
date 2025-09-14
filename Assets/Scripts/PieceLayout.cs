@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.Collections;
 
 public enum LayoutStatus
 {
@@ -29,33 +30,8 @@ public static class PieceProperties
 [Serializable]
 public class LayoutData
 {
-    public String[,] layout;
-
-    public LayoutData(int x = 8, int y = 2)
-    {
-        layout = new String[x, y];
-    }
-
-    public String this[int i, int j]
-    {
-        get => layout[i, j];
-        set => layout[i, j] = value;
-    }
-
-    public int GetLength(int dimension)
-    {
-        return layout.GetLength(dimension);
-    }
-
-    public string ToJson()
-    {
-        return JsonUtility.ToJson(this);
-    }
-
-    public void FromJson(string json)
-    {
-        JsonUtility.FromJsonOverwrite(json, this);
-    }
+    public List<String> idList = new();
+    public List<Vector2Int> posList = new();
 }
 
 public class PieceLayout
@@ -63,7 +39,7 @@ public class PieceLayout
     private int valueSum;
     private int valueCap;
     private bool hasLifelinePiece = false;
-    private LayoutData layout;
+    private String[,] layout;
     private Dictionary<String, int> materialValues;
     private HashSet<String> lifelines;
 
@@ -71,7 +47,7 @@ public class PieceLayout
     {
         valueCap = cap;
         valueSum = 0;
-        layout = new LayoutData(x,y);
+        layout = new string[x,y];
         materialValues = valueDict;
         lifelines = lifelineList;
     }
@@ -128,8 +104,41 @@ public class PieceLayout
         return LayoutStatus.Success;
     }
 
-    public LayoutData GetLayout()
+    public String[,] GetLayout()
     {
+        return layout;
+    }
+
+    public string ToJson()
+    {
+        LayoutData data = new LayoutData();
+        for (int i = 0; i < layout.GetLength(0); i++)
+        {
+            for (int j = 0; j < layout.GetLength(1); j++)
+            {
+                if (layout[i, j] != null)
+                {
+                    data.idList.Add(layout[i, j]);
+                    data.posList.Add(new Vector2Int(i, j));
+                }
+            }
+        }
+        return JsonUtility.ToJson(data);
+    }
+
+    public static PieceLayout FromJson(string json, int cap, Dictionary<String, int> valueDict, HashSet<String> lifelineList, int x = 8, int y = 2)
+    {
+        LayoutData data = JsonUtility.FromJson<LayoutData>(json);
+        PieceLayout layout = new(cap, valueDict, lifelineList, x, y);
+        for (int i = 0; i < data.idList.Count; i++)
+        {
+            LayoutStatus status = layout.AddPiece(data.idList[i],
+                                data.posList[i].x, data.posList[i].y);
+            if (status != LayoutStatus.Success)
+            {
+                Debug.Log("Failed to add piece: Error code " + status);
+            }
+        }
         return layout;
     }
 
@@ -159,6 +168,9 @@ public class PieceLayout
         {
             layout.AddPiece("StandardPawn", i, 1);
         }
+
+        Debug.Log("JSON: " + layout.ToJson());
+        layout = PieceLayout.FromJson(layout.ToJson(), 39, PieceProperties.PieceValues, PieceProperties.LifelinePieces);
 
         return layout;
     }
