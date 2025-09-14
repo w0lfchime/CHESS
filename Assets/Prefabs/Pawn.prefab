@@ -103,4 +103,5 @@ MonoBehaviour:
   currentX: 0
   currentY: 0
   _id: StandardPawn
+  _value: 1
   pieceType: 0

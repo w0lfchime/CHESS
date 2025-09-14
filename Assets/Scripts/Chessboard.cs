@@ -227,32 +227,41 @@ public class Chessboard : MonoBehaviour
     {
         chessPieces = new PieceGrid(TILE_COUNT_X, TILE_COUNT_Y);
 
-        //White Team
-        chessPieces[0, 0] = SpawnSinglePiece("StandardRook", Team.White);
-        chessPieces[1, 0] = SpawnSinglePiece("StandardKnight", Team.White);
-        chessPieces[2, 0] = SpawnSinglePiece("StandardBishop", Team.White);
-        chessPieces[3, 0] = SpawnSinglePiece("StandardQueen", Team.White);
-        chessPieces[4, 0] = SpawnSinglePiece("StandardKing", Team.White);
-        chessPieces[5, 0] = SpawnSinglePiece("StandardBishop", Team.White);
-        chessPieces[6, 0] = SpawnSinglePiece("StandardKnight", Team.White);
-        chessPieces[7, 0] = SpawnSinglePiece("StandardRook", Team.White);
-        for (int i = 0; i < TILE_COUNT_X; i++)
-        {
-            chessPieces[i, 1] = SpawnSinglePiece("StandardPawn", Team.White);
-        }
+        SpawnPiecesFromLayout(PieceLayout.StandardChessLayout(Team.White), Team.White);
+        SpawnPiecesFromLayout(PieceLayout.StandardChessLayout(Team.Black), Team.Black);
+    }
 
-        //Black Team
-        chessPieces[0, 7] = SpawnSinglePiece("StandardRook", Team.Black);
-        chessPieces[1, 7] = SpawnSinglePiece("StandardKnight", Team.Black);
-        chessPieces[2, 7] = SpawnSinglePiece("StandardBishop", Team.Black);
-        chessPieces[3, 7] = SpawnSinglePiece("StandardQueen", Team.Black);
-        chessPieces[4, 7] = SpawnSinglePiece("StandardKing", Team.Black);
-        chessPieces[5, 7] = SpawnSinglePiece("StandardBishop", Team.Black);
-        chessPieces[6, 7] = SpawnSinglePiece("StandardKnight", Team.Black);
-        chessPieces[7, 7] = SpawnSinglePiece("StandardRook", Team.Black);
-        for (int i = 0; i < TILE_COUNT_X; i++)
+    public void SpawnPiecesFromLayout(PieceLayout pieceLayout, Team team)
+    {
+        LayoutData layout = pieceLayout.GetLayout();
+        // Hard-coded team cases for now since currently we only plan on
+        // two players
+        if (team == Team.White)
         {
-            chessPieces[i, 6] = SpawnSinglePiece("StandardPawn", Team.Black);
+            for (int i = 0; i < layout.GetLength(0); i++)
+            {
+                for (int j = 0; j < layout.GetLength(1); j++)
+                {
+                    if (layout[i, j] != null)
+                    {
+                        chessPieces[i, j] = SpawnSinglePiece(layout[i, j], team);
+                    }
+                }
+            }
+        }
+        else if (team == Team.Black)
+        {
+            for (int i = 0; i < layout.GetLength(0); i++)
+            {
+                for (int j = 0; j < layout.GetLength(1); j++)
+                {
+                    if (layout[i, j] != null)
+                    {
+                        chessPieces[TILE_COUNT_X - i - 1, TILE_COUNT_Y - j - 1] =
+                        SpawnSinglePiece(layout[i, j], team);
+                    }
+                }
+            }
         }
     }
 

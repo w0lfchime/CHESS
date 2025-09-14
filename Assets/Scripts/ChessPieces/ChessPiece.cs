@@ -31,6 +31,11 @@ public abstract class ChessPiece : MonoBehaviour
     {
         get => _id;
     }
+    [SerializeField] private int _value;
+    public int value
+    {
+        get => _value;
+    }
     public ChessPieceType pieceType;
     public HashSet<String> PieceTags { get; private set; }
     public List<ChessPieceBehavior> PieceBehaviors { get; private set; }
