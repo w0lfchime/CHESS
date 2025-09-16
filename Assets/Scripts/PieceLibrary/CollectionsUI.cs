@@ -33,7 +33,7 @@ public class CollectionsUI : MonoBehaviour
             {
                 collectionIcons[i].sprite = collection.icons[i];
             }
-            collectionButton.transform.SetParent(transform);
+            collectionButton.transform.SetParent(buttonPrefab.transform.parent);
 
             collectionButton.transform.localScale = new Vector3(1, 1, 1);
 

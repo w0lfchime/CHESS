@@ -7,8 +7,9 @@ public class PieceInfo
     [SerializeField] public Sprite whiteIcon;
     [SerializeField] public string name;
     [SerializeField] public string tagLine;
-    [Tooltip("Use HTML tags for Rich Text descriptions!")]
+    [SerializeField] public int materialValue;
     [SerializeField] public string description;
+    [SerializeField] public string abilityName;
     [SerializeField] public string abilityDescription;
     [SerializeField] public ChessPiece pieceObject;
 }
