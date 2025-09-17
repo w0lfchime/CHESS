@@ -9,6 +9,7 @@ using System.Collections.Generic;
 public class CollectionsUI : MonoBehaviour
 {
     [SerializeField] public Button buttonPrefab;
+    [SerializeField] public Transform buttonHolder;
     [SerializeField] public PieceCollection[] collections;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,20 +19,12 @@ public class CollectionsUI : MonoBehaviour
         foreach (PieceCollection collection in collections)
         {
             Button collectionButton = Instantiate(buttonPrefab);
-            collectionButton.GetComponentInChildren<TextMeshProUGUI>().text = collection.name;
-            List<Image> collectionIcons = new();
+            CollectionButtonManager buttonManager = collectionButton.GetComponent<CollectionButtonManager>();
+            buttonManager.collectionTitleText.text = collection.name;
 
-            foreach (Transform child in collectionButton.transform)
+            for (int i = 0; i < buttonManager.icons.Length; i++)
             {
-                if (child.GetComponent<Image>())
-                {
-                    collectionIcons.Add(child.GetComponent<Image>());
-                }
-            }
-
-            for (int i = 0; i < collectionIcons.Count; i++)
-            {
-                collectionIcons[i].sprite = collection.icons[i];
+                buttonManager.icons[i].sprite = collection.icons[i];
             }
             collectionButton.transform.SetParent(buttonPrefab.transform.parent);
 
