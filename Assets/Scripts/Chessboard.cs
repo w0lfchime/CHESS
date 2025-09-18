@@ -45,6 +45,7 @@ public class Chessboard : MonoBehaviour
     private List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
     private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
     private List<(Vector2Int, ActionTrait[])> availableMoves = new List<(Vector2Int, ActionTrait[])>();
+    private List<Ability_TG> allTriggeredAbilities = new List<Ability_TG>();
     public bool isWhiteTurn;
     private SpecialMove specialMove;
     private List<Vector2Int[]> moveList = new List<Vector2Int[]>();
@@ -83,6 +84,27 @@ public class Chessboard : MonoBehaviour
                 tiles[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
             }
 
+            //If releasing mouse
+            if (currentlyDragging != null && Input.GetMouseButtonDown(0))
+            {
+                if(ContainsValidMove(ref availableMoves, hitPosition)){
+                    Vector2Int previousPosition = new Vector2Int(currentlyDragging.currentX, currentlyDragging.currentY);
+
+                    bool validMove = TriggerOnePiece(currentlyDragging, TriggerType.TurnAction, new Vector2Int(hitPosition.x, hitPosition.y));
+
+                    if (!validMove)
+                    {
+                        currentlyDragging.SetPosition(GetTileCenter(previousPosition.x, previousPosition.y));
+                        currentlyDragging = null;
+                    }
+                    else
+                    {
+                        currentlyDragging = null;
+                    }
+                }else currentlyDragging = null;
+                RemoveHighlightTiles();
+            }
+
             //If press down on Mouse
             if (Input.GetMouseButtonDown(0))
             {
@@ -93,8 +115,7 @@ public class Chessboard : MonoBehaviour
                     {
                         currentlyDragging = chessPieces[hitPosition.x, hitPosition.y];
                         //List of available moves
-                        availableMoves = currentlyDragging.GetTileTags(ref chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
-                        availableMoves = FilterTiles();
+                        GetPieceVisuals(currentlyDragging, TriggerType.TurnAction);
 
                         //Get list of special moves
                         //specialMove = currentlyDragging.GetSpecialMoves(ref chessPieces, ref moveList, ref availableMoves);
@@ -103,25 +124,6 @@ public class Chessboard : MonoBehaviour
                         HighlightTiles();
                     }
                 }
-            }
-
-            //If releasing mouse
-            if (currentlyDragging != null && Input.GetMouseButtonUp(0))
-            {
-                Vector2Int previousPosition = new Vector2Int(currentlyDragging.currentX, currentlyDragging.currentY);
-
-                bool validMove = RunTiles(currentlyDragging, new Vector2Int(hitPosition.x, hitPosition.y));
-
-                if (!validMove)
-                {
-                    currentlyDragging.SetPosition(GetTileCenter(previousPosition.x, previousPosition.y));
-                    currentlyDragging = null;
-                }
-                else
-                {
-                    currentlyDragging = null;
-                }
-                RemoveHighlightTiles();
             }
 
         }
@@ -144,15 +146,15 @@ public class Chessboard : MonoBehaviour
         }
 
         //During dragging piece
-        if (currentlyDragging)
-        {
-            Plane horizontalPlane = new Plane(Vector3.up, Vector3.up * yOffset); //if we have normal board, if tilted may need to adjust
-            float distance = 0.0f;
-            if (horizontalPlane.Raycast(ray, out distance))
-            {
-                currentlyDragging.SetPosition(ray.GetPoint(distance) + Vector3.up * dragOffset);
-            }
-        }
+        // if (currentlyDragging)
+        // {
+        //     Plane horizontalPlane = new Plane(Vector3.up, Vector3.up * yOffset); //if we have normal board, if tilted may need to adjust
+        //     float distance = 0.0f;
+        //     if (horizontalPlane.Raycast(ray, out distance))
+        //     {
+        //         currentlyDragging.SetPosition(ray.GetPoint(distance) + Vector3.up * dragOffset);
+        //     }
+        // }
     }
 
 
@@ -270,11 +272,11 @@ public class Chessboard : MonoBehaviour
             }
         }
     }
-    private void PositionSinglePiece(int x, int y, bool force = false)
+    private void PositionSinglePiece(int x, int y, bool force = false, float jump = 0)
     {
         chessPieces[x, y].currentX = x;
         chessPieces[x, y].currentY = y;
-        chessPieces[x, y].SetPosition(GetTileCenter(x, y), force);
+        chessPieces[x, y].SetPosition(GetTileCenter(x, y), jump, force);
     }
     private Vector3 GetTileCenter(int x, int y)
     {
@@ -738,12 +740,12 @@ public class Chessboard : MonoBehaviour
     }
 
     //checks each tile in available moves and iterates through the tags. 
-    private List<(Vector2Int, ActionTrait[])> FilterTiles()
+    private List<(Vector2Int, ActionTrait[])> FilterTiles(ChessPiece cp, List<(Vector2Int, ActionTrait[])> grid)
     {
         List<(Vector2Int, ActionTrait[])> returnList = new List<(Vector2Int, ActionTrait[])>();
-        foreach((Vector2Int, ActionTrait[]) tile in availableMoves)
+        foreach((Vector2Int, ActionTrait[]) tile in grid)
         {
-            Vector2Int tilePosition = tile.Item1;
+            Vector2Int tilePosition = tile.Item1 + new Vector2Int(cp.currentX, cp.currentY);
             List<ActionTrait> actionTraits = tile.Item2.ToList();
 
             try{
@@ -764,21 +766,23 @@ public class Chessboard : MonoBehaviour
 
             //do all removes
 
-            if(add) returnList.Add(tile);
+            (Vector2Int, ActionTrait[]) newTile = (tilePosition, tile.Item2);
+            if(add) returnList.Add(newTile);
         }
 
         return returnList;
     }
 
-    private bool RunTiles(ChessPiece cp, Vector2Int selected)
+    private bool RunTiles(ChessPiece cp, Vector2Int selected, List<(Vector2Int, ActionTrait[])> allTriggeredTiles)
     {
         bool selectedTile = false;
 
         Vector2Int previousPosition = new Vector2Int(cp.currentX, cp.currentY);
 
-        foreach((Vector2Int, ActionTrait[]) tile in availableMoves)
+        foreach((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
         {
             Vector2Int tilePosition = tile.Item1;
+
             List<ActionTrait> actionTraits = tile.Item2.ToList();
 
             //check if selected
@@ -791,9 +795,11 @@ public class Chessboard : MonoBehaviour
 
             //do all lower level commands
 
-            if(actionTraits.Contains(ActionTrait.command_killpiece))
+            if(actionTraits.Contains(ActionTrait.command_killpiece)) // if trait kills a piece
             { 
-                ChessPiece ocp = chessPieces[selected.x, selected.y];
+                ChessPiece ocp = chessPieces[tilePosition.x, tilePosition.y];
+
+                Instantiate(prefabs[6], new Vector3(tilePosition.x-3.5f, 1f, tilePosition.y-3.5f), Quaternion.identity);
 
                 if(ocp!=null)
                 {
@@ -809,14 +815,19 @@ public class Chessboard : MonoBehaviour
                         + new Vector3((tileSize / 2), 0, (tileSize / 2))
                         + (Vector3.forward * deathSpacing * ((ocp.team == 1) ? 1 : -1)) * deadPieces.Count
                     );
+
+                    chessPieces[tilePosition.x, tilePosition.y] = null;
                 }
                 
             }
 
-            if(actionTraits.Contains(ActionTrait.command_goto)){ 
-                cp.SetPosition(GetTileCenter(tilePosition.x, tilePosition.y));
-                chessPieces[selected.x, selected.y] = cp;
+            if(actionTraits.Contains(ActionTrait.command_goto)){  // if trait moves the active piece
+                float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
+                cp.SetPosition(GetTileCenter(tilePosition.x, tilePosition.y), jump);
+                chessPieces[tilePosition.x, tilePosition.y] = cp;
                 chessPieces[previousPosition.x, previousPosition.y] = null; 
+
+                PositionSinglePiece(tilePosition.x, tilePosition.y, false, jump);
             }
 
             //
@@ -825,15 +836,60 @@ public class Chessboard : MonoBehaviour
         // If unhighlighted tile was selected reset the position and return false
         if(!selectedTile){
             cp.SetPosition(GetTileCenter(cp.currentX, cp.currentY));
+
             return false;
         }
 
-        PositionSinglePiece(selected.x, selected.y);
+        RemoveHighlightTiles();
 
-        isWhiteTurn = !isWhiteTurn; // Switch turn
+        //TriggerAllPieces(TriggerType.OnTurnSwap);
+
+        return true;
+    }
+
+    private bool TriggerAllPieces(TriggerType trigger, Vector2Int pos = default){
+        foreach(ChessPiece piece in chessPieces){
+            RunAbilities(piece, trigger, pos);
+        }
+
+        return true;
+    }
+
+    private bool TriggerOnePiece(ChessPiece piece, TriggerType trigger, Vector2Int pos = default){
+        RunAbilities(piece, trigger, pos);
 
         return true;
     }
 
 
+    void RunAbilities(ChessPiece piece, TriggerType trigger, Vector2Int pos = default){
+        allTriggeredAbilities = piece.GetTileTags(ref chessPieces, trigger);
+
+        int did_anything_happen = 0;
+
+        foreach(Ability_TG ability in allTriggeredAbilities){
+            foreach(Action_TG action in ability.actions)
+            {
+                List<(Vector2Int, ActionTrait[])> allTriggeredTiles = action.grid;
+                allTriggeredTiles = FilterTiles(piece, allTriggeredTiles);
+                bool result = RunTiles(piece, pos, allTriggeredTiles);
+                if(!result) break;
+                did_anything_happen += result ? 1 : 0;
+            }
+        }
+
+        if(did_anything_happen > 0) isWhiteTurn = !isWhiteTurn; // Switch turn
+    }
+
+
+    void GetPieceVisuals(ChessPiece piece, TriggerType trigger){ // plan on making a thing to display the second action in an ability, just to show an effect of what will happen. Will likely have a bool on each action to enable this.
+        allTriggeredAbilities = piece.GetTileTags(ref chessPieces, trigger, true);
+        availableMoves.Clear();
+        foreach(Ability_TG ability in allTriggeredAbilities){
+            if(ability.actions.Count > 0){
+                availableMoves.AddRange(ability.actions[0].grid);
+            }
+        }
+        availableMoves = FilterTiles(piece, availableMoves);
+    }
 }

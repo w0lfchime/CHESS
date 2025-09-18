@@ -24,6 +24,7 @@ public abstract class ChessPiece : MonoBehaviour
 
     private Vector3 desiredPosition;
     private Vector3 desiredScale = Vector3.one;
+    private float jumpAmount;
 
     private void Start()
     {
@@ -32,8 +33,9 @@ public abstract class ChessPiece : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 10f);
+        transform.position = Vector3.Lerp(transform.position, desiredPosition + new Vector3(0, jumpAmount, 0), Time.deltaTime * 10f);
         transform.localScale = Vector3.Lerp(transform.localScale, desiredScale, Time.deltaTime * 10f);
+        jumpAmount -= jumpAmount * .01f;
     }
 
     public virtual List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
@@ -48,9 +50,9 @@ public abstract class ChessPiece : MonoBehaviour
         return r;
     }
 
-    public virtual List<(Vector2Int, ActionTrait[])> GetTileTags(ref ChessPiece[,] board, int tileCountX, int tileCountY, TriggerType trigger = TriggerType.TurnAction)
+    public virtual List<Ability_TG> GetTileTags(ref ChessPiece[,] board, TriggerType trigger = TriggerType.TurnAction, bool visual = false)
     {
-        List<(Vector2Int, ActionTrait[])> r = new List<(Vector2Int, ActionTrait[])>();
+        List<Ability_TG>  r = new List<Ability_TG>();
 
         //r.Add(new Vector2Int(3, 3));
         //r.Add(new Vector2Int(4, 4));
@@ -66,9 +68,10 @@ public abstract class ChessPiece : MonoBehaviour
         return SpecialMove.None;
     }
 
-    public virtual void SetPosition(Vector3 position, bool force = false)
+    public virtual void SetPosition(Vector3 position, float jump = 0, bool force = false)
     {
         desiredPosition = position;
+        jumpAmount = jump;
         if (force)
         {
             transform.position = desiredPosition;

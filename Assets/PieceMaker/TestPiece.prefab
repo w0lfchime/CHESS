@@ -102,6 +102,6 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
+  startingPosition: {x: 0, y: 0}
   ID: 0
-  pieceType: 0
   chessPieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}

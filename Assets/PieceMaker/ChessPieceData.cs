@@ -12,28 +12,32 @@ public enum TriggerType
     OnDeath,
     OnMove,
     OnTake,
-    OnPromote
+    OnPromote,
+    OnTurnSwap
 }
 
 //All the action traits. These are low level traits that determine how an action specifically interacts with the tiles around it.
 public enum ActionTrait
 {
     //conditional traits
-    remove_unselected,
-    apply_to_all,
+    remove_unselected = 0,
 
-    apply_to_empty_space,
-    apply_to_ownteam_space,
-    apply_to_opposingteam_space,
+    apply_to_empty_space = 2,
+    apply_to_ownteam_space = 3,
+    apply_to_opposingteam_space = 4,
 
-    command_goto,
-    remove_obstructed,
+    command_goto = 5,
+    remove_obstructed = 6,
 
-    shift_focus,
+    shift_focus = 7,
 
     //traits that do something
-    spawn_water,
-    command_killpiece
+    spawn_water = 8,
+    command_killpiece = 9,
+
+    spawn_explosion_effect = 10,
+
+    animate_jump = 11
     
 }
 
