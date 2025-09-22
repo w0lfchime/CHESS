@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CollectionsUI : MonoBehaviour
 {
@@ -17,12 +18,12 @@ public class CollectionsUI : MonoBehaviour
     [SerializeField] public GameObject allCollectionsPage;
     [SerializeField] public PieceCollection[] collections;
     private PieceCollection currentCollection;
+    private PieceInfo currentPiece;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         allCollectionsPage.SetActive(true);
-        collectionButtonPrefab.gameObject.SetActive(false);
         foreach (PieceCollection collection in collections)
         {
             Button collectionButton = Instantiate(collectionButtonPrefab);
@@ -69,7 +70,7 @@ public class CollectionsUI : MonoBehaviour
 
             pieceButtonManager.icon.sprite = piece.whiteIcon;
 
-            pieceButton.onClick.AddListener(() => SetPiece(piece.name));
+            pieceButton.onClick.AddListener(() => SetPiece(piece.name, singleCollectionPage));
 
             pieceButton.transform.SetParent(collectionPageManager.pieceButtonsHolder);
 
@@ -78,7 +79,11 @@ public class CollectionsUI : MonoBehaviour
             pieceButton.gameObject.SetActive(true);
         }
 
+        SetPiece(currentCollection.pieces[0].name, singleCollectionPage);
+
         collectionPageManager.colorToggle.onValueChanged.AddListener((value) => ChangePieceIconColors());
+
+        collectionPageManager.backButton.onClick.AddListener(() => BackToCollections());
 
         singleCollectionPage.transform.SetParent(mainCanvas);
 
@@ -89,9 +94,39 @@ public class CollectionsUI : MonoBehaviour
         singleCollectionPage.gameObject.SetActive(true);
     }
 
-    public void SetPiece(string pieceName)
+    public void SetPiece(string pieceName, GameObject singleCollectionPage)
     {
-        Debug.Log(pieceName);
+        foreach (Transform child in singleCollectionPage.transform)
+        {
+            if (child.GetComponent<PieceDisplayManager>() != null)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        foreach (PieceInfo piece in currentCollection.pieces)
+        {
+            if (piece.name == pieceName)
+            {
+                currentPiece = piece;
+            }
+        }
+
+        GameObject piecePage = Instantiate(pieceInfoDisplayPrefab);
+        PieceDisplayManager pieceDisplayManager = piecePage.GetComponent<PieceDisplayManager>();
+
+        pieceDisplayManager.titleText.text = currentPiece.name;
+        pieceDisplayManager.taglineText.text = currentPiece.tagLine;
+        pieceDisplayManager.descriptionText.text = currentPiece.tagLine;
+        pieceDisplayManager.abilityNameText.text = currentPiece.abilityName;
+        pieceDisplayManager.abilityNameDescription.text = currentPiece.abilityDescription;
+
+        piecePage.transform.SetParent(singleCollectionPage.transform);
+
+        piecePage.transform.localPosition = new Vector3(-475, -12.5f, 0f);
+        piecePage.transform.localScale = Vector3.one;
+
+        piecePage.gameObject.SetActive(true);
     }
 
     public void ChangePieceIconColors()
@@ -109,5 +144,22 @@ public class CollectionsUI : MonoBehaviour
                 pieceButtonManager.icon.sprite = pieceButtonManager.pieceInfo.whiteIcon;
             }
         }
+    }
+
+    public void BackToCollections()
+    {
+        foreach (Transform child in mainCanvas.transform)
+        {
+            if (child.GetComponent<CollectionPageManager>() != null)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        allCollectionsPage.SetActive(true);
+    }
+
+    public void BackToMain()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }

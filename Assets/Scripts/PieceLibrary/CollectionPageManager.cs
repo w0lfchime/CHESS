@@ -7,5 +7,5 @@ public class CollectionPageManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI collectionTitle;
     [SerializeField] public Toggle colorToggle;
     [SerializeField] public Transform pieceButtonsHolder;
-    [SerializeField] public PieceDisplayManager pieceDisplayPrefab;
+    [SerializeField] public Button backButton;
 }
