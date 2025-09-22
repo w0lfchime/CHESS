@@ -118,6 +118,7 @@ public class CollectionsUI : MonoBehaviour
 
         pieceDisplayManager.titleText.text = currentPiece.name;
         pieceDisplayManager.taglineText.text = currentPiece.tagLine;
+        pieceDisplayManager.materialValueText.text = "+" + currentPiece.materialValue.ToString();
         pieceDisplayManager.descriptionText.text = currentPiece.tagLine;
         pieceDisplayManager.abilityNameText.text = currentPiece.abilityName;
         pieceDisplayManager.abilityNameDescription.text = currentPiece.abilityDescription;
