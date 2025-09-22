@@ -9,4 +9,5 @@ public class PieceDisplayManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI descriptionText;
     [SerializeField] public TextMeshProUGUI abilityNameText;
     [SerializeField] public TextMeshProUGUI abilityNameDescription;
+    [SerializeField] public GameObject pieceModelHolder;
 }

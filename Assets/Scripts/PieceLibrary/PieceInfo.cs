@@ -11,5 +11,5 @@ public class PieceInfo
     [SerializeField] public string description;
     [SerializeField] public string abilityName;
     [SerializeField] public string abilityDescription;
-    [SerializeField] public ChessPiece pieceObject;
+    [SerializeField] public GameObject pieceObject;
 }

@@ -16,6 +16,7 @@ public class CollectionsUI : MonoBehaviour
     [SerializeField] public Transform buttonHolder;
     [SerializeField] public Transform mainCanvas;
     [SerializeField] public GameObject allCollectionsPage;
+    [SerializeField] public RuntimeAnimatorController pieceAnimator;
     [SerializeField] public PieceCollection[] collections;
     private PieceCollection currentCollection;
     private PieceInfo currentPiece;
@@ -120,6 +121,17 @@ public class CollectionsUI : MonoBehaviour
         pieceDisplayManager.descriptionText.text = currentPiece.tagLine;
         pieceDisplayManager.abilityNameText.text = currentPiece.abilityName;
         pieceDisplayManager.abilityNameDescription.text = currentPiece.abilityDescription;
+
+        GameObject pieceModel = Instantiate(currentPiece.pieceObject);
+        pieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
+        pieceModel.transform.localPosition = Vector3.zero;
+        pieceModel.transform.localScale = new Vector3(200, 200, 200);
+        pieceModel.layer = 5;
+
+        pieceModel.AddComponent<Animator>();
+        pieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
+
+        pieceModel.SetActive(true);
 
         piecePage.transform.SetParent(singleCollectionPage.transform);
 
