@@ -52,8 +52,8 @@ public class PuzzleChessboard : MonoBehaviour
     private Dictionary<String, GameObject> piecePrefabTable;
     private PieceGrid chessPieces;
     private ChessPiece currentlyDragging;
-    private const int TILE_COUNT_X = 8;
-    private const int TILE_COUNT_Y = 8;
+    private int TILE_COUNT_X;
+    private int TILE_COUNT_Y;
     private GameObject[,] tiles;
     private Camera currentCamera;
     private Vector2Int currentHover;
@@ -76,6 +76,9 @@ public class PuzzleChessboard : MonoBehaviour
     {
         singlePlayerGameManager = GameObject.Find("Test Object To Carry Data").GetComponent<SinglePlayerGameManager>();
         currentMap = singlePlayerGameManager.currentMap;
+
+        TILE_COUNT_X = currentMap.length;
+        TILE_COUNT_Y = currentMap.width;
 
         if (singlePlayerGameManager.doingPuzzle)
         {
@@ -221,7 +224,25 @@ public class PuzzleChessboard : MonoBehaviour
         {
             for (int y = 0; y < tileCountY; y++)
             {
-                tiles[x, y] = GenerateSingleTile(tileSize, x, y);
+                bool canGenerate = true;
+
+                if (currentMap.hasNulls)
+                {
+                    Debug.Log(currentMap.nullTiles.Length);
+                    for (int i = 0; i < currentMap.nullTiles.Length / 2; i++)
+                    {
+                        Debug.Log(i);
+                        if (currentMap.nullTiles[i, 0] == x && currentMap.nullTiles[i, 1] == y)
+                        {
+                            canGenerate = false;
+                        }
+                    }
+                }
+
+                if (canGenerate)
+                { 
+                    tiles[x, y] = GenerateSingleTile(tileSize, x, y);
+                }
             }
         }
     }
@@ -362,20 +383,38 @@ public class PuzzleChessboard : MonoBehaviour
 
     private void HighlightTiles()
     {
-        for (int i = 0; i < availableMoves.Count; i++)
-        {
-            tiles[availableMoves[i].x, availableMoves[i].y].layer = LayerMask.NameToLayer("Highlight");
-        }
+        CheckForHighlight("Highlight");
     }
 
     private void RemoveHighlightTiles()
     {
-        for (int i = 0; i < availableMoves.Count; i++)
-        {
-            tiles[availableMoves[i].x, availableMoves[i].y].layer = LayerMask.NameToLayer("Tile");
-        }
+        CheckForHighlight("Tile");
 
         availableMoves.Clear();
+    }
+
+    private void CheckForHighlight(string layer)
+    { 
+        for (int i = 0; i < availableMoves.Count; i++)
+        {
+            bool canHighlight = true;
+
+            if (currentMap.hasNulls)
+            {
+                for (int j = 0; j < currentMap.nullTiles.Length / 2; j++)
+                {
+                    if (availableMoves[i].x == currentMap.nullTiles[j, 0] && availableMoves[i].y == currentMap.nullTiles[j, 1])
+                    {
+                        canHighlight = false;
+                    }
+                }
+            }
+
+            if (canHighlight)
+            { 
+                tiles[availableMoves[i].x, availableMoves[i].y].layer = LayerMask.NameToLayer(layer);
+            }
+        }
     }
 
 
