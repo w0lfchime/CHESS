@@ -1169,26 +1169,29 @@ MonoBehaviour:
   collections:
   - name: The Classics
     icons:
-    - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 114f7f6554b078b4ea98ab76888cc2c6, type: 3}
+    - {fileID: 21300000, guid: f8cb4c2d77ac16c4f83cd71ff746fb40, type: 3}
     pieces:
-    - blackIcon: {fileID: 0}
-      whiteIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    - blackIcon: {fileID: 21300000, guid: e4830e7aac2e04845b11d9783d216baa, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 61a423ef6b867e24189d5bc6c01948de, type: 3}
       name: Pawn
       tagLine: yo!
       materialValue: 1
-      description: hey
-      abilityName: 
-      abilityDescription: 
+      description: hey, I'm a little pawn, i can move forward. hopefully i can help
+        out!
+      abilityName: en passant
+      abilityDescription: this is what happens when people get bored and make up
+        rules.
       pieceObject: {fileID: 7936696709198321180, guid: 4f00dd2527f2b53489d064db8b024f47, type: 3}
-    - blackIcon: {fileID: 0}
-      whiteIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    - blackIcon: {fileID: 21300000, guid: acd8ff07ff6662e4a95de4444d5854a5, type: 3}
+      whiteIcon: {fileID: 21300000, guid: db1d3268db33746478da4e06a6494b27, type: 3}
       name: Rook
-      tagLine: no :(
-      materialValue: 4
-      description: bye
-      abilityName: 
-      abilityDescription: 
+      tagLine: hi!
+      materialValue: 5
+      description: i like moving up and down, no diagonals for me. I really hate
+        the bishop
+      abilityName: idk
+      abilityDescription: i guess im useful for checkmate? nothing special here
       pieceObject: {fileID: 1299729678981032934, guid: be262b59926859845808381ca37544c0, type: 3}
   - name: Warfare
     icons:
