@@ -18,6 +18,8 @@ public class CollectionsUI : MonoBehaviour
     [SerializeField] public GameObject allCollectionsPage;
     [SerializeField] public RuntimeAnimatorController pieceAnimator;
     [SerializeField] public PieceCollection[] collections;
+    [SerializeField] public Material whitePieceMaterial;
+    [SerializeField] public Material blackPieceMaterial;
     private PieceCollection currentCollection;
     private PieceDisplayInfo currentPiece;
 
@@ -126,29 +128,19 @@ public class CollectionsUI : MonoBehaviour
         pieceDisplayManager.abilityNameDescription.text = currentPiece.abilityDescription;
 
         bool isModelBlack = singleCollectionPage.GetComponent<CollectionPageManager>().currentColor == "BLACK";
-        GameObject blackPieceModel = Instantiate(currentPiece.blackPieceObject);
+        GameObject pieceModel = Instantiate(currentPiece.pieceObject);
 
-        blackPieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
-        blackPieceModel.transform.localPosition = Vector3.zero;
-        blackPieceModel.transform.localScale = new Vector3(200, 200, 200);
-        blackPieceModel.layer = 5;
+        pieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
+        pieceModel.transform.localPosition = Vector3.zero;
+        pieceModel.transform.localScale = new Vector3(200, 200, 200);
+        pieceModel.layer = 5;
 
-        blackPieceModel.AddComponent<Animator>();
-        blackPieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
+        pieceModel.AddComponent<Animator>();
+        pieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
 
-        blackPieceModel.SetActive(isModelBlack);
+        pieceModel.GetComponent<MeshRenderer>().material = isModelBlack ? blackPieceMaterial : whitePieceMaterial;
 
-        GameObject whitePieceModel = Instantiate(currentPiece.whitePieceObject);
-
-        whitePieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
-        whitePieceModel.transform.localPosition = Vector3.zero;
-        whitePieceModel.transform.localScale = new Vector3(200, 200, 200);
-        whitePieceModel.layer = 5;
-
-        whitePieceModel.AddComponent<Animator>();
-        whitePieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
-
-        whitePieceModel.SetActive(!isModelBlack);
+        pieceModel.SetActive(true);
 
         piecePage.transform.SetParent(singleCollectionPage.transform);
 
@@ -184,38 +176,14 @@ public class CollectionsUI : MonoBehaviour
         }
 
         PieceDisplayManager currentPDM = currentCPM.transform.GetComponentInChildren<PieceDisplayManager>();
-        foreach (Transform child in currentPDM.pieceModelHolder.transform)
-        {
-            Destroy(child.gameObject);
-        }
 
         if (currentCPM.currentColor == "BLACK")
         {
-            GameObject blackPieceModel = Instantiate(currentPiece.blackPieceObject);
-
-            blackPieceModel.transform.SetParent(currentPDM.pieceModelHolder.transform);
-            blackPieceModel.transform.localPosition = Vector3.zero;
-            blackPieceModel.transform.localScale = new Vector3(200, 200, 200);
-            blackPieceModel.layer = 5;
-
-            blackPieceModel.AddComponent<Animator>();
-            blackPieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
-
-            blackPieceModel.SetActive(true);
+            currentPDM.pieceModelHolder.transform.GetComponentInChildren<MeshRenderer>().material = blackPieceMaterial;
         }
         else
         {
-            GameObject whitePieceModel = Instantiate(currentPiece.whitePieceObject);
-
-            whitePieceModel.transform.SetParent(currentPDM.pieceModelHolder.transform);
-            whitePieceModel.transform.localPosition = Vector3.zero;
-            whitePieceModel.transform.localScale = new Vector3(200, 200, 200);
-            whitePieceModel.layer = 5;
-
-            whitePieceModel.AddComponent<Animator>();
-            whitePieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
-
-            whitePieceModel.SetActive(true);
+            currentPDM.pieceModelHolder.transform.GetComponentInChildren<MeshRenderer>().material = whitePieceMaterial;
         }
     }
 

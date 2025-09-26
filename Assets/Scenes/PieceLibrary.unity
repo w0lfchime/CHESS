@@ -1182,8 +1182,7 @@ MonoBehaviour:
       abilityName: en passant
       abilityDescription: this is what happens when people get bored and make up
         rules.
-      blackPieceObject: {fileID: 7936696709198321180, guid: 4107ab986cbf67541b9b39c057e0062e, type: 3}
-      whitePieceObject: {fileID: 7936696709198321180, guid: 4f00dd2527f2b53489d064db8b024f47, type: 3}
+      pieceObject: {fileID: 7936696709198321180, guid: 4107ab986cbf67541b9b39c057e0062e, type: 3}
     - blackIcon: {fileID: 21300000, guid: acd8ff07ff6662e4a95de4444d5854a5, type: 3}
       whiteIcon: {fileID: 21300000, guid: db1d3268db33746478da4e06a6494b27, type: 3}
       name: Rook
@@ -1193,8 +1192,7 @@ MonoBehaviour:
         the bishop
       abilityName: idk
       abilityDescription: i guess im useful for checkmate? nothing special here
-      blackPieceObject: {fileID: 1299729678981032934, guid: 2a6dce7b1ed90dc409ccc3fcf8f1e3f7, type: 3}
-      whitePieceObject: {fileID: 1299729678981032934, guid: be262b59926859845808381ca37544c0, type: 3}
+      pieceObject: {fileID: 1299729678981032934, guid: 2a6dce7b1ed90dc409ccc3fcf8f1e3f7, type: 3}
   - name: Warfare
     icons:
     - {fileID: 0}
@@ -1208,8 +1206,7 @@ MonoBehaviour:
       description: hey
       abilityName: 
       abilityDescription: 
-      blackPieceObject: {fileID: 0}
-      whitePieceObject: {fileID: 0}
+      pieceObject: {fileID: 0}
     - blackIcon: {fileID: 0}
       whiteIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
       name: Rook
@@ -1218,8 +1215,7 @@ MonoBehaviour:
       description: bye
       abilityName: 
       abilityDescription: 
-      blackPieceObject: {fileID: 0}
-      whitePieceObject: {fileID: 0}
+      pieceObject: {fileID: 0}
   - name: Memes
     icons:
     - {fileID: 0}
@@ -1233,8 +1229,7 @@ MonoBehaviour:
       description: hey
       abilityName: 
       abilityDescription: 
-      blackPieceObject: {fileID: 0}
-      whitePieceObject: {fileID: 0}
+      pieceObject: {fileID: 0}
     - blackIcon: {fileID: 0}
       whiteIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
       name: Rook
@@ -1243,8 +1238,7 @@ MonoBehaviour:
       description: bye
       abilityName: 
       abilityDescription: 
-      blackPieceObject: {fileID: 0}
-      whitePieceObject: {fileID: 0}
+      pieceObject: {fileID: 0}
   - name: Animals
     icons:
     - {fileID: 0}
@@ -1258,8 +1252,7 @@ MonoBehaviour:
       description: hey
       abilityName: 
       abilityDescription: 
-      blackPieceObject: {fileID: 0}
-      whitePieceObject: {fileID: 0}
+      pieceObject: {fileID: 0}
     - blackIcon: {fileID: 0}
       whiteIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
       name: Rook
@@ -1268,8 +1261,9 @@ MonoBehaviour:
       description: bye
       abilityName: 
       abilityDescription: 
-      blackPieceObject: {fileID: 0}
-      whitePieceObject: {fileID: 0}
+      pieceObject: {fileID: 0}
+  whitePieceMaterial: {fileID: 2100000, guid: 8bbe2057e4efc4b46b3cdac15135e3bf, type: 2}
+  blackPieceMaterial: {fileID: 2100000, guid: 2b230366d48942b498f383152060ef0a, type: 2}
 --- !u!1 &1826751621
 GameObject:
   m_ObjectHideFlags: 0
