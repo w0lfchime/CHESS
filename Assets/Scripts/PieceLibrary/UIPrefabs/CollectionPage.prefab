@@ -54,7 +54,7 @@ MonoBehaviour:
   colorToggle: {fileID: 7236945533999175599}
   pieceButtonsHolder: {fileID: 7939162525324979590}
   backButton: {fileID: 6212066919381397303}
-  pieceDisplayPrefab: {fileID: 0}
+  currentColor: BLACK
 --- !u!1 &268163409289160425
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +395,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &5957438653126534517
 GameObject:
   m_ObjectHideFlags: 0

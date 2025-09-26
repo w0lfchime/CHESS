@@ -62,6 +62,8 @@ public class CollectionsUI : MonoBehaviour
 
         collectionPageManager.collectionTitle.text = currentCollection.name;
 
+        collectionPageManager.currentColor = collectionPageManager.colorToggle.isOn ? "BLACK" : "WHITE";
+
         foreach (PieceInfo piece in currentCollection.pieces)
         {
             Button pieceButton = Instantiate(pieceButtonPrefab);
@@ -69,7 +71,7 @@ public class CollectionsUI : MonoBehaviour
 
             pieceButtonManager.pieceInfo = piece;
 
-            pieceButtonManager.icon.sprite = piece.whiteIcon;
+            pieceButtonManager.icon.sprite = collectionPageManager.currentColor == "BLACK" ? piece.blackIcon : piece.whiteIcon;
 
             pieceButton.onClick.AddListener(() => SetPiece(piece.name, singleCollectionPage));
 
@@ -82,7 +84,7 @@ public class CollectionsUI : MonoBehaviour
 
         SetPiece(currentCollection.pieces[0].name, singleCollectionPage);
 
-        collectionPageManager.colorToggle.onValueChanged.AddListener((value) => ChangePieceIconColors());
+        collectionPageManager.colorToggle.onValueChanged.AddListener((value) => ChangePieceColors());
 
         collectionPageManager.backButton.onClick.AddListener(() => BackToCollections());
 
@@ -123,16 +125,30 @@ public class CollectionsUI : MonoBehaviour
         pieceDisplayManager.abilityNameText.text = currentPiece.abilityName;
         pieceDisplayManager.abilityNameDescription.text = currentPiece.abilityDescription;
 
-        GameObject pieceModel = Instantiate(currentPiece.pieceObject);
-        pieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
-        pieceModel.transform.localPosition = Vector3.zero;
-        pieceModel.transform.localScale = new Vector3(200, 200, 200);
-        pieceModel.layer = 5;
+        bool isModelBlack = singleCollectionPage.GetComponent<CollectionPageManager>().currentColor == "BLACK";
+        GameObject blackPieceModel = Instantiate(currentPiece.blackPieceObject);
 
-        pieceModel.AddComponent<Animator>();
-        pieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
+        blackPieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
+        blackPieceModel.transform.localPosition = Vector3.zero;
+        blackPieceModel.transform.localScale = new Vector3(200, 200, 200);
+        blackPieceModel.layer = 5;
 
-        pieceModel.SetActive(true);
+        blackPieceModel.AddComponent<Animator>();
+        blackPieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
+
+        blackPieceModel.SetActive(isModelBlack);
+
+        GameObject whitePieceModel = Instantiate(currentPiece.whitePieceObject);
+
+        whitePieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
+        whitePieceModel.transform.localPosition = Vector3.zero;
+        whitePieceModel.transform.localScale = new Vector3(200, 200, 200);
+        whitePieceModel.layer = 5;
+
+        whitePieceModel.AddComponent<Animator>();
+        whitePieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
+
+        whitePieceModel.SetActive(!isModelBlack);
 
         piecePage.transform.SetParent(singleCollectionPage.transform);
 
@@ -142,13 +158,22 @@ public class CollectionsUI : MonoBehaviour
         piecePage.gameObject.SetActive(true);
     }
 
-    public void ChangePieceIconColors()
+    public void ChangePieceColors()
     {
         CollectionPageManager currentCPM = mainCanvas.GetComponentInChildren<CollectionPageManager>();
+        if (currentCPM.currentColor == "BLACK")
+        {
+            currentCPM.currentColor = "WHITE";
+        } 
+        else
+        {
+            currentCPM.currentColor = "BLACK";
+        }
+
         foreach (Button pieceButton in currentCPM.pieceButtonsHolder.GetComponentsInChildren<Button>())
         {
             PieceButtonManager pieceButtonManager = pieceButton.GetComponent<PieceButtonManager>();
-            if (pieceButtonManager.icon.sprite == pieceButtonManager.pieceInfo.whiteIcon)
+            if (currentCPM.currentColor == "BLACK")
             {
                 pieceButtonManager.icon.sprite = pieceButtonManager.pieceInfo.blackIcon;
             }
@@ -156,6 +181,41 @@ public class CollectionsUI : MonoBehaviour
             {
                 pieceButtonManager.icon.sprite = pieceButtonManager.pieceInfo.whiteIcon;
             }
+        }
+
+        PieceDisplayManager currentPDM = currentCPM.transform.GetComponentInChildren<PieceDisplayManager>();
+        foreach (Transform child in currentPDM.pieceModelHolder.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (currentCPM.currentColor == "BLACK")
+        {
+            GameObject blackPieceModel = Instantiate(currentPiece.blackPieceObject);
+
+            blackPieceModel.transform.SetParent(currentPDM.pieceModelHolder.transform);
+            blackPieceModel.transform.localPosition = Vector3.zero;
+            blackPieceModel.transform.localScale = new Vector3(200, 200, 200);
+            blackPieceModel.layer = 5;
+
+            blackPieceModel.AddComponent<Animator>();
+            blackPieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
+
+            blackPieceModel.SetActive(true);
+        }
+        else
+        {
+            GameObject whitePieceModel = Instantiate(currentPiece.whitePieceObject);
+
+            whitePieceModel.transform.SetParent(currentPDM.pieceModelHolder.transform);
+            whitePieceModel.transform.localPosition = Vector3.zero;
+            whitePieceModel.transform.localScale = new Vector3(200, 200, 200);
+            whitePieceModel.layer = 5;
+
+            whitePieceModel.AddComponent<Animator>();
+            whitePieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
+
+            whitePieceModel.SetActive(true);
         }
     }
 
