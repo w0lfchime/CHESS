@@ -19,7 +19,7 @@ public class CollectionsUI : MonoBehaviour
     [SerializeField] public RuntimeAnimatorController pieceAnimator;
     [SerializeField] public PieceCollection[] collections;
     private PieceCollection currentCollection;
-    private PieceInfo currentPiece;
+    private PieceDisplayInfo currentPiece;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,7 +64,7 @@ public class CollectionsUI : MonoBehaviour
 
         collectionPageManager.currentColor = collectionPageManager.colorToggle.isOn ? "BLACK" : "WHITE";
 
-        foreach (PieceInfo piece in currentCollection.pieces)
+        foreach (PieceDisplayInfo piece in currentCollection.pieces)
         {
             Button pieceButton = Instantiate(pieceButtonPrefab);
             PieceButtonManager pieceButtonManager = pieceButton.GetComponent<PieceButtonManager>();
@@ -107,7 +107,7 @@ public class CollectionsUI : MonoBehaviour
             }
         }
 
-        foreach (PieceInfo piece in currentCollection.pieces)
+        foreach (PieceDisplayInfo piece in currentCollection.pieces)
         {
             if (piece.name == pieceName)
             {

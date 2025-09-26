@@ -5,5 +5,5 @@ public class PieceCollection
 {
     [SerializeField] public string name;
     [SerializeField] public Sprite[] icons;
-    [SerializeField] public PieceInfo[] pieces;
+    [SerializeField] public PieceDisplayInfo[] pieces;
 }
