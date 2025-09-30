@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "CHESS-Miles.sln"
+    "dotnet.defaultSolution": "CHESS.sln"
 }

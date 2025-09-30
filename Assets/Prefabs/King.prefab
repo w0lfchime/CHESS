@@ -102,4 +102,7 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
-  type: 0
+  _id: StandardKing
+  _value: 0
+  _isLifeline: 1
+  pieceType: 1

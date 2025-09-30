@@ -3,11 +3,22 @@ using System.Collections.Generic;
 
 public class StandardPawn : ChessPiece
 {
-    public override List<Vector2Int> GetAvailableMoves(ref ChessPiece[,] board, int tileCountX, int tileCountY)
+
+    public override void SetupPiece()
+    {
+        base.SetupPiece();
+        AddTag("Soldier");
+
+        AddPath(new StandardPawnBehavior());
+        AddPath(new DoublePawnBehavior());
+        AddPath(new EnPassantBehavior());
+    }
+
+    public override List<Vector2Int> GetAvailableMoves(PieceGrid board, int tileCountX, int tileCountY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
 
-        int direction = (team == 0) ? 1 : -1;
+        int direction = (team == Team.White) ? 1 : -1;
         int nextY = currentY + direction;
 
         // One in front
@@ -19,11 +30,11 @@ public class StandardPawn : ChessPiece
         // Two in front
         if (nextY >= 0 && nextY < tileCountY && board[currentX, nextY] == null)
         {
-            if (team == 0 && currentY == 1 && board[currentX, currentY + (direction * 2)] == null)
+            if (team == Team.White && currentY == 1 && board[currentX, currentY + (direction * 2)] == null)
             {
                 r.Add(new Vector2Int(currentX, currentY + (direction * 2)));
             }
-            if (team == 1 && currentY == tileCountY - 2 && board[currentX, currentY + (direction * 2)] == null)
+            if (team == Team.Black && currentY == tileCountY - 2 && board[currentX, currentY + (direction * 2)] == null)
             {
                 r.Add(new Vector2Int(currentX, currentY + (direction * 2)));
             }
@@ -51,10 +62,10 @@ public class StandardPawn : ChessPiece
         return r;
     }
 
-    public override SpecialMove GetSpecialMoves(ref ChessPiece[,] board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
+    public override SpecialMove GetSpecialMoves(PieceGrid board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
     {
         int direction = (team == 0) ? 1 : -1;
-        if ((team == 0 && currentY == 6) || (team == 1 && currentY == 1))
+        if ((team == Team.White && currentY == 6) || (team == Team.Black && currentY == 1))
         {
             return SpecialMove.Promotion;
         }
@@ -63,7 +74,7 @@ public class StandardPawn : ChessPiece
         if (moveList.Count > 0)
         {
             Vector2Int[] lastMove = moveList[moveList.Count - 1];
-            if (board[lastMove[1].x, lastMove[1].y].ID == ChessPieceID.StandardPawn) //If last piece was pawn
+            if (board[lastMove[1].x, lastMove[1].y].ID == "StandardPawn") //If last piece was pawn
             {
                 if (Mathf.Abs(lastMove[0].y - lastMove[1].y) == 2) //If last piece was +2 either direction
                 {

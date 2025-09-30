@@ -102,4 +102,6 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
-  type: 0
+  _id: StandardKnight
+  _value: 3
+  pieceType: 0
