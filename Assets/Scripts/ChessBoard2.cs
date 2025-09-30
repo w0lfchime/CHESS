@@ -14,7 +14,7 @@ public class ChessBoard2 : MonoBehaviour
 	public bool ScaleChildToTileSize = true;
 
 	// 2D array of tile transforms
-	public Transform[,] TileLocations;
+	public Tile[,] TileLocations;
 
 	void Start()
 	{
@@ -36,7 +36,7 @@ public class ChessBoard2 : MonoBehaviour
 			DestroyImmediate(child.gameObject);
 		}
 
-		TileLocations = new Transform[BoardTileHeight, BoardTileWidth];
+		TileLocations = new Tile[BoardTileHeight, BoardTileWidth];
 
 		float x0 = -((BoardTileWidth - 1) * 0.5f) * TileSize;
 		float z0 = ((BoardTileHeight - 1) * 0.5f) * TileSize;
@@ -79,10 +79,36 @@ public class ChessBoard2 : MonoBehaviour
 				}
 
 				// Save into 2D array
-				TileLocations[r, c] = tile.transform;
+				TileLocations[r, c] = tilecomp;
 			}
 		}
 	}
 
-	void Update() { }
+	void Update()
+	{
+
+	}
+
+
+
+
+
+
+
+	public void SpawnPiece(string pieceID, Vector2Int boardLoc)
+	{
+		GameObject prefab = PieceLibrary.Instance.GetPrefab(pieceID);
+		if (prefab == null) return;
+
+		// Spawn at the tile’s world position
+		Vector3 spawnPos = gameObject.transform.position;
+		Quaternion spawnRot = Quaternion.identity;
+
+		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
+
+		// If the prefab has a ChessPiece script, register it with the tile
+		ChessPiece piece = pieceGO.GetComponent<ChessPiece>();
+
+		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
+	}
 }

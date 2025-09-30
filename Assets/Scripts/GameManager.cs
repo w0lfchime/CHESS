@@ -1,11 +1,19 @@
+using TMPro;
 using UnityEngine;
 
 
 public class GameManager : MonoBehaviour
 {
+	public static GameManager Instance { get; private set; }
+
 	[Header("References")]
 	public GameCamera Camera;
 	public ChessBoard2 Board;
+	public CursorManager Cursor;
+
+
+	[Header("UI References")]
+	public TextMeshProUGUI TurnStatusText;
 
 	[Header("Game State")]
 	public Team CurrentTurn { get; private set; } = Team.White;
@@ -16,6 +24,15 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
+		if (Instance != null && Instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		Instance = this;
+
+		Cursor = this.gameObject.GetComponent<CursorManager>();
+
 		// Example: start with White
 		Board.InitBoard();
 		StartGame(Team.White);
@@ -53,6 +70,8 @@ public class GameManager : MonoBehaviour
 			Camera.SetTurn(CurrentTurn == Team.White ? 1 : 0);
 
 		// Later: trigger board highlighting, legal move generation, timers, etc.
+
+		TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
 	}
 
 	public void ResetGame()

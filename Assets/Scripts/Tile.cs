@@ -1,23 +1,41 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-	public int TileBoardX, TileBoardY; // coords if needed
+	public int TileBoardX, TileBoardY;
 	private Renderer rend;
 
-	void Awake()
+	private HashSet<ChessPiece> tileOccupants = new HashSet<ChessPiece>();
+
+	void Awake() => rend = GetComponentInChildren<Renderer>();
+
+	public IEnumerable<ChessPiece> GetAllOccupants()
 	{
-		rend = GetComponentInChildren<Renderer>();
+		foreach (var o in tileOccupants) yield return o;
 	}
 
-	public void SetHighlight(bool value)
+	public void AddPiece(ChessPiece piece)
 	{
-		rend.material.color = value ? Color.yellow : Color.white;
+		tileOccupants.Add(piece);
+
+		UpdatePieces();
 	}
 
-	public void OnTileClicked()
+	public void RemovePiece(ChessPiece piece)
 	{
-		//Debug.Log($"Tile {TileBoardX},{Tile} clicked");
-		// call into board logic if needed
+		if (piece == null) return;
+		tileOccupants.Remove(piece);
+
+		UpdatePieces();
 	}
+
+	public void UpdatePieces()
+	{
+		foreach (ChessPiece p in tileOccupants)
+		{
+			p.UpdatePieceData(this);
+		}
+	}
+
 }

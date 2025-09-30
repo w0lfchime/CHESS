@@ -1,72 +1,112 @@
 using UnityEngine;
-
-public enum CursorMode { Normal, SpawnPiece }
+using System; // for Action
 
 public class CursorManager : MonoBehaviour
 {
-	public Camera mainCam;
-	public CursorMode mode = CursorMode.Normal;
-	public GameObject debugPiecePrefab; // assign in inspector
+	[Header("Settings")]
+	public LayerMask tileLayer;
+	public float maxRayDistance = 100f;
 
-	private ChessBoard2 board;
+	[Header("Cursor Visuals")]
+	public Transform cursorRoot;     // Empty parent, world aligned
+	public Renderer cursorRenderer;  // Renderer on the mesh child
 
-	void Start()
+	[Header("Movement")]
+	public float springStrength = 8f;
+	public float damping = 0.8f;
+	public float overshootFactor = 0.2f; // How "bouncy" the overshoot is
+
+	[Header("Fade")]
+	public float fadeOutSpeed = 1f;   // Seconds to fully fade out
+	public float fadeInSpeed = 6f;    // Faster fade in
+
+	// --- Callback slot ---
+	public Action<Transform> onNextClick;
+
+	private Transform currentTile;
+	private Vector3 targetPos;
+	private Vector3 velocity;
+
+	private MaterialPropertyBlock mpb;
+	private float currentAlpha = 1f;
+
+	void Awake()
 	{
-		board = FindFirstObjectByType<ChessBoard2>();
-		if (mainCam == null)
-			mainCam = Camera.main;
+		if (cursorRenderer != null)
+			mpb = new MaterialPropertyBlock();
 	}
 
 	void Update()
 	{
-		HandleHover();
-		HandleClick();
+		CheckTileUnderCursor();
+		UpdateCursorMovement();
+		UpdateCursorFade();
+
+		CheckClickInvoke();
 	}
 
-	void HandleHover()
+	void CheckTileUnderCursor()
 	{
-		Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-		if (Physics.Raycast(ray, out RaycastHit hit))
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance, tileLayer))
 		{
-			// Assume each tile has a Tile script
-			Tile tile = hit.collider.GetComponent<Tile>();
-			if (tile != null)
+			Transform hitTile = hit.transform;
+
+			// Step up to parent empty if child mesh is hit
+			if (hitTile.parent != null && hitTile.parent.CompareTag("Tile"))
+				hitTile = hitTile.parent;
+
+			if (hitTile != currentTile)
 			{
-				
-				// highlight or mark tile
-				tile.SetHighlight(true);
+				currentTile = hitTile;
+				targetPos = new Vector3(currentTile.position.x, cursorRoot.position.y, currentTile.position.z);
 			}
+		}
+		else
+		{
+			currentTile = null;
 		}
 	}
 
-	void HandleClick()
+	void UpdateCursorMovement()
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out RaycastHit hit))
-			{
-				Tile tile = hit.collider.GetComponent<Tile>();
-				if (tile == null) return;
+		if (currentTile != null)
+			targetPos = new Vector3(currentTile.position.x, cursorRoot.position.y, currentTile.position.z);
 
-				switch (mode)
-				{
-					case CursorMode.Normal:
-						tile.OnTileClicked();
-						break;
+		float dt = Time.deltaTime;
 
-					case CursorMode.SpawnPiece:
-						SpawnDebugPiece(tile);
-						mode = CursorMode.Normal; // reset
-						break;
-				}
-			}
-		}
+		Vector3 displacement = targetPos - cursorRoot.position;
+		Vector3 acceleration = displacement * springStrength - velocity * damping;
+
+		velocity += acceleration * dt;
+		cursorRoot.position += velocity * dt;
 	}
 
-	void SpawnDebugPiece(Tile tile)
+	void UpdateCursorFade()
 	{
-		Instantiate(debugPiecePrefab, tile.transform.position, Quaternion.identity);
-		Debug.Log($"Spawned piece at {tile.name}");
+		if (cursorRenderer == null) return;
+
+		float targetAlpha = currentTile ? 1f : 0f;
+		float speed = (targetAlpha > currentAlpha) ? fadeInSpeed : fadeOutSpeed;
+
+		currentAlpha = Mathf.MoveTowards(currentAlpha, targetAlpha, Time.deltaTime * speed);
+
+		cursorRenderer.GetPropertyBlock(mpb);
+		mpb.SetColor("_Color", new Color(1f, 1f, 1f, currentAlpha));
+		cursorRenderer.SetPropertyBlock(mpb);
+	}
+
+	void CheckClickInvoke()
+	{
+		if (onNextClick != null && Input.GetMouseButtonDown(0))
+		{
+			if (currentTile != null)
+			{
+				onNextClick.Invoke(currentTile);
+			}
+			// Clear the slot no matter what
+			onNextClick = null;
+		}
 	}
 }
