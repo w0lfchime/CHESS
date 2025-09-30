@@ -104,10 +104,29 @@ public class ChessBoard2 : MonoBehaviour
 		Vector3 spawnPos = gameObject.transform.position;
 		Quaternion spawnRot = Quaternion.identity;
 
+		Team turn = GameManager.Instance.CurrentTurn;
+
+		//if (turn == Team.Black)
+		//{
+		//	spawnRot *= Quaternion.Euler(0f, 180f, 0f);
+		//}
+
 		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
 
 		// If the prefab has a ChessPiece script, register it with the tile
 		ChessPiece piece = pieceGO.GetComponent<ChessPiece>();
+
+		Renderer rend = pieceGO.GetComponent<Renderer>();
+		if (turn == Team.White)
+		{
+			piece.team = Team.White;
+			rend.sharedMaterial = WhiteTileMat;
+		} 
+		else
+		{
+			piece.team = Team.Black;
+			rend.sharedMaterial = BlackTileMat;
+		}
 
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
 	}

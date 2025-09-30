@@ -41,12 +41,14 @@ public abstract class ChessPiece : MonoBehaviour
     {
         get => _isLifeline;
     }
+
+    //Piece definition
     public ChessPieceType pieceType;
     public HashSet<String> PieceTags { get; private set; }
     public List<ChessPieceBehavior> PieceBehaviors { get; private set; }
     public List<PieceRoutine> Routines { get; private set; }
 
-
+    public bool IsTileOccupant = true;
 
     public Tile currentTile;
 
@@ -57,11 +59,13 @@ public abstract class ChessPiece : MonoBehaviour
 
     private void Start()
     {
-        transform.rotation = Quaternion.Euler((team == 0) ? Vector3.zero : new Vector3(0f, 180f, 0f));
+        transform.rotation = Quaternion.Euler((team == Team.Black) ? Vector3.zero : new Vector3(0f, 180f, 0f));
         PieceTags = new();
         PieceBehaviors = new();
         this.boardY = GameManager.Instance.Board.transform.position.y;
         SetupPiece();
+
+
     }
 
     /// <summary>

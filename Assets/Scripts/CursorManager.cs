@@ -3,110 +3,103 @@ using System; // for Action
 
 public class CursorManager : MonoBehaviour
 {
-	[Header("Settings")]
+	[Header("Raycast")]
 	public LayerMask tileLayer;
 	public float maxRayDistance = 100f;
 
-	[Header("Cursor Visuals")]
-	public Transform cursorRoot;     // Empty parent, world aligned
-	public Renderer cursorRenderer;  // Renderer on the mesh child
+	[Header("Cursors")]
+	[SerializeField] private TileCursor hoverCursor;    // follows the tile under mouse (live)
+	[SerializeField] private TileCursor selectorCursor; // moves only on click (selection)
 
-	[Header("Movement")]
-	public float springStrength = 8f;
-	public float damping = 0.8f;
-	public float overshootFactor = 0.2f; // How "bouncy" the overshoot is
-
-	[Header("Fade")]
-	public float fadeOutSpeed = 1f;   // Seconds to fully fade out
-	public float fadeInSpeed = 6f;    // Faster fade in
-
-	// --- Callback slot ---
+	// One-shot external callback (e.g., spawn-on-next-click)
 	public Action<Transform> onNextClick;
 
-	private Transform currentTile;
-	private Vector3 targetPos;
-	private Vector3 velocity;
+	// Selected Tile (set on mouse click)
+	public Tile SelectedTile { get; private set; }
 
-	private MaterialPropertyBlock mpb;
-	private float currentAlpha = 1f;
+	private Transform _currentTile; // hover hit
+	private Camera _cam;
 
 	void Awake()
 	{
-		if (cursorRenderer != null)
-			mpb = new MaterialPropertyBlock();
+		_cam = Camera.main;
+		if (_cam == null) Debug.LogWarning("[CursorManager] No Camera.main found.");
+
+		if (hoverCursor == null) Debug.LogError("[CursorManager] Hover TileCursor reference not set.");
+		if (selectorCursor == null) Debug.LogError("[CursorManager] Selector TileCursor reference not set.");
 	}
 
 	void Update()
 	{
 		CheckTileUnderCursor();
-		UpdateCursorMovement();
-		UpdateCursorFade();
-
-		CheckClickInvoke();
+		UpdateHoverCursor();
+		HandleClickSelection();
 	}
 
-	void CheckTileUnderCursor()
+	private void CheckTileUnderCursor()
 	{
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (_cam == null) return;
 
+		Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
 		if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance, tileLayer))
 		{
 			Transform hitTile = hit.transform;
 
-			// Step up to parent empty if child mesh is hit
+			// If child mesh hit, step up to parent tagged "Tile"
 			if (hitTile.parent != null && hitTile.parent.CompareTag("Tile"))
 				hitTile = hitTile.parent;
 
-			if (hitTile != currentTile)
+			_currentTile = hitTile;
+		}
+		else
+		{
+			_currentTile = null;
+		}
+	}
+
+	private void UpdateHoverCursor()
+	{
+		// Hover cursor follows whatever is under the mouse in real time
+		if (hoverCursor == null) return;
+
+		if (_currentTile != null)
+		{
+			hoverCursor.SetTargetFromTile(_currentTile);
+		}
+		// else: do nothing; hover cursor will coast/settle where it is
+	}
+
+	private void HandleClickSelection()
+	{
+		if (!Input.GetMouseButtonDown(0)) return;
+
+		// Update SelectedTile only on click
+		if (_currentTile != null)
+		{
+			SelectedTile = _currentTile.GetComponent<Tile>();
+
+			// Move the selector cursor to the newly selected tile
+			if (selectorCursor != null)
+				selectorCursor.SetTargetFromTile(_currentTile);
+
+			// If a one-shot action is queued, invoke it with the selected tile
+			if (onNextClick != null)
 			{
-				currentTile = hitTile;
-				targetPos = new Vector3(currentTile.position.x, cursorRoot.position.y, currentTile.position.z);
+				onNextClick.Invoke(_currentTile);
+				onNextClick = null; // clear slot
 			}
 		}
 		else
 		{
-			currentTile = null;
-		}
-	}
+			// Clicked empty space: clear selection (optional)
+			SelectedTile = null;
 
-	void UpdateCursorMovement()
-	{
-		if (currentTile != null)
-			targetPos = new Vector3(currentTile.position.x, cursorRoot.position.y, currentTile.position.z);
-
-		float dt = Time.deltaTime;
-
-		Vector3 displacement = targetPos - cursorRoot.position;
-		Vector3 acceleration = displacement * springStrength - velocity * damping;
-
-		velocity += acceleration * dt;
-		cursorRoot.position += velocity * dt;
-	}
-
-	void UpdateCursorFade()
-	{
-		if (cursorRenderer == null) return;
-
-		float targetAlpha = currentTile ? 1f : 0f;
-		float speed = (targetAlpha > currentAlpha) ? fadeInSpeed : fadeOutSpeed;
-
-		currentAlpha = Mathf.MoveTowards(currentAlpha, targetAlpha, Time.deltaTime * speed);
-
-		cursorRenderer.GetPropertyBlock(mpb);
-		mpb.SetColor("_Color", new Color(1f, 1f, 1f, currentAlpha));
-		cursorRenderer.SetPropertyBlock(mpb);
-	}
-
-	void CheckClickInvoke()
-	{
-		if (onNextClick != null && Input.GetMouseButtonDown(0))
-		{
-			if (currentTile != null)
+			// Still clear one-shot if you want the click to consume it regardless:
+			if (onNextClick != null)
 			{
-				onNextClick.Invoke(currentTile);
+				onNextClick.Invoke(null);
+				onNextClick = null;
 			}
-			// Clear the slot no matter what
-			onNextClick = null;
 		}
 	}
 }
