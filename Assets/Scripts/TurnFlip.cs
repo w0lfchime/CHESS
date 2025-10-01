@@ -16,7 +16,7 @@ public class TurnFlip : MonoBehaviour
     void Update()
     {
         // Detect when turn changes
-        bool blackTurn = !chessboard.isWhiteTurn;
+        bool blackTurn = false;
         if (lastTurnWasBlack != blackTurn)
         {
             lastTurnWasBlack = blackTurn;

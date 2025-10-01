@@ -24,9 +24,8 @@ public class ChessPieceObject : ChessPiece
         }
     }
 
-    public override List<Ability_TG> GetTileTags(ref ChessPiece[,] board, TriggerType trigger = TriggerType.TurnAction, bool visual = false)
+    public override List<Ability_TG> GetTileTags(TriggerType trigger = TriggerType.TurnAction, bool visual = false)
     {        
-        Vector2Int currentPos = new Vector2Int(currentX, currentY);
 
         Vector2Int center = new Vector2Int(chessPieceData.gridSize/2, chessPieceData.gridSize/2);
 

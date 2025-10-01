@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileBoardX: 0
   TileBoardY: 0
+  rend: {fileID: 0}
+  tileOccupants: []
 --- !u!1 &8735068471564760255
 GameObject:
   m_ObjectHideFlags: 0

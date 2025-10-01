@@ -76,7 +76,13 @@ public class CursorManager : MonoBehaviour
 		// Update SelectedTile only on click
 		if (_currentTile != null)
 		{
+			if(!selectorCursor.gameObject.active) selectorCursor.SetTargetFromTile(_currentTile, true);
+			selectorCursor.gameObject.SetActive(true);
+
 			SelectedTile = _currentTile.GetComponent<Tile>();
+
+			//triggers a click on the chessboard
+			ChessBoard2.Instance.InteractTrigger(SelectedTile);
 
 			// Move the selector cursor to the newly selected tile
 			if (selectorCursor != null)
@@ -91,6 +97,8 @@ public class CursorManager : MonoBehaviour
 		}
 		else
 		{
+			selectorCursor.gameObject.SetActive(false);
+
 			// Clicked empty space: clear selection (optional)
 			SelectedTile = null;
 

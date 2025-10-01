@@ -592,6 +592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieces:
+  - id: Test
+    prefab: {fileID: 7009996306650167107, guid: 84f4199f25db6904aa95d62bc16c1d1c, type: 3}
   - id: StandardPawn
     prefab: {fileID: 1570921425816007401, guid: 049360dd213364b4d87dadeb02eb655f, type: 3}
   - id: StandardRook
@@ -909,8 +911,8 @@ MonoBehaviour:
   zoomSmoothFactor: 12
   zoomHalfRange: 20
   zoomHalfRangeIsPercent: 0
-  centerDuration: 0.5
-  rotateDuration: 1
+  resetPositionDelay: 0.2
+  resetPositionTime: 0.75
   dragSpeed: 0.02
 --- !u!1 &517354299
 GameObject:
@@ -1135,7 +1137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   maxRayDistance: 100
   hoverCursor: {fileID: 1263369890}
   selectorCursor: {fileID: 1806641030}
@@ -3172,7 +3174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1806641029
 Transform:
   m_ObjectHideFlags: 0
@@ -3204,7 +3206,7 @@ MonoBehaviour:
   springStrength: 500
   damping: 50
   overshootFactor: 0.2
-  lockYToStart: 1
+  lockYToStart: 0
   inactivityDelay: 1
   idleSpeedThreshold: 0.01
   fadeOutSeconds: 0.75
