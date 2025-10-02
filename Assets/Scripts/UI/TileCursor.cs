@@ -112,7 +112,7 @@ public class TileCursor : MonoBehaviour
 			targetAlpha = activeAlpha;
 		}
 
-		// If movement resumed but we’re not yet at activeAlpha, blend in faster
+		// If movement resumed but weï¿½re not yet at activeAlpha, blend in faster
 		if (isActiveNow && _currentAlpha < activeAlpha - 0.001f)
 		{
 			_currentAlpha = Mathf.MoveTowards(_currentAlpha, activeAlpha, (fadeInSeconds > 0f ? dt / fadeInSeconds : 1f));
@@ -139,7 +139,7 @@ public class TileCursor : MonoBehaviour
 
 			r.GetPropertyBlock(_mpb);
 
-			// Prefer _BaseColor; if the shader doesn’t have it, fallback to _Color
+			// Prefer _BaseColor; if the shader doesnï¿½t have it, fallback to _Color
 			if (HasColorProperty(r, _BaseColorID))
 			{
 				Color c = _mpb.GetVector(_BaseColorID);
@@ -162,7 +162,7 @@ public class TileCursor : MonoBehaviour
 	private static bool HasColorProperty(Renderer r, int id)
 	{
 		// Cheap heuristic: try getting the property; if material count is zero this will no-op anyway.
-		// (Unity doesn’t expose a direct "HasProperty" on Renderer+MPB; this is fine in practice.)
+		// (Unity doesnï¿½t expose a direct "HasProperty" on Renderer+MPB; this is fine in practice.)
 		return true;
 	}
 
@@ -177,7 +177,7 @@ public class TileCursor : MonoBehaviour
 	}
 
 	/// <summary>Aim at the center of a tile's X/Z. Y is locked (if enabled).</summary>
-	public void SetTargetFromTile(Transform tile)
+	public void SetTargetFromTile(Transform tile, bool instant = false)
 	{
 		var pos = tile.position;
 		if (lockYToStart) pos.y = _lockedY;
@@ -185,6 +185,11 @@ public class TileCursor : MonoBehaviour
 
 		_targetPos = pos;
 		_lastActiveTime = Time.time;
+		
+		if (instant)
+		{
+			transform.position = _targetPos;
+		}
 	}
 
 	/// <summary>Instantly jump to target; reset velocity and mark active.</summary>

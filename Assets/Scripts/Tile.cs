@@ -4,9 +4,9 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
 	public int TileBoardX, TileBoardY;
-	private Renderer rend;
+	public Renderer rend;
 
-	private HashSet<ChessPiece> tileOccupants = new HashSet<ChessPiece>();
+	public List<ChessPiece> tileOccupants = new List<ChessPiece>();
 
 	void Awake() => rend = GetComponentInChildren<Renderer>();
 

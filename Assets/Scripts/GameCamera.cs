@@ -24,8 +24,8 @@ public class GameCamera : MonoBehaviour
 	public bool zoomHalfRangeIsPercent = false;
 
 	[Header("Turn Animation Settings")]
-	public float centerDuration = 0.5f;
-	public float rotateDuration = 1f;
+	public float resetPositionDelay = .5f;
+	public float resetPositionTime = 1f;
 
 	// Dragging
 	[Header("Dragging Settings")]
@@ -145,34 +145,28 @@ public class GameCamera : MonoBehaviour
 	{
 		inputEnabled = false;
 
+		Quaternion startRot = cameraPivot.rotation;
+		Quaternion endRot = startRot * Quaternion.Euler(0, 180f, 0);
+
 		Vector3 startPos = cameraPivot.position;
 		Vector3 endPos = Vector3.zero;
 		float t = 0f;
 
+		yield return new WaitForSeconds(resetPositionDelay);
+
 		while (t < 1f)
 		{
-			t += Time.deltaTime / centerDuration;
-			cameraPivot.position = Vector3.Lerp(startPos, endPos, t);
+			t += Time.deltaTime / resetPositionTime;
+			float smooth = 1f - Mathf.Exp(-5f * t);
+			cameraPivot.position = Vector3.Lerp(startPos, endPos, smooth);
+			cameraPivot.rotation = Quaternion.Slerp(startRot, endRot,  smooth);
 			yield return null;
 		}
 
 		cameraPivot.position = endPos;
 		pivotTargetPos = endPos;
-
-		yield return new WaitForSeconds(0.5f);
-
-		Quaternion startRot = cameraPivot.rotation;
-		Quaternion endRot = startRot * Quaternion.Euler(0, 180f, 0);
-		t = 0f;
-
-		while (t < 1f)
-		{
-			t += Time.deltaTime / rotateDuration;
-			cameraPivot.rotation = Quaternion.Slerp(startRot, endRot, t);
-			yield return null;
-		}
-
 		cameraPivot.rotation = endRot;
+
 		SyncPivotTargetToCurrent();
 
 		inputEnabled = true;

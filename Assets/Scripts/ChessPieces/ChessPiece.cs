@@ -26,6 +26,7 @@ public abstract class ChessPiece : MonoBehaviour
     public Team team;
     public int currentX;
     public int currentY;
+    public GameObject deathEffect;
     [SerializeField] private String _id;
     public String ID
     {
@@ -55,6 +56,7 @@ public abstract class ChessPiece : MonoBehaviour
 
     //animating
     private Vector3 targetPosition;
+    private Vector3 targetScale = new Vector3(1, 1, 1);
     private float boardY;
 
     private void Start()
@@ -101,12 +103,18 @@ public abstract class ChessPiece : MonoBehaviour
 		targetPosition.y = boardY;
     }
 
-	private void Update()
-	{
-		// Lerp from current to target
-		transform.position = Vector3.Lerp(
-			transform.position,
-			targetPosition,
+    private void Update()
+    {
+        // Lerp from current to target
+        transform.position = Vector3.Lerp(
+            transform.position,
+            targetPosition,
+            10f * Time.deltaTime // 10 = speed factor
+        );
+        
+        transform.localScale = Vector3.Lerp(
+			transform.localScale,
+			targetScale,
 			10f * Time.deltaTime // 10 = speed factor
 		);
 	}
@@ -120,6 +128,18 @@ public abstract class ChessPiece : MonoBehaviour
 	public bool HasTag(String tag)
     {
         return PieceTags.Contains(tag);
+    }
+
+    public virtual List<Ability_TG> GetTileTags(TriggerType trigger = TriggerType.TurnAction, bool visual = false)
+    {
+        List<Ability_TG>  r = new List<Ability_TG>();
+
+        //r.Add(new Vector2Int(3, 3));
+        //r.Add(new Vector2Int(4, 4));
+        //r.Add(new Vector2Int(3, 4));
+        //r.Add(new Vector2Int(4, 3));
+
+        return r;
     }
 
     public virtual List<Vector2Int> GetAvailableMoves(PieceGrid board, int tileCountX, int tileCountY)
@@ -148,12 +168,12 @@ public abstract class ChessPiece : MonoBehaviour
 
 	internal void SetPosition(Vector3 vector3)
 	{
-		throw new NotImplementedException();
+		targetPosition = vector3;
 	}
 
 	internal void SetScale(Vector3 vector3)
 	{
-		throw new NotImplementedException();
+        targetScale = vector3;
 	}
 
 	internal void SetPosition(Vector3 vector3, bool force)
