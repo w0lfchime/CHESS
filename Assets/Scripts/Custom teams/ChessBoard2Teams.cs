@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class ChessBoard2 : MonoBehaviour
+public class ChessBoard2Teams : MonoBehaviour
 {
-	public static ChessBoard2 Instance { get; private set; }
+	public static ChessBoard2Teams Instance { get; private set; }
 	public int BoardTileHeight = 8;  // rows (Z+, top to bottom)
 	public int BoardTileWidth = 8;
 
@@ -17,10 +17,12 @@ public class ChessBoard2 : MonoBehaviour
 	[Header("Options")]
 	public bool ScaleChildToTileSize = true;
 
-	public GameData gameData;
-
 	// 2D array of tile transforms
 	public Tile[,] TileLocations;
+
+	// Stuff for team layouts
+	public GameData gameData;
+	// public 
 
 	private ChessPiece activeChessPiece;
 	private List<(Vector2Int, ActionTrait[])> availableMoves = new List<(Vector2Int, ActionTrait[])>();
@@ -31,7 +33,7 @@ public class ChessBoard2 : MonoBehaviour
 
 	void Start()
 	{
-		
+		gameData = GameObject.Find("GameData").GetComponent<GameData>();
 		Instance = this;
 		transform.position = Vector3.zero;
 	}
@@ -97,6 +99,8 @@ public class ChessBoard2 : MonoBehaviour
 				TileLocations[r, c] = tilecomp;
 			}
 		}
+
+		SpawnAllPieces();
 	}
 
 	//triggered when a tile is clicked, a little weird since the first click will give you green spaces and the second click will be on those spaces
@@ -323,38 +327,24 @@ public class ChessBoard2 : MonoBehaviour
 
 	public void SpawnAllPieces()
 	{
-		gameData = GameObject.Find("GameData").GetComponent<GameData>();
-
 		int pieceOn = 0;
-		// GameManager.Instance.CurrentTurn = Team.Black;
 
 		// spawn black pieces
-		for (int i = 7; i > 5; i--)
+		for (int i = 7; i < 5; i--)
 		{
-			for (int j = 7; j >= 0; j--)
+			for (int j = 0; j < 8; j++)
 			{
-				if (gameData.blackTeamIds[pieceOn] != null && gameData.blackTeamIds[pieceOn] != "")
-				{
-					Debug.Log("Spawned piece");
-					SpawnPiece(gameData.blackTeamIds[pieceOn], new Vector2Int(j, i), Team.Black);
-				}
-
+				SpawnPiece(gameData.blackTeamIds[pieceOn], new Vector2Int(j, i));
 				pieceOn++;
 			}
 		}
 
-		pieceOn = 15;
-		
 		// spawn white pieces
 		for (int i = 0; i < 2; i++)
 		{
-			for (int j = 0; j < 8; j++)
+			for (int j = 7; j < 0; j++)
 			{
-				if (gameData.whiteTeamIds[pieceOn] != null && gameData.whiteTeamIds[pieceOn] != "")
-				{
-					SpawnPiece(gameData.whiteTeamIds[pieceOn], new Vector2Int(j, i), Team.White);
-				}
-
+				SpawnPiece(gameData.whiteTeamIds[pieceOn], new Vector2Int(j, i));
 				pieceOn--;
 			}
 		}
@@ -363,42 +353,7 @@ public class ChessBoard2 : MonoBehaviour
 
 
 
-	// For regular spawning
-	public void SpawnPiece(string pieceID, Vector2Int boardLoc, Team team)
-	{
-		GameObject prefab = PieceLibrary.Instance.GetPrefab(pieceID);
-		if (prefab == null) return;
 
-		// Spawn at the tile�s world position
-		Vector3 spawnPos = gameObject.transform.position;
-		Quaternion spawnRot = Quaternion.identity;
-
-		//if (turn == Team.Black)
-		//{
-		//	spawnRot *= Quaternion.Euler(0f, 180f, 0f);
-		//}
-
-		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
-
-		// If the prefab has a ChessPiece script, register it with the tile
-		ChessPiece piece = pieceGO.GetComponent<ChessPiece>();
-
-		Renderer rend = pieceGO.GetComponent<Renderer>();
-
-		piece.team = team;
-		if (team == Team.White)
-		{
-			rend.sharedMaterial = WhiteTileMat;
-		}
-		else
-		{
-			rend.sharedMaterial = BlackTileMat;
-		}
-
-		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
-	}
-
-	// For debug spawning
 	public void SpawnPiece(string pieceID, Vector2Int boardLoc)
 	{
 		GameObject prefab = PieceLibrary.Instance.GetPrefab(pieceID);

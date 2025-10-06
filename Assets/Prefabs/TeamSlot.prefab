@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8483849312509084741}
   - component: {fileID: 3363626760687597347}
   - component: {fileID: 2586383310402583615}
-  - component: {fileID: 4286990894432598754}
+  - component: {fileID: 6912729123810747901}
   m_Layer: 5
   m_Name: TeamSlot
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4286990894432598754
+--- !u!114 &6912729123810747901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,10 +85,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 429650279541475720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeaa1c961bcc9ca479d1fc0fb6ad2b5f, type: 3}
+  m_Script: {fileID: 11500000, guid: b85d0bfd86e85b74aa6073220f18e072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  singlePlayerGameManager: {fileID: 0}
+  gameData: {fileID: 0}
   slotNum: 0
   team: 0
