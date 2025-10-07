@@ -334,7 +334,7 @@ public class ChessBoard2Teams : MonoBehaviour
 		{
 			for (int j = 0; j < 8; j++)
 			{
-				SpawnPiece(gameData.blackTeamIds[pieceOn], new Vector2Int(j, i));
+				// SpawnPiece(gameData.blackTeamIds[pieceOn], new Vector2Int(j, i));
 				pieceOn++;
 			}
 		}
@@ -344,7 +344,7 @@ public class ChessBoard2Teams : MonoBehaviour
 		{
 			for (int j = 7; j < 0; j++)
 			{
-				SpawnPiece(gameData.whiteTeamIds[pieceOn], new Vector2Int(j, i));
+				// SpawnPiece(gameData.whiteTeamIds[pieceOn], new Vector2Int(j, i));
 				pieceOn--;
 			}
 		}

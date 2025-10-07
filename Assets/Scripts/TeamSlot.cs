@@ -30,15 +30,6 @@ public class TeamSlot : MonoBehaviour, IDropHandler
         GameObject dropped = eventData.pointerDrag;
         DraggableUIPiece pieceData = dropped.GetComponent<DraggableUIPiece>();
 
-        if (team == 0)
-        {
-            gameData.whiteTeamIds[slotNum] = pieceData.pieceId;
-            // add stuff for adding location
-        }
-        else
-        {
-            gameData.blackTeamIds[slotNum] = pieceData.pieceId;
-        }
 
         image.sprite = pieceData.sprite;
     }

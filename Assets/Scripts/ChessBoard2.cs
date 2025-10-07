@@ -324,6 +324,8 @@ public class ChessBoard2 : MonoBehaviour
 	public void SpawnAllPieces()
 	{
 		gameData = GameObject.Find("GameData").GetComponent<GameData>();
+		string[] whiteTeam = gameData.whiteTeams[gameData.whiteTeamIndex];
+		string[] blackTeam = gameData.whiteTeams[gameData.blackTeamIndex];
 
 		int pieceOn = 0;
 		// GameManager.Instance.CurrentTurn = Team.Black;
@@ -333,29 +335,29 @@ public class ChessBoard2 : MonoBehaviour
 		{
 			for (int j = 7; j >= 0; j--)
 			{
-				if (gameData.blackTeamIds[pieceOn] != null && gameData.blackTeamIds[pieceOn] != "")
+				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
 					Debug.Log("Spawned piece");
-					SpawnPiece(gameData.blackTeamIds[pieceOn], new Vector2Int(j, i), Team.Black);
+					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
 				}
 
 				pieceOn++;
 			}
 		}
 
-		pieceOn = 15;
+		pieceOn = 0;
 		
 		// spawn white pieces
-		for (int i = 0; i < 2; i++)
+		for (int i = 1; i >= 0; i--)
 		{
-			for (int j = 0; j < 8; j++)
+			for (int j = 7; j >= 0; j--)
 			{
-				if (gameData.whiteTeamIds[pieceOn] != null && gameData.whiteTeamIds[pieceOn] != "")
+				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
-					SpawnPiece(gameData.whiteTeamIds[pieceOn], new Vector2Int(j, i), Team.White);
+					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
 				}
 
-				pieceOn--;
+				pieceOn++;
 			}
 		}
 	}
