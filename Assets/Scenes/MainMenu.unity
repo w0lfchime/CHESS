@@ -2091,7 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   singleplayerSceneName: Test Menu
-  multiplayerSceneName: Welcome2Chess
+  multiplayerSceneName: TestMenu
 --- !u!1 &1247540993
 GameObject:
   m_ObjectHideFlags: 0
