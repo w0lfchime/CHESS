@@ -1714,6 +1714,7 @@ MonoBehaviour:
   WhiteTileMat: {fileID: 2100000, guid: 412dcdfb319e97340ad7982a96c58944, type: 2}
   BlackTileMat: {fileID: 2100000, guid: d454d56deedcecf4bb3b3fd1110d235a, type: 2}
   ScaleChildToTileSize: 1
+  gameData: {fileID: 0}
 --- !u!1 &810918162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3169,7 +3170,7 @@ GameObject:
   - component: {fileID: 1806641029}
   - component: {fileID: 1806641030}
   m_Layer: 0
-  m_Name: Selected
+  m_Name: SelectedCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3608,6 +3609,6 @@ SceneRoots:
   - {fileID: 330483921}
   - {fileID: 1585337086}
   - {fileID: 517354303}
-  - {fileID: 1479432810}
   - {fileID: 1263369889}
   - {fileID: 1806641029}
+  - {fileID: 1479432810}

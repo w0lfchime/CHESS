@@ -103,6 +103,8 @@ public abstract class ChessPiece : MonoBehaviour
 		targetPosition.y = boardY;
     }
 
+    
+
     private void Update()
     {
         // Lerp from current to target
