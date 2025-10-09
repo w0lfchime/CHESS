@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7568988163670466025}
   - component: {fileID: 5894962862924430568}
   - component: {fileID: 729318315306308123}
-  - component: {fileID: -2876381246808195616}
+  - component: {fileID: -969099142421124707}
   m_Layer: 0
   m_Name: Rook
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-2876381246808195616
+--- !u!114 &-969099142421124707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,12 +96,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7009996306650167107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e283ccdef911c54fa089b0246d9412c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b08918f0c8658741a21f2e050fa7a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
   currentX: 0
   currentY: 0
-  _id: StandardRook
-  _value: 5
+  deathEffect: {fileID: 8081762785826782278, guid: 26eaf180a9e333541ac1ee595b6ca8c4, type: 3}
+  _id: 
+  _value: 0
+  _isLifeline: 0
   pieceType: 0
+  IsTileOccupant: 1
+  currentTile: {fileID: 0}
+  chessPieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}

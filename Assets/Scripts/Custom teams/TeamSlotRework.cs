@@ -1,5 +1,5 @@
 using System;
-using Microsoft.Unity.VisualStudio.Editor;
+//using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -47,6 +47,6 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
                 titleScreenButtons.updateMatText();
             }
         }
-        
+
     }
 }

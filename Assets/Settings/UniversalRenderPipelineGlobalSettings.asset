@@ -60,7 +60,17 @@ MonoBehaviour:
       - rid: 1362987195285897220
       - rid: 1362987195285897221
     m_RuntimeSettings:
-      m_List: []
+      m_List:
+      - rid: 6852985685364965378
+      - rid: 6852985685364965379
+      - rid: 6852985685364965380
+      - rid: 6852985685364965381
+      - rid: 6852985685364965384
+      - rid: 6852985685364965385
+      - rid: 6852985685364965392
+      - rid: 6852985685364965394
+      - rid: 8712630790384254976
+      - rid: 1362987195285897221
   m_AssetVersion: 8
   m_ObsoleteDefaultVolumeProfile: {fileID: 0}
   m_RenderingLayerNames:
@@ -194,7 +204,7 @@ MonoBehaviour:
         m_Version: 0
         m_StripUnusedPostProcessingVariants: 1
         m_StripUnusedVariants: 1
-        m_StripScreenCoordOverrideVariants: 1
+        m_StripScreenCoordOverrideVariants: 0
     - rid: 6852985685364965377
       type: {class: UniversalRenderPipelineEditorShaders, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
