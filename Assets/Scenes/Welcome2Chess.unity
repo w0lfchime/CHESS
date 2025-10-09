@@ -1801,8 +1801,8 @@ MonoBehaviour:
   tileprefab: {fileID: 8558258124258548598, guid: abc6453cdcfaf094b8d012ea75efd684, type: 3}
   WhiteTileMat: {fileID: 2100000, guid: 64eeadcbd36213142a690d0a69a70767, type: 2}
   BlackTileMat: {fileID: 2100000, guid: 1a6ae2a75b44f494ab66b32983c5e397, type: 2}
-  WhitePieceMat: {fileID: 2100000, guid: 64eeadcbd36213142a690d0a69a70767, type: 2}
-  BlackPieceMat: {fileID: 2100000, guid: 1a6ae2a75b44f494ab66b32983c5e397, type: 2}
+  WhitePieceMat: {fileID: 2100000, guid: 412dcdfb319e97340ad7982a96c58944, type: 2}
+  BlackPieceMat: {fileID: 2100000, guid: d454d56deedcecf4bb3b3fd1110d235a, type: 2}
   ScaleChildToTileSize: 1
   explosionEffect: {fileID: 8081762785826782278, guid: 78f97498504ef3d4993ec2a94b2fe734, type: 3}
 --- !u!1 &810918162

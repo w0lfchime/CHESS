@@ -60,7 +60,7 @@ public class ChessPieceObject : ChessPiece
                             if(action.grid[y * chessPieceData.gridSize + x] == 1) //detect if ui tile is selected
                             {
                                 Vector2Int pos = new Vector2Int(x, y) - center;
-                                pos = new Vector2Int((team == 0 ? -pos.x : pos.x), (team == 0 ? -pos.y : pos.y)); // flip direction based on team
+                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y)); // flip direction based on team
 
                                 action_TG.grid.Add((pos, action.traits));
                             }
