@@ -1804,7 +1804,7 @@ MonoBehaviour:
   WhitePieceMat: {fileID: 2100000, guid: 64eeadcbd36213142a690d0a69a70767, type: 2}
   BlackPieceMat: {fileID: 2100000, guid: 1a6ae2a75b44f494ab66b32983c5e397, type: 2}
   ScaleChildToTileSize: 1
-  explosionEffect: {fileID: 0}
+  explosionEffect: {fileID: 8081762785826782278, guid: 78f97498504ef3d4993ec2a94b2fe734, type: 3}
 --- !u!1 &810918162
 GameObject:
   m_ObjectHideFlags: 0
