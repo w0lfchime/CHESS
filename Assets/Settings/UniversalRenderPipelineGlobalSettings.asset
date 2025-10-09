@@ -194,7 +194,7 @@ MonoBehaviour:
         m_Version: 0
         m_StripUnusedPostProcessingVariants: 1
         m_StripUnusedVariants: 1
-        m_StripScreenCoordOverrideVariants: 1
+        m_StripScreenCoordOverrideVariants: 0
     - rid: 6852985685364965377
       type: {class: UniversalRenderPipelineEditorShaders, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:

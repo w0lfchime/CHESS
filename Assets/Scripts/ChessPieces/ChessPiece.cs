@@ -26,6 +26,7 @@ public abstract class ChessPiece : MonoBehaviour
     public Team team;
     public int currentX;
     public int currentY;
+    public int moves;
     public GameObject deathEffect;
     [SerializeField] private String _id;
     public String ID
@@ -66,8 +67,6 @@ public abstract class ChessPiece : MonoBehaviour
         PieceBehaviors = new();
         this.boardY = GameManager.Instance.Board.transform.position.y;
         SetupPiece();
-
-
     }
 
     /// <summary>

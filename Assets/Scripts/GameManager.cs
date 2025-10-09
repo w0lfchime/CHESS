@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
 	[Header("Game State")]
 	public Team CurrentTurn { get; private set; } = Team.White;
+	public int turnCount = 0;
 
 
 	public CanvasGroup DebugUI;
@@ -62,6 +63,8 @@ public class GameManager : MonoBehaviour
 	{
 		// Switch turn
 		CurrentTurn = (CurrentTurn == Team.White) ? Team.Black : Team.White;
+
+		turnCount++;
 
 		Debug.Log($"Turn ended. Now it's {CurrentTurn}'s move.");
 
