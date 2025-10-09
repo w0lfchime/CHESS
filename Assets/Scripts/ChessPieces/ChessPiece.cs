@@ -26,6 +26,7 @@ public abstract class ChessPiece : MonoBehaviour
     public Team team;
     public int currentX;
     public int currentY;
+    public GameObject deathEffect;
     [SerializeField] private String _id;
     public String ID
     {
@@ -41,20 +42,32 @@ public abstract class ChessPiece : MonoBehaviour
     {
         get => _isLifeline;
     }
+
+    //Piece definition
     public ChessPieceType pieceType;
     public HashSet<String> PieceTags { get; private set; }
     public List<ChessPieceBehavior> PieceBehaviors { get; private set; }
-    public List<PieceRoutine> EndOfTurnRoutines { get; private set; }
+    public List<PieceRoutine> Routines { get; private set; }
 
-    private Vector3 desiredPosition;
-    private Vector3 desiredScale = Vector3.one;
+    public bool IsTileOccupant = true;
+
+    public Tile currentTile;
+
+
+    //animating
+    private Vector3 targetPosition;
+    private Vector3 targetScale = new Vector3(1, 1, 1);
+    private float boardY;
 
     private void Start()
     {
-        transform.rotation = Quaternion.Euler((team == 0) ? Vector3.zero : new Vector3(0f, 180f, 0f));
+        transform.rotation = Quaternion.Euler((team == Team.Black) ? Vector3.zero : new Vector3(0f, 180f, 0f));
         PieceTags = new();
         PieceBehaviors = new();
+        this.boardY = GameManager.Instance.Board.transform.position.y;
         SetupPiece();
+
+
     }
 
     /// <summary>
@@ -82,20 +95,51 @@ public abstract class ChessPiece : MonoBehaviour
         PieceBehaviors.Clear();
     }
 
-    private void Update()
+    public void UpdatePieceData(Tile tile)
     {
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 10f);
-        transform.localScale = Vector3.Lerp(transform.localScale, desiredScale, Time.deltaTime * 10f);
+        currentTile = tile;
+
+		targetPosition = currentTile.transform.position;
+		targetPosition.y = boardY;
     }
 
-    /// <summary>
-    /// Tests if the piece has a specific tag.
-    /// </summary>
-    /// <param name="tag">The string tag being tested.</param>
-    /// <returns>Whether the piece has the tag.</returns>
-    public bool HasTag(String tag)
+    private void Update()
+    {
+        // Lerp from current to target
+        transform.position = Vector3.Lerp(
+            transform.position,
+            targetPosition,
+            10f * Time.deltaTime // 10 = speed factor
+        );
+        
+        transform.localScale = Vector3.Lerp(
+			transform.localScale,
+			targetScale,
+			10f * Time.deltaTime // 10 = speed factor
+		);
+	}
+
+
+	/// <summary>
+	/// Tests if the piece has a specific tag.
+	/// </summary>
+	/// <param name="tag">The string tag being tested.</param>
+	/// <returns>Whether the piece has the tag.</returns>
+	public bool HasTag(String tag)
     {
         return PieceTags.Contains(tag);
+    }
+
+    public virtual List<Ability_TG> GetTileTags(TriggerType trigger = TriggerType.TurnAction, bool visual = false)
+    {
+        List<Ability_TG>  r = new List<Ability_TG>();
+
+        //r.Add(new Vector2Int(3, 3));
+        //r.Add(new Vector2Int(4, 4));
+        //r.Add(new Vector2Int(3, 4));
+        //r.Add(new Vector2Int(4, 3));
+
+        return r;
     }
 
     public virtual List<Vector2Int> GetAvailableMoves(PieceGrid board, int tileCountX, int tileCountY)
@@ -116,26 +160,24 @@ public abstract class ChessPiece : MonoBehaviour
         return SpecialMove.None;
     }
 
-    public virtual void SetPosition(Vector3 position, bool force = false)
-    {
-        desiredPosition = position;
-        if (force)
-        {
-            transform.position = desiredPosition;
-        }
-    }
-
-    public virtual void SetScale(Vector3 scale, bool force = false)
-    {
-        desiredScale = scale;
-        if (force)
-        {
-            transform.localScale = desiredScale;
-        }
-    }
 
     public void Capture(PieceGrid board, Vector2Int position, bool fromCapture = true)
     {
         Destroy(gameObject);
     }
+
+	internal void SetPosition(Vector3 vector3)
+	{
+		targetPosition = vector3;
+	}
+
+	internal void SetScale(Vector3 vector3)
+	{
+        targetScale = vector3;
+	}
+
+	internal void SetPosition(Vector3 vector3, bool force)
+	{
+		throw new NotImplementedException();
+	}
 }

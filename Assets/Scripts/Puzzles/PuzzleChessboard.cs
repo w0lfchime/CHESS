@@ -52,8 +52,8 @@ public class PuzzleChessboard : MonoBehaviour
     private Dictionary<String, GameObject> piecePrefabTable;
     private PieceGrid chessPieces;
     private ChessPiece currentlyDragging;
-    private const int TILE_COUNT_X = 8;
-    private const int TILE_COUNT_Y = 8;
+    private int TILE_COUNT_X;
+    private int TILE_COUNT_Y;
     private GameObject[,] tiles;
     private Camera currentCamera;
     private Vector2Int currentHover;
@@ -69,10 +69,16 @@ public class PuzzleChessboard : MonoBehaviour
     private SinglePlayerGameManager singlePlayerGameManager;
     private puzzle currentPuzzle;
 
+    // For map management
+    private Map currentMap;
 
     private void Awake()
     {
         singlePlayerGameManager = GameObject.Find("Test Object To Carry Data").GetComponent<SinglePlayerGameManager>();
+        currentMap = singlePlayerGameManager.currentMap;
+
+        TILE_COUNT_X = currentMap.length;
+        TILE_COUNT_Y = currentMap.width;
 
         if (singlePlayerGameManager.doingPuzzle)
         {
@@ -183,7 +189,7 @@ public class PuzzleChessboard : MonoBehaviour
         }
 
         // If its the AI's turn in the puzzle, move their piece
-        if ((currentPuzzle.aiMoveOn < currentPuzzle.aiMoves) && singlePlayerGameManager.doingPuzzle && !isWhiteTurn)
+        if (singlePlayerGameManager.doingPuzzle && (currentPuzzle.aiMoveOn < currentPuzzle.aiMoves) && !isWhiteTurn)
         {
             ChessPiece toMove = chessPieces[currentPuzzle.aiMoveFrom[currentPuzzle.aiMoveOn, 0], currentPuzzle.aiMoveFrom[currentPuzzle.aiMoveOn, 1]];
             Debug.Log(MoveTo(toMove, currentPuzzle.aiMoveTo[currentPuzzle.aiMoveOn, 0], currentPuzzle.aiMoveTo[currentPuzzle.aiMoveOn, 1]));
@@ -218,7 +224,25 @@ public class PuzzleChessboard : MonoBehaviour
         {
             for (int y = 0; y < tileCountY; y++)
             {
-                tiles[x, y] = GenerateSingleTile(tileSize, x, y);
+                bool canGenerate = true;
+
+                if (currentMap.hasNulls)
+                {
+                    Debug.Log(currentMap.nullTiles.Length);
+                    for (int i = 0; i < currentMap.nullTiles.Length / 2; i++)
+                    {
+                        Debug.Log(i);
+                        if (currentMap.nullTiles[i, 0] == x && currentMap.nullTiles[i, 1] == y)
+                        {
+                            canGenerate = false;
+                        }
+                    }
+                }
+
+                if (canGenerate)
+                { 
+                    tiles[x, y] = GenerateSingleTile(tileSize, x, y);
+                }
             }
         }
     }
@@ -260,31 +284,45 @@ public class PuzzleChessboard : MonoBehaviour
         if (!singlePlayerGameManager.doingPuzzle)
         {
             //White Team
-            chessPieces[0, 0] = SpawnSinglePiece("StandardRook", Team.White);
-            chessPieces[1, 0] = SpawnSinglePiece("StandardKnight", Team.White);
-            chessPieces[2, 0] = SpawnSinglePiece("StandardBishop", Team.White);
-            chessPieces[3, 0] = SpawnSinglePiece("StandardQueen", Team.White);
-            chessPieces[4, 0] = SpawnSinglePiece("StandardKing", Team.White);
-            chessPieces[5, 0] = SpawnSinglePiece("StandardBishop", Team.White);
-            chessPieces[6, 0] = SpawnSinglePiece("StandardKnight", Team.White);
-            chessPieces[7, 0] = SpawnSinglePiece("StandardRook", Team.White);
-            for (int i = 0; i < TILE_COUNT_X; i++)
-            {
-                chessPieces[i, 1] = SpawnSinglePiece("StandardPawn", Team.White);
-            }
+            // chessPieces[0, 0] = SpawnSinglePiece("StandardRook", Team.White);
+            // chessPieces[1, 0] = SpawnSinglePiece("StandardKnight", Team.White);
+            // chessPieces[2, 0] = SpawnSinglePiece("StandardBishop", Team.White);
+            // chessPieces[3, 0] = SpawnSinglePiece("StandardQueen", Team.White);
+            // chessPieces[4, 0] = SpawnSinglePiece("StandardKing", Team.White);
+            // chessPieces[5, 0] = SpawnSinglePiece("StandardBishop", Team.White);
+            // chessPieces[6, 0] = SpawnSinglePiece("StandardKnight", Team.White);
+            // chessPieces[7, 0] = SpawnSinglePiece("StandardRook", Team.White);
+            // for (int i = 0; i < TILE_COUNT_X; i++)
+            // {
+            //     chessPieces[i, 1] = SpawnSinglePiece("StandardPawn", Team.White);
+            // }
 
-            //Black Team
-            chessPieces[0, 7] = SpawnSinglePiece("StandardRook", Team.Black);
-            chessPieces[1, 7] = SpawnSinglePiece("StandardKnight", Team.Black);
-            chessPieces[2, 7] = SpawnSinglePiece("StandardBishop", Team.Black);
-            chessPieces[3, 7] = SpawnSinglePiece("StandardQueen", Team.Black);
-            chessPieces[4, 7] = SpawnSinglePiece("StandardKing", Team.Black);
-            chessPieces[5, 7] = SpawnSinglePiece("StandardBishop", Team.Black);
-            chessPieces[6, 7] = SpawnSinglePiece("StandardKnight", Team.Black);
-            chessPieces[7, 7] = SpawnSinglePiece("StandardRook", Team.Black);
-            for (int i = 0; i < TILE_COUNT_X; i++)
+            // //Black Team
+            // chessPieces[0, 7] = SpawnSinglePiece("StandardRook", Team.Black);
+            // chessPieces[1, 7] = SpawnSinglePiece("StandardKnight", Team.Black);
+            // chessPieces[2, 7] = SpawnSinglePiece("StandardBishop", Team.Black);
+            // chessPieces[3, 7] = SpawnSinglePiece("StandardQueen", Team.Black);
+            // chessPieces[4, 7] = SpawnSinglePiece("StandardKing", Team.Black);
+            // chessPieces[5, 7] = SpawnSinglePiece("StandardBishop", Team.Black);
+            // chessPieces[6, 7] = SpawnSinglePiece("StandardKnight", Team.Black);
+            // chessPieces[7, 7] = SpawnSinglePiece("StandardRook", Team.Black);
+            // for (int i = 0; i < TILE_COUNT_X; i++)
+            // {
+            //     chessPieces[i, 6] = SpawnSinglePiece("StandardPawn", Team.Black);
+            // }
+
+            for (int i = 0; i < currentMap.pieceLimit; i++)
             {
-                chessPieces[i, 6] = SpawnSinglePiece("StandardPawn", Team.Black);
+                if (singlePlayerGameManager.whiteTeamIds[i] != null)
+                {
+                    chessPieces[currentMap.whiteStartingTiles[i, 0], currentMap.whiteStartingTiles[i, 1]] = SpawnSinglePiece(singlePlayerGameManager.whiteTeamIds[i], Team.White);
+                }
+
+                if (singlePlayerGameManager.blackTeamIds[i] != null)
+                { 
+                    chessPieces[currentMap.blackStartingTiles[i, 0], currentMap.blackStartingTiles[i, 1]] = SpawnSinglePiece(singlePlayerGameManager.blackTeamIds[i], Team.Black);
+                }
+                
             }
         }
         else
@@ -345,20 +383,38 @@ public class PuzzleChessboard : MonoBehaviour
 
     private void HighlightTiles()
     {
-        for (int i = 0; i < availableMoves.Count; i++)
-        {
-            tiles[availableMoves[i].x, availableMoves[i].y].layer = LayerMask.NameToLayer("Highlight");
-        }
+        CheckForHighlight("Highlight");
     }
 
     private void RemoveHighlightTiles()
     {
-        for (int i = 0; i < availableMoves.Count; i++)
-        {
-            tiles[availableMoves[i].x, availableMoves[i].y].layer = LayerMask.NameToLayer("Tile");
-        }
+        CheckForHighlight("Tile");
 
         availableMoves.Clear();
+    }
+
+    private void CheckForHighlight(string layer)
+    { 
+        for (int i = 0; i < availableMoves.Count; i++)
+        {
+            bool canHighlight = true;
+
+            if (currentMap.hasNulls)
+            {
+                for (int j = 0; j < currentMap.nullTiles.Length / 2; j++)
+                {
+                    if (availableMoves[i].x == currentMap.nullTiles[j, 0] && availableMoves[i].y == currentMap.nullTiles[j, 1])
+                    {
+                        canHighlight = false;
+                    }
+                }
+            }
+
+            if (canHighlight)
+            { 
+                tiles[availableMoves[i].x, availableMoves[i].y].layer = LayerMask.NameToLayer(layer);
+            }
+        }
     }
 
 

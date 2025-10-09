@@ -257,6 +257,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245146875}
   m_CullTransparentMesh: 1
+--- !u!1 &304081001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 304081003}
+  - component: {fileID: 304081002}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &304081002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304081001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47d38a31406586f4fad980b0520e437f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chessboard: {fileID: 2078710020}
+  speed: 5
+  delayTime: 0.5
+--- !u!4 &304081003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304081001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 330585546}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +396,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 304081003}
   m_LocalEulerAnglesHint: {x: 59.657, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -574,6 +622,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d3f6bd862e4020445877bd45420d5c04, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2078710020}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d3f6bd862e4020445877bd45420d5c04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2078710024}
   m_SourcePrefab: {fileID: 100100000, guid: d3f6bd862e4020445877bd45420d5c04, type: 3}
 --- !u!1 &475349924
 GameObject:
@@ -1613,16 +1664,45 @@ MonoBehaviour:
   deathHeight: -0.28
   dragOffset: 1.5
   victoryScreen: {fileID: 1734214409}
-  piecePrefabs: {fileID: 11400000, guid: df6ba30a6f2ad6a4280b79212780cc9a, type: 2}
+  prefabs:
+  - {fileID: 7009996306650167107, guid: 84f4199f25db6904aa95d62bc16c1d1c, type: 3}
+  - {fileID: 7009996306650167107, guid: 425f18783e90b3344a3b4ce5090180ba, type: 3}
+  - {fileID: 2814634166578959700, guid: 95e741532bcda0e45921caf98378f649, type: 3}
+  - {fileID: 8405896324001377966, guid: 58cee324bdb7677458958fb8a42b13e0, type: 3}
+  - {fileID: 7985344178341993767, guid: 24f01c0ea31bcec4ea6e9c0702b8332e, type: 3}
+  - {fileID: 4026744677435548049, guid: 8f39ac719708c0a4c9cc2133cc2d870e, type: 3}
+  - {fileID: 8081762785826782278, guid: 26eaf180a9e333541ac1ee595b6ca8c4, type: 3}
   teamMaterials:
   - {fileID: 2100000, guid: 412dcdfb319e97340ad7982a96c58944, type: 2}
   - {fileID: 2100000, guid: d454d56deedcecf4bb3b3fd1110d235a, type: 2}
   pieceOffset: 0
+  isWhiteTurn: 0
+--- !u!65 &2078710024
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078710019}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.083217, y: 1.055146, z: 10.083217}
+  m_Center: {x: 0, y: 0.0071347654, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 330585546}
+  - {fileID: 304081003}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 440194745}

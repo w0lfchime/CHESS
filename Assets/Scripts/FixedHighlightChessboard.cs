@@ -1,9 +1,3 @@
-/*
- * This has been commented out due to bugs and code smells.
- * When you wish to move the important changes to the main Chessboard class,
- * uncomment this code, apply the changes to Chessboard, and delete this file.
- */
-
 // using UnityEngine;
 // using System;
 // using System.Collections.Generic;
@@ -44,7 +38,7 @@
 //     private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
 //     public List<Vector2Int> availableMoves = new List<Vector2Int>();
 //     public List<Vector2Int> specialMoves = new List<Vector2Int>();
-//     private bool isWhiteTurn;
+//     public bool isWhiteTurn;
 //     private SpecialMove specialMove;
 //     private List<Vector2Int[]> moveList = new List<Vector2Int[]>();
 
@@ -95,9 +89,9 @@
 //                         RemoveHighlightTiles();
 
 //                         //List of available moves
-//                         availableMoves = currentlyHovering.GetAvailableMoves(chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
+//                         availableMoves = currentlyHovering.GetAvailableMoves(ref chessPieces, TILE_COUNT_X, TILE_COUNT_Y);
 //                         //Get list of special moves
-//                         specialMove = currentlyHovering.GetSpecialMoves(chessPieces, ref moveList, ref specialMoves);
+//                         specialMove = currentlyHovering.GetSpecialMoves(ref chessPieces, ref moveList, ref specialMoves);
 
 //                         for (int i = 0; i < specialMoves.Count; i++)
 //                         {
@@ -229,57 +223,57 @@
 //         return tileObject;
 //     }
 
-//     //Spawning of Pieces
-//     private void SpawnAllPieces()
-//     {
-//         chessPieces = new ChessPiece[TILE_COUNT_X, TILE_COUNT_Y];
+//     // Spawning of Pieces
+//     // private void SpawnAllPieces()
+//     // {
+//     //     chessPieces = new ChessPiece[TILE_COUNT_X, TILE_COUNT_Y];
 
-//         int whiteTeam = 0;
-//         int blackTeam = 1;
+//     //     int whiteTeam = 0;
+//     //     int blackTeam = 1;
 
-//         //White Team
-//         chessPieces[0, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, whiteTeam);
-//         chessPieces[1, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, whiteTeam);
-//         chessPieces[2, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, whiteTeam);
-//         chessPieces[3, 0] = SpawnSinglePiece(ChessPieceID.StandardQueen, whiteTeam);
-//         chessPieces[4, 0] = SpawnSinglePiece(ChessPieceID.StandardKing, whiteTeam);
-//         chessPieces[5, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, whiteTeam);
-//         chessPieces[6, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, whiteTeam);
-//         chessPieces[7, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, whiteTeam);
-//         for (int i = 0; i < TILE_COUNT_X; i++)
-//         {
-//             chessPieces[i, 1] = SpawnSinglePiece(ChessPieceID.StandardPawn, whiteTeam);
-//         }
+//     //     //White Team
+//     //     chessPieces[0, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, whiteTeam);
+//     //     chessPieces[1, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, whiteTeam);
+//     //     chessPieces[2, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, whiteTeam);
+//     //     chessPieces[3, 0] = SpawnSinglePiece(ChessPieceID.StandardQueen, whiteTeam);
+//     //     chessPieces[4, 0] = SpawnSinglePiece(ChessPieceID.StandardKing, whiteTeam);
+//     //     chessPieces[5, 0] = SpawnSinglePiece(ChessPieceID.StandardBishop, whiteTeam);
+//     //     chessPieces[6, 0] = SpawnSinglePiece(ChessPieceID.StandardKnight, whiteTeam);
+//     //     chessPieces[7, 0] = SpawnSinglePiece(ChessPieceID.StandardRook, whiteTeam);
+//     //     for (int i = 0; i < TILE_COUNT_X; i++)
+//     //     {
+//     //         chessPieces[i, 1] = SpawnSinglePiece(ChessPieceID.StandardPawn, whiteTeam);
+//     //     }
 
-//         //Black Team
-//         chessPieces[0, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, blackTeam);
-//         chessPieces[1, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, blackTeam);
-//         chessPieces[2, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, blackTeam);
-//         chessPieces[3, 7] = SpawnSinglePiece(ChessPieceID.StandardQueen, blackTeam);
-//         chessPieces[4, 7] = SpawnSinglePiece(ChessPieceID.StandardKing, blackTeam);
-//         chessPieces[5, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, blackTeam);
-//         chessPieces[6, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, blackTeam);
-//         chessPieces[7, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, blackTeam);
-//         for (int i = 0; i < TILE_COUNT_X; i++)
-//         {
-//             chessPieces[i, 6] = SpawnSinglePiece(ChessPieceID.StandardPawn, blackTeam);
-//         }
-//     }
+//     //     //Black Team
+//     //     chessPieces[0, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, blackTeam);
+//     //     chessPieces[1, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, blackTeam);
+//     //     chessPieces[2, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, blackTeam);
+//     //     chessPieces[3, 7] = SpawnSinglePiece(ChessPieceID.StandardQueen, blackTeam);
+//     //     chessPieces[4, 7] = SpawnSinglePiece(ChessPieceID.StandardKing, blackTeam);
+//     //     chessPieces[5, 7] = SpawnSinglePiece(ChessPieceID.StandardBishop, blackTeam);
+//     //     chessPieces[6, 7] = SpawnSinglePiece(ChessPieceID.StandardKnight, blackTeam);
+//     //     chessPieces[7, 7] = SpawnSinglePiece(ChessPieceID.StandardRook, blackTeam);
+//     //     for (int i = 0; i < TILE_COUNT_X; i++)
+//     //     {
+//     //         chessPieces[i, 6] = SpawnSinglePiece(ChessPieceID.StandardPawn, blackTeam);
+//     //     }
+//     // }
 
-//     private ChessPiece SpawnSinglePiece(ChessPieceID type, int team)
-//     {
-//         ChessPiece cp = Instantiate(prefabs[(int)type - 1], transform).GetComponent<ChessPiece>();
-//         cp.team = team;
-//         cp.ID = type;
-//         cp.GetComponent<MeshRenderer>().material = teamMaterials[team];
+//     // private ChessPiece SpawnSinglePiece(ChessPieceID type, int team)
+//     // {
+//     //     ChessPiece cp = Instantiate(prefabs[(int)type - 1], transform).GetComponent<ChessPiece>();
+//     //     cp.team = team;
+//     //     cp.ID = type;
+//     //     cp.GetComponent<MeshRenderer>().material = teamMaterials[team];
 
 
-//         Vector3 pos = cp.transform.localPosition;
-//         pos.y = yOffset + pieceOffset; // Set the y position to be above the tile
-//         cp.transform.localPosition = pos;
+//     //     Vector3 pos = cp.transform.localPosition;
+//     //     pos.y = yOffset + pieceOffset; // Set the y position to be above the tile
+//     //     cp.transform.localPosition = pos;
 
-//         return cp;
-//     }
+//     //     return cp;
+//     // }
 
 
 //     //Positioning Pieces
@@ -300,7 +294,7 @@
 //     {
 //         chessPieces[x, y].currentX = x;
 //         chessPieces[x, y].currentY = y;
-//         chessPieces[x, y].SetPosition(GetTileCenter(x, y), force);
+//         chessPieces[x, y].SetPosition(GetTileCenter(x, y), 0, force);
 //     }
 //     private Vector3 GetTileCenter(int x, int y)
 //     {
