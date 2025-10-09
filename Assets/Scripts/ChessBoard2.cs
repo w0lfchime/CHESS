@@ -16,6 +16,9 @@ public class ChessBoard2 : MonoBehaviour
 	public Material WhitePieceMat;
 	public Material BlackPieceMat;
 
+
+
+
 	[Header("Options")]
 	public bool ScaleChildToTileSize = true;
 
@@ -382,10 +385,7 @@ public class ChessBoard2 : MonoBehaviour
 
 			if (actionTraits.Contains(ActionTrait.spawn_explosion_effect))
 			{
-				ParticleSystem ps = Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
-				ParticleSystemRenderer psRenderer = ps.GetComponent<ParticleSystemRenderer>();
-				Material materialInstance = psRenderer.material;
-				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
+				Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity);
 			}
 
 			//
@@ -418,9 +418,11 @@ public class ChessBoard2 : MonoBehaviour
 
 	public void SpawnAllPieces()
 	{
-		gameData = GameObject.Find("GameData").GetComponent<GameData>();
-		string[] whiteTeam = gameData.whiteTeams[gameData.whiteTeamIndex];
-		string[] blackTeam = gameData.whiteTeams[gameData.blackTeamIndex];
+		
+
+
+		string[] whiteTeam = GameData.Instance.whiteTeams[GameData.Instance.whiteTeamIndex];
+		string[] blackTeam = GameData.Instance.whiteTeams[GameData.Instance.blackTeamIndex];
 
 		int pieceOn = 0;
 		// GameManager.Instance.CurrentTurn = Team.Black;
@@ -470,11 +472,6 @@ public class ChessBoard2 : MonoBehaviour
 		Vector3 spawnPos = gameObject.transform.position;
 		Quaternion spawnRot = Quaternion.identity;
 
-		//if (turn == Team.Black)
-		//{
-		//	spawnRot *= Quaternion.Euler(0f, 180f, 0f);
-		//}
-
 		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
 
 		// If the prefab has a ChessPiece script, register it with the tile
@@ -489,6 +486,7 @@ public class ChessBoard2 : MonoBehaviour
 		}
 		else
 		{
+			pieceGO.transform.Rotate(0, 180, 0);
 			rend.sharedMaterial = BlackTileMat;
 		}
 
@@ -507,10 +505,10 @@ public class ChessBoard2 : MonoBehaviour
 
 		Team turn = GameManager.Instance.CurrentTurn;
 
-		if (turn == Team.Black)
-		{
-			spawnRot *= Quaternion.Euler(0f, 180f, 0f);
-		}
+		//if (turn == Team.Black)
+		//{
+		//	spawnRot *= Quaternion.Euler(0f, 180f, 0f);
+		//}
 
 		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
 
@@ -526,6 +524,7 @@ public class ChessBoard2 : MonoBehaviour
 		}
 		else
 		{
+			piece.transform.Rotate(0, 180, 0);
 			piece.team = Team.Black;
 			rend.sharedMaterial = BlackPieceMat;
 			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
