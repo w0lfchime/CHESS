@@ -16,7 +16,8 @@ public static class PieceProperties
 {
     public static readonly Dictionary<String, int> PieceValues = new Dictionary<string, int>
     {
-        {"StandardBishop", 3},
+        {"", 0},
+        { "StandardBishop", 3},
         {"StandardPawn", 1},
         {"StandardKnight", 3},
         {"StandardRook", 5},

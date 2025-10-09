@@ -36,6 +36,7 @@ public class ChessBoard2 : MonoBehaviour
 
 	void Start()
 	{
+		
 		Instance = this;
 		transform.position = Vector3.zero;
 	}
@@ -412,12 +413,86 @@ public class ChessBoard2 : MonoBehaviour
 		//victoryScreen.transform.GetChild(winningTeam).gameObject.SetActive(true);
 	}
 
+	public void SpawnAllPieces()
+	{
+		gameData = GameObject.Find("GameData").GetComponent<GameData>();
+		string[] whiteTeam = gameData.whiteTeams[gameData.whiteTeamIndex];
+		string[] blackTeam = gameData.whiteTeams[gameData.blackTeamIndex];
+
+		int pieceOn = 0;
+		// GameManager.Instance.CurrentTurn = Team.Black;
+
+		// spawn black pieces
+		for (int i = 7; i > 5; i--)
+		{
+			for (int j = 7; j >= 0; j--)
+			{
+				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
+				{
+					Debug.Log("Spawned piece");
+					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
+				}
+
+				pieceOn++;
+			}
+		}
+
+		pieceOn = 0;
+		
+		// spawn white pieces
+		for (int i = 1; i >= 0; i--)
+		{
+			for (int j = 7; j >= 0; j--)
+			{
+				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
+				{
+					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
+				}
+
+				pieceOn++;
+			}
+		}
+	}
 
 
 
 
+	// For regular spawning
+	public void SpawnPiece(string pieceID, Vector2Int boardLoc, Team team)
+	{
+		GameObject prefab = PieceLibrary.Instance.GetPrefab(pieceID);
+		if (prefab == null) return;
 
+		// Spawn at the tile�s world position
+		Vector3 spawnPos = gameObject.transform.position;
+		Quaternion spawnRot = Quaternion.identity;
 
+		//if (turn == Team.Black)
+		//{
+		//	spawnRot *= Quaternion.Euler(0f, 180f, 0f);
+		//}
+
+		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
+
+		// If the prefab has a ChessPiece script, register it with the tile
+		ChessPiece piece = pieceGO.GetComponent<ChessPiece>();
+
+		Renderer rend = pieceGO.GetComponent<Renderer>();
+
+		piece.team = team;
+		if (team == Team.White)
+		{
+			rend.sharedMaterial = WhiteTileMat;
+		}
+		else
+		{
+			rend.sharedMaterial = BlackTileMat;
+		}
+
+		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
+	}
+
+	// For debug spawning
 	public void SpawnPiece(string pieceID, Vector2Int boardLoc)
 	{
 		GameObject prefab = PieceLibrary.Instance.GetPrefab(pieceID);
