@@ -16,6 +16,9 @@ public class ChessBoard2 : MonoBehaviour
 	public Material WhitePieceMat;
 	public Material BlackPieceMat;
 
+
+
+
 	[Header("Options")]
 	public bool ScaleChildToTileSize = true;
 
@@ -415,9 +418,11 @@ public class ChessBoard2 : MonoBehaviour
 
 	public void SpawnAllPieces()
 	{
-		gameData = GameObject.Find("GameData").GetComponent<GameData>();
-		string[] whiteTeam = gameData.whiteTeams[gameData.whiteTeamIndex];
-		string[] blackTeam = gameData.whiteTeams[gameData.blackTeamIndex];
+		
+
+
+		string[] whiteTeam = GameData.Instance.whiteTeams[GameData.Instance.whiteTeamIndex];
+		string[] blackTeam = GameData.Instance.whiteTeams[GameData.Instance.blackTeamIndex];
 
 		int pieceOn = 0;
 		// GameManager.Instance.CurrentTurn = Team.Black;

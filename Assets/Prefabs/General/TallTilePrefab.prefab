@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6483778384259145561}
   - component: {fileID: 2359836030946166382}
   m_Layer: 6
-  m_Name: TilePrefab
+  m_Name: TallTilePrefab
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
