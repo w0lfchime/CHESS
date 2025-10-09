@@ -15,7 +15,10 @@ public class CursorManager : MonoBehaviour
 	public Action<Transform> onNextClick;
 
 	// Selected Tile (set on mouse click)
-	public Tile SelectedTile { get; private set; }
+	public Tile SelectedTile;
+
+	public int SelectedBoardX, SelectedBoardY;
+	public int HoveredBoardX, HoveredBoardY;
 
 	private Transform _currentTile; // hover hit
 	private Camera _cam;
@@ -60,11 +63,26 @@ public class CursorManager : MonoBehaviour
 	private void UpdateHoverCursor()
 	{
 		// Hover cursor follows whatever is under the mouse in real time
-		if (hoverCursor == null) return;
+		if (hoverCursor == null) 
+		{
+
+			return;
+		}
 
 		if (_currentTile != null)
 		{
 			hoverCursor.SetTargetFromTile(_currentTile);
+			Tile temp = _currentTile.gameObject.GetComponent<Tile>();	
+			if (temp != null)
+			{
+				HoveredBoardX = temp.TileBoardX;
+				HoveredBoardY = temp.TileBoardY;	
+			}
+		} 
+		else
+		{
+			HoveredBoardX = -9999;
+			HoveredBoardY = -9999;
 		}
 		// else: do nothing; hover cursor will coast/settle where it is
 	}
@@ -76,13 +94,13 @@ public class CursorManager : MonoBehaviour
 		// Update SelectedTile only on click
 		if (_currentTile != null)
 		{
-			if(!selectorCursor.gameObject.active) selectorCursor.SetTargetFromTile(_currentTile, true);
+			if(!selectorCursor.gameObject.activeSelf) selectorCursor.SetTargetFromTile(_currentTile, true);
 			selectorCursor.gameObject.SetActive(true);
 
-			SelectedTile = _currentTile.GetComponent<Tile>();
+			Tile SelectedTile = _currentTile.GetComponent<Tile>();
 
-			//triggers a click on the chessboard
-			ChessBoard2.Instance.InteractTrigger(SelectedTile);
+			SelectedBoardX = SelectedTile.TileBoardX;
+			SelectedBoardY = SelectedTile.TileBoardY;
 
 			// Move the selector cursor to the newly selected tile
 			if (selectorCursor != null)

@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
 		// Example: start with White
 		Board.InitBoard();
+		Board.SpawnAllPieces();
 		StartGame(Team.White);
 	}
 
