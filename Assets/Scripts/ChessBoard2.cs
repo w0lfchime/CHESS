@@ -251,7 +251,7 @@ public class ChessBoard2 : MonoBehaviour
 		return abilityDict[selectedLayer];
 	}
 
-	private void RemoveHighlightTiles()
+	public void RemoveHighlightTiles()
 	{
 		for (int i = 0; i < availableMoves.Count; i++)
 		{
@@ -472,11 +472,6 @@ public class ChessBoard2 : MonoBehaviour
 		Vector3 spawnPos = gameObject.transform.position;
 		Quaternion spawnRot = Quaternion.identity;
 
-		//if (turn == Team.Black)
-		//{
-		//	spawnRot *= Quaternion.Euler(0f, 180f, 0f);
-		//}
-
 		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
 
 		// If the prefab has a ChessPiece script, register it with the tile
@@ -491,6 +486,7 @@ public class ChessBoard2 : MonoBehaviour
 		}
 		else
 		{
+			pieceGO.transform.Rotate(0, 180, 0);
 			rend.sharedMaterial = BlackTileMat;
 		}
 
@@ -528,6 +524,7 @@ public class ChessBoard2 : MonoBehaviour
 		}
 		else
 		{
+			piece.transform.Rotate(0, 180, 0);
 			piece.team = Team.Black;
 			rend.sharedMaterial = BlackPieceMat;
 			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
