@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
 		// Later: trigger board highlighting, legal move generation, timers, etc.
 
 		TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
+
+		Board.TileTrigger();
 	}
 
 	public void ResetGame()

@@ -160,6 +160,15 @@ public class ChessBoard2 : MonoBehaviour
 
 	}
 
+	//Updates tiles between turns
+	public void TileTrigger()
+	{
+		foreach (Tile tile in TileLocations)
+        {
+			tile.UpdateEffects();
+        }
+	}
+
 
 	private bool TriggerAllPieces(TriggerType trigger, Tile[] tiles)
 	{
@@ -177,8 +186,7 @@ public class ChessBoard2 : MonoBehaviour
 	private bool TriggerOnePiece(ChessPiece piece, TriggerType trigger, Tile selectedTile = null, bool layered = false)
 	{
 		if (layered) {
-			print(abilityClickLayer);
-			RunAbilities(piece, GetAbilityLayer(piece, trigger, abilityClickLayer), selectedTile);
+			RunAbilities(piece, GetAbilityLayer(piece, trigger, abilityClickLayer, false), selectedTile);
 		} else {
 			RunAbilities(piece, piece.GetTileTags(trigger), selectedTile);
 		}
@@ -217,7 +225,7 @@ public class ChessBoard2 : MonoBehaviour
 	{ // plan on making a thing to display the second action in an ability, just to show an effect of what will happen. Will likely have a bool on each action to enable this.
 		foreach (TriggerType trigger in triggers)
 		{
-			List <Ability_TG> abilityLayer = GetAbilityLayer(piece, trigger, layer);
+			List <Ability_TG> abilityLayer = GetAbilityLayer(piece, trigger, layer, true);
 			foreach (Ability_TG ability in abilityLayer)
 			{
 				if (ability.actions.Count > 0)
@@ -229,11 +237,11 @@ public class ChessBoard2 : MonoBehaviour
 		availableMoves = FilterTiles(piece, availableMoves);
 	}
 
-	List<Ability_TG> GetAbilityLayer(ChessPiece piece, TriggerType trigger, int layer)
+	List<Ability_TG> GetAbilityLayer(ChessPiece piece, TriggerType trigger, int layer, bool visual)
 	{
 		List<List<Ability_TG>> abilityDict = new List<List<Ability_TG>>();
 		abilityDict.Add(new List<Ability_TG>());
-		var abilities = piece.GetTileTags(trigger, true);
+		var abilities = piece.GetTileTags(trigger, visual);
 
 		if (abilities.Count == 0) return new List<Ability_TG>();
 
@@ -307,10 +315,9 @@ public class ChessBoard2 : MonoBehaviour
 				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
 				foreach (Vector2Int pos in path)
 				{
-					if (TileLocations[pos.x, pos.y].tileOccupants.Count > 0)
+					if (TileLocations[pos.x, pos.y].obstructed)
 					{ 
 						add = false;
-						print(TileLocations[pos.x, pos.y]);
 						break;
 					}
 				}
@@ -333,6 +340,9 @@ public class ChessBoard2 : MonoBehaviour
 		{
 			Vector2Int tilePosition = tile.Item1;
 
+			ChessPiece ocp = null;
+			if(TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0) ocp = TileLocations[tilePosition.x, tilePosition.y].GetAllOccupants().ElementAt(0);
+
 			List<ActionTrait> actionTraits = tile.Item2.ToList();
 
 			//check if selected
@@ -347,8 +357,6 @@ public class ChessBoard2 : MonoBehaviour
 
 			if (actionTraits.Contains(ActionTrait.command_killpiece) && (TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0)) // if trait kills a piece
 			{
-				ChessPiece ocp = TileLocations[tilePosition.x, tilePosition.y].GetAllOccupants().ElementAt(0);
-
 				if (ocp.deathEffect != null) Instantiate(ocp.deathEffect, ocp.transform.position, Quaternion.identity);
 
 				if (ocp != null)
@@ -383,6 +391,23 @@ public class ChessBoard2 : MonoBehaviour
 				TileLocations[tilePosition.x, tilePosition.y].AddPiece(cp);
 			}
 
+			if (actionTraits.Contains(ActionTrait.command_pushback))// if trait pushes another piece
+			{
+				Vector2Int newpos = new Vector2Int(tilePosition.x, tilePosition.y) + Vector2Int.RoundToInt((new Vector2(tilePosition.x, tilePosition.y) - new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY)).normalized*1.5f);
+				print(newpos);
+				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
+
+				TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
+                try
+                {
+                    TileLocations[newpos.x, newpos.y].AddPiece(ocp);
+                }
+                catch
+                {
+					print("pushed piece off");
+                }
+			}
+
 			if (actionTraits.Contains(ActionTrait.spawn_explosion_effect))
 			{
 				ParticleSystem ps = Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
@@ -391,7 +416,10 @@ public class ChessBoard2 : MonoBehaviour
 				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
 			}
 
-			//
+			if (actionTraits.Contains(ActionTrait.spawn_water))
+			{
+				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", 2);
+			}
 		}
 
 		// If unhighlighted tile was selected reset the position and return false

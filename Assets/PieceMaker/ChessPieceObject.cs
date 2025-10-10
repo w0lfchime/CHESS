@@ -70,7 +70,7 @@ public class ChessPieceObject : ChessPiece
                             if(action.grid[y * chessPieceData.gridSize + x] == 2) //detect if ui tile is selected
                             {
                                 Vector2Int pos = new Vector2Int(x-center.x, y-center.y);
-                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y));
+                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y));
                                 for(int i = 0; i < 16; i++){
                                     action_TG.grid.Add((i*pos, action.traits));
                                 }

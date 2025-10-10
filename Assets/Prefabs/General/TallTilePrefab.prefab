@@ -153,7 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70158d9791cabf4468f5d13cbe53a3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectDictionary: []
   TileBoardX: 0
   TileBoardY: 0
-  rend: {fileID: 0}
+  rend: {fileID: 6845780054913544564}
   tileOccupants: []
+  obstructed: 0
