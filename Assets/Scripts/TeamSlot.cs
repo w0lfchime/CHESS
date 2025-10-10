@@ -21,7 +21,8 @@ public class TeamSlot : MonoBehaviour, IDropHandler
     // Update is called once per frame
     void Update()
     {
-
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+        transform.localScale = new Vector3(1, 1, 0);
     }
 
     public void OnDrop(PointerEventData eventData)

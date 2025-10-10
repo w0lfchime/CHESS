@@ -18,12 +18,14 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
         image = gameObject.GetComponent<Image>();
         gameData = GameObject.Find("GameData").GetComponent<GameData>();
         titleScreenButtons = GameObject.Find("TitleScreenButtons").GetComponent<TitleScreenButtons>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+        transform.localScale = new Vector3(1, 1, 0);
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -34,7 +36,7 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             DraggableUIPiece pieceData = dropped.GetComponent<DraggableUIPiece>();
 
-            if (dropped.tag == "Dragable Piece" && !(titleScreenButtons.matValue - mat + PieceProperties.PieceValues[pieceData.pieceId] > titleScreenButtons.maxMaterial))
+            if (dropped.tag == "Draggable Piece" && !(titleScreenButtons.matValue - mat + PieceProperties.PieceValues[pieceData.pieceId] > titleScreenButtons.maxMaterial))
             {
                 titleScreenButtons.tempTeam[slotNum] = pieceData.pieceId;
 
@@ -45,6 +47,10 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
                 image.sprite = pieceData.sprite;
 
                 titleScreenButtons.updateMatText();
+            }
+            else if(dropped.tag == "Draggable Piece")
+            {
+                titleScreenButtons.editMatTextStuff();
             }
         }
 
