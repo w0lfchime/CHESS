@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class TitleScreenButtons : MonoBehaviour
 {
+    public InsultScript insultScript;
     public TextMeshProUGUI matText;
     public TextMeshProUGUI teamName;
     public TextMeshProUGUI errorTextText;
@@ -19,6 +20,7 @@ public class TitleScreenButtons : MonoBehaviour
     public GameObject teamCreateMenu;
     public GameObject teamSelectMenu;
     public GameObject collectionsMenu;
+    public GameObject how2ChessMenu;
     public GameObject teamContent;
     public GameObject slotPrefab;
     public GameData gameData;
@@ -60,6 +62,11 @@ public class TitleScreenButtons : MonoBehaviour
     public void MoveToCollections()
     {
         collectionsMenu.SetActive(true);
+        mainMenu.SetActive(false);
+    }
+    public void MoveTOHow2()
+    {
+        how2ChessMenu.SetActive(true);
         mainMenu.SetActive(false);
     }
 
@@ -116,7 +123,15 @@ public class TitleScreenButtons : MonoBehaviour
         teamCreateMenu.SetActive(false);
         teamSelectMenu.SetActive(false);
         collectionsMenu.SetActive(false);
+        how2ChessMenu.SetActive(false);
         mainMenu.SetActive(true);
+
+        insultScript.DisplayRandomInsult();
+    }
+
+    public void SinglePlayerBUtton()
+    {
+        insultScript.insultText.text = "Not in this demo dummy.";
     }
 
     public void SaveTeam()
