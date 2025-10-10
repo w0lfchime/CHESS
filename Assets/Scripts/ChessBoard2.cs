@@ -385,7 +385,10 @@ public class ChessBoard2 : MonoBehaviour
 
 			if (actionTraits.Contains(ActionTrait.spawn_explosion_effect))
 			{
-				Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity);
+				ParticleSystem ps = Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+				ParticleSystemRenderer psRenderer = ps.GetComponent<ParticleSystemRenderer>();
+				Material materialInstance = psRenderer.material;
+				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
 			}
 
 			//
