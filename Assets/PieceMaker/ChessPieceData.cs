@@ -90,6 +90,7 @@ public class ChessPieceData : ScriptableObject
 
     public string name = "NoNameSet";
     public Mesh model;
+    public float model_scale_multiplier;
     public bool lifeLine;
 
     public List<ChessPieceData> promotable = new List<ChessPieceData>();
@@ -129,7 +130,13 @@ public class ChessPieceDataEditor : Editor
             false
         );
 
-        script.lifeLine = EditorGUILayout.Toggle("LifeLine", script.lifeLine);
+		script.model_scale_multiplier = EditorGUILayout.FloatField(
+	        "Model Scale Multiplier",
+	        script.model_scale_multiplier
+           );
+
+
+		script.lifeLine = EditorGUILayout.Toggle("LifeLine", script.lifeLine);
 
         SerializedProperty promotableList = serializedObject.FindProperty("promotable");
         EditorGUILayout.PropertyField(promotableList, new GUIContent("Promotable"), true);
