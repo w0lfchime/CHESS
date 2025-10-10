@@ -7,10 +7,8 @@ public class GameData : MonoBehaviour
 	public static GameData Instance { get; private set; }
 
 	[Header("Teams")]
-	public List<string[]> whiteTeams = new List<string[]>();
-	public List<string[]> blackTeams = new List<string[]>();
-	public List<string> whiteTeamNames = new List<string>();
-	public List<string> blackTeamNames = new List<string>();
+	public List<string[]> teamList = new List<string[]>();
+	public List<string> teamNames = new List<string>();
 
 	[Header("Indices")]
 	public int whiteTeamIndex = 0;
