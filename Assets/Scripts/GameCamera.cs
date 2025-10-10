@@ -146,7 +146,7 @@ public class GameCamera : MonoBehaviour
 		inputEnabled = false;
 
 		Quaternion startRot = cameraPivot.rotation;
-		Quaternion endRot = startRot * Quaternion.Euler(0, 180f, 0);
+		Quaternion endRot = (GameManager.Instance.CurrentTurn == Team.White) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180f, 0);
 
 		Vector3 startPos = cameraPivot.position;
 		Vector3 endPos = Vector3.zero;

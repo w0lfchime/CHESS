@@ -99,6 +99,9 @@ public class CursorManager : MonoBehaviour
 
 			Tile SelectedTile = _currentTile.GetComponent<Tile>();
 
+			//triggers a click on the chessboard
+			ChessBoard2.Instance.InteractTrigger(SelectedTile);
+
 			SelectedBoardX = SelectedTile.TileBoardX;
 			SelectedBoardY = SelectedTile.TileBoardY;
 
@@ -116,6 +119,7 @@ public class CursorManager : MonoBehaviour
 		else
 		{
 			selectorCursor.gameObject.SetActive(false);
+			ChessBoard2.Instance.RemoveHighlightTiles();
 
 			// Clicked empty space: clear selection (optional)
 			SelectedTile = null;
@@ -123,7 +127,7 @@ public class CursorManager : MonoBehaviour
 			// Still clear one-shot if you want the click to consume it regardless:
 			if (onNextClick != null)
 			{
-				onNextClick.Invoke(null);
+				//onNextClick.Invoke(null);
 				onNextClick = null;
 			}
 		}

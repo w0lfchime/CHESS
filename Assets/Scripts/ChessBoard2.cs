@@ -16,6 +16,9 @@ public class ChessBoard2 : MonoBehaviour
 	public Material WhitePieceMat;
 	public Material BlackPieceMat;
 
+
+
+
 	[Header("Options")]
 	public bool ScaleChildToTileSize = true;
 
@@ -248,7 +251,7 @@ public class ChessBoard2 : MonoBehaviour
 		return abilityDict[selectedLayer];
 	}
 
-	private void RemoveHighlightTiles()
+	public void RemoveHighlightTiles()
 	{
 		for (int i = 0; i < availableMoves.Count; i++)
 		{
@@ -415,14 +418,18 @@ public class ChessBoard2 : MonoBehaviour
 
 	public void SpawnAllPieces()
 	{
-		gameData = GameObject.Find("GameData").GetComponent<GameData>();
-		string[] whiteTeam = gameData.whiteTeams[gameData.whiteTeamIndex];
-		string[] blackTeam = gameData.whiteTeams[gameData.blackTeamIndex];
+		
 
-		int pieceOn = 0;
+
+		string[] whiteTeam = GameData.Instance.teamList[GameData.Instance.whiteTeamIndex];
+		string[] blackTeam = GameData.Instance.teamList[GameData.Instance.blackTeamIndex];
+
+		
 		// GameManager.Instance.CurrentTurn = Team.Black;
 
 		// spawn black pieces
+		int pieceOn = 0;
+
 		for (int i = 7; i > 5; i--)
 		{
 			for (int j = 7; j >= 0; j--)
@@ -467,11 +474,6 @@ public class ChessBoard2 : MonoBehaviour
 		Vector3 spawnPos = gameObject.transform.position;
 		Quaternion spawnRot = Quaternion.identity;
 
-		//if (turn == Team.Black)
-		//{
-		//	spawnRot *= Quaternion.Euler(0f, 180f, 0f);
-		//}
-
 		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
 
 		// If the prefab has a ChessPiece script, register it with the tile
@@ -486,6 +488,7 @@ public class ChessBoard2 : MonoBehaviour
 		}
 		else
 		{
+			pieceGO.transform.Rotate(0, 180, 0);
 			rend.sharedMaterial = BlackTileMat;
 		}
 
@@ -523,6 +526,7 @@ public class ChessBoard2 : MonoBehaviour
 		}
 		else
 		{
+			piece.transform.Rotate(0, 180, 0);
 			piece.team = Team.Black;
 			rend.sharedMaterial = BlackPieceMat;
 			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
