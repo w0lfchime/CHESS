@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Bishop
   m_EditorClassIdentifier: 
   name: NoNameSet
-  model: {fileID: -2520652854770005072, guid: 0292d2f3441839442baabb68de8e54a3, type: 3}
+  model: {fileID: 5305871256624515941, guid: 89482957ae65bc24a98f26dd4440bc73, type: 3}
   lifeLine: 0
+  promotable: []
   gridSize: 11
   abilities:
   - name: BishopMove

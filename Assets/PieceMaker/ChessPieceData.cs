@@ -90,6 +90,7 @@ public class ChessPieceData : ScriptableObject
 
     public string name = "NoNameSet";
     public Mesh model;
+    public float model_scale_multiplier;
     public bool lifeLine;
 
     public List<ChessPieceData> promotable = new List<ChessPieceData>();
