@@ -91,7 +91,9 @@ public class ChessPieceData : ScriptableObject
     public string name = "NoNameSet";
     public Mesh model;
     public bool lifeLine;
+
     public List<ChessPieceData> promotable = new List<ChessPieceData>();
+
 
     public int gridSize = 11;
 
