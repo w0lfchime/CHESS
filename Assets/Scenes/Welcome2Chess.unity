@@ -911,6 +911,8 @@ MonoBehaviour:
   movementSmoothFactor: 12
   zoomSpeed: 10
   zoomSmoothFactor: 12
+  minZoomDistance: 5
+  maxZoomDistance: 20
   zoomHalfRange: 20
   zoomHalfRangeIsPercent: 0
   resetPositionDelay: 0.5
@@ -1149,6 +1151,7 @@ MonoBehaviour:
   SelectedBoardY: 0
   HoveredBoardX: 0
   HoveredBoardY: 0
+  hitPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &536616665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,7 +2962,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 929283b13ad479a4da77b7a5eb4a9258, type: 2}
+  - {fileID: 2100000, guid: face589134909e34ca45634cb209ab4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2980,7 +2983,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 4
+  m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0

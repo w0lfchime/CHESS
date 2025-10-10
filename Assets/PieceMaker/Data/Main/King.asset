@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: NoNameSet
   model: {fileID: 622389830684850844, guid: 0292d2f3441839442baabb68de8e54a3, type: 3}
-  lifeLine: 0
+  lifeLine: 1
   gridSize: 11
   abilities:
   - name: KingMove

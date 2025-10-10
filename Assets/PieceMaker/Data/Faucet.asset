@@ -15,6 +15,9 @@ MonoBehaviour:
   name: NoNameSet
   model: {fileID: 2170104116787855361, guid: 0292d2f3441839442baabb68de8e54a3, type: 3}
   lifeLine: 0
+  promotable:
+  - {fileID: 0}
+  - {fileID: 0}
   gridSize: 11
   abilities:
   - name: FaucetMove

@@ -8,7 +8,7 @@ public class CursorManager : MonoBehaviour
 	public float maxRayDistance = 100f;
 
 	[Header("Cursors")]
-	[SerializeField] private TileCursor hoverCursor;    // follows the tile under mouse (live)
+	[SerializeField] public TileCursor hoverCursor;    // follows the tile under mouse (live)
 	[SerializeField] private TileCursor selectorCursor; // moves only on click (selection)
 
 	// One-shot external callback (e.g., spawn-on-next-click)
@@ -22,6 +22,7 @@ public class CursorManager : MonoBehaviour
 
 	private Transform _currentTile; // hover hit
 	private Camera _cam;
+	public Vector3 hitPoint;
 
 	void Awake()
 	{
@@ -44,6 +45,10 @@ public class CursorManager : MonoBehaviour
 		if (_cam == null) return;
 
 		Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
+		if (Physics.Raycast(ray, out RaycastHit hit1, maxRayDistance))
+        {
+            hitPoint = hit1.point;
+        }
 		if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance, tileLayer))
 		{
 			Transform hitTile = hit.transform;

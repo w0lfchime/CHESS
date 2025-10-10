@@ -19,11 +19,14 @@ public class ChessPieceObject : ChessPiece
 {
     public ChessPieceData chessPieceData;
 
-    void Start(){
+    void Start()
+    {
         //set model for chess piece
-        if(GetComponent<MeshFilter>()){
+        if (GetComponent<MeshFilter>())
+        {
             GetComponent<MeshFilter>().mesh = chessPieceData.model;
         }
+        _isLifeline = chessPieceData.lifeLine;
     }
 
     public override List<Ability_TG> GetTileTags(TriggerType trigger = TriggerType.TurnAction, bool visual = false)
