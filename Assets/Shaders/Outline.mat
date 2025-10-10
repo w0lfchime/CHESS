@@ -41,9 +41,9 @@ Material:
     - _FadeDistance: 75
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Thickness: 0.0085
+    - _Thickness: 0.005
     m_Colors:
-    - _OutlineColor: {r: 0.066037714, g: 0.023985395, b: 0.023985395, a: 0}
+    - _OutlineColor: {r: 0.57089055, g: 9.309903, b: 2.0542316, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5041908534404059136
