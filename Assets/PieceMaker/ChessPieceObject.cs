@@ -26,9 +26,9 @@ public class ChessPieceObject : ChessPiece
         {
             GetComponent<MeshFilter>().mesh = chessPieceData.model;
         }
-        if (chessPieceData.model_scale_multiplier != null)
+        if (chessPieceData.model_scale_multiplier != 0.0f)
         {
-            transform.localScale *= (float)chessPieceData.model_scale_multiplier;
+            targetScale *= chessPieceData.model_scale_multiplier;
         }
 
         _isLifeline = chessPieceData.lifeLine;
