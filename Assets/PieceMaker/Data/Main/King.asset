@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: King
   m_EditorClassIdentifier: 
   name: NoNameSet
-  model: {fileID: -2124705421725058983, guid: 6c5e2c45310736142b4f665a2e0a1739, type: 3}
+  model: {fileID: -4175726406976504967, guid: 06add3968af048845a19d3b35351dd87, type: 3}
   model_scale_multiplier: 1
   lifeLine: 1
   promotable: []

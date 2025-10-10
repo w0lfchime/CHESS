@@ -433,9 +433,9 @@ public class ChessBoard2 : MonoBehaviour
 		// spawn black pieces
 		int pieceOn = 0;
 
-		for (int i = 7; i > 5; i--)
+		for (int i = 6; i <= 7; i++)
 		{
-			for (int j = 7; j >= 0; j--)
+			for (int j = 0; j < 8; j++)
 			{
 				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
