@@ -31,6 +31,7 @@ public class Chessboard : MonoBehaviour
     //Code I added for piece spawning offset
     [Header("Piece Placement")]
     [SerializeField] private float pieceOffset = 0.1f; // Offset for piece placement above the tile]
+    [SerializeField] private Material outlineMaterial; // Outline shader material
 
 
     /// <summary>
@@ -59,13 +60,17 @@ public class Chessboard : MonoBehaviour
     private bool isWhiteTurn;
     private SpecialMove specialMove;
     private List<Vector2Int[]> moveList = new List<Vector2Int[]>();
+    private Vector2Int previousOutlinePosition;
 
     private void Awake()
     {
         piecePrefabTable = new();
         foreach (GameObject o in piecePrefabs)
         {
+            Debug.Log(o.name);
             ChessPiece piece = o.GetComponent<ChessPiece>();
+
+            Debug.Log(piece.ID);
 
             piecePrefabTable.Add(piece.ID, o);
         }
@@ -102,6 +107,13 @@ public class Chessboard : MonoBehaviour
                 tiles[currentHover.x, currentHover.y].layer = (ContainsValidMove(ref availableMoves, currentHover)) ? LayerMask.NameToLayer("Highlight") : LayerMask.NameToLayer("Tile");
                 currentHover = hitPosition;
                 tiles[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+
+                if (previousOutlinePosition != hitPosition)
+                {
+                    if (currentlyDragging == null) RemoveOutline(previousOutlinePosition);
+                    OutlinePiece(hitPosition);
+                    previousOutlinePosition = hitPosition;
+                }
             }
 
             //If press down on Mouse
@@ -127,6 +139,7 @@ public class Chessboard : MonoBehaviour
             //If releasing mouse
             if (currentlyDragging != null && Input.GetMouseButtonUp(0))
             {
+                RemoveOutline(hitPosition);
                 Vector2Int previousPosition = new Vector2Int(currentlyDragging.currentX, currentlyDragging.currentY);
 
                 bool validMove = MoveTo(currentlyDragging, hitPosition.x, hitPosition.y);
@@ -173,7 +186,31 @@ public class Chessboard : MonoBehaviour
             }
         }
     }
+    
+    // Add or Remove outline if hovered
+    private void OutlinePiece(Vector2Int hitPosition)
+    {
+        if (chessPieces[hitPosition.x, hitPosition.y] != null)
+        {
+            ChessPiece current = chessPieces[hitPosition.x, hitPosition.y];
+            Renderer renderer = current.GetComponent<Renderer>();
+            Material[] materials = { renderer.sharedMaterials[0], outlineMaterial };
+            renderer.sharedMaterials = materials;
+        }
+    }
 
+    private void RemoveOutline(Vector2Int hitPosition)
+    {
+        if (chessPieces[hitPosition.x, hitPosition.y] != null)
+        {
+            Renderer renderer = chessPieces[hitPosition.x, hitPosition.y].GetComponent<Renderer>();
+            if (renderer.sharedMaterials.Length > 1)
+            {
+                Material[] materials = { renderer.sharedMaterials[0] };
+                renderer.sharedMaterials = materials;
+            }  
+        }
+    }
 
 
     //Generating Board

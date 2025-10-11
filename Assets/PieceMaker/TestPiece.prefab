@@ -102,6 +102,12 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
-  startingPosition: {x: 0, y: 0}
-  ID: 0
-  chessPieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
+  moves: 0
+  deathEffect: {fileID: 8081762785826782278, guid: 26eaf180a9e333541ac1ee595b6ca8c4, type: 3}
+  _id: 
+  _value: 0
+  _isLifeline: 0
+  pieceType: 0
+  IsTileOccupant: 1
+  currentTile: {fileID: 0}
+  chessPieceData: {fileID: 11400000, guid: 51c10ab70b111b847ac7cba8ca97289a, type: 2}

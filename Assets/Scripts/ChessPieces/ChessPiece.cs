@@ -26,6 +26,7 @@ public abstract class ChessPiece : MonoBehaviour
     public Team team;
     public int currentX;
     public int currentY;
+    public int moves;
     public GameObject deathEffect;
     [SerializeField] private String _id;
     public String ID
@@ -37,7 +38,7 @@ public abstract class ChessPiece : MonoBehaviour
     {
         get => _value;
     }
-    [SerializeField] private bool _isLifeline;
+    public bool _isLifeline;
     public bool isLifeline
     {
         get => _isLifeline;
@@ -56,7 +57,7 @@ public abstract class ChessPiece : MonoBehaviour
 
     //animating
     private Vector3 targetPosition;
-    private Vector3 targetScale = new Vector3(1, 1, 1);
+    protected Vector3 targetScale = new Vector3(1, 1, 1);
     private float boardY;
 
     private void Start()
@@ -66,8 +67,6 @@ public abstract class ChessPiece : MonoBehaviour
         PieceBehaviors = new();
         this.boardY = GameManager.Instance.Board.transform.position.y;
         SetupPiece();
-
-
     }
 
     /// <summary>
@@ -102,6 +101,8 @@ public abstract class ChessPiece : MonoBehaviour
 		targetPosition = currentTile.transform.position;
 		targetPosition.y = boardY;
     }
+
+    
 
     private void Update()
     {

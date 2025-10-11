@@ -89,17 +89,22 @@ public class ChessPieceData : ScriptableObject
 {
 
     public string name = "NoNameSet";
-
     public Mesh model;
+    public float model_scale_multiplier;
+    public bool lifeLine;
+
+    public List<ChessPieceData> promotable = new List<ChessPieceData>();
+
 
     public int gridSize = 11;
 
     public List<Ability> abilities = new List<Ability>();
-    
+
     //All the actions
     public ActionList actionList;
 
-    public void SetSize(int setSize){
+    public void SetSize(int setSize)
+    {
         gridSize = setSize;
     }
 }
@@ -124,6 +129,17 @@ public class ChessPieceDataEditor : Editor
             typeof(Mesh),
             false
         );
+
+		script.model_scale_multiplier = EditorGUILayout.FloatField(
+	        "Model Scale Multiplier",
+	        script.model_scale_multiplier
+           );
+
+
+		script.lifeLine = EditorGUILayout.Toggle("LifeLine", script.lifeLine);
+
+        SerializedProperty promotableList = serializedObject.FindProperty("promotable");
+        EditorGUILayout.PropertyField(promotableList, new GUIContent("Promotable"), true);
 
         script.actionList = (ActionList)EditorGUILayout.ObjectField(
             "Action List",
