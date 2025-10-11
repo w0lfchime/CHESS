@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 	public CanvasGroup DebugUI;
 	public bool DebugUIVIsible = false;
 
-	private void Start()
+	private void Awake()
 	{
 		if (Instance != null && Instance != this)
 		{
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
 		TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
 
 		Board.TileTrigger();
+		Board.TurnSwapTrigger();
 	}
 
 	public void ResetGame()

@@ -124,7 +124,8 @@ public class CursorManager : MonoBehaviour
 		else
 		{
 			selectorCursor.gameObject.SetActive(false);
-			ChessBoard2.Instance.RemoveHighlightTiles();
+			ChessBoard2.Instance.RemoveHighlightTiles(GameManager.Instance.Board.activeChessPiece);
+			ChessBoard2.Instance.activeChessPiece = null;
 
 			// Clicked empty space: clear selection (optional)
 			SelectedTile = null;

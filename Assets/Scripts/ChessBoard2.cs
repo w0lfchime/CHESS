@@ -28,16 +28,14 @@ public class ChessBoard2 : MonoBehaviour
 	// 2D array of tile transforms
 	public Tile[,] TileLocations;
 
-	private ChessPiece activeChessPiece;
+	public ChessPiece activeChessPiece;
 	private List<(Vector2Int, ActionTrait[])> availableMoves = new List<(Vector2Int, ActionTrait[])>();
-	private List<Ability_TG> allTriggeredAbilities = new List<Ability_TG>();
-
 	private List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
 	private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
 
 	private int abilityClickLayer;
 
-	void Start()
+	void Awake()
 	{
 		
 		Instance = this;
@@ -110,13 +108,13 @@ public class ChessBoard2 : MonoBehaviour
 	//triggered when a tile is clicked, a little weird since the first click will give you green spaces and the second click will be on those spaces
 	public void InteractTrigger(Tile tile)
 	{
+		ChessPiece selected = (tile.tileOccupants.Count > 0) ? tile.tileOccupants[0] : null;
+
 		if (tile == null)
 		{
-			RemoveHighlightTiles();
+			RemoveHighlightTiles(activeChessPiece);
 			return;
 		}
-
-		ChessPiece selected = (tile.tileOccupants.Count > 0) ? tile.tileOccupants[0] : null;
 
 		if (selected != null && activeChessPiece == selected) abilityClickLayer++;
 
@@ -129,24 +127,25 @@ public class ChessBoard2 : MonoBehaviour
 
 		if (tile.rend.gameObject.layer == LayerMask.NameToLayer("Highlight") && activeChessPiece && activeChessPiece.team == GameManager.Instance.CurrentTurn)
 		{ // if clicking on highlighted tile
+			RemoveHighlightTiles(activeChessPiece);
 			foreach (TriggerType trigger in triggers)
 			{
-				TriggerOnePiece(activeChessPiece, trigger, tile, true);
+				TriggerOnePiece(activeChessPiece, trigger, tile, true, true);
 			}
-			RemoveHighlightTiles();
 			activeChessPiece = null;
 		}
 		else // if clicking on piece
 		{
-			RemoveHighlightTiles();
+			RemoveHighlightTiles(activeChessPiece);
 			activeChessPiece = null;
 			if (tile.tileOccupants.Count > 0)
 			{
-				GetHighlightTiles(selected, triggers, abilityClickLayer);
-				HighlightTiles();
-
 				activeChessPiece = selected;
-				if (activeChessPiece.team != GameManager.Instance.CurrentTurn) RemoveHighlightTiles();
+
+				GetHighlightTiles(activeChessPiece, triggers, abilityClickLayer);
+				HighlightTiles(activeChessPiece);
+
+				if (activeChessPiece.team != GameManager.Instance.CurrentTurn) RemoveHighlightTiles(activeChessPiece);
 			}
 		}
 		
@@ -155,9 +154,9 @@ public class ChessBoard2 : MonoBehaviour
 	}
 
 	//triggered inbetween turns
-	public void TurnTrigger(Tile tile)
+	public void TurnSwapTrigger()
 	{
-
+		TriggerAllPieces(TriggerType.OnTurnSwap, false);
 	}
 
 	//Updates tiles between turns
@@ -170,34 +169,40 @@ public class ChessBoard2 : MonoBehaviour
 	}
 
 
-	private bool TriggerAllPieces(TriggerType trigger, Tile[] tiles)
+	private bool TriggerAllPieces(TriggerType trigger,  bool endTurn = false)
 	{
-		foreach (Tile tile in tiles)
+		List<ChessPiece> pieces = new List<ChessPiece>();
+		foreach (Tile tile in TileLocations)
 		{
 			foreach (ChessPiece piece in tile.tileOccupants) // assuming one occupant for now
 			{
-				RunAbilities(piece, piece.GetTileTags(trigger), tile);
+				pieces.Add(piece);
 			}
 		}
 
+		foreach(ChessPiece piece in pieces)
+        {
+            RunAbilities(piece, piece.GetTileTags(trigger), piece.currentTile, endTurn);
+        }
+
 		return true;
 	}
 
-	private bool TriggerOnePiece(ChessPiece piece, TriggerType trigger, Tile selectedTile = null, bool layered = false)
+	private bool TriggerOnePiece(ChessPiece piece, TriggerType trigger, Tile selectedTile = null, bool layered = false, bool endTurn = false)
 	{
 		if (layered) {
-			RunAbilities(piece, GetAbilityLayer(piece, trigger, abilityClickLayer, false), selectedTile);
+			RunAbilities(piece, GetAbilityLayer(piece, trigger, abilityClickLayer, false), selectedTile, endTurn);
 		} else {
-			RunAbilities(piece, piece.GetTileTags(trigger), selectedTile);
+			RunAbilities(piece, piece.GetTileTags(trigger), selectedTile, endTurn);
 		}
 
 
 		return true;
 	}
 
-	void RunAbilities(ChessPiece piece, List<Ability_TG> abilities, Tile tile = null)
+	void RunAbilities(ChessPiece piece, List<Ability_TG> abilities, Tile tile = null, bool endTurn = false)
 	{
-		allTriggeredAbilities = abilities;
+		List<Ability_TG> allTriggeredAbilities = abilities;
 
 		int did_anything_happen = 0;
 
@@ -216,7 +221,7 @@ public class ChessBoard2 : MonoBehaviour
 		if (did_anything_happen > 0)
 		{
 			piece.moves++;
-			GameManager.Instance.EndTurn(); // Switch turn
+			if(endTurn) GameManager.Instance.EndTurn(); // Switch turn
 		}
 	}
 
@@ -259,21 +264,25 @@ public class ChessBoard2 : MonoBehaviour
 		return abilityDict[selectedLayer];
 	}
 
-	public void RemoveHighlightTiles()
+	public void RemoveHighlightTiles(ChessPiece selected)
 	{
-		for (int i = 0; i < availableMoves.Count; i++)
+		foreach (Tile tile in TileLocations)
 		{
-			TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].rend.gameObject.layer = LayerMask.NameToLayer("Tile");
+			if (selected == null)
+			{
+				tile.UnHighlight(0);
+			}else tile.UnHighlight(Vector2.Distance(new Vector2(tile.TileBoardX, tile.TileBoardY), new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
 		}
 
 		availableMoves.Clear();
 	}
 
-	private void HighlightTiles()
+	private void HighlightTiles(ChessPiece selected)
 	{
 		for (int i = 0; i < availableMoves.Count; i++)
 		{
-			TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].rend.gameObject.layer = LayerMask.NameToLayer("Highlight");
+			Vector2 pos = new Vector2(TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardX, TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardY);
+			TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].Highlight(Vector2.Distance(pos, new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
 		}
 	}
 
@@ -332,6 +341,8 @@ public class ChessBoard2 : MonoBehaviour
 
 	private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[])> allTriggeredTiles)
 	{
+		RemoveHighlightTiles(cp);
+
 		bool wasTileSelected = false;
 
 		Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY);
@@ -346,7 +357,6 @@ public class ChessBoard2 : MonoBehaviour
 			List<ActionTrait> actionTraits = tile.Item2.ToList();
 
 			//check if selected
-
 			if (actionTraits.Contains(ActionTrait.remove_unselected) && selectedTile != TileLocations[tilePosition.x, tilePosition.y]) continue;
 
 			wasTileSelected = true;
@@ -357,31 +367,32 @@ public class ChessBoard2 : MonoBehaviour
 
 			if (actionTraits.Contains(ActionTrait.command_killpiece) && (TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0)) // if trait kills a piece
 			{
-				if (ocp.deathEffect != null) Instantiate(ocp.deathEffect, ocp.transform.position, Quaternion.identity);
-
 				if (ocp != null)
 				{
 					if (ocp.isLifeline)
 					{
 						CheckMate(1);
 					}
-					Vector3 bounds = new Vector3(BoardTileWidth * TileSize, BoardTileHeight * TileSize, 0);
-					float deathSpacing = .3f;
-					float deathSize = 0.3f;
-					float yOffset = 0.3f;
-					float deathHeight = 0f;
-					var deadPieces = (ocp.team == Team.White) ? deadWhitePieces : deadBlackPieces;
-					deadPieces.Add(ocp);
-					ocp.SetScale(Vector3.one * deathSize);
-					ocp.SetPosition(
-						new Vector3(((ocp.team == Team.White) ? 8 : -1) * TileSize, yOffset + deathHeight, ((ocp.team == Team.White) ? -1 : 8) * TileSize) - bounds
-						+ new Vector3((TileSize / 2), 0, (TileSize / 2))
-						+ (Vector3.forward * deathSpacing * ((ocp.team == Team.White) ? 1 : -1)) * deadPieces.Count
-					);
-
 					TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
+					ocp.Kill();
 				}
 
+			}
+
+			if (actionTraits.Contains(ActionTrait.command_pushback))// if trait pushes another piece
+			{
+				Vector2Int newpos = new Vector2Int(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY) + Vector2Int.RoundToInt((new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY) - new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY)).normalized);
+				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
+
+				TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
+                try
+                {
+                    TileLocations[newpos.y, newpos.x].AddPiece(ocp);
+                }
+                catch
+                {
+					ocp.Kill();
+                }
 			}
 
 			if (actionTraits.Contains(ActionTrait.command_goto))// if trait moves the active piece
@@ -391,24 +402,8 @@ public class ChessBoard2 : MonoBehaviour
 				TileLocations[tilePosition.x, tilePosition.y].AddPiece(cp);
 			}
 
-			if (actionTraits.Contains(ActionTrait.command_pushback))// if trait pushes another piece
-			{
-				Vector2Int newpos = new Vector2Int(tilePosition.x, tilePosition.y) + Vector2Int.RoundToInt((new Vector2(tilePosition.x, tilePosition.y) - new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY)).normalized*1.5f);
-				print(newpos);
-				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
 
-				TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
-                try
-                {
-                    TileLocations[newpos.x, newpos.y].AddPiece(ocp);
-                }
-                catch
-                {
-					print("pushed piece off");
-                }
-			}
-
-			if (actionTraits.Contains(ActionTrait.spawn_explosion_effect))
+			if (actionTraits.Contains(ActionTrait.spawn_explosion_effect)) //if trait explodes
 			{
 				ParticleSystem ps = Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
 				ParticleSystemRenderer psRenderer = ps.GetComponent<ParticleSystemRenderer>();
@@ -418,8 +413,10 @@ public class ChessBoard2 : MonoBehaviour
 
 			if (actionTraits.Contains(ActionTrait.spawn_water))
 			{
-				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", 2);
+				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", 1);
 			}
+
+			//
 		}
 
 		// If unhighlighted tile was selected reset the position and return false
@@ -429,7 +426,6 @@ public class ChessBoard2 : MonoBehaviour
 			return false;
 		}
 
-		RemoveHighlightTiles();
 
 		//TriggerAllPieces(TriggerType.OnTurnSwap);
 

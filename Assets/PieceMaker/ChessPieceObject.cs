@@ -19,7 +19,7 @@ public class ChessPieceObject : ChessPiece
 {
     public ChessPieceData chessPieceData;
 
-    void Start()
+    void Awake()
     {
         //set model for chess piece
         if (GetComponent<MeshFilter>())
@@ -71,7 +71,7 @@ public class ChessPieceObject : ChessPiece
                             {
                                 Vector2Int pos = new Vector2Int(x-center.x, y-center.y);
                                 pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y));
-                                for(int i = 0; i < 16; i++){
+                                for(int i = 1; i < 16; i++){
                                     action_TG.grid.Add((i*pos, action.traits));
                                 }
                             }
