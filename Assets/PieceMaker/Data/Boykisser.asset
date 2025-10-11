@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: NoNameSet
   model: {fileID: 0}
-  model_scale_multiplier: 1
+  model_scale_multiplier: 10
   lifeLine: 0
   promotable: []
   gridSize: 11
   abilities:
   - name: BoyKisserMove
-    BasicMovement: 0
+    BasicMovement: 1
     trigger: 0
     actions:
     - name: move

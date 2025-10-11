@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Faucet
   m_EditorClassIdentifier: 
   name: NoNameSet
-  model: {fileID: 4711208715938537054, guid: 026e44fc93a4aa742803c3fefdce5642, type: 3}
-  model_scale_multiplier: 1
+  model: {fileID: 0}
+  model_scale_multiplier: 10
   lifeLine: 0
   promotable:
   - {fileID: 0}
