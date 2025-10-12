@@ -5,18 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test Game.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Puzzle and map test scenes/Puzzle Chessboard.unity
     guid: ca5dcaede38d2ec47813a3609a10b5ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Puzzle and map test scenes/Test Menu.unity
     guid: e11b164ee6e84a54bb833f5f867f6727
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Reworked Team comp/TestMenu.unity
     guid: f65abd40027834b4f8e5f3bd750ee055
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 68af0ce88cd1636448701e51dd77d9aa
   - enabled: 0
     path: Assets/Scenes/Reworked Team comp/Welcome2ChessTest.unity
     guid: d79dbc0eb5d6ddd49b14af79622bdb22
