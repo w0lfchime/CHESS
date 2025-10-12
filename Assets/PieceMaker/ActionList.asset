@@ -33,3 +33,11 @@ MonoBehaviour:
     traits: 020000000300000004000000090000000a000000
     visualGrid: []
     grid: 
+  - name: wet
+    traits: 02000000030000000400000008000000
+    visualGrid: []
+    grid: 
+  - name: push
+    traits: 0300000004000000000000000c00000005000000
+    visualGrid: []
+    grid: 
