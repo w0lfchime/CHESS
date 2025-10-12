@@ -153,7 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70158d9791cabf4468f5d13cbe53a3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectDictionary:
+  - key: water
+    value: {fileID: 2100000, guid: 462cb799eed675b41801edbaf8ea9dc5, type: 2}
   TileBoardX: 0
   TileBoardY: 0
-  rend: {fileID: 0}
+  rend: {fileID: 6845780054913544564}
   tileOccupants: []
+  obstructed: 0

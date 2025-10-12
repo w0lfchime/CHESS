@@ -27,6 +27,7 @@ public enum ActionTrait
     apply_to_opposingteam_space = 4,
 
     command_goto = 5,
+    command_pushback = 12,
     remove_obstructed = 6,
 
     shift_focus = 7,
@@ -38,7 +39,7 @@ public enum ActionTrait
     spawn_explosion_effect = 10,
 
     animate_jump = 11
-    
+
 }
 
 
