@@ -413,7 +413,10 @@ public class ChessBoard2 : MonoBehaviour
 
 			if (actionTraits.Contains(ActionTrait.spawn_water))
 			{
-				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", 1);
+				ParticleSystem ps = Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+				ParticleSystemRenderer psRenderer = ps.GetComponent<ParticleSystemRenderer>();
+				Material materialInstance = psRenderer.material;
+				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
 			}
 
 			//
@@ -457,9 +460,9 @@ public class ChessBoard2 : MonoBehaviour
 		// spawn black pieces
 		int pieceOn = 0;
 
-		for (int i = 7; i > 5; i--)
+		for (int i = 6; i <= 7; i++)
 		{
-			for (int j = 7; j >= 0; j--)
+			for (int j = 0; j < 8; j++)
 			{
 				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{

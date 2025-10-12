@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Pawn
   m_EditorClassIdentifier: 
   name: NoNameSet
-  model: {fileID: -6376836167638326976, guid: 0292d2f3441839442baabb68de8e54a3, type: 3}
+  model: {fileID: -6376836167638326976, guid: fcdde7fe4baf04647aeaf5c8d2081397, type: 3}
+  model_scale_multiplier: 1
   lifeLine: 0
+  promotable: []
   gridSize: 11
   abilities:
   - name: PawnMove

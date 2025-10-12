@@ -57,7 +57,7 @@ public abstract class ChessPiece : MonoBehaviour
 
     //animating
     private Vector3 targetPosition;
-    private Vector3 targetScale = new Vector3(1, 1, 1);
+    protected Vector3 targetScale = new Vector3(1, 1, 1);
     private float boardY;
 
     private void Awake()

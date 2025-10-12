@@ -607,6 +607,24 @@ MonoBehaviour:
     prefab: {fileID: 4026744677435548049, guid: 8f39ac719708c0a4c9cc2133cc2d870e, type: 3}
   - id: StandardQueen
     prefab: {fileID: 7985344178341993767, guid: 24f01c0ea31bcec4ea6e9c0702b8332e, type: 3}
+  - id: Boykisser
+    prefab: {fileID: 7009996306650167107, guid: b2d4655d9b619fe478d6d17b08fe049b, type: 3}
+  - id: Frank
+    prefab: {fileID: 7009996306650167107, guid: 9d7a4ba437257fd459b4a6232f499416, type: 3}
+  - id: Frog
+    prefab: {fileID: 7009996306650167107, guid: b6cd267099b1d004aa684eec12a67aa8, type: 3}
+  - id: Hornet
+    prefab: {fileID: 4026744677435548049, guid: 4faadb41b1faa5a45bf4d2a793945f4f, type: 3}
+  - id: KitchenSink
+    prefab: {fileID: 4026744677435548049, guid: cf239f95b1c246547837f18609e31128, type: 3}
+  - id: Pope
+    prefab: {fileID: 4026744677435548049, guid: cf239f95b1c246547837f18609e31128, type: 3}
+  - id: Checkers
+    prefab: {fileID: 7009996306650167107, guid: fc5ab3a2ae669184f848990c2e5a72c4, type: 3}
+  - id: MpregKing
+    prefab: {fileID: 4026744677435548049, guid: 2760f4b10200f134ab7cb3b35384191d, type: 3}
+  - id: FibPawn
+    prefab: {fileID: 7009996306650167107, guid: d101774788e0547409b4624cf7bd3b08, type: 3}
 --- !u!23 &330483919
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2401,7 +2419,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2416,7 +2434,7 @@ Transform:
   m_GameObject: {fileID: 1198554746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 35, y: 1, z: 35}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8061,8 +8079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ed0aef87698b7489ff2b01d3c70b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteTeamNames: []
-  blackTeamNames: []
+  teamNames: []
   whiteTeamIndex: 0
   blackTeamIndex: 0
 --- !u!23 &1609172982
