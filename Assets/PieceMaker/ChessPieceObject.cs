@@ -24,13 +24,15 @@ public class ChessPieceObject : ChessPiece
         //set model for chess piece
         if (GetComponent<MeshFilter>())
         {
-            GetComponent<MeshFilter>().mesh = chessPieceData.model;
+            // GetComponent<MeshFilter>().mesh = chessPieceData.model;
         }
         if (chessPieceData.model_scale_multiplier != 0.0f)
         {
             targetScale *= chessPieceData.model_scale_multiplier;
         }
 
+
+        transform.Rotate(270, 0, 0, Space.Self);
         _isLifeline = chessPieceData.lifeLine;
     }
 
@@ -75,8 +77,8 @@ public class ChessPieceObject : ChessPiece
                             if(action.grid[y * chessPieceData.gridSize + x] == 2) //detect if ui tile is selected
                             {
                                 Vector2Int pos = new Vector2Int(x-center.x, y-center.y);
-                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y));
-                                for(int i = 0; i < 16; i++){
+                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y));
+                                for(int i = 1; i < 16; i++){
                                     action_TG.grid.Add((i*pos, action.traits));
                                 }
                             }

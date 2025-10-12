@@ -43,7 +43,7 @@ public class GameCamera : MonoBehaviour
 	private float targetZoomDistance;
 	private float currentZoomDistance;
 
-	void Start()
+	void Awake()
 	{
 		if (cameraPivot == null) cameraPivot = this.transform;
 		if (cam == null) cam = Camera.main.transform;

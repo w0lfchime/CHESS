@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570921425816007401}
-  m_Mesh: {fileID: 1705324974331375986, guid: 06add3968af048845a19d3b35351dd87, type: 3}
+  m_Mesh: {fileID: -6005560307962694990, guid: be70eeb33e29bda4b8ad02287db292a8, type: 3}
 --- !u!23 &2965745511581862489
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   team: 0
   currentX: 0
   currentY: 0
+  moves: 0
   deathEffect: {fileID: 8081762785826782278, guid: 26eaf180a9e333541ac1ee595b6ca8c4, type: 3}
   _id: 
   _value: 0

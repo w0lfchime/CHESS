@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Queen
   m_EditorClassIdentifier: 
   name: NoNameSet
-  model: {fileID: -7224772668637823135, guid: 8ce93ac3d4ae53141a8639b98b8e03e6, type: 3}
-  model_scale_multiplier: 1
+  model: {fileID: 0}
+  model_scale_multiplier: 10
   lifeLine: 0
   promotable: []
   gridSize: 11
