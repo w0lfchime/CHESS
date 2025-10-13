@@ -411,14 +411,6 @@ public class ChessBoard2 : MonoBehaviour
 				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
 			}
 
-			if (actionTraits.Contains(ActionTrait.spawn_water))
-			{
-				ParticleSystem ps = Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
-				ParticleSystemRenderer psRenderer = ps.GetComponent<ParticleSystemRenderer>();
-				Material materialInstance = psRenderer.material;
-				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
-			}
-
 			if (actionTraits.Contains(ActionTrait.spawn_water)) // if trait spawns water
 			{
 				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
@@ -463,17 +455,17 @@ public class ChessBoard2 : MonoBehaviour
 		
 		// GameManager.Instance.CurrentTurn = Team.Black;
 
-		// spawn white pieces
+		// spawn black pieces
 		int pieceOn = 0;
 
 		for (int i = 7; i > 5; i--)
 		{
 			for (int j = 7; j >= 0; j--)
 			{
-				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
+				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
 					Debug.Log("Spawned piece");
-					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
+					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
 				}
 
 				pieceOn++;
@@ -482,15 +474,14 @@ public class ChessBoard2 : MonoBehaviour
 
 		pieceOn = 0;
 		
-		// spawn black pieces
+		// spawn white pieces
 		for (int i = 1; i >= 0; i--)
 		{
 			for (int j = 7; j >= 0; j--)
 			{
-				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
+				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
-					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
-					
+					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
 				}
 
 				pieceOn++;
