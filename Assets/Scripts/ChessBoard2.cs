@@ -419,6 +419,12 @@ public class ChessBoard2 : MonoBehaviour
 				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
 			}
 
+			if (actionTraits.Contains(ActionTrait.spawn_water)) // if trait spawns water
+			{
+				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
+				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", 4, distance);
+			}
+
 			//
 		}
 
@@ -460,9 +466,9 @@ public class ChessBoard2 : MonoBehaviour
 		// spawn white pieces
 		int pieceOn = 0;
 
-		for (int i = 6; i <= 7; i++)
+		for (int i = 7; i > 5; i--)
 		{
-			for (int j = 0; j < 8; j++)
+			for (int j = 7; j >= 0; j--)
 			{
 				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
