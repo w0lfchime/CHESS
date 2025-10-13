@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: King
   m_EditorClassIdentifier: 
   name: NoNameSet
-  model: {fileID: 622389830684850844, guid: 0292d2f3441839442baabb68de8e54a3, type: 3}
+  model: {fileID: -4175726406976504967, guid: 06add3968af048845a19d3b35351dd87, type: 3}
+  model_scale_multiplier: 1
   lifeLine: 1
+  promotable: []
   gridSize: 11
   abilities:
   - name: KingMove

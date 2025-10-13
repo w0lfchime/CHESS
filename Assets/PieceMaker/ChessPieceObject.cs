@@ -19,13 +19,18 @@ public class ChessPieceObject : ChessPiece
 {
     public ChessPieceData chessPieceData;
 
-    void Awake()
+    void Start()
     {
         //set model for chess piece
         if (GetComponent<MeshFilter>())
         {
             GetComponent<MeshFilter>().mesh = chessPieceData.model;
         }
+        if (chessPieceData.model_scale_multiplier != 0.0f)
+        {
+            targetScale *= chessPieceData.model_scale_multiplier;
+        }
+
         _isLifeline = chessPieceData.lifeLine;
     }
 
