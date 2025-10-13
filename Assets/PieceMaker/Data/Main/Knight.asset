@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   name: NoNameSet
-  model: {fileID: 2185210024652205897, guid: b45ad3b20a5ec34418b717a2c52ffa75, type: 3}
-  model_scale_multiplier: 1
+  model: {fileID: 0}
+  model_scale_multiplier: 10
   lifeLine: 0
   promotable: []
   gridSize: 11
