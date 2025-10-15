@@ -22,7 +22,7 @@ public class ChessPieceObject : ChessPiece
     void Start()
     {
         //set model for chess piece
-        if (GetComponent<MeshFilter>())
+        if (GetComponent<MeshFilter>() && chessPieceData.model!=null)
         {
             GetComponent<MeshFilter>().mesh = chessPieceData.model;
         }
