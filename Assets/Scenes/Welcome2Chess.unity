@@ -1826,6 +1826,7 @@ MonoBehaviour:
   BlackPieceMat: {fileID: 2100000, guid: d454d56deedcecf4bb3b3fd1110d235a, type: 2}
   ScaleChildToTileSize: 1
   explosionEffect: {fileID: 8081762785826782278, guid: 78f97498504ef3d4993ec2a94b2fe734, type: 3}
+  activeChessPiece: {fileID: 0}
 --- !u!1 &810918162
 GameObject:
   m_ObjectHideFlags: 0
