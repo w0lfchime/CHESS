@@ -102,26 +102,7 @@ public class Tile : MonoBehaviour
 
 
 
-    IEnumerator HighlightRaise(float set, float distance)
-	{
-		yield return new WaitForSeconds(distance / 10f);
-		rend.gameObject.layer = LayerMask.NameToLayer("Highlight");
 
-		var mpb = new MaterialPropertyBlock();
-		rend.GetPropertyBlock(mpb);	
-
-		float size = mpb.GetFloat("_Size");
-
-		while (Mathf.Abs(size-set) > .01f)
-		{
-			mpb.SetFloat("_Size", size + (set - size) * .05f);
-			rend.SetPropertyBlock(mpb);
-			size = mpb.GetFloat("_Size");
-			yield return 0;
-		}
-
-		if(set > 0) rend.gameObject.layer = LayerMask.NameToLayer("Tile");
-    }
 
 	public void UpdateEffects(bool turnPass = true, float distance = 0)
 	{
@@ -176,25 +157,8 @@ public class Tile : MonoBehaviour
 		raise = StartCoroutine(HighlightRaise(0, distance));
 	}
 	
-	IEnumerator EffectRaise(float set, float distance, int mat)
-    {
-		yield return new WaitForSeconds(distance / 10f);
 
-		float size = rend.materials[mat].GetFloat("_EffectSize");
-
-		while (Mathf.Abs(size - set) > .01f)
-		{
-
-			rend.materials[mat].SetFloat("_EffectSize", size + (set - size) * .05f);
-			size = rend.materials[mat].GetFloat("_EffectSize");
-
-			yield return new WaitForSeconds(.01f);
-		}
-
-		if (set >= 0) UpdateEffects(false, distance);
-    }
-
-	IEnumerator HighlightRaise2(float set, float distance)
+	IEnumerator HighlightRaise(float set, float distance)
 	{
 		yield return new WaitForSeconds(distance / 10f);
 		rend.gameObject.layer = LayerMask.NameToLayer("Highlight");
