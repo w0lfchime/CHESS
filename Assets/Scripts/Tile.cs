@@ -33,7 +33,7 @@ public class Tile : MonoBehaviour
 		tileOccupants.Add(piece);
 
 		UpdatePieces();
-		UpdateEffects();
+		UpdateEffects(true);
 	}
 
 	public void AddEffect(string name, int duration, float distance = 0)
@@ -110,18 +110,7 @@ public class Tile : MonoBehaviour
 
 	}
 
-	public void Highlight(float distance)
-	{
-		StopAllCoroutines();
-		raise = StartCoroutine(HighlightRaise(-.5f, distance));
 
-	}
-	
-	public void UnHighlight(float distance)
-	{
-		StopAllCoroutines();
-		raise = StartCoroutine(HighlightRaise(.1f, distance));
-    }
 
     IEnumerator HighlightRaise(float set, float distance)
 	{
@@ -215,7 +204,7 @@ public class Tile : MonoBehaviour
 		if (set >= 0) UpdateEffects(false, distance);
     }
 
-	IEnumerator HighlightRaise(float set, float distance)
+	IEnumerator HighlightRaise2(float set, float distance)
 	{
 		yield return new WaitForSeconds(distance / 10f);
 		rend.gameObject.layer = LayerMask.NameToLayer("Highlight");

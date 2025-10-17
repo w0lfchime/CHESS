@@ -164,7 +164,7 @@ public class ChessBoard2 : MonoBehaviour
 	{
 		foreach (Tile tile in TileLocations)
         {
-			tile.UpdateEffects();
+			tile.UpdateEffects(true);
         }
 	}
 
