@@ -13,23 +13,29 @@ public class ChessBoard2 : MonoBehaviour
 	public GameObject tileprefab;
 	public Material WhiteTileMat;
 	public Material BlackTileMat;
+	public Material WhitePieceMat;
+	public Material BlackPieceMat;
+
+
+
 
 	[Header("Options")]
 	public bool ScaleChildToTileSize = true;
 
-	public GameData gameData;
+	[Header("Spawns")]
+	public GameObject explosionEffect;
 
 	// 2D array of tile transforms
 	public Tile[,] TileLocations;
 
-	private ChessPiece activeChessPiece;
+	public ChessPiece activeChessPiece;
 	private List<(Vector2Int, ActionTrait[])> availableMoves = new List<(Vector2Int, ActionTrait[])>();
-    private List<Ability_TG> allTriggeredAbilities = new List<Ability_TG>();
-
 	private List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
-    private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
+	private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
 
-	void Start()
+	private int abilityClickLayer;
+
+	void Awake()
 	{
 		
 		Instance = this;
@@ -102,106 +108,192 @@ public class ChessBoard2 : MonoBehaviour
 	//triggered when a tile is clicked, a little weird since the first click will give you green spaces and the second click will be on those spaces
 	public void InteractTrigger(Tile tile)
 	{
-		if (tile.rend.gameObject.layer == LayerMask.NameToLayer("Highlight") && activeChessPiece)
+		ChessPiece selected = (tile.tileOccupants.Count > 0) ? tile.tileOccupants[0] : null;
+
+		if (tile == null)
 		{
-			TriggerOnePiece(activeChessPiece, TriggerType.TurnAction, tile);
-			RemoveHighlightTiles();
+			RemoveHighlightTiles(activeChessPiece);
+			return;
+		}
+
+		if (selected != null && activeChessPiece == selected) abilityClickLayer++;
+
+
+		//makes a list of all triggers
+		List<TriggerType> triggers = new List<TriggerType>();
+		triggers.Add(TriggerType.TurnAction);
+		if (GameManager.Instance.turnCount <= 1) triggers.Add(TriggerType.FirstTurnAction);
+		if (selected != null && selected.moves == 0) triggers.Add(TriggerType.FirstActionAction);
+
+		if (tile.rend.gameObject.layer == LayerMask.NameToLayer("Highlight") && activeChessPiece && activeChessPiece.team == GameManager.Instance.CurrentTurn)
+		{ // if clicking on highlighted tile
+			RemoveHighlightTiles(activeChessPiece);
+			foreach (TriggerType trigger in triggers)
+			{
+				TriggerOnePiece(activeChessPiece, trigger, tile, true, true);
+			}
 			activeChessPiece = null;
 		}
-		else
+		else // if clicking on piece
 		{
-			RemoveHighlightTiles();
+			RemoveHighlightTiles(activeChessPiece);
+			activeChessPiece = null;
 			if (tile.tileOccupants.Count > 0)
 			{
-				ChessPiece selected = tile.tileOccupants[0];
-				GetHighlightTiles(selected, TriggerType.TurnAction);
-				HighlightTiles();
-
 				activeChessPiece = selected;
+
+				GetHighlightTiles(activeChessPiece, triggers, abilityClickLayer);
+				HighlightTiles(activeChessPiece);
+
+				if (activeChessPiece.team != GameManager.Instance.CurrentTurn) RemoveHighlightTiles(activeChessPiece);
 			}
 		}
-	}
-	
-	//triggered inbetween turns
-	public void TurnTrigger(Tile tile)
-	{
+		
+		if (selected == null || activeChessPiece != selected) abilityClickLayer = 0;
 		
 	}
 
+	//triggered inbetween turns
+	public void TurnSwapTrigger()
+	{
+		TriggerAllPieces(TriggerType.OnTurnSwap, false);
+	}
 
-	private bool TriggerAllPieces(TriggerType trigger, Tile[] tiles){
-        foreach(Tile tile in tiles){
-			foreach(ChessPiece piece in tile.tileOccupants) // assuming one occupant for now
+	//Updates tiles between turns
+	public void TileTrigger()
+	{
+		foreach (Tile tile in TileLocations)
+        {
+			tile.UpdateEffects(true);
+        }
+	}
+
+
+	private bool TriggerAllPieces(TriggerType trigger,  bool endTurn = false)
+	{
+		List<ChessPiece> pieces = new List<ChessPiece>();
+		foreach (Tile tile in TileLocations)
+		{
+			foreach (ChessPiece piece in tile.tileOccupants) // assuming one occupant for now
 			{
-				RunAbilities(piece, trigger, tile);
+				pieces.Add(piece);
 			}
-        }
+		}
 
-        return true;
-    }
-
-    private bool TriggerOnePiece(ChessPiece piece, TriggerType trigger, Tile selectedTile = null){
-		RunAbilities(piece, trigger, selectedTile);
-
-        return true;
-    }
-
-	void RunAbilities(ChessPiece piece, TriggerType trigger, Tile tile = null){
-        allTriggeredAbilities = piece.GetTileTags(trigger);
-
-        int did_anything_happen = 0;
-
-        foreach(Ability_TG ability in allTriggeredAbilities){
-            foreach(Action_TG action in ability.actions)
-            {
-                List<(Vector2Int, ActionTrait[])> allTriggeredTiles = action.grid;
-                allTriggeredTiles = FilterTiles(piece, allTriggeredTiles);
-                bool result = RunTiles(piece, tile, allTriggeredTiles);
-                if(!result) break;
-                did_anything_happen += result ? 1 : 0;
-            }
-        }
-
-		if (did_anything_happen > 0) GameManager.Instance.EndTurn(); // Switch turn
-    }
-
-
-	void GetHighlightTiles(ChessPiece piece, TriggerType trigger){ // plan on making a thing to display the second action in an ability, just to show an effect of what will happen. Will likely have a bool on each action to enable this.
-        allTriggeredAbilities = piece.GetTileTags(trigger, true);
-        availableMoves.Clear();
-        foreach(Ability_TG ability in allTriggeredAbilities){
-            if(ability.actions.Count > 0){
-                availableMoves.AddRange(ability.actions[0].grid);
-            }
-        }
-        availableMoves = FilterTiles(piece, availableMoves);
-    }
-	
-	private void RemoveHighlightTiles()
-    {
-        for (int i = 0; i < availableMoves.Count; i++)
+		foreach(ChessPiece piece in pieces)
         {
-            TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].rend.gameObject.layer = LayerMask.NameToLayer("Tile");
+            RunAbilities(piece, piece.GetTileTags(trigger), piece.currentTile, endTurn);
         }
 
-        availableMoves.Clear();
-    }
+		return true;
+	}
 
-	private void HighlightTiles()
-    {
-        for (int i = 0; i < availableMoves.Count; i++)
-        {
-            TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].rend.gameObject.layer = LayerMask.NameToLayer("Highlight");
-        }
-    }
+	private bool TriggerOnePiece(ChessPiece piece, TriggerType trigger, Tile selectedTile = null, bool layered = false, bool endTurn = false)
+	{
+		if (layered) {
+			RunAbilities(piece, GetAbilityLayer(piece, trigger, abilityClickLayer, false), selectedTile, endTurn);
+		} else {
+			RunAbilities(piece, piece.GetTileTags(trigger), selectedTile, endTurn);
+		}
 
-    //checks each tile in available moves and iterates through the tags. 
+
+		return true;
+	}
+
+	void RunAbilities(ChessPiece piece, List<Ability_TG> abilities, Tile tile = null, bool endTurn = false)
+	{
+		List<Ability_TG> allTriggeredAbilities = abilities;
+
+		int did_anything_happen = 0;
+
+		foreach (Ability_TG ability in allTriggeredAbilities)
+		{
+			foreach (Action_TG action in ability.actions)
+			{
+				List<(Vector2Int, ActionTrait[])> allTriggeredTiles = action.grid;
+				allTriggeredTiles = FilterTiles(piece, allTriggeredTiles);
+				bool result = RunTiles(piece, tile, allTriggeredTiles);
+				if (!result) break;
+				did_anything_happen += result ? 1 : 0;
+			}
+		}
+
+		if (did_anything_happen > 0)
+		{
+			piece.moves++;
+			if(endTurn) GameManager.Instance.EndTurn(); // Switch turn
+		}
+	}
+
+
+	void GetHighlightTiles(ChessPiece piece, List<TriggerType> triggers, int layer)
+	{ // plan on making a thing to display the second action in an ability, just to show an effect of what will happen. Will likely have a bool on each action to enable this.
+		foreach (TriggerType trigger in triggers)
+		{
+			List <Ability_TG> abilityLayer = GetAbilityLayer(piece, trigger, layer, true);
+			foreach (Ability_TG ability in abilityLayer)
+			{
+				if (ability.actions.Count > 0)
+				{
+					availableMoves.AddRange(ability.actions[0].grid);
+				}
+			}
+		}
+		availableMoves = FilterTiles(piece, availableMoves);
+	}
+
+	List<Ability_TG> GetAbilityLayer(ChessPiece piece, TriggerType trigger, int layer, bool visual)
+	{
+		List<List<Ability_TG>> abilityDict = new List<List<Ability_TG>>();
+		abilityDict.Add(new List<Ability_TG>());
+		var abilities = piece.GetTileTags(trigger, visual);
+
+		if (abilities.Count == 0) return new List<Ability_TG>();
+
+		foreach (Ability_TG ability in abilities)
+		{
+			if (!ability.BasicMovement)
+			{
+				abilityDict.Add(new List<Ability_TG>());
+			}
+			abilityDict[abilityDict.Count - 1].Add(ability);
+		}
+
+		int selectedLayer = (layer >= abilityDict.Count) ? layer % abilityDict.Count : layer;
+
+		return abilityDict[selectedLayer];
+	}
+
+	public void RemoveHighlightTiles(ChessPiece selected)
+	{
+		foreach (Tile tile in TileLocations)
+		{
+			if (selected == null)
+			{
+				tile.UnHighlight(0);
+			}else tile.UnHighlight(Vector2.Distance(new Vector2(tile.TileBoardX, tile.TileBoardY), new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
+		}
+
+		availableMoves.Clear();
+	}
+
+	private void HighlightTiles(ChessPiece selected)
+	{
+		for (int i = 0; i < availableMoves.Count; i++)
+		{
+			Vector2 pos = new Vector2(TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardX, TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardY);
+			TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].Highlight(Vector2.Distance(pos, new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
+		}
+	}
+
+	//checks each tile in available moves and iterates through the tags. 
 	private List<(Vector2Int, ActionTrait[])> FilterTiles(ChessPiece cp, List<(Vector2Int, ActionTrait[])> grid)
 	{
 		List<(Vector2Int, ActionTrait[])> returnList = new List<(Vector2Int, ActionTrait[])>();
 		foreach ((Vector2Int, ActionTrait[]) tile in grid)
 		{
-			Vector2Int tilePosition = new Vector2Int(tile.Item1.y, tile.Item1.x) + new Vector2Int(cp.currentTile.TileBoardY, cp.currentTile.TileBoardX);
+			Vector2Int piecePosition = new Vector2Int(cp.currentTile.TileBoardY, cp.currentTile.TileBoardX);
+			Vector2Int tilePosition = new Vector2Int(tile.Item1.y, tile.Item1.x) + piecePosition;
 			List<ActionTrait> actionTraits = tile.Item2.ToList();
 
 			try
@@ -227,6 +319,19 @@ public class ChessBoard2 : MonoBehaviour
 
 			//do all removes
 
+			if (actionTraits.Contains(ActionTrait.remove_obstructed))
+			{
+				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
+				foreach (Vector2Int pos in path)
+				{
+					if (TileLocations[pos.x, pos.y].obstructed)
+					{ 
+						add = false;
+						break;
+					}
+				}
+			}
+
 			(Vector2Int, ActionTrait[]) newTile = (tilePosition, tile.Item2);
 			if (add) returnList.Add(newTile);
 		}
@@ -234,111 +339,141 @@ public class ChessBoard2 : MonoBehaviour
 		return returnList;
 	}
 
-    private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[])> allTriggeredTiles)
-    {
-        bool wasTileSelected = false;
+	private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[])> allTriggeredTiles)
+	{
+		RemoveHighlightTiles(cp);
 
-        Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY);
+		bool wasTileSelected = false;
 
-        foreach((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
-        {
-            Vector2Int tilePosition = tile.Item1;
+		Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY);
 
-            List<ActionTrait> actionTraits = tile.Item2.ToList();
+		foreach ((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
+		{
+			Vector2Int tilePosition = tile.Item1;
 
-            //check if selected
+			ChessPiece ocp = null;
+			if(TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0) ocp = TileLocations[tilePosition.x, tilePosition.y].GetAllOccupants().ElementAt(0);
 
-            if(actionTraits.Contains(ActionTrait.remove_unselected) && selectedTile != TileLocations[tilePosition.x, tilePosition.y]) continue;
+			List<ActionTrait> actionTraits = tile.Item2.ToList();
 
-            wasTileSelected = true;
+			//check if selected
+			if (actionTraits.Contains(ActionTrait.remove_unselected) && selectedTile != TileLocations[tilePosition.x, tilePosition.y]) continue;
 
-            //
+			wasTileSelected = true;
 
-            //do all lower level commands
+			//
 
-            if(actionTraits.Contains(ActionTrait.command_killpiece)) // if trait kills a piece
-            { 
-                ChessPiece ocp = TileLocations[tilePosition.x, tilePosition.y].GetAllOccupants().ElementAt(0);
+			//do all lower level commands
 
-                if(ocp.deathEffect!=null) Instantiate(ocp.deathEffect, new Vector3(tilePosition.x-3.5f, 1f, tilePosition.y-3.5f), Quaternion.identity);
+			if (actionTraits.Contains(ActionTrait.command_killpiece) && (TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0)) // if trait kills a piece
+			{
+				if (ocp != null)
+				{
+					if (ocp.isLifeline)
+					{
+						CheckMate(1);
+					}
+					TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
+					ocp.Kill();
+				}
 
-                if(ocp!=null)
+			}
+
+			if (actionTraits.Contains(ActionTrait.command_pushback))// if trait pushes another piece
+			{
+				Vector2Int newpos = new Vector2Int(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY) + Vector2Int.RoundToInt((new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY) - new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY)).normalized);
+				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
+
+				TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
+                try
                 {
-                    if (ocp.isLifeline)
-                    {
-                        CheckMate(1);
-                    }
-					Vector3 bounds = new Vector3(BoardTileWidth * TileSize, BoardTileHeight * TileSize, 0);
-					float deathSpacing = .3f;
-					float deathSize = 0.3f;
-					float yOffset = 0.3f;
-					float deathHeight = 0f;
-                    var deadPieces = (ocp.team == Team.White) ? deadWhitePieces : deadBlackPieces;
-                    deadPieces.Add(ocp);
-                    ocp.SetScale(Vector3.one * deathSize);
-                    ocp.SetPosition(
-                        new Vector3(((ocp.team == Team.White) ? 8 : -1) * TileSize, yOffset + deathHeight, ((ocp.team == Team.White) ? -1 : 8) * TileSize) - bounds
-                        + new Vector3((TileSize / 2), 0, (TileSize / 2))
-                        + (Vector3.forward * deathSpacing * ((ocp.team == Team.White) ? 1 : -1)) * deadPieces.Count
-                    );
-
-                    TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
+                    TileLocations[newpos.y, newpos.x].AddPiece(ocp);
                 }
-                
-            }
+                catch
+                {
+					ocp.Kill();
+                }
+			}
 
-			if (actionTraits.Contains(ActionTrait.command_goto))
-			{  // if trait moves the active piece
+			if (actionTraits.Contains(ActionTrait.command_goto))// if trait moves the active piece
+			{
 				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
 				cp.currentTile.RemovePiece(cp);
 				TileLocations[tilePosition.x, tilePosition.y].AddPiece(cp);
-            }
+			}
 
-            //
-        }
 
-        // If unhighlighted tile was selected reset the position and return false
-        if(!wasTileSelected){
+			if (actionTraits.Contains(ActionTrait.spawn_explosion_effect)) //if trait explodes
+			{
+				ParticleSystem ps = Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+				ParticleSystemRenderer psRenderer = ps.GetComponent<ParticleSystemRenderer>();
+				Material materialInstance = psRenderer.material;
+				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
+			}
 
-            return false;
-        }
+			if (actionTraits.Contains(ActionTrait.spawn_water))
+			{
+				ParticleSystem ps = Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+				ParticleSystemRenderer psRenderer = ps.GetComponent<ParticleSystemRenderer>();
+				Material materialInstance = psRenderer.material;
+				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
+			}
 
-        RemoveHighlightTiles();
+			if (actionTraits.Contains(ActionTrait.spawn_water)) // if trait spawns water
+			{
+				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
+				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", 4, distance);
+			}
 
-        //TriggerAllPieces(TriggerType.OnTurnSwap);
+			//
+		}
 
-        return true;
-    }
+		// If unhighlighted tile was selected reset the position and return false
+		if (!wasTileSelected)
+		{
+
+			return false;
+		}
+
+
+		//TriggerAllPieces(TriggerType.OnTurnSwap);
+
+		return true;
+	}
 
 	//Checkmate
-    private void CheckMate(int team)
-    {
-        DisplayVictory(team);
-    }
-    private void DisplayVictory(int winningTeam)
-    {
-        //victoryScreen.SetActive(true);
-        //victoryScreen.transform.GetChild(winningTeam).gameObject.SetActive(true);
-    }
+	private void CheckMate(int team)
+	{
+		DisplayVictory(team);
+	}
+	private void DisplayVictory(int winningTeam)
+	{
+		//victoryScreen.SetActive(true);
+		//victoryScreen.transform.GetChild(winningTeam).gameObject.SetActive(true);
+	}
 
 	public void SpawnAllPieces()
 	{
-		gameData = GameObject.Find("GameData").GetComponent<GameData>();
-		string[] whiteTeam = gameData.whiteTeams[gameData.whiteTeamIndex];
-		string[] blackTeam = gameData.whiteTeams[gameData.blackTeamIndex];
+		
 
-		int pieceOn = 0;
+
+		string[] whiteTeam = GameData.Instance.teamList[GameData.Instance.whiteTeamIndex];
+		string[] blackTeam = GameData.Instance.teamList[GameData.Instance.blackTeamIndex];
+
+		
 		// GameManager.Instance.CurrentTurn = Team.Black;
 
-		// spawn black pieces
+		// spawn white pieces
+		int pieceOn = 0;
+
 		for (int i = 7; i > 5; i--)
 		{
 			for (int j = 7; j >= 0; j--)
 			{
-				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
+				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
 					Debug.Log("Spawned piece");
-					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
+					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
 				}
 
 				pieceOn++;
@@ -347,14 +482,15 @@ public class ChessBoard2 : MonoBehaviour
 
 		pieceOn = 0;
 		
-		// spawn white pieces
+		// spawn black pieces
 		for (int i = 1; i >= 0; i--)
 		{
 			for (int j = 7; j >= 0; j--)
 			{
-				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
+				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
-					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
+					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
+					
 				}
 
 				pieceOn++;
@@ -375,11 +511,6 @@ public class ChessBoard2 : MonoBehaviour
 		Vector3 spawnPos = gameObject.transform.position;
 		Quaternion spawnRot = Quaternion.identity;
 
-		//if (turn == Team.Black)
-		//{
-		//	spawnRot *= Quaternion.Euler(0f, 180f, 0f);
-		//}
-
 		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
 
 		// If the prefab has a ChessPiece script, register it with the tile
@@ -394,6 +525,7 @@ public class ChessBoard2 : MonoBehaviour
 		}
 		else
 		{
+			pieceGO.transform.Rotate(0, 180, 0);
 			rend.sharedMaterial = BlackTileMat;
 		}
 
@@ -426,14 +558,63 @@ public class ChessBoard2 : MonoBehaviour
 		if (turn == Team.White)
 		{
 			piece.team = Team.White;
-			rend.sharedMaterial = WhiteTileMat;
+			rend.sharedMaterial = WhitePieceMat;
+			piece.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
 		}
 		else
 		{
+			piece.transform.Rotate(0, 180, 0);
 			piece.team = Team.Black;
-			rend.sharedMaterial = BlackTileMat;
+			rend.sharedMaterial = BlackPieceMat;
+			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
 		}
 
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
 	}
+}
+
+public static class GridLine
+{
+    // Returns all grid cells (Vector2Int) that a line from start → end passes through
+    public static List<Vector2Int> GetLine(Vector2Int start, Vector2Int end)
+    {
+        List<Vector2Int> cells = new List<Vector2Int>();
+
+        int x0 = start.x;
+        int y0 = start.y;
+        int x1 = end.x;
+        int y1 = end.y;
+
+        int dx = Mathf.Abs(x1 - x0);
+        int dy = Mathf.Abs(y1 - y0);
+
+        int sx = x0 < x1 ? 1 : -1;
+        int sy = y0 < y1 ? 1 : -1;
+
+        int err = dx - dy;
+        int err2;
+
+        while (true)
+        {
+			if(new Vector2Int(x0, y0) != start && new Vector2Int(x0, y0) != end) cells.Add(new Vector2Int(x0, y0));
+
+            if (x0 == x1 && y0 == y1) break;
+
+            err2 = 2 * err;
+
+            if (err2 > -dy)
+            {
+                err -= dy;
+                x0 += sx;
+            }
+
+            if (err2 < dx)
+            {
+                err += dx;
+                y0 += sy;
+            }
+        }
+
+        return cells;
+    }
 }

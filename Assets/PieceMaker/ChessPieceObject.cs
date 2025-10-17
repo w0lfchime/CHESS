@@ -10,6 +10,8 @@ public class Action_TG
 
 public class Ability_TG
 {
+    public string name;
+    public bool BasicMovement;
     public List<Action_TG> actions = new List<Action_TG>();
 }
 
@@ -17,11 +19,21 @@ public class ChessPieceObject : ChessPiece
 {
     public ChessPieceData chessPieceData;
 
-    void Start(){
+    void Start()
+    {
         //set model for chess piece
-        if(GetComponent<MeshFilter>()){
-            GetComponent<MeshFilter>().mesh = chessPieceData.model;
+        if (GetComponent<MeshFilter>())
+        {
+            // GetComponent<MeshFilter>().mesh = chessPieceData.model;
         }
+        if (chessPieceData.model_scale_multiplier != 0.0f)
+        {
+            targetScale *= chessPieceData.model_scale_multiplier;
+        }
+
+
+        transform.Rotate(270, 0, 0, Space.Self);
+        _isLifeline = chessPieceData.lifeLine;
     }
 
     public override List<Ability_TG> GetTileTags(TriggerType trigger = TriggerType.TurnAction, bool visual = false)
@@ -38,6 +50,8 @@ public class ChessPieceObject : ChessPiece
             if(ability.trigger == trigger){
 
                 Ability_TG ability_TG = new Ability_TG(); // basically all actions
+                ability_TG.name = ability.name;
+                ability_TG.BasicMovement = ability.BasicMovement;
 
                 int actionCount = 0;
 
@@ -56,15 +70,15 @@ public class ChessPieceObject : ChessPiece
                             if(action.grid[y * chessPieceData.gridSize + x] == 1) //detect if ui tile is selected
                             {
                                 Vector2Int pos = new Vector2Int(x, y) - center;
-                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y)); // flip direction based on team and convert local piece position to the chess board tile position
+                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y)); // flip direction based on team
 
                                 action_TG.grid.Add((pos, action.traits));
                             }
                             if(action.grid[y * chessPieceData.gridSize + x] == 2) //detect if ui tile is selected
                             {
                                 Vector2Int pos = new Vector2Int(x-center.x, y-center.y);
-                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? -pos.y : pos.y));
-                                for(int i = 0; i < 16; i++){
+                                pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y));
+                                for(int i = 1; i < 16; i++){
                                     action_TG.grid.Add((i*pos, action.traits));
                                 }
                             }

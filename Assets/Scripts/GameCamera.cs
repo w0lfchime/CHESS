@@ -18,6 +18,8 @@ public class GameCamera : MonoBehaviour
 	public float zoomSpeed = 10f;
 	[Tooltip("0 = instant zoom, higher = smoother.")]
 	public float zoomSmoothFactor = 12f;
+	public float minZoomDistance;
+	public float maxZoomDistance;
 
 	[Header("Zoom Bounds (relative to initial setup)")]
 	public float zoomHalfRange = 5f;
@@ -38,12 +40,10 @@ public class GameCamera : MonoBehaviour
 	private Vector3 defaultCameraLocalPos;
 
 	private float initialZoomDistance;
-	private float minZoomDistance;
-	private float maxZoomDistance;
 	private float targetZoomDistance;
 	private float currentZoomDistance;
 
-	void Start()
+	void Awake()
 	{
 		if (cameraPivot == null) cameraPivot = this.transform;
 		if (cam == null) cam = Camera.main.transform;
@@ -54,10 +54,10 @@ public class GameCamera : MonoBehaviour
 		Vector3 axisBack = cam.localRotation * Vector3.back;
 		initialZoomDistance = Mathf.Abs(Vector3.Dot(defaultCameraLocalPos, axisBack));
 
-		RecomputeZoomBounds();
+		//RecomputeZoomBounds();
 
-		targetZoomDistance = initialZoomDistance;
-		currentZoomDistance = initialZoomDistance;
+		targetZoomDistance = maxZoomDistance;
+		currentZoomDistance = maxZoomDistance;
 
 		cam.localPosition = axisBack * currentZoomDistance;
 	}
@@ -112,6 +112,9 @@ public class GameCamera : MonoBehaviour
 
 	void HandleZoom()
 	{
+		Vector3 pos = new Vector3(GameManager.Instance.Cursor.hitPoint.x, 0, GameManager.Instance.Cursor.hitPoint.z);
+		pivotTargetPos = pos * (1 - (currentZoomDistance / maxZoomDistance));
+		
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
 		if (Mathf.Abs(scroll) > 0.01f)
 		{
@@ -146,7 +149,7 @@ public class GameCamera : MonoBehaviour
 		inputEnabled = false;
 
 		Quaternion startRot = cameraPivot.rotation;
-		Quaternion endRot = startRot * Quaternion.Euler(0, 180f, 0);
+		Quaternion endRot = (GameManager.Instance.CurrentTurn == Team.White) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180f, 0);
 
 		Vector3 startPos = cameraPivot.position;
 		Vector3 endPos = Vector3.zero;
@@ -154,14 +157,21 @@ public class GameCamera : MonoBehaviour
 
 		yield return new WaitForSeconds(resetPositionDelay);
 
+		targetZoomDistance = maxZoomDistance;
+
 		while (t < 1f)
 		{
 			t += Time.deltaTime / resetPositionTime;
 			float smooth = 1f - Mathf.Exp(-5f * t);
 			cameraPivot.position = Vector3.Lerp(startPos, endPos, smooth);
-			cameraPivot.rotation = Quaternion.Slerp(startRot, endRot,  smooth);
+			cameraPivot.rotation = Quaternion.Slerp(startRot, endRot, smooth);
+
+			Vector3 axisBack = cam.localRotation * Vector3.back;
+			cam.localPosition = Vector3.Lerp(axisBack * currentZoomDistance, axisBack * maxZoomDistance, smooth);
 			yield return null;
 		}
+
+		currentZoomDistance = maxZoomDistance;
 
 		cameraPivot.position = endPos;
 		pivotTargetPos = endPos;
@@ -178,7 +188,7 @@ public class GameCamera : MonoBehaviour
 		cameraPivot.position = Vector3.zero;
 		cameraPivot.rotation = Quaternion.identity;
 
-		RecomputeZoomBounds();
+		//RecomputeZoomBounds();
 
 		targetZoomDistance = initialZoomDistance;
 		currentZoomDistance = initialZoomDistance;
@@ -204,7 +214,7 @@ public class GameCamera : MonoBehaviour
 		defaultCameraLocalPos = cam.localPosition;
 		Vector3 axisBack = cam.localRotation * Vector3.back;
 		initialZoomDistance = Mathf.Abs(Vector3.Dot(defaultCameraLocalPos, axisBack));
-		RecomputeZoomBounds();
+		//RecomputeZoomBounds();
 		targetZoomDistance = currentZoomDistance = initialZoomDistance;
 	}
 }

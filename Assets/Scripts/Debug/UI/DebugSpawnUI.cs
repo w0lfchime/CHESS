@@ -35,6 +35,10 @@ public class DebugSpawnUI : MonoBehaviour
 			PopulateFromLibrary();
 			setupComplete = true;
 		}
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			OnClickSpawn();
+		}
 	}
 
 	private void PopulateFromLibrary()

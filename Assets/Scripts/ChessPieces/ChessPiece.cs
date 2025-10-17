@@ -26,6 +26,7 @@ public abstract class ChessPiece : MonoBehaviour
     public Team team;
     public int currentX;
     public int currentY;
+    public int moves;
     public GameObject deathEffect;
     [SerializeField] private String _id;
     public String ID
@@ -37,7 +38,7 @@ public abstract class ChessPiece : MonoBehaviour
     {
         get => _value;
     }
-    [SerializeField] private bool _isLifeline;
+    public bool _isLifeline;
     public bool isLifeline
     {
         get => _isLifeline;
@@ -56,18 +57,16 @@ public abstract class ChessPiece : MonoBehaviour
 
     //animating
     private Vector3 targetPosition;
-    private Vector3 targetScale = new Vector3(1, 1, 1);
+    protected Vector3 targetScale = new Vector3(1, 1, 1);
     private float boardY;
 
-    private void Start()
+    private void Awake()
     {
         transform.rotation = Quaternion.Euler((team == Team.Black) ? Vector3.zero : new Vector3(0f, 180f, 0f));
         PieceTags = new();
         PieceBehaviors = new();
         this.boardY = GameManager.Instance.Board.transform.position.y;
         SetupPiece();
-
-
     }
 
     /// <summary>
@@ -99,8 +98,14 @@ public abstract class ChessPiece : MonoBehaviour
     {
         currentTile = tile;
 
-		targetPosition = currentTile.transform.position;
-		targetPosition.y = boardY;
+        targetPosition = currentTile.transform.position;
+        targetPosition.y = boardY;
+    }
+
+    public void Kill()
+    {
+        if (deathEffect != null) Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject, .01f);
     }
 
     private void Update()
