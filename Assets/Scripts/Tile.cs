@@ -52,16 +52,6 @@ public class Tile : MonoBehaviour
 		StartCoroutine(EffectRaise(-.3f, distance, effects.Count));
 	}
 
-	public void AddEffect(string name, int duration)
-	{
-        if (effects.ContainsKey(name))
-        {
-            if(duration > effects[name]) effects[name] = duration;
-        }else effects.Add(name, duration);
-
-		UpdateEffects(false);
-	}
-
 	public void RemovePiece(ChessPiece piece)
 	{
 		if (piece == null) return;

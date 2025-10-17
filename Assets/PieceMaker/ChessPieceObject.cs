@@ -22,17 +22,15 @@ public class ChessPieceObject : ChessPiece
     void Start()
     {
         //set model for chess piece
-        if (GetComponent<MeshFilter>())
+        if (GetComponent<MeshFilter>() && chessPieceData.model!=null)
         {
-            // GetComponent<MeshFilter>().mesh = chessPieceData.model;
+            GetComponent<MeshFilter>().mesh = chessPieceData.model;
         }
         if (chessPieceData.model_scale_multiplier != 0.0f)
         {
             targetScale *= chessPieceData.model_scale_multiplier;
         }
 
-
-        transform.Rotate(270, 0, 0, Space.Self);
         _isLifeline = chessPieceData.lifeLine;
     }
 
