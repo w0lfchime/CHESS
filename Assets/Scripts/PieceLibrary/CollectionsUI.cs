@@ -6,6 +6,7 @@ using UnityEditor;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class CollectionsUI : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class CollectionsUI : MonoBehaviour
     [SerializeField] public GameObject singleCollectionPagePrefab;
     [SerializeField] public GameObject pieceInfoDisplayPrefab;
     [SerializeField] public Transform buttonHolder;
-    [SerializeField] public Transform mainCanvas;
+    [SerializeField] public Transform parent;
     [SerializeField] public GameObject allCollectionsPage;
     [SerializeField] public RuntimeAnimatorController pieceAnimator;
     [SerializeField] public PieceCollection[] collections;
@@ -40,6 +41,7 @@ public class CollectionsUI : MonoBehaviour
             collectionButton.transform.SetParent(buttonHolder);
 
             collectionButton.transform.localScale = Vector3.one;
+            collectionButton.transform.localPosition = new Vector3(collectionButton.transform.localPosition.x, collectionButton.transform.localPosition.y, 0f);
 
             collectionButton.onClick.AddListener(() => SetCollection(collection.name));
 
@@ -84,19 +86,19 @@ public class CollectionsUI : MonoBehaviour
             pieceButton.gameObject.SetActive(true);
         }
 
-        SetPiece(currentCollection.pieces[0].name, singleCollectionPage);
-
         collectionPageManager.colorToggle.onValueChanged.AddListener((value) => ChangePieceColors());
 
         collectionPageManager.backButton.onClick.AddListener(() => BackToCollections());
 
-        singleCollectionPage.transform.SetParent(mainCanvas);
+        singleCollectionPage.transform.SetParent(parent);
 
         singleCollectionPage.transform.localPosition = Vector3.zero;
 
         singleCollectionPage.transform.localScale = Vector3.one;
 
         singleCollectionPage.gameObject.SetActive(true);
+
+        SetPiece(currentCollection.pieces[0].name, singleCollectionPage);
     }
 
     public void SetPiece(string pieceName, GameObject singleCollectionPage)
@@ -119,20 +121,59 @@ public class CollectionsUI : MonoBehaviour
 
         GameObject piecePage = Instantiate(pieceInfoDisplayPrefab);
         PieceDisplayManager pieceDisplayManager = piecePage.GetComponent<PieceDisplayManager>();
+        pieceDisplayManager.currentAbility = 0;
 
         pieceDisplayManager.titleText.text = currentPiece.name;
         pieceDisplayManager.taglineText.text = currentPiece.tagLine;
         pieceDisplayManager.materialValueText.text = "+" + currentPiece.materialValue.ToString();
         pieceDisplayManager.descriptionText.text = currentPiece.description;
-        pieceDisplayManager.abilityNameText.text = currentPiece.abilityName;
-        pieceDisplayManager.abilityNameDescription.text = currentPiece.abilityDescription;
+        pieceDisplayManager.abilityNameText.text = currentPiece.pieceData.abilities[pieceDisplayManager.currentAbility].name;
+
+        if (pieceDisplayManager.currentAbility >= currentPiece.pieceData.abilities.Count - 1)
+        {
+            pieceDisplayManager.nextAbilityButton.interactable = false;
+        }
+        if (pieceDisplayManager.currentAbility <= 0)
+        {
+            pieceDisplayManager.previousAbilityButton.interactable = false;
+        }
+
+        pieceDisplayManager.previousAbilityButton.onClick.AddListener(() =>
+        {
+            pieceDisplayManager.currentAbility--;
+            if (pieceDisplayManager.currentAbility <= 0)
+            {
+                pieceDisplayManager.previousAbilityButton.interactable = false;
+            }
+            if (pieceDisplayManager.currentAbility < currentPiece.pieceData.abilities.Count)
+            {
+                pieceDisplayManager.nextAbilityButton.interactable = true;
+            }
+            pieceDisplayManager.abilityNameText.text = currentPiece.pieceData.abilities[pieceDisplayManager.currentAbility].name;
+            StartCoroutine(ChangeMoveDiagram());
+        });
+
+        pieceDisplayManager.nextAbilityButton.onClick.AddListener(() =>
+        {
+            pieceDisplayManager.currentAbility++;
+            if (pieceDisplayManager.currentAbility >= currentPiece.pieceData.abilities.Count - 1)
+            {
+                pieceDisplayManager.nextAbilityButton.interactable = false;
+            }
+            if (pieceDisplayManager.currentAbility > 0)
+            {
+                pieceDisplayManager.previousAbilityButton.interactable = true;
+            }
+            pieceDisplayManager.abilityNameText.text = currentPiece.pieceData.abilities[pieceDisplayManager.currentAbility].name;
+            StartCoroutine(ChangeMoveDiagram());
+        });
 
         bool isModelBlack = singleCollectionPage.GetComponent<CollectionPageManager>().currentColor == "BLACK";
         GameObject pieceModel = Instantiate(currentPiece.pieceObject);
 
         pieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
-        pieceModel.transform.localPosition = Vector3.zero;
-        pieceModel.transform.localScale = new Vector3(200, 200, 200);
+        pieceModel.transform.localPosition = new Vector3(30f, 6f, 65f);
+        pieceModel.transform.localScale = new Vector3(80f, 80f, 80f);
         pieceModel.layer = 5;
 
         pieceModel.AddComponent<Animator>();
@@ -144,15 +185,49 @@ public class CollectionsUI : MonoBehaviour
 
         piecePage.transform.SetParent(singleCollectionPage.transform);
 
-        piecePage.transform.localPosition = new Vector3(-475, -12.5f, 0f);
+        piecePage.transform.localPosition = new Vector3(-190, -5f, 0f);
         piecePage.transform.localScale = Vector3.one;
 
         piecePage.gameObject.SetActive(true);
+
+        StartCoroutine(ChangeMoveDiagram());
+    }
+
+    private IEnumerator ChangeMoveDiagram()
+    {
+        yield return new WaitForEndOfFrame();
+        CollectionPageManager currentCPM = parent.GetComponentInChildren<CollectionPageManager>();
+        PieceDisplayManager currentPDM = currentCPM.transform.GetComponentInChildren<PieceDisplayManager>();
+
+        int imgCount = 0;
+        for (int i = 0; i < 11; i++)
+        {
+            for (int j = 0; j < 11; j++)
+            {
+                Elements element = currentPiece.pieceData.abilities[currentPDM.currentAbility].actions[0].visualGrid[i].values[j];
+                switch (element)
+                {
+                    case Elements.CanMove:
+                        currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = Color.black;
+                        break;
+                    case Elements.CantMove:
+                        currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = Color.green;
+                        break;
+                    case (Elements)2:
+                        currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = Color.yellow;
+                        break;
+                    default:
+                        currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = Color.red;
+                        break;
+                }
+                imgCount++;
+            }
+        }
     }
 
     public void ChangePieceColors()
     {
-        CollectionPageManager currentCPM = mainCanvas.GetComponentInChildren<CollectionPageManager>();
+        CollectionPageManager currentCPM = parent.GetComponentInChildren<CollectionPageManager>();
         if (currentCPM.currentColor == "BLACK")
         {
             currentCPM.currentColor = "WHITE";
@@ -189,7 +264,7 @@ public class CollectionsUI : MonoBehaviour
 
     public void BackToCollections()
     {
-        foreach (Transform child in mainCanvas.transform)
+        foreach (Transform child in parent.transform)
         {
             if (child.GetComponent<CollectionPageManager>() != null)
             {
