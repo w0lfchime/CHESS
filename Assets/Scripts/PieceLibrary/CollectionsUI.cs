@@ -205,21 +205,27 @@ public class CollectionsUI : MonoBehaviour
             for (int j = 0; j < 11; j++)
             {
                 Elements element = currentPiece.pieceData.abilities[currentPDM.currentAbility].actions[0].visualGrid[i].values[j];
+                Color baseColor;
                 switch (element)
                 {
                     case Elements.CanMove:
-                        currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = Color.black;
+                        baseColor = Color.black;
                         break;
                     case Elements.CantMove:
-                        currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = Color.green;
+                        baseColor = Color.green;
                         break;
                     case (Elements)2:
-                        currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = Color.yellow;
+                        baseColor = Color.yellow;
                         break;
                     default:
-                        currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = Color.red;
+                        baseColor = Color.red;
                         break;
                 }
+
+                bool darkTile = (i + j) % 2 == 0;
+                float colorMult = darkTile ? 0.85f : 0.95f;
+                currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = baseColor * colorMult;
+
                 imgCount++;
             }
         }
