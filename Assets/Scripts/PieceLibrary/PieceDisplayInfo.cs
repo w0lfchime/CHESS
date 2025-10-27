@@ -9,7 +9,6 @@ public class PieceDisplayInfo
     [SerializeField] public string tagLine;
     [SerializeField] public int materialValue;
     [SerializeField] public string description;
-    [SerializeField] public string abilityName;
-    [SerializeField] public string abilityDescription;
     [SerializeField] public GameObject pieceObject;
+    [SerializeField] public ChessPieceData pieceData;
 }
