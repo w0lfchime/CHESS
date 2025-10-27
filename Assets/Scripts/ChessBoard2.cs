@@ -227,7 +227,7 @@ public class ChessBoard2 : MonoBehaviour
 
 
 	void GetHighlightTiles(ChessPiece piece, List<TriggerType> triggers, int layer)
-	{ // plan on making a thing to display the second action in an ability, just to show an effect of what will happen. Will likely have a bool on each action to enable this.
+	{
 		foreach (TriggerType trigger in triggers)
 		{
 			List <Ability_TG> abilityLayer = GetAbilityLayer(piece, trigger, layer, true);
