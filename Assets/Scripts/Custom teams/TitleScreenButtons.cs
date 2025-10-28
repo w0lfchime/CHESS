@@ -147,7 +147,7 @@ public class TitleScreenButtons : MonoBehaviour
 
         for (int i = 0; i < 16; i++)
         {
-            if (tempTeam[i] != null && (tempTeam[i] == "StandardKing" || tempTeam[i] == "MpregKing"))
+            if (tempTeam[i] != null && tempTeam[i] == "StandardKing")
             {
                 lifeLineCount++;
             }

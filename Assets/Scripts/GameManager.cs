@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
 
 	[Header("UI References")]
 	public TextMeshProUGUI TurnStatusText;
+	public InGameOptions pauseMenuManager;
 
 	[Header("Game State")]
 	public Team CurrentTurn { get; private set; } = Team.White;
 	public int turnCount = 0;
+	public bool GamePaused { get; private set; } = false;
 
 
 	public CanvasGroup DebugUI;
@@ -46,6 +48,13 @@ public class GameManager : MonoBehaviour
 		{
 			DebugUIVIsible = !DebugUIVIsible;
 			ShowCanvasGroup(DebugUI, DebugUIVIsible);	
+		}
+
+		// Handle escape key for pause menu
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Debug.Log("Escape key pressed!");
+			TogglePauseMenu();
 		}
 	}
 
@@ -88,6 +97,35 @@ public class GameManager : MonoBehaviour
 
 		// TODO: clear board, respawn pieces, reset UI, etc.
 		Debug.Log("Game reset.");
+	}
+
+	public void TogglePauseMenu()
+	{
+		Debug.Log("TogglePauseMenu called");
+		
+		if (pauseMenuManager != null)
+		{
+			GamePaused = !GamePaused;
+			Debug.Log($"Game paused state: {GamePaused}");
+			pauseMenuManager.TogglePauseMenu(GamePaused);
+			
+			// Pause/unpause the game time
+			Time.timeScale = GamePaused ? 0f : 1f;
+		}
+		else
+		{
+			Debug.LogError("pauseMenuManager is null! Please assign it in the GameManager inspector.");
+		}
+	}
+
+	public void ResumeGame()
+	{
+		GamePaused = false;
+		if (pauseMenuManager != null)
+		{
+			pauseMenuManager.TogglePauseMenu(false);
+		}
+		Time.timeScale = 1f;
 	}
 
 	public static void ShowCanvasGroup(CanvasGroup group, bool show)

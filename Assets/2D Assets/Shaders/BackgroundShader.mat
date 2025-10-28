@@ -45,14 +45,14 @@ Material:
     - _ColorMask: 15
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 7.45
+    - _Scale: 100
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _Step_Constant: 0.5
-    - _Time_Scale: 0.05
+    - _Time_Scale: 0.005
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     m_Colors:

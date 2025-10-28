@@ -246,7 +246,7 @@ public class ChessBoard2 : MonoBehaviour
 
 
 	void GetHighlightTiles(ChessPiece piece, List<TriggerType> triggers, int layer)
-	{ // plan on making a thing to display the second action in an ability, just to show an effect of what will happen. Will likely have a bool on each action to enable this.
+	{
 		foreach (TriggerType trigger in triggers)
 		{
 			List <Ability_TG> abilityLayer = GetAbilityLayer(piece, trigger, layer, true);
@@ -437,14 +437,6 @@ public class ChessBoard2 : MonoBehaviour
 				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
 			}
 
-			if (actionTraits.Contains(ActionTrait.spawn_water))
-			{
-				ParticleSystem ps = Instantiate(explosionEffect, TileLocations[tilePosition.x, tilePosition.y].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
-				ParticleSystemRenderer psRenderer = ps.GetComponent<ParticleSystemRenderer>();
-				Material materialInstance = psRenderer.material;
-				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
-			}
-
 			if (actionTraits.Contains(ActionTrait.spawn_water)) // if trait spawns water
 			{
 				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
@@ -492,10 +484,10 @@ public class ChessBoard2 : MonoBehaviour
 		{
 			for (int j = map.startingWhiteTiles[0]; j < 8; j++)
 			{
-				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
+				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
 					Debug.Log("Spawned piece");
-					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
+					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
 				}
 
 				pieceOn++;
@@ -504,15 +496,14 @@ public class ChessBoard2 : MonoBehaviour
 
 		pieceOn = 0;
 		
-		// spawn black pieces
-		for (int i = map.startingBlackTiles[1]; i > map.startingBlackTiles[1] - 2; i--)
+		// spawn white pieces
+		for (int i = 1; i >= 0; i--)
 		{
 			for (int j = map.startingBlackTiles[0]; j >= 0; j--)
 			{
-				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
+				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
-					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
-					
+					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
 				}
 
 				pieceOn++;
