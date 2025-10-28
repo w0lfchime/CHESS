@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 
 public class ChessBoard2 : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class ChessBoard2 : MonoBehaviour
 	public Material WhitePieceMat;
 	public Material BlackPieceMat;
 
-
+	public MapData map;
+	public GameData gamedata;
 
 
 	[Header("Options")]
@@ -37,7 +39,6 @@ public class ChessBoard2 : MonoBehaviour
 
 	void Awake()
 	{
-		
 		Instance = this;
 		transform.position = Vector3.zero;
 	}
@@ -45,6 +46,10 @@ public class ChessBoard2 : MonoBehaviour
 	[ContextMenu("Init Board")]
 	public void InitBoard()
 	{
+		map = GameData.Instance.map;
+		BoardTileHeight = map.height;
+		BoardTileWidth = map.width;
+
 		if (tileprefab == null || WhiteTileMat == null || BlackTileMat == null)
 		{
 			Debug.LogError("Assign tileprefab, WhiteTileMat, and BlackTileMat.");
@@ -62,45 +67,52 @@ public class ChessBoard2 : MonoBehaviour
 		float x0 = -((BoardTileWidth - 1) * 0.5f) * TileSize;
 		float z0 = ((BoardTileHeight - 1) * 0.5f) * TileSize;
 
+		int tileOn = 0;
+
 		for (int r = 0; r < BoardTileHeight; r++)
 		{
 			for (int c = 0; c < BoardTileWidth; c++)
 			{
-				Vector3 localPos = new Vector3(
-					x0 + c * TileSize,
-					0f,
-					z0 - r * TileSize
-				);
-
-				GameObject tile = Instantiate(tileprefab, transform);
-				tile.name = $"Tile_{r}_{c}";
-				tile.transform.localPosition = localPos;
-				tile.transform.localRotation = Quaternion.identity;
-
-				Tile tilecomp = tile.GetComponent<Tile>();
-				if (tilecomp != null)
+				if (map.nullTiles[tileOn] != 2)
 				{
-					tilecomp.TileBoardX = c;
-					tilecomp.TileBoardY = r;
-				}
+					Vector3 localPos = new Vector3(
+						x0 + c * TileSize,
+						0f + map.tileHeights[tileOn],
+						z0 - r * TileSize
+					);
 
-				var rend = tile.GetComponentInChildren<Renderer>(true);
-				if (rend != null)
-				{
-					bool isWhite = ((r + c) % 2) == 0;
-					rend.sharedMaterial = isWhite ? WhiteTileMat : BlackTileMat;
+					GameObject tile = Instantiate(tileprefab, transform);
+					tile.name = $"Tile_{r}_{c}";
+					tile.transform.localPosition = localPos;
+					tile.transform.localRotation = Quaternion.identity;
 
-					if (ScaleChildToTileSize)
+					Tile tilecomp = tile.GetComponent<Tile>();
+					if (tilecomp != null)
 					{
-						Vector3 s = rend.transform.localScale;
-						s.x = TileSize;
-						s.y = TileSize; // scale correctly in 2D plane
-						rend.transform.localScale = s;
+						tilecomp.TileBoardX = c;
+						tilecomp.TileBoardY = r;
 					}
+
+					var rend = tile.GetComponentInChildren<Renderer>(true);
+					if (rend != null)
+					{
+						bool isWhite = ((r + c) % 2) == 0;
+						rend.sharedMaterial = isWhite ? WhiteTileMat : BlackTileMat;
+
+						if (ScaleChildToTileSize)
+						{
+							Vector3 s = rend.transform.localScale;
+							s.x = TileSize;
+							s.y = TileSize; // scale correctly in 2D plane
+							rend.transform.localScale = s;
+						}
+					}
+
+					// Save into 2D array
+					TileLocations[r, c] = tilecomp;
 				}
 
-				// Save into 2D array
-				TileLocations[r, c] = tilecomp;
+				tileOn++;
 			}
 		}
 	}
@@ -163,8 +175,11 @@ public class ChessBoard2 : MonoBehaviour
 	public void TileTrigger()
 	{
 		foreach (Tile tile in TileLocations)
-        {
-			tile.UpdateEffects(true);
+		{
+			if (tile != null)
+            {
+				tile.UpdateEffects(true);
+            }
         }
 	}
 
@@ -174,10 +189,14 @@ public class ChessBoard2 : MonoBehaviour
 		List<ChessPiece> pieces = new List<ChessPiece>();
 		foreach (Tile tile in TileLocations)
 		{
-			foreach (ChessPiece piece in tile.tileOccupants) // assuming one occupant for now
-			{
-				pieces.Add(piece);
-			}
+			if (tile != null)
+            {
+				foreach (ChessPiece piece in tile.tileOccupants) // assuming one occupant for now
+				{
+					pieces.Add(piece);
+				}
+            }
+			
 		}
 
 		foreach(ChessPiece piece in pieces)
@@ -268,10 +287,14 @@ public class ChessBoard2 : MonoBehaviour
 	{
 		foreach (Tile tile in TileLocations)
 		{
-			if (selected == null)
-			{
-				tile.UnHighlight(0);
-			}else tile.UnHighlight(Vector2.Distance(new Vector2(tile.TileBoardX, tile.TileBoardY), new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
+			if (tile != null)
+            {
+                if (selected == null)
+				{
+					tile.UnHighlight(0);
+				}else tile.UnHighlight(Vector2.Distance(new Vector2(tile.TileBoardX, tile.TileBoardY), new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
+            }
+			
 		}
 
 		availableMoves.Clear();
@@ -281,8 +304,11 @@ public class ChessBoard2 : MonoBehaviour
 	{
 		for (int i = 0; i < availableMoves.Count; i++)
 		{
-			Vector2 pos = new Vector2(TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardX, TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardY);
-			TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].Highlight(Vector2.Distance(pos, new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
+			if (TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y] != null)
+            {
+                Vector2 pos = new Vector2(TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardX, TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardY);
+				TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].Highlight(Vector2.Distance(pos, new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
+            }
 		}
 	}
 
@@ -309,7 +335,7 @@ public class ChessBoard2 : MonoBehaviour
 
 			//do all apply
 			ChessPiece boardTile = null;
-			if (TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0) boardTile = TileLocations[tilePosition.x, tilePosition.y].tileOccupants[0];
+			if (TileLocations[tilePosition.x, tilePosition.y] != null && TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0) boardTile = TileLocations[tilePosition.x, tilePosition.y].tileOccupants[0];
 
 			if (actionTraits.Contains(ActionTrait.apply_to_empty_space) && boardTile == null) add = true;
 
@@ -324,7 +350,7 @@ public class ChessBoard2 : MonoBehaviour
 				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
 				foreach (Vector2Int pos in path)
 				{
-					if (TileLocations[pos.x, pos.y].obstructed)
+					if (TileLocations[pos.x, pos.y] != null && TileLocations[pos.x, pos.y].obstructed)
 					{ 
 						add = false;
 						break;
@@ -352,7 +378,7 @@ public class ChessBoard2 : MonoBehaviour
 			Vector2Int tilePosition = tile.Item1;
 
 			ChessPiece ocp = null;
-			if(TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0) ocp = TileLocations[tilePosition.x, tilePosition.y].GetAllOccupants().ElementAt(0);
+			if(TileLocations[tilePosition.x, tilePosition.y] != null && TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0) ocp = TileLocations[tilePosition.x, tilePosition.y].GetAllOccupants().ElementAt(0);
 
 			List<ActionTrait> actionTraits = tile.Item2.ToList();
 
@@ -454,21 +480,17 @@ public class ChessBoard2 : MonoBehaviour
 
 	public void SpawnAllPieces()
 	{
-		
-
-
 		string[] whiteTeam = GameData.Instance.teamList[GameData.Instance.whiteTeamIndex];
 		string[] blackTeam = GameData.Instance.teamList[GameData.Instance.blackTeamIndex];
 
-		
 		// GameManager.Instance.CurrentTurn = Team.Black;
 
-		// spawn white pieces
+		// spawn white pieces. start on where the top left of the team would be
 		int pieceOn = 0;
 
-		for (int i = 7; i > 5; i--)
+		for (int i = map.startingWhiteTiles[1]; i < map.startingWhiteTiles[1] + 2; i++)
 		{
-			for (int j = 7; j >= 0; j--)
+			for (int j = map.startingWhiteTiles[0]; j < 8; j++)
 			{
 				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
@@ -483,9 +505,9 @@ public class ChessBoard2 : MonoBehaviour
 		pieceOn = 0;
 		
 		// spawn black pieces
-		for (int i = 1; i >= 0; i--)
+		for (int i = map.startingBlackTiles[1]; i > map.startingBlackTiles[1] - 2; i--)
 		{
-			for (int j = 7; j >= 0; j--)
+			for (int j = map.startingBlackTiles[0]; j >= 0; j--)
 			{
 				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
