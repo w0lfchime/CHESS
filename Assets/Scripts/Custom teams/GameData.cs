@@ -13,6 +13,7 @@ public class GameData : MonoBehaviour
 	[Header("Indices")]
 	public int whiteTeamIndex = 0;
 	public int blackTeamIndex = 0;
+	public MapData map;
 
 	private void Awake()
 	{
