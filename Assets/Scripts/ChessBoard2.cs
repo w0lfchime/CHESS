@@ -512,12 +512,14 @@ public class ChessBoard2 : MonoBehaviour
 		piece.team = team;
 		if (team == Team.White)
 		{
-			rend.sharedMaterial = WhiteTileMat;
+			rend.sharedMaterial = WhitePieceMat;
+			piece.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
 		}
 		else
 		{
 			pieceGO.transform.Rotate(0, 180, 0);
-			rend.sharedMaterial = BlackTileMat;
+			rend.sharedMaterial = BlackPieceMat;
+			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
 		}
 
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
