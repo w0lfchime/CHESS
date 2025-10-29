@@ -27,12 +27,14 @@ public class TitleScreenButtons : MonoBehaviour
     public TMP_Dropdown whiteDropDown;
     public TMP_Dropdown blackDropDown;
     public string[] tempTeam = new string[16];
+    public List<MapData> mapList = new List<MapData>();
     public int maxMaterial = 39;
     public int matValue = 0;
     public int teamOn = 0;
     void Start()
     {
-        gameData = GameObject.Find("GameData").GetComponent<GameData>();    
+        gameData = GameObject.Find("GameData").GetComponent<GameData>();
+        gameData.map = mapList[0];
     }
     public void MoveToTeamCreation()
     {
@@ -74,7 +76,7 @@ public class TitleScreenButtons : MonoBehaviour
     {
         if (gameData.teamNames.Count != 0)
         {
-            SceneManager.LoadScene("Welcome2Chess");    
+            SceneManager.LoadScene(gameData.map.scene);    
         }
     }
 
@@ -100,6 +102,11 @@ public class TitleScreenButtons : MonoBehaviour
     {
         Debug.Log(team);
         gameData.blackTeamIndex = team;
+    }
+
+    public void SetMap(int index)
+    {
+        gameData.map = mapList[index];
     }
 
 
