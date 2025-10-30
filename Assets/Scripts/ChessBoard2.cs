@@ -343,6 +343,7 @@ public class ChessBoard2 : MonoBehaviour
 
 			if (actionTraits.Contains(ActionTrait.apply_to_opposingteam_space) && (boardTile != null && (boardTile.team != cp.team))) add = true;
 
+
 			//do all removes
 
 			if (actionTraits.Contains(ActionTrait.remove_obstructed))
@@ -351,6 +352,19 @@ public class ChessBoard2 : MonoBehaviour
 				foreach (Vector2Int pos in path)
 				{
 					if (TileLocations[pos.x, pos.y] != null && TileLocations[pos.x, pos.y].obstructed)
+					{
+						add = false;
+						break;
+					}
+				}
+			}
+			
+			if (actionTraits.Contains(ActionTrait.remove_unobstructed))
+			{
+				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
+				foreach (Vector2Int pos in path)
+				{
+					if (TileLocations[pos.x, pos.y] != null && !TileLocations[pos.x, pos.y].obstructed)
 					{ 
 						add = false;
 						break;

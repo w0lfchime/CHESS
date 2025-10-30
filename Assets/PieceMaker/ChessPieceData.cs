@@ -30,6 +30,7 @@ public enum ActionTrait
     command_goto = 5,
     command_pushback = 12,
     remove_obstructed = 6,
+    remove_unobstructed = 13,
 
     shift_focus = 7,
 
