@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: NoNameSet
   model: {fileID: -6819425536786765585, guid: 0292d2f3441839442baabb68de8e54a3, type: 3}
+  model_scale_multiplier: 0
   lifeLine: 1
   promotable: []
   gridSize: 11

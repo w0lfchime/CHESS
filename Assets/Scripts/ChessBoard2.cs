@@ -373,6 +373,8 @@ public class ChessBoard2 : MonoBehaviour
 
 		Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY);
 
+		List<Vector2Int> path = GridLine.GetLine(previousPosition, new Vector2Int(selectedTile.TileBoardX, selectedTile.TileBoardY));
+
 		foreach ((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
 		{
 			Vector2Int tilePosition = tile.Item1;
@@ -384,6 +386,7 @@ public class ChessBoard2 : MonoBehaviour
 
 			//check if selected
 			if (actionTraits.Contains(ActionTrait.remove_unselected) && selectedTile != TileLocations[tilePosition.x, tilePosition.y]) continue;
+			if (actionTraits.Contains(ActionTrait.remove_unselected_inline) && !path.Contains(tilePosition)) continue;
 
 			wasTileSelected = true;
 
@@ -468,6 +471,8 @@ public class ChessBoard2 : MonoBehaviour
 	{
 		//victoryScreen.SetActive(true);
 		//victoryScreen.transform.GetChild(winningTeam).gameObject.SetActive(true);
+
+		print("victory for " + winningTeam.ToString());
 	}
 
 	public void SpawnAllPieces()

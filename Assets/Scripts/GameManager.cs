@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 	public CanvasGroup DebugUI;
 	public bool DebugUIVIsible = false;
 
-	private void Awake()
+	private void Start()
 	{
 		if (Instance != null && Instance != this)
 		{

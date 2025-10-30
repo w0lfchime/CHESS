@@ -21,6 +21,7 @@ public enum ActionTrait
 {
     //conditional traits
     remove_unselected = 0,
+    remove_unselected_inline = 12,
 
     apply_to_empty_space = 2,
     apply_to_ownteam_space = 3,
