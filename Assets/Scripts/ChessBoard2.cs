@@ -484,10 +484,10 @@ public class ChessBoard2 : MonoBehaviour
 		{
 			for (int j = map.startingWhiteTiles[0]; j < 8; j++)
 			{
-				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
+				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
 					Debug.Log("Spawned piece");
-					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
+					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
 				}
 
 				pieceOn++;
@@ -501,9 +501,9 @@ public class ChessBoard2 : MonoBehaviour
 		{
 			for (int j = map.startingBlackTiles[0]; j >= 0; j--)
 			{
-				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
+				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
-					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
+					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
 				}
 
 				pieceOn++;
