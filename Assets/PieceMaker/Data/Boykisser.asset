@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boykisser
   m_EditorClassIdentifier: 
   name: NoNameSet
-  model: {fileID: 0}
+  model: {fileID: 6731279032260726295, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
   model_scale_multiplier: 1
   lifeLine: 0
   promotable: []
