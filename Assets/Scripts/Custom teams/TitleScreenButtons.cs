@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -109,6 +110,16 @@ public class TitleScreenButtons : MonoBehaviour
         gameData.map = mapList[index];
     }
 
+    public void ResetTeams()
+    {
+        for (int i = 0; i < teamContent.transform.childCount; i++)
+        {
+            Destroy(teamContent.transform.GetChild(i).gameObject);
+        }
+
+        MoveToTeamCreation();
+    }
+
 
     public void BackButton()
     {
@@ -143,17 +154,10 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void SaveTeam()
     {
-        int lifeLineCount = 0;
+        string name = teamName.text;
+        Debug.Log(name.Length);
 
-        for (int i = 0; i < 16; i++)
-        {
-            if (tempTeam[i] != null && tempTeam[i] == "StandardKing")
-            {
-                lifeLineCount++;
-            }
-        }
-
-        if (lifeLineCount == 1)
+        if (lifelineCount() == 1 && !(name.Length <= 1))
         {
             string[] copy = new string[16];
 
@@ -162,12 +166,23 @@ public class TitleScreenButtons : MonoBehaviour
                 copy[i] = tempTeam[i];
             }
 
-            gameData.teamList.Add(copy);
-            gameData.teamNames.Add(teamName.text);
+            if (checkName(name) == -1)
+            {
+                gameData.teamList.Add(copy);
+                gameData.teamNames.Add(name);
+            }
+            else
+            {
+                gameData.teamList[checkName(name)] = copy;
+            }
         }
         else
         {
-            if (lifeLineCount == 0)
+            if (name.Length <= 1)
+            {
+                StartCoroutine(showErrorText("Name too short"));
+            }
+            else if (lifelineCount() == 0)
             {
                 StartCoroutine(showErrorText("Need a lifeline"));
             }
@@ -177,6 +192,19 @@ public class TitleScreenButtons : MonoBehaviour
             }
         }
 
+    }
+
+    public int checkName(string name)
+    {
+        for (int i = 0; i < gameData.teamNames.Count; i++)
+        {
+            if (gameData.teamNames[i] == name)
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     public void updateCollectionMenu(GameObject clicked)
@@ -189,11 +217,11 @@ public class TitleScreenButtons : MonoBehaviour
         pieceDescText.text = ci.desc;
     }
 
-    public void editMatTextStuff()
+    public void editMatTextStuff(string error)
     {
         Debug.Log("Started");
         StartCoroutine(flashMatText(1));
-        StartCoroutine(showErrorText("Max 39"));
+        StartCoroutine(showErrorText(error));
     }
 
     public void updateMatText()
@@ -209,6 +237,21 @@ public class TitleScreenButtons : MonoBehaviour
         teamSlot.slotNum = slotNum;
 
         slot.transform.SetParent(addTo.gameObject.transform);
+    }
+
+    public int lifelineCount()
+    {
+        int lifeLineCount = 0;
+
+        for (int i = 0; i < 16; i++)
+        {
+            if (tempTeam[i] != null && tempTeam[i] == "StandardKing")
+            {
+                lifeLineCount++;
+            }
+        }
+
+        return lifeLineCount;
     }
 
     public IEnumerator showErrorText(string error)

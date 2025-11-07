@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting;
 
 
 
@@ -105,6 +106,24 @@ public abstract class ChessPiece : MonoBehaviour
     public void Kill()
     {
         if (deathEffect != null) Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+        if (_isLifeline)
+        {
+            ChessBoard2 board = GameObject.Find("ChessBoard").GetComponent<ChessBoard2>();
+
+            if (team == Team.White)
+            {
+                // board.deadWhitePieces.Add(this);
+                board.DisplayVictory(1);
+            }
+            else
+            {
+                // board.deadBlackPieces.Add(this);
+                board.DisplayVictory(0);
+            }
+        }
+        
+
         Destroy(gameObject, .01f);
     }
 
