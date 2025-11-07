@@ -55,6 +55,7 @@ public abstract class ChessPiece : MonoBehaviour
 
     public Tile currentTile;
 
+    public MeshFilter meshFilter;
 
     //animating
     private Vector3 targetPosition;
@@ -63,6 +64,7 @@ public abstract class ChessPiece : MonoBehaviour
 
     private void Awake()
     {
+        meshFilter = GetComponent<MeshFilter>();
         transform.rotation = Quaternion.Euler((team == Team.Black) ? Vector3.zero : new Vector3(0f, 180f, 0f));
         PieceTags = new();
         PieceBehaviors = new();
@@ -200,8 +202,19 @@ public abstract class ChessPiece : MonoBehaviour
         targetScale = vector3;
 	}
 
-	internal void SetPosition(Vector3 vector3, bool force)
-	{
-		throw new NotImplementedException();
-	}
+    internal void SetPosition(Vector3 vector3, bool force)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ScaleLongestAxis(float targetSize = 2f)
+    {
+        var size = meshFilter.sharedMesh.bounds.size;
+        float longest = Mathf.Max(size.x, size.z);
+        float scaleFactor = targetSize / longest;
+        SetScale(new Vector3(scaleFactor, scaleFactor, scaleFactor));
+        this.transform.Rotate(new Vector3(-90, 0, 180));
+        Debug.Log("Scaled " + ID + " to longest axis size " + longest);
+    }
+
 }
