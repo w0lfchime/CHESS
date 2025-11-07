@@ -31,7 +31,7 @@ public class Tile : MonoBehaviour
 	public void AddPiece(ChessPiece piece)
 	{
 		tileOccupants.Add(piece);
-
+		piece.ScaleLongestAxis();
 		UpdatePieces();
 		UpdateEffects();
 	}
