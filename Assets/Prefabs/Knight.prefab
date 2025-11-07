@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2814634166578959700}
-  m_Mesh: {fileID: -6007548702594196167, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+  m_Mesh: {fileID: 2185210024652205897, guid: b45ad3b20a5ec34418b717a2c52ffa75, type: 3}
 --- !u!23 &2295860092952832663
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -110,4 +110,6 @@ MonoBehaviour:
   pieceType: 0
   IsTileOccupant: 1
   currentTile: {fileID: 0}
+  meshFilter: {fileID: 0}
+  rend: {fileID: 0}
   chessPieceData: {fileID: 11400000, guid: 72e82141817f936418da174ff57eb4db, type: 2}
