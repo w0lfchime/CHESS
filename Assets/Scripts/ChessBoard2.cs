@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using TMPro;
 
 public class ChessBoard2 : MonoBehaviour
 {
@@ -32,8 +33,12 @@ public class ChessBoard2 : MonoBehaviour
 
 	public ChessPiece activeChessPiece;
 	private List<(Vector2Int, ActionTrait[])> availableMoves = new List<(Vector2Int, ActionTrait[])>();
-	private List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
-	private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
+	public List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
+	public List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
+
+	// Stuff for the win screen
+	public GameObject gameEndPanel;
+	public TextMeshProUGUI winText;
 
 	private int abilityClickLayer;
 
@@ -464,10 +469,19 @@ public class ChessBoard2 : MonoBehaviour
 	{
 		DisplayVictory(team);
 	}
-	private void DisplayVictory(int winningTeam)
+
+	public void DisplayVictory(int winningTeam)
 	{
-		//victoryScreen.SetActive(true);
-		//victoryScreen.transform.GetChild(winningTeam).gameObject.SetActive(true);
+		gameEndPanel.SetActive(true);
+
+		if (winningTeam == 0)
+		{
+			winText.text = "White wins!";
+		}
+		else
+        {
+			winText.text = "Black wins!";
+        }
 	}
 
 	public void SpawnAllPieces()
