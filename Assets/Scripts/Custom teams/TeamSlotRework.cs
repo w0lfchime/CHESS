@@ -38,19 +38,27 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
 
             if (dropped.tag == "Draggable Piece" && !(titleScreenButtons.matValue - mat + PieceProperties.PieceValues[pieceData.pieceId] > titleScreenButtons.maxMaterial))
             {
-                titleScreenButtons.tempTeam[slotNum] = pieceData.pieceId;
+                if (titleScreenButtons.lifelineCount() > 0 && (pieceData.pieceId == "StandardKing"))
+                {
+                    titleScreenButtons.editMatTextStuff("Too many lifelines");
+                }
+                else
+                {
+                    titleScreenButtons.tempTeam[slotNum] = pieceData.pieceId;
 
-                titleScreenButtons.matValue -= mat;
-                mat = PieceProperties.PieceValues[pieceData.pieceId];
-                titleScreenButtons.matValue += mat;
+                    titleScreenButtons.matValue -= mat;
+                    mat = PieceProperties.PieceValues[pieceData.pieceId];
+                    titleScreenButtons.matValue += mat;
 
-                image.sprite = pieceData.sprite;
+                    image.sprite = pieceData.sprite;
 
-                titleScreenButtons.updateMatText();
+                    titleScreenButtons.updateMatText();
+                }
+                
             }
             else if(dropped.tag == "Draggable Piece")
             {
-                titleScreenButtons.editMatTextStuff();
+                titleScreenButtons.editMatTextStuff("Max 39");
             }
         }
 

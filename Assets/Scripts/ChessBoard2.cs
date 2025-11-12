@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using TMPro;
 
 public class ChessBoard2 : MonoBehaviour
 {
@@ -32,8 +33,12 @@ public class ChessBoard2 : MonoBehaviour
 
 	public ChessPiece activeChessPiece;
 	private List<(Vector2Int, ActionTrait[])> availableMoves = new List<(Vector2Int, ActionTrait[])>();
-	private List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
-	private List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
+	public List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
+	public List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
+
+	// Stuff for the win screen
+	public GameObject gameEndPanel;
+	public TextMeshProUGUI winText;
 
 	private int abilityClickLayer;
 
@@ -343,7 +348,6 @@ public class ChessBoard2 : MonoBehaviour
 
 			if (actionTraits.Contains(ActionTrait.apply_to_opposingteam_space) && (boardTile != null && (boardTile.team != cp.team))) add = true;
 
-
 			//do all removes
 
 			if (actionTraits.Contains(ActionTrait.remove_obstructed))
@@ -352,19 +356,6 @@ public class ChessBoard2 : MonoBehaviour
 				foreach (Vector2Int pos in path)
 				{
 					if (TileLocations[pos.x, pos.y] != null && TileLocations[pos.x, pos.y].obstructed)
-					{
-						add = false;
-						break;
-					}
-				}
-			}
-			
-			if (actionTraits.Contains(ActionTrait.remove_unobstructed))
-			{
-				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
-				foreach (Vector2Int pos in path)
-				{
-					if (TileLocations[pos.x, pos.y] != null && !TileLocations[pos.x, pos.y].obstructed)
 					{ 
 						add = false;
 						break;
@@ -387,8 +378,6 @@ public class ChessBoard2 : MonoBehaviour
 
 		Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY);
 
-		List<Vector2Int> path = GridLine.GetLine(previousPosition, new Vector2Int(selectedTile.TileBoardX, selectedTile.TileBoardY));
-
 		foreach ((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
 		{
 			Vector2Int tilePosition = tile.Item1;
@@ -400,7 +389,6 @@ public class ChessBoard2 : MonoBehaviour
 
 			//check if selected
 			if (actionTraits.Contains(ActionTrait.remove_unselected) && selectedTile != TileLocations[tilePosition.x, tilePosition.y]) continue;
-			if (actionTraits.Contains(ActionTrait.remove_unselected_inline) && !path.Contains(tilePosition)) continue;
 
 			wasTileSelected = true;
 
@@ -481,12 +469,19 @@ public class ChessBoard2 : MonoBehaviour
 	{
 		DisplayVictory(team);
 	}
-	private void DisplayVictory(int winningTeam)
-	{
-		//victoryScreen.SetActive(true);
-		//victoryScreen.transform.GetChild(winningTeam).gameObject.SetActive(true);
 
-		print("victory for " + winningTeam.ToString());
+	public void DisplayVictory(int winningTeam)
+	{
+		gameEndPanel.SetActive(true);
+
+		if (winningTeam == 0)
+		{
+			winText.text = "White wins!";
+		}
+		else
+        {
+			winText.text = "Black wins!";
+        }
 	}
 
 	public void SpawnAllPieces()
@@ -503,10 +498,10 @@ public class ChessBoard2 : MonoBehaviour
 		{
 			for (int j = map.startingWhiteTiles[0]; j < 8; j++)
 			{
-				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
+				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
 					Debug.Log("Spawned piece");
-					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
+					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
 				}
 
 				pieceOn++;
@@ -520,9 +515,9 @@ public class ChessBoard2 : MonoBehaviour
 		{
 			for (int j = map.startingBlackTiles[0]; j >= 0; j--)
 			{
-				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
+				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
-					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
+					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
 				}
 
 				pieceOn++;
@@ -553,14 +548,12 @@ public class ChessBoard2 : MonoBehaviour
 		piece.team = team;
 		if (team == Team.White)
 		{
-			rend.sharedMaterial = WhitePieceMat;
-			piece.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
+			rend.sharedMaterial = WhiteTileMat;
 		}
 		else
 		{
 			pieceGO.transform.Rotate(0, 180, 0);
-			rend.sharedMaterial = BlackPieceMat;
-			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
+			rend.sharedMaterial = BlackTileMat;
 		}
 
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);

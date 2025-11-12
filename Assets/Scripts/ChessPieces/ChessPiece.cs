@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting;
 
 
 
@@ -54,6 +55,7 @@ public abstract class ChessPiece : MonoBehaviour
 
     public Tile currentTile;
 
+    public MeshFilter meshFilter;
 
     //animating
     private Vector3 targetPosition;
@@ -62,6 +64,7 @@ public abstract class ChessPiece : MonoBehaviour
 
     private void Awake()
     {
+        meshFilter = GetComponent<MeshFilter>();
         transform.rotation = Quaternion.Euler((team == Team.Black) ? Vector3.zero : new Vector3(0f, 180f, 0f));
         PieceTags = new();
         PieceBehaviors = new();
@@ -105,6 +108,24 @@ public abstract class ChessPiece : MonoBehaviour
     public void Kill()
     {
         if (deathEffect != null) Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+        if (_isLifeline)
+        {
+            ChessBoard2 board = GameObject.Find("ChessBoard").GetComponent<ChessBoard2>();
+
+            if (team == Team.White)
+            {
+                // board.deadWhitePieces.Add(this);
+                board.DisplayVictory(1);
+            }
+            else
+            {
+                // board.deadBlackPieces.Add(this);
+                board.DisplayVictory(0);
+            }
+        }
+        
+
         Destroy(gameObject, .01f);
     }
 
@@ -181,8 +202,19 @@ public abstract class ChessPiece : MonoBehaviour
         targetScale = vector3;
 	}
 
-	internal void SetPosition(Vector3 vector3, bool force)
-	{
-		throw new NotImplementedException();
-	}
+    internal void SetPosition(Vector3 vector3, bool force)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ScaleLongestAxis(float targetSize = 2f)
+    {
+        var size = meshFilter.sharedMesh.bounds.size;
+        float longest = Mathf.Max(size.x, size.z);
+        float scaleFactor = targetSize / longest;
+        SetScale(new Vector3(scaleFactor, scaleFactor, scaleFactor));
+        this.transform.Rotate(new Vector3(-90, 0, 180));
+        Debug.Log("Scaled " + ID + " to longest axis size " + longest);
+    }
+
 }

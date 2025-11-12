@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -25,7 +26,11 @@ public class GameManager : MonoBehaviour
 	public CanvasGroup DebugUI;
 	public bool DebugUIVIsible = false;
 
-	private void Start()
+	// Stuff for the win screen
+	public GameObject gameEndPanel;
+	public TextMeshProUGUI winText;
+
+	private void Awake()
 	{
 		if (Instance != null && Instance != this)
 		{
@@ -92,11 +97,7 @@ public class GameManager : MonoBehaviour
 
 	public void ResetGame()
 	{
-		// Reset state
-		CurrentTurn = Team.White;
-
-		// TODO: clear board, respawn pieces, reset UI, etc.
-		Debug.Log("Game reset.");
+		SceneManager.LoadScene("Welcome2Chess");
 	}
 
 	public void TogglePauseMenu()
@@ -127,6 +128,11 @@ public class GameManager : MonoBehaviour
 		}
 		Time.timeScale = 1f;
 	}
+
+	public void ExitGame()
+    {
+		SceneManager.LoadScene("MainMenu");
+    }
 
 	public static void ShowCanvasGroup(CanvasGroup group, bool show)
 	{
