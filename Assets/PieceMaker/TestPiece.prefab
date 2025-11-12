@@ -110,4 +110,4 @@ MonoBehaviour:
   pieceType: 0
   IsTileOccupant: 1
   currentTile: {fileID: 0}
-  chessPieceData: {fileID: 11400000, guid: 51c10ab70b111b847ac7cba8ca97289a, type: 2}
+  chessPieceData: {fileID: 11400000, guid: f0834b5660e427f4b9a9050111b2a62b, type: 2}
