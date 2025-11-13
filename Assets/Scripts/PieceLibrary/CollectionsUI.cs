@@ -170,16 +170,20 @@ public class CollectionsUI : MonoBehaviour
 
         bool isModelBlack = singleCollectionPage.GetComponent<CollectionPageManager>().currentColor == "BLACK";
         GameObject pieceModel = Instantiate(currentPiece.pieceObject);
+        GameObject pieceModelHolder = pieceDisplayManager.pieceModelHolder;
 
         pieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
-        pieceModel.transform.localPosition = new Vector3(30f, 6f, 65f);
-        pieceModel.transform.localScale = new Vector3(80f, 80f, 80f);
+        pieceModel.transform.localPosition = currentPiece.pieceObject.transform.localPosition;
         pieceModel.layer = 5;
 
-        pieceModel.AddComponent<Animator>();
-        pieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
+        pieceModelHolder.AddComponent<Animator>();
+        pieceModelHolder.transform.localPosition = new Vector3(-90f, 30f, -100f);
+        pieceModelHolder.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
 
-        pieceModel.GetComponent<MeshRenderer>().material = isModelBlack ? blackPieceMaterial : whitePieceMaterial;
+        foreach (MeshRenderer renderer in pieceModel.GetComponentsInChildren<MeshRenderer>())
+        {
+            renderer.material = isModelBlack ? blackPieceMaterial : whitePieceMaterial;
+        }
 
         pieceModel.SetActive(true);
 
@@ -260,11 +264,17 @@ public class CollectionsUI : MonoBehaviour
 
         if (currentCPM.currentColor == "BLACK")
         {
-            currentPDM.pieceModelHolder.transform.GetComponentInChildren<MeshRenderer>().material = blackPieceMaterial;
+            foreach (MeshRenderer renderer in currentPDM.pieceModelHolder.transform.GetChild(0).GetComponentsInChildren<MeshRenderer>())
+            {
+                renderer.material = blackPieceMaterial;
+            }
         }
         else
         {
-            currentPDM.pieceModelHolder.transform.GetComponentInChildren<MeshRenderer>().material = whitePieceMaterial;
+            foreach (MeshRenderer renderer in currentPDM.pieceModelHolder.transform.GetChild(0).GetComponentsInChildren<MeshRenderer>())
+            {
+                renderer.material = whitePieceMaterial;
+            }
         }
     }
 

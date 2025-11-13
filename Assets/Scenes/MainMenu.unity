@@ -945,7 +945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -193.99994, y: -43.400024}
+  m_AnchoredPosition: {x: -193.99988, y: -43.400024}
   m_SizeDelta: {x: -444.715, y: -101.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127503228
@@ -3480,6 +3480,124 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383254861}
   m_CullTransparentMesh: 1
+--- !u!1 &410925898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410925900}
+  - component: {fileID: 410925899}
+  m_Layer: 5
+  m_Name: Collection Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &410925899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410925898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0500331768f6f194f96a02c9831b71f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectionButtonPrefab: {fileID: 2643406243434024835, guid: 2ebbcbad68a02f743a9d76c37a42bd91, type: 3}
+  pieceButtonPrefab: {fileID: 5279569880088463900, guid: 6ee0d879222ae4746881aa5e1766178a, type: 3}
+  singleCollectionPagePrefab: {fileID: 210600623767681711, guid: b4b98a26c099f0e46a33cae40f87aeac, type: 3}
+  pieceInfoDisplayPrefab: {fileID: 3976704487914315975, guid: 2ca84e59f846431428c9a10af2320d76, type: 3}
+  buttonHolder: {fileID: 479461411}
+  parent: {fileID: 2040635912}
+  allCollectionsPage: {fileID: 1692950691}
+  pieceAnimator: {fileID: 9100000, guid: 39862ed44dafbbd4fb37178bd8b0917d, type: 2}
+  collections:
+  - name: The Classics
+    icons:
+    - {fileID: 21300000, guid: 789e54e257e6a334c848db19170c66a1, type: 3}
+    - {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    pieces:
+    - blackIcon: {fileID: 21300000, guid: 74e2e85aa1bf1f046a9ecfcc504ad10a, type: 3}
+      whiteIcon: {fileID: 21300000, guid: e0043f2ea8c939e4a9a01748a569869b, type: 3}
+      name: Pawn
+      tagLine: A Little Guy!
+      materialValue: 1
+      description: This is a pawn. It doesn't move very fast, but it tries its best.
+        Don't underestimate it though!
+      pieceObject: {fileID: 3589065385791034553, guid: c7c3d45554651e942830b92d8ab74fb3, type: 3}
+      pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
+    - blackIcon: {fileID: 21300000, guid: cf37b841602955c4dba85d378565e590, type: 3}
+      whiteIcon: {fileID: 21300000, guid: ec24d667eeade3949b2a7d593c36da83, type: 3}
+      name: Knight
+      tagLine: Neigh!
+      materialValue: 3
+      description: This is a knight. Well really it's a horse, but don't say that
+        to its face. It's got some wacky movement nobody really understands.
+      pieceObject: {fileID: 2428979112873125429, guid: 4d55465628b5bc6499ff887e448f94c4, type: 3}
+      pieceData: {fileID: 11400000, guid: 72e82141817f936418da174ff57eb4db, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 1a5a8c715b117214f9cdb883c32af77e, type: 3}
+      whiteIcon: {fileID: 21300000, guid: a1422d3e1175e4941a00669f97218a71, type: 3}
+      name: Bishop
+      tagLine: Forty-Five Degrees
+      materialValue: 3
+      description: This is a bishop. It moves diagonally and is great for sneakily
+        striking across the board. Keep an eye out!
+      pieceObject: {fileID: 4603878679398843465, guid: 58d4b008d6aa31e4b85cc9f46355e769, type: 3}
+      pieceData: {fileID: 11400000, guid: 1049cac099dc5664aa4ef2e89446f2ec, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 52f97005d618fdd459c20bb3138751db, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 501595795ac56b14685470e9097a9097, type: 3}
+      name: Rook
+      tagLine: Straight as an Arrow
+      materialValue: 5
+      description: This is a rook. It's reliable and powerful. Use its straight movement
+        to cover ground and gain control!
+      pieceObject: {fileID: 6621691848679507061, guid: 8f603690c403ada4ea7accb3da3639d2, type: 3}
+      pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 789e54e257e6a334c848db19170c66a1, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 1efe229995923164c91c35e53fd6051d, type: 3}
+      name: Queen
+      tagLine: All-Powerful Ruler
+      materialValue: 9
+      description: This is a queen. She's your strongest asset, so keep her safe!
+        She can move practically anywhere.
+      pieceObject: {fileID: 6040926768501256659, guid: fba2412e5af3065429c1f260971c437d, type: 3}
+      pieceData: {fileID: 11400000, guid: b9ef2c3ab912357449ce0cddd1bf0a65, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
+      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+      name: King
+      tagLine: The Main Guy
+      materialValue: 0
+      description: This is the king, the most important piece on the board. Keep
+        him safe, since he can't really defend himself. If he's captured, you lose!
+      pieceObject: {fileID: 1999740392669884248, guid: af10c90b50ca0164c9e3e4efe9ac73ba, type: 3}
+      pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
+  whitePieceMaterial: {fileID: 2100000, guid: 711d811e19862824396c6595f2e9477b, type: 2}
+  blackPieceMaterial: {fileID: 2100000, guid: 4f965aa9971b8ec4fbdf3b79a96fb050, type: 2}
+--- !u!224 &410925900
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410925898}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1289.1056, y: 28.930454}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &418247680
 GameObject:
   m_ObjectHideFlags: 0
@@ -7787,203 +7905,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
---- !u!1 &888548887
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 888548889}
-  - component: {fileID: 888548888}
-  m_Layer: 5
-  m_Name: Collection Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &888548888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888548887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0500331768f6f194f96a02c9831b71f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectionButtonPrefab: {fileID: 2643406243434024835, guid: 2ebbcbad68a02f743a9d76c37a42bd91, type: 3}
-  pieceButtonPrefab: {fileID: 5279569880088463900, guid: 6ee0d879222ae4746881aa5e1766178a, type: 3}
-  singleCollectionPagePrefab: {fileID: 210600623767681711, guid: b4b98a26c099f0e46a33cae40f87aeac, type: 3}
-  pieceInfoDisplayPrefab: {fileID: 3976704487914315975, guid: 2ca84e59f846431428c9a10af2320d76, type: 3}
-  buttonHolder: {fileID: 479461411}
-  parent: {fileID: 2040635912}
-  allCollectionsPage: {fileID: 1692950691}
-  pieceAnimator: {fileID: 9100000, guid: 39862ed44dafbbd4fb37178bd8b0917d, type: 2}
-  collections:
-  - name: The Classics
-    icons:
-    - {fileID: 21300000, guid: 28f92dcf314487c44b1aeaf932a4a3f2, type: 3}
-    - {fileID: 21300000, guid: 88b2cd484a9810841b5601ee67f8a3cb, type: 3}
-    pieces:
-    - blackIcon: {fileID: 21300000, guid: 75553c26489685641a9f1d6f9e14a2d6, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a659a309835583b448cd76c300f01715, type: 3}
-      name: Pawn
-      tagLine: pawn tag line
-      materialValue: 1
-      description: this is a pawn, it sucks, but it'll try its best! It has potential
-        at least.
-      pieceObject: {fileID: 7936696709198321180, guid: c7c3d45554651e942830b92d8ab74fb3, type: 3}
-      pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 735ecbf98a257a745b912a328bdbb739, type: 3}
-      whiteIcon: {fileID: 21300000, guid: 3a96e79f37813db40976a0150b1e6b29, type: 3}
-      name: Rook
-      tagLine: rook tag line
-      materialValue: 1
-      description: this is a rook, it's pretty solid, and it can do a bunch of stuff
-        i guess
-      pieceObject: {fileID: 1299729678981032934, guid: 8f603690c403ada4ea7accb3da3639d2, type: 3}
-      pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
-  - name: The Classics
-    icons:
-    - {fileID: 21300000, guid: 28f92dcf314487c44b1aeaf932a4a3f2, type: 3}
-    - {fileID: 21300000, guid: 88b2cd484a9810841b5601ee67f8a3cb, type: 3}
-    pieces:
-    - blackIcon: {fileID: 21300000, guid: 75553c26489685641a9f1d6f9e14a2d6, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a659a309835583b448cd76c300f01715, type: 3}
-      name: Pawn
-      tagLine: pawn tag line
-      materialValue: 1
-      description: this is a pawn, it sucks, but it'll try its best! It has potential
-        at least.
-      pieceObject: {fileID: 7936696709198321180, guid: c7c3d45554651e942830b92d8ab74fb3, type: 3}
-      pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 735ecbf98a257a745b912a328bdbb739, type: 3}
-      whiteIcon: {fileID: 21300000, guid: 3a96e79f37813db40976a0150b1e6b29, type: 3}
-      name: Rook
-      tagLine: rook tag line
-      materialValue: 1
-      description: this is a rook, it's pretty solid, and it can do a bunch of stuff
-        i guess
-      pieceObject: {fileID: 1299729678981032934, guid: 8f603690c403ada4ea7accb3da3639d2, type: 3}
-      pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
-  - name: The Classics
-    icons:
-    - {fileID: 21300000, guid: 28f92dcf314487c44b1aeaf932a4a3f2, type: 3}
-    - {fileID: 21300000, guid: 88b2cd484a9810841b5601ee67f8a3cb, type: 3}
-    pieces:
-    - blackIcon: {fileID: 21300000, guid: 75553c26489685641a9f1d6f9e14a2d6, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a659a309835583b448cd76c300f01715, type: 3}
-      name: Pawn
-      tagLine: pawn tag line
-      materialValue: 1
-      description: this is a pawn, it sucks, but it'll try its best! It has potential
-        at least.
-      pieceObject: {fileID: 7936696709198321180, guid: c7c3d45554651e942830b92d8ab74fb3, type: 3}
-      pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 735ecbf98a257a745b912a328bdbb739, type: 3}
-      whiteIcon: {fileID: 21300000, guid: 3a96e79f37813db40976a0150b1e6b29, type: 3}
-      name: Rook
-      tagLine: rook tag line
-      materialValue: 1
-      description: this is a rook, it's pretty solid, and it can do a bunch of stuff
-        i guess
-      pieceObject: {fileID: 1299729678981032934, guid: 8f603690c403ada4ea7accb3da3639d2, type: 3}
-      pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
-  - name: The Classics
-    icons:
-    - {fileID: 21300000, guid: 28f92dcf314487c44b1aeaf932a4a3f2, type: 3}
-    - {fileID: 21300000, guid: 88b2cd484a9810841b5601ee67f8a3cb, type: 3}
-    pieces:
-    - blackIcon: {fileID: 21300000, guid: 75553c26489685641a9f1d6f9e14a2d6, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a659a309835583b448cd76c300f01715, type: 3}
-      name: Pawn
-      tagLine: pawn tag line
-      materialValue: 1
-      description: this is a pawn, it sucks, but it'll try its best! It has potential
-        at least.
-      pieceObject: {fileID: 7936696709198321180, guid: c7c3d45554651e942830b92d8ab74fb3, type: 3}
-      pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 735ecbf98a257a745b912a328bdbb739, type: 3}
-      whiteIcon: {fileID: 21300000, guid: 3a96e79f37813db40976a0150b1e6b29, type: 3}
-      name: Rook
-      tagLine: rook tag line
-      materialValue: 1
-      description: this is a rook, it's pretty solid, and it can do a bunch of stuff
-        i guess
-      pieceObject: {fileID: 1299729678981032934, guid: 8f603690c403ada4ea7accb3da3639d2, type: 3}
-      pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
-  - name: The Classics
-    icons:
-    - {fileID: 21300000, guid: 28f92dcf314487c44b1aeaf932a4a3f2, type: 3}
-    - {fileID: 21300000, guid: 88b2cd484a9810841b5601ee67f8a3cb, type: 3}
-    pieces:
-    - blackIcon: {fileID: 21300000, guid: 75553c26489685641a9f1d6f9e14a2d6, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a659a309835583b448cd76c300f01715, type: 3}
-      name: Pawn
-      tagLine: pawn tag line
-      materialValue: 1
-      description: this is a pawn, it sucks, but it'll try its best! It has potential
-        at least.
-      pieceObject: {fileID: 7936696709198321180, guid: c7c3d45554651e942830b92d8ab74fb3, type: 3}
-      pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 735ecbf98a257a745b912a328bdbb739, type: 3}
-      whiteIcon: {fileID: 21300000, guid: 3a96e79f37813db40976a0150b1e6b29, type: 3}
-      name: Rook
-      tagLine: rook tag line
-      materialValue: 1
-      description: this is a rook, it's pretty solid, and it can do a bunch of stuff
-        i guess
-      pieceObject: {fileID: 1299729678981032934, guid: 8f603690c403ada4ea7accb3da3639d2, type: 3}
-      pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
-  - name: The Classics
-    icons:
-    - {fileID: 21300000, guid: 28f92dcf314487c44b1aeaf932a4a3f2, type: 3}
-    - {fileID: 21300000, guid: 88b2cd484a9810841b5601ee67f8a3cb, type: 3}
-    pieces:
-    - blackIcon: {fileID: 21300000, guid: 75553c26489685641a9f1d6f9e14a2d6, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a659a309835583b448cd76c300f01715, type: 3}
-      name: Pawn
-      tagLine: pawn tag line
-      materialValue: 1
-      description: this is a pawn, it sucks, but it'll try its best! It has potential
-        at least.
-      pieceObject: {fileID: 7936696709198321180, guid: c7c3d45554651e942830b92d8ab74fb3, type: 3}
-      pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 735ecbf98a257a745b912a328bdbb739, type: 3}
-      whiteIcon: {fileID: 21300000, guid: 3a96e79f37813db40976a0150b1e6b29, type: 3}
-      name: Rook
-      tagLine: rook tag line
-      materialValue: 1
-      description: this is a rook, it's pretty solid, and it can do a bunch of stuff
-        i guess
-      pieceObject: {fileID: 1299729678981032934, guid: 8f603690c403ada4ea7accb3da3639d2, type: 3}
-      pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
-  whitePieceMaterial: {fileID: 2100000, guid: 711d811e19862824396c6595f2e9477b, type: 2}
-  blackPieceMaterial: {fileID: 2100000, guid: 4f965aa9971b8ec4fbdf3b79a96fb050, type: 2}
---- !u!224 &888548889
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888548887}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1289.1056, y: 28.930454}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &906553597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20951,7 +20872,7 @@ SceneRoots:
   - {fileID: 664825134}
   - {fileID: 743811522}
   - {fileID: 764606905}
-  - {fileID: 888548889}
+  - {fileID: 410925900}
   - {fileID: 987653647}
   - {fileID: 1225922419}
   - {fileID: 1931489112}
