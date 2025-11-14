@@ -21,6 +21,7 @@ public enum ActionTrait
 {
     //conditional traits
     remove_unselected = 0,
+    remove_unselected_inline = 12,
 
     apply_to_empty_space = 2,
     apply_to_ownteam_space = 3,
@@ -29,6 +30,7 @@ public enum ActionTrait
     command_goto = 5,
     command_pushback = 12,
     remove_obstructed = 6,
+    remove_unobstructed = 13,
 
     shift_focus = 7,
 
