@@ -3530,7 +3530,7 @@ MonoBehaviour:
       materialValue: 1
       description: This is a pawn. It doesn't move very fast, but it tries its best.
         Don't underestimate it though!
-      pieceObject: {fileID: 3589065385791034553, guid: c7c3d45554651e942830b92d8ab74fb3, type: 3}
+      pieceObject: {fileID: -4994612650314603349, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
     - blackIcon: {fileID: 21300000, guid: cf37b841602955c4dba85d378565e590, type: 3}
       whiteIcon: {fileID: 21300000, guid: ec24d667eeade3949b2a7d593c36da83, type: 3}
@@ -3539,7 +3539,7 @@ MonoBehaviour:
       materialValue: 3
       description: This is a knight. Well really it's a horse, but don't say that
         to its face. It's got some wacky movement nobody really understands.
-      pieceObject: {fileID: 2428979112873125429, guid: 4d55465628b5bc6499ff887e448f94c4, type: 3}
+      pieceObject: {fileID: -4175768614775622670, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 72e82141817f936418da174ff57eb4db, type: 2}
     - blackIcon: {fileID: 21300000, guid: 1a5a8c715b117214f9cdb883c32af77e, type: 3}
       whiteIcon: {fileID: 21300000, guid: a1422d3e1175e4941a00669f97218a71, type: 3}
@@ -3548,7 +3548,7 @@ MonoBehaviour:
       materialValue: 3
       description: This is a bishop. It moves diagonally and is great for sneakily
         striking across the board. Keep an eye out!
-      pieceObject: {fileID: 4603878679398843465, guid: 58d4b008d6aa31e4b85cc9f46355e769, type: 3}
+      pieceObject: {fileID: 8740901809286357084, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 1049cac099dc5664aa4ef2e89446f2ec, type: 2}
     - blackIcon: {fileID: 21300000, guid: 52f97005d618fdd459c20bb3138751db, type: 3}
       whiteIcon: {fileID: 21300000, guid: 501595795ac56b14685470e9097a9097, type: 3}
@@ -3557,7 +3557,7 @@ MonoBehaviour:
       materialValue: 5
       description: This is a rook. It's reliable and powerful. Use its straight movement
         to cover ground and gain control!
-      pieceObject: {fileID: 6621691848679507061, guid: 8f603690c403ada4ea7accb3da3639d2, type: 3}
+      pieceObject: {fileID: -6436994527706703880, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
     - blackIcon: {fileID: 21300000, guid: 789e54e257e6a334c848db19170c66a1, type: 3}
       whiteIcon: {fileID: 21300000, guid: 1efe229995923164c91c35e53fd6051d, type: 3}
@@ -3566,7 +3566,7 @@ MonoBehaviour:
       materialValue: 9
       description: This is a queen. She's your strongest asset, so keep her safe!
         She can move practically anywhere.
-      pieceObject: {fileID: 6040926768501256659, guid: fba2412e5af3065429c1f260971c437d, type: 3}
+      pieceObject: {fileID: 653439950732891744, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: b9ef2c3ab912357449ce0cddd1bf0a65, type: 2}
     - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
       whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
@@ -3575,7 +3575,7 @@ MonoBehaviour:
       materialValue: 0
       description: This is the king, the most important piece on the board. Keep
         him safe, since he can't really defend himself. If he's captured, you lose!
-      pieceObject: {fileID: 1999740392669884248, guid: af10c90b50ca0164c9e3e4efe9ac73ba, type: 3}
+      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
   whitePieceMaterial: {fileID: 2100000, guid: 711d811e19862824396c6595f2e9477b, type: 2}
   blackPieceMaterial: {fileID: 2100000, guid: 4f965aa9971b8ec4fbdf3b79a96fb050, type: 2}

@@ -173,17 +173,16 @@ public class CollectionsUI : MonoBehaviour
         GameObject pieceModelHolder = pieceDisplayManager.pieceModelHolder;
 
         pieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
-        pieceModel.transform.localPosition = currentPiece.pieceObject.transform.localPosition;
+        pieceModel.transform.localPosition = Vector3.zero;
+        pieceModel.transform.localEulerAngles = new Vector3(-90f, 0f ,0f);
+        pieceModel.transform.localScale *= 30f;
         pieceModel.layer = 5;
 
         pieceModelHolder.AddComponent<Animator>();
-        pieceModelHolder.transform.localPosition = new Vector3(-90f, 30f, -100f);
+        pieceModelHolder.transform.localPosition = new Vector3(-90f, 15f, -100f);
         pieceModelHolder.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
 
-        foreach (MeshRenderer renderer in pieceModel.GetComponentsInChildren<MeshRenderer>())
-        {
-            renderer.material = isModelBlack ? blackPieceMaterial : whitePieceMaterial;
-        }
+        pieceModel.GetComponent<MeshRenderer>().material = isModelBlack ? blackPieceMaterial : whitePieceMaterial;
 
         pieceModel.SetActive(true);
 
@@ -264,17 +263,11 @@ public class CollectionsUI : MonoBehaviour
 
         if (currentCPM.currentColor == "BLACK")
         {
-            foreach (MeshRenderer renderer in currentPDM.pieceModelHolder.transform.GetChild(0).GetComponentsInChildren<MeshRenderer>())
-            {
-                renderer.material = blackPieceMaterial;
-            }
+            currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().material = blackPieceMaterial;
         }
         else
         {
-            foreach (MeshRenderer renderer in currentPDM.pieceModelHolder.transform.GetChild(0).GetComponentsInChildren<MeshRenderer>())
-            {
-                renderer.material = whitePieceMaterial;
-            }
+            currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().material = whitePieceMaterial;
         }
     }
 
