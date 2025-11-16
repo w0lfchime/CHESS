@@ -170,14 +170,17 @@ public class CollectionsUI : MonoBehaviour
 
         bool isModelBlack = singleCollectionPage.GetComponent<CollectionPageManager>().currentColor == "BLACK";
         GameObject pieceModel = Instantiate(currentPiece.pieceObject);
+        GameObject pieceModelHolder = pieceDisplayManager.pieceModelHolder;
 
         pieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
-        pieceModel.transform.localPosition = new Vector3(30f, 6f, 65f);
-        pieceModel.transform.localScale = new Vector3(80f, 80f, 80f);
+        pieceModel.transform.localPosition = Vector3.zero;
+        pieceModel.transform.localEulerAngles = new Vector3(-90f, 0f ,0f);
+        pieceModel.transform.localScale *= 30f;
         pieceModel.layer = 5;
 
-        pieceModel.AddComponent<Animator>();
-        pieceModel.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
+        pieceModelHolder.AddComponent<Animator>();
+        pieceModelHolder.transform.localPosition = new Vector3(-90f, 15f, -100f);
+        pieceModelHolder.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
 
         pieceModel.GetComponent<MeshRenderer>().material = isModelBlack ? blackPieceMaterial : whitePieceMaterial;
 
@@ -260,11 +263,11 @@ public class CollectionsUI : MonoBehaviour
 
         if (currentCPM.currentColor == "BLACK")
         {
-            currentPDM.pieceModelHolder.transform.GetComponentInChildren<MeshRenderer>().material = blackPieceMaterial;
+            currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().material = blackPieceMaterial;
         }
         else
         {
-            currentPDM.pieceModelHolder.transform.GetComponentInChildren<MeshRenderer>().material = whitePieceMaterial;
+            currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().material = whitePieceMaterial;
         }
     }
 
