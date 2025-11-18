@@ -548,11 +548,12 @@ public class ChessBoard2 : MonoBehaviour
 		piece.team = team;
 		if (team == Team.White)
 		{
+			pieceGO.transform.Rotate(-90, 0, 180);
 			rend.sharedMaterial = WhiteTileMat;
 		}
 		else
 		{
-			pieceGO.transform.Rotate(0, 180, 0);
+			pieceGO.transform.Rotate(-90, 180, 180);
 			rend.sharedMaterial = BlackTileMat;
 		}
 
@@ -584,13 +585,14 @@ public class ChessBoard2 : MonoBehaviour
 		Renderer rend = pieceGO.GetComponent<Renderer>();
 		if (turn == Team.White)
 		{
+			piece.transform.Rotate(new Vector3(-90, 0, 180));
 			piece.team = Team.White;
 			rend.sharedMaterial = WhitePieceMat;
 			piece.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
 		}
 		else
 		{
-			piece.transform.Rotate(0, 180, 0);
+			piece.transform.Rotate(-270, 180, 0);
 			piece.team = Team.Black;
 			rend.sharedMaterial = BlackPieceMat;
 			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
