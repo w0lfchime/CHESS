@@ -20,6 +20,7 @@ public class ChessBoard2 : MonoBehaviour
 
 	public MapData map;
 	public GameData gamedata;
+	public AudioManagerScript audioManager;
 
 
 	[Header("Options")]
@@ -46,6 +47,7 @@ public class ChessBoard2 : MonoBehaviour
 	{
 		Instance = this;
 		transform.position = Vector3.zero;
+		audioManager = GameObject.Find("GameData").GetComponent<AudioManagerScript>();
 	}
 
 	[ContextMenu("Init Board")]
@@ -229,6 +231,10 @@ public class ChessBoard2 : MonoBehaviour
 		List<Ability_TG> allTriggeredAbilities = abilities;
 
 		int did_anything_happen = 0;
+
+		int randClip = UnityEngine.Random.Range(piece.audioRange[0], piece.audioRange[1]);
+		Debug.Log(randClip + " " + piece.audioRange[0] + " " + piece.audioRange[1]);
+		audioManager.playSoundEffect(randClip);
 
 		foreach (Ability_TG ability in allTriggeredAbilities)
 		{
