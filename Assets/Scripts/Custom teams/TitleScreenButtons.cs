@@ -24,6 +24,7 @@ public class TitleScreenButtons : MonoBehaviour
     public GameObject how2ChessMenu;
     public GameObject teamContent;
     public GameObject slotPrefab;
+    public GameObject creditsMenu;
     public GameData gameData;
     public TMP_Dropdown whiteDropDown;
     public TMP_Dropdown blackDropDown;
@@ -71,6 +72,18 @@ public class TitleScreenButtons : MonoBehaviour
     {
         how2ChessMenu.SetActive(true);
         mainMenu.SetActive(false);
+    }
+
+    public void MoveToCredits()
+    {
+        creditsMenu.SetActive(true);
+        mainMenu.SetActive(false);
+    }
+
+    public void MoveOffCredits()
+    {
+        creditsMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     public void StartGame()
