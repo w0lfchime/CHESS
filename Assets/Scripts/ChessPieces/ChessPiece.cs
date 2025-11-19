@@ -25,6 +25,7 @@ public enum ChessPieceType
 public abstract class ChessPiece : MonoBehaviour
 {
     public Team team;
+    public int[] audioRange = new int[2];
     public int currentX;
     public int currentY;
     public int moves;
