@@ -1,5 +1,6 @@
 using UnityEngine;
-using System; // for Action
+using System;
+using Unity.VisualScripting; // for Action
 
 public class CursorManager : MonoBehaviour
 {
@@ -94,8 +95,33 @@ public class CursorManager : MonoBehaviour
 
 	private void HandleClickSelection()
 	{
-		if (!Input.GetMouseButtonDown(0)) return;
+		if (Input.GetMouseButtonDown(2)) {
+			if (pieceInfoDisplay.inDisplay == true) pieceInfoDisplay.instance.unDisplay();
+			return;
+		}
 
+		if (Input.GetMouseButtonDown(1))
+        {
+			if(pieceInfoDisplay.inDisplay == false){
+				if(_currentTile != null && _currentTile.GetComponent<Tile>().tileOccupants.Count > 0)
+                {
+					if(!selectorCursor.gameObject.activeSelf) selectorCursor.SetTargetFromTile(_currentTile, true);
+					selectorCursor.gameObject.SetActive(true);
+					Tile SelectedTile = _currentTile.GetComponent<Tile>();
+					SelectedBoardX = SelectedTile.TileBoardX;
+					SelectedBoardY = SelectedTile.TileBoardY;
+					if (selectorCursor != null) selectorCursor.SetTargetFromTile(_currentTile);
+					ChessPieceObject first = ChessBoard2.Instance.getFirstOccupant(_currentTile.GetComponent<Tile>()).GetComponent<ChessPieceObject>();
+					ChessPieceData data = first.chessPieceData;
+					pieceInfoDisplay.instance.display(data);
+                }
+			}
+			else{
+				pieceInfoDisplay.instance.unDisplay();
+			}
+        }
+		if (!Input.GetMouseButtonDown(0)) return;
+		if (pieceInfoDisplay.inDisplay == true) pieceInfoDisplay.instance.unDisplay();
 		// Update SelectedTile only on click
 		if (_currentTile != null)
 		{

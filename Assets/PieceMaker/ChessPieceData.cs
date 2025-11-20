@@ -2,6 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 
 //All the action triggers. The chess board activates the triggers based on what is happening in the game.
 public enum TriggerType
@@ -94,6 +95,8 @@ public class ChessPieceData : ScriptableObject
     public string name = "NoNameSet";
     public Mesh model;
     public float model_scale_multiplier;
+    public String description = "NoDescriptionSet";
+    public Sprite image = null;
     public bool lifeLine;
 
     public List<ChessPieceData> promotable = new List<ChessPieceData>();
@@ -138,7 +141,13 @@ public class ChessPieceDataEditor : Editor
 	        script.model_scale_multiplier
            );
 
-
+        script.description = EditorGUILayout.TextField("Description", script.description);
+        script.image = (Sprite)EditorGUILayout.ObjectField(
+            "Piece Image",
+            script.image,
+            typeof(Sprite),
+            false
+        );
 		script.lifeLine = EditorGUILayout.Toggle("LifeLine", script.lifeLine);
 
         SerializedProperty promotableList = serializedObject.FindProperty("promotable");
