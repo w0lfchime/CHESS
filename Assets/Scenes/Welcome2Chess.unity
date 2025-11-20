@@ -693,9 +693,11 @@ MonoBehaviour:
   environmentPrefabs:
   - {fileID: 6961341990906628538, guid: ff902e3b2991b084a955309fb4d8c014, type: 3}
   - {fileID: 4416262150501988080, guid: ab0e55fd4b5c4b5438bc1d84f7d289bc, type: 3}
+  - {fileID: 9220435598230958415, guid: cc17b581264d5f040ac590282b43c656, type: 3}
   environmentBackgroundColors:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0.43081754, g: 1, b: 0.9791049, a: 0}
+  - {r: 0.9748427, g: 0.8351109, b: 0.60391194, a: 0}
   environmentParent: {fileID: 893751790}
   mainCamera: {fileID: 1534876041}
 --- !u!4 &274993203
