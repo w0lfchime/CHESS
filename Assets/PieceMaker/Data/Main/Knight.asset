@@ -15,6 +15,8 @@ MonoBehaviour:
   name: NoNameSet
   model: {fileID: -6007548702594196167, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
   model_scale_multiplier: 1
+  description: Horse
+  image: {fileID: 21300000, guid: ec24d667eeade3949b2a7d593c36da83, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11
