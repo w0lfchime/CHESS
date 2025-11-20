@@ -3050,6 +3050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceInfoText: {fileID: 318389582}
+  pieceInfoPicture: {fileID: 0}
   originalPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &875319492
 MonoBehaviour:
