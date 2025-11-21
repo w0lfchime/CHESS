@@ -660,6 +660,15 @@ public class ChessBoard2 : MonoBehaviour
 		piece.originalTile = TileLocations[boardLoc.y, boardLoc.x];
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
 	}
+
+	public ChessPieceObject getFirstOccupant(Tile tile)
+	{
+		if (tile.tileOccupants.Count > 0)
+		{
+			return tile.tileOccupants[0].GetComponent<ChessPieceObject>();
+		}
+		return null;
+	}
 }
 
 public static class GridLine

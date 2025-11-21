@@ -233,7 +233,7 @@ public class TitleScreenButtons : MonoBehaviour
         {
             string[] teamData = PlayerPrefs.GetString(i.ToString()).Split(':');
             string name = teamData[0];
-            string[] team = teamData.Skip(1).ToArray();;
+            string[] team = teamData.Skip(1).ToArray();
             gameData.teams.Add(name, team);
         }
     }
