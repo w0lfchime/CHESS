@@ -20,7 +20,6 @@ public class ChessBoard2 : MonoBehaviour
 
 	public MapData map;
 	public GameData gamedata;
-	public AudioManagerScript audioManager;
 
 
 	[Header("Options")]
@@ -47,7 +46,6 @@ public class ChessBoard2 : MonoBehaviour
 	{
 		Instance = this;
 		transform.position = Vector3.zero;
-		audioManager = GameObject.Find("GameData").GetComponent<AudioManagerScript>();
 	}
 
 	[ContextMenu("Init Board")]
@@ -190,6 +188,12 @@ public class ChessBoard2 : MonoBehaviour
         }
 	}
 
+	//Updates tiles between turns
+	public void DeathTrigger(ChessPiece piece)
+	{
+		TriggerOnePiece(piece, TriggerType.OnDeath);
+	}
+
 
 	private bool TriggerAllPieces(TriggerType trigger,  bool endTurn = false)
 	{
@@ -231,10 +235,6 @@ public class ChessBoard2 : MonoBehaviour
 		List<Ability_TG> allTriggeredAbilities = abilities;
 
 		int did_anything_happen = 0;
-
-		int randClip = UnityEngine.Random.Range(piece.audioRange[0], piece.audioRange[1]);
-		Debug.Log(randClip + " " + piece.audioRange[0] + " " + piece.audioRange[1]);
-		audioManager.playSoundEffect(randClip);
 
 		foreach (Ability_TG ability in allTriggeredAbilities)
 		{
@@ -369,6 +369,19 @@ public class ChessBoard2 : MonoBehaviour
 				}
 			}
 
+			if (actionTraits.Contains(ActionTrait.remove_unobstructed))
+			{
+				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
+				foreach (Vector2Int pos in path)
+				{
+					if (TileLocations[pos.x, pos.y] != null && !TileLocations[pos.x, pos.y].obstructed)
+					{ 
+						add = false;
+						break;
+					}
+				}
+			}
+
 			(Vector2Int, ActionTrait[]) newTile = (tilePosition, tile.Item2);
 			if (add) returnList.Add(newTile);
 		}
@@ -395,6 +408,16 @@ public class ChessBoard2 : MonoBehaviour
 
 			//check if selected
 			if (actionTraits.Contains(ActionTrait.remove_unselected) && selectedTile != TileLocations[tilePosition.x, tilePosition.y]) continue;
+			if (actionTraits.Contains(ActionTrait.remove_unselected_far) && (Mathf.Abs(selectedTile.TileBoardX-tilePosition.x) > 1 || Mathf.Abs(selectedTile.TileBoardY-tilePosition.y) > 1)){
+				print(new Vector2(Mathf.Abs(selectedTile.TileBoardY-tilePosition.x), Mathf.Abs(selectedTile.TileBoardX-tilePosition.y)));
+				continue;
+			}
+			if (actionTraits.Contains(ActionTrait.remove_unselected_line)){
+				List<Vector2Int> path = GridLine.GetLine(previousPosition, new Vector2Int(selectedTile.TileBoardX, selectedTile.TileBoardY));
+				if(!path.Contains(tilePosition)){
+					continue;
+				}
+			} 
 
 			wasTileSelected = true;
 
@@ -402,7 +425,7 @@ public class ChessBoard2 : MonoBehaviour
 
 			//do all lower level commands
 
-			if (actionTraits.Contains(ActionTrait.command_killpiece) && (TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0)) // if trait kills a piece
+			if (actionTraits.Contains(ActionTrait.command_killpiece)) // if trait kills a piece
 			{
 				if (ocp != null)
 				{
@@ -410,7 +433,6 @@ public class ChessBoard2 : MonoBehaviour
 					{
 						CheckMate(1);
 					}
-					TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
 					ocp.Kill();
 				}
 
@@ -452,6 +474,19 @@ public class ChessBoard2 : MonoBehaviour
 			{
 				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
 				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", 4, distance);
+			}
+
+			if (actionTraits.Contains(ActionTrait.command_removetile)) // if trait removes the tile
+			{
+				Destroy(TileLocations[tilePosition.x, tilePosition.y].gameObject);
+			}
+
+			if (actionTraits.Contains(ActionTrait.command_respawn)) // if trait respawns a piece
+			{
+				if(ocp.originalTile.tileOccupants.Count == 0)
+				{
+					SpawnPiece("null", new Vector2Int(ocp.originalTile.TileBoardX, ocp.originalTile.TileBoardY), ocp.team, ocp.gameObject);
+				}
 			}
 
 			//
@@ -502,7 +537,7 @@ public class ChessBoard2 : MonoBehaviour
 
 		for (int i = map.startingWhiteTiles[1]; i < map.startingWhiteTiles[1] + 2; i++)
 		{
-			for (int j = map.startingWhiteTiles[0]; j < map.startingWhiteTiles[0] + 8; j++)
+			for (int j = map.startingWhiteTiles[0]; j < 8; j++)
 			{
 				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
@@ -516,10 +551,10 @@ public class ChessBoard2 : MonoBehaviour
 
 		pieceOn = 0;
 		
-		// spawn black pieces
+		// spawn white pieces
 		for (int i = 1; i >= 0; i--)
 		{
-			for (int j = map.startingBlackTiles[0]; j >= map.startingBlackTiles[0] - 7; j--)
+			for (int j = map.startingBlackTiles[0]; j >= 0; j--)
 			{
 				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
@@ -535,9 +570,18 @@ public class ChessBoard2 : MonoBehaviour
 
 
 	// For regular spawning
-	public void SpawnPiece(string pieceID, Vector2Int boardLoc, Team team)
+	public void SpawnPiece(string pieceID, Vector2Int boardLoc, Team team, GameObject obj = null)
 	{
-		GameObject prefab = PieceLibrary.Instance.GetPrefab(pieceID);
+		GameObject prefab = null;
+		if(obj)
+		{
+			prefab = obj;
+		}
+		else
+		{
+			prefab = PieceLibrary.Instance.GetPrefab(pieceID);
+		}
+
 		if (prefab == null) return;
 
 		// Spawn at the tile�s world position
@@ -554,22 +598,32 @@ public class ChessBoard2 : MonoBehaviour
 		piece.team = team;
 		if (team == Team.White)
 		{
-			pieceGO.transform.Rotate(-90, 0, 180);
-			rend.sharedMaterial = WhiteTileMat;
+			rend.sharedMaterial = WhitePieceMat;
+			piece.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
 		}
 		else
 		{
-			pieceGO.transform.Rotate(-90, 180, 180);
-			rend.sharedMaterial = BlackTileMat;
+			pieceGO.transform.Rotate(0, 180, 0);
+			rend.sharedMaterial = BlackPieceMat;
+			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
 		}
 
+		piece.originalTile = TileLocations[boardLoc.y, boardLoc.x];
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
 	}
 
 	// For debug spawning
-	public void SpawnPiece(string pieceID, Vector2Int boardLoc)
+	public void SpawnPiece(string pieceID, Vector2Int boardLoc, GameObject obj = null)
 	{
-		GameObject prefab = PieceLibrary.Instance.GetPrefab(pieceID);
+		GameObject prefab = null;
+		if(obj)
+		{
+			prefab = obj;
+		}
+		else
+		{
+			prefab = PieceLibrary.Instance.GetPrefab(pieceID);
+		}
 		if (prefab == null) return;
 
 		// Spawn at the tile�s world position
@@ -591,21 +645,22 @@ public class ChessBoard2 : MonoBehaviour
 		Renderer rend = pieceGO.GetComponent<Renderer>();
 		if (turn == Team.White)
 		{
-			piece.transform.Rotate(new Vector3(-90, 0, 180));
 			piece.team = Team.White;
 			rend.sharedMaterial = WhitePieceMat;
 			piece.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
 		}
 		else
 		{
-			piece.transform.Rotate(-270, 180, 0);
+			piece.transform.Rotate(0, 180, 0);
 			piece.team = Team.Black;
 			rend.sharedMaterial = BlackPieceMat;
 			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
 		}
 
+		piece.originalTile = TileLocations[boardLoc.y, boardLoc.x];
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
 	}
+
 	public ChessPieceObject getFirstOccupant(Tile tile)
 	{
 		if (tile.tileOccupants.Count > 0)

@@ -42,6 +42,26 @@ MonoBehaviour:
     visualGrid: []
     grid: 
   - name: ?obstructed
-    traits: 020000000d0000000c000000
+    traits: 020000000d000000
+    visualGrid: []
+    grid: 
+  - name: takeclose
+    traits: 040000000c00000009000000
+    visualGrid: []
+    grid: 
+  - name: shoot
+    traits: 0400000003000000000000000600000009000000
+    visualGrid: []
+    grid: 
+  - name: removetile
+    traits: 02000000000000000e000000
+    visualGrid: []
+    grid: 
+  - name: respawn
+    traits: 030000000400000011000000
+    visualGrid: []
+    grid: 
+  - name: bulldoze
+    traits: 020000001200000009000000
     visualGrid: []
     grid: 
