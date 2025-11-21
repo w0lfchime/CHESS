@@ -106,11 +106,11 @@ MonoBehaviour:
   moves: 0
   originalTile: {fileID: 0}
   deathEffect: {fileID: 919132149155446097, guid: f834ba5e7e9d5aa47b4436e1212950fd, type: 3}
-  _id: 
+  _id: KitchenSink
   _value: 0
   _isLifeline: 0
   pieceType: 0
   IsTileOccupant: 1
   currentTile: {fileID: 0}
   meshFilter: {fileID: 0}
-  chessPieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
+  chessPieceData: {fileID: 11400000, guid: 51c10ab70b111b847ac7cba8ca97289a, type: 2}

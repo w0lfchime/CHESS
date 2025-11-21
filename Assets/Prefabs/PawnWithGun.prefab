@@ -106,7 +106,7 @@ MonoBehaviour:
   moves: 0
   originalTile: {fileID: 0}
   deathEffect: {fileID: 8081762785826782278, guid: 26eaf180a9e333541ac1ee595b6ca8c4, type: 3}
-  _id: 
+  _id: PawnWGun
   _value: 0
   _isLifeline: 0
   pieceType: 0
