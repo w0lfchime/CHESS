@@ -527,8 +527,8 @@ public class ChessBoard2 : MonoBehaviour
 
 	public void SpawnAllPieces()
 	{
-		string[] whiteTeam = GameData.Instance.teamList[GameData.Instance.whiteTeamIndex];
-		string[] blackTeam = GameData.Instance.teamList[GameData.Instance.blackTeamIndex];
+		string[] whiteTeam = GameData.Instance.teams[GameData.Instance.whiteTeamName];
+		string[] blackTeam = GameData.Instance.teams[GameData.Instance.whiteTeamName];
 
 		// GameManager.Instance.CurrentTurn = Team.Black;
 

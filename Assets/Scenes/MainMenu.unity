@@ -2351,8 +2351,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamNames: []
-  whiteTeamIndex: 0
-  blackTeamIndex: 0
+  whiteTeamName: 
+  blackTeamName: 
   map: {fileID: 0}
 --- !u!4 &202640519
 Transform:
@@ -5557,7 +5557,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1225922418}
         m_TargetAssemblyTypeName: TitleScreenButtons, Assembly-CSharp
         m_MethodName: SetWhiteTeam
-        m_Mode: 0
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14444,14 +14444,12 @@ MonoBehaviour:
   how2ChessMenu: {fileID: 1277218216}
   teamContent: {fileID: 1268568342}
   slotPrefab: {fileID: 4459709128143952516, guid: ce7c6a961a35e3d4ea6ac99ac33d29bb, type: 3}
-  creditsMenu: {fileID: 810271154}
+  creditsMenu: {fileID: 0}
   gameData: {fileID: 0}
   whiteDropDown: {fileID: 462769990}
   blackDropDown: {fileID: 1605372169}
-  titleScreenMusic:
-  - {fileID: 8300000, guid: 7290ca9767550794dae162efdec4f6c0, type: 3}
-  - {fileID: 8300000, guid: 1051c5ccc199d7d48a219b1e09f78663, type: 3}
-  musicSource: {fileID: 1931489111}
+  titleScreenMusic: []
+  musicSource: {fileID: 0}
   tempTeam:
   - 
   - 
@@ -17300,7 +17298,19 @@ MonoBehaviour:
     m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1225922418}
+        m_TargetAssemblyTypeName: TitleScreenButtons, Assembly-CSharp
+        m_MethodName: SetBlackTeam
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1605372170
 MonoBehaviour:
