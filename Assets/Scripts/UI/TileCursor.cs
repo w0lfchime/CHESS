@@ -6,7 +6,7 @@ public class TileCursor : MonoBehaviour
 	public float springStrength = 8f;
 	public float damping = 0.8f;
 	[Range(0f, 1f)] public float overshootFactor = 0.2f;
-	public bool lockYToStart = true;
+	public float increaseY = 0;
 
 	[Header("Inactivity Fade")]
 	[Tooltip("Seconds of near-zero movement before beginning to fade out.")]
@@ -29,7 +29,6 @@ public class TileCursor : MonoBehaviour
 
 	private Vector3 _targetPos;
 	private Vector3 _velocity;
-	private float _lockedY;
 
 	// Fade state
 	private float _lastActiveTime;
@@ -44,9 +43,6 @@ public class TileCursor : MonoBehaviour
 
 	void Awake()
 	{
-		if (lockYToStart)
-			_lockedY = transform.position.y;
-
 		_targetPos = transform.position;
 		_lastPos = transform.position;
 		_currentAlpha = activeAlpha;
@@ -77,9 +73,6 @@ public class TileCursor : MonoBehaviour
 		// Small predictive lead to create subtle overshoot/bounce
 		Vector3 lead = _velocity * overshootFactor;
 		Vector3 nextPos = transform.position + (_velocity * dt) + (lead * dt);
-
-		if (lockYToStart)
-			nextPos.y = _lockedY;
 
 		transform.position = nextPos;
 	}
@@ -170,8 +163,7 @@ public class TileCursor : MonoBehaviour
 	/// <summary>Sets an absolute world-space target.</summary>
 	public void SetTarget(Vector3 worldPosition)
 	{
-		if (lockYToStart) worldPosition.y = _lockedY;
-		_targetPos = worldPosition;
+		worldPosition.y = increaseY;
 		// Mark active right away so we begin fading in if needed
 		_lastActiveTime = Time.time;
 	}
@@ -180,8 +172,7 @@ public class TileCursor : MonoBehaviour
 	public void SetTargetFromTile(Transform tile, bool instant = false)
 	{
 		var pos = tile.position;
-		if (lockYToStart) pos.y = _lockedY;
-		else pos.y = transform.position.y;
+		pos.y = tile.position.y+increaseY;
 
 		_targetPos = pos;
 		_lastActiveTime = Time.time;
