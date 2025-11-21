@@ -1534,7 +1534,7 @@ MonoBehaviour:
   zoomSpeed: 10
   zoomSmoothFactor: 12
   minZoomDistance: 5
-  maxZoomDistance: 20
+  maxZoomDistance: 28
   zoomHalfRange: 20
   zoomHalfRangeIsPercent: 0
   resetPositionDelay: 0.5
