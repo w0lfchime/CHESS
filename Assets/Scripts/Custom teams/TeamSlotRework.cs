@@ -39,7 +39,7 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
 
             if (dropped.tag == "Draggable Piece" && !(titleScreenButtons.matValue - mat + PieceProperties.PieceValues[pieceData.pieceId] > titleScreenButtons.maxMaterial))
             {
-                if (titleScreenButtons.lifelineCount() > 0 && (pieceData.pieceId == "StandardKing"))
+                if (titleScreenButtons.lifelineCount() > 0 && (pieceData.pieceId == "StandardKing" || pieceData.pieceId == "MpregKing"))
                 {
                     titleScreenButtons.editMatTextStuff("Too many lifelines");
                 }
@@ -56,7 +56,7 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
                     image.sprite = pieceData.sprite;
 
                     titleScreenButtons.updateMatText();
-                    titleScreenButtons.editMatTextNotError((currentMat >= 0) ? "+" + currentMat : currentMat.ToString());
+                    titleScreenButtons.editMatTextNotError(pieceData.name + " " + ((currentMat >= 0) ? "+" + currentMat : currentMat.ToString()));
                 }
                 
             }
