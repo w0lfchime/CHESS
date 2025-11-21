@@ -293,7 +293,7 @@ public class ChessPieceDataEditor : Editor
         GUILayout.EndHorizontal();
     }
  
-    private void DrawVisualGrid(int gridSize, Wrapper<Elements>[] visualGrid, int[] intGrid)
+    public void DrawVisualGrid(int gridSize, Wrapper<Elements>[] visualGrid, int[] intGrid)
     {
         try
         {

@@ -10,6 +10,7 @@ public class pieceInfoDisplay : MonoBehaviour
     public PieceInfoText pieceInfoText;
     public pieceInfoPicture pieceInfoPicture;
     public PieceInfoName pieceInfoName;
+    public pieceInfoMoveset pieceInfoMoveset;
     public static bool inDisplay = false;
     private static bool isAnimating = false;
     public UnityEngine.Vector3 originalPosition;
@@ -38,12 +39,14 @@ public class pieceInfoDisplay : MonoBehaviour
 
     public void display(ChessPieceData pieceData)
     {
+        Wrapper<Elements>[] vGrid = pieceData.abilities[0].actions[0].visualGrid;
         if (isAnimating) return;
         isAnimating = true;
         StartCoroutine(moveStep(1));
         pieceInfoText.disTex(pieceData.description);
         pieceInfoPicture.setPicture(pieceData.image);
         pieceInfoName.disTex(pieceData.pieceName);
+        pieceInfoMoveset.disPic(vGrid);
     }
     public void unDisplay()
     {
