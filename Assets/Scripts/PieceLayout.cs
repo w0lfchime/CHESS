@@ -40,7 +40,6 @@ public static class PieceProperties
         {"Nuke", 5},
         {"PawnWGun", 3},
         {"PirateShip", 5},
-        {"Pope", 6},
         {"Spy", 6},
         {"Rogue", 4},
         {"Wizard", 5},
