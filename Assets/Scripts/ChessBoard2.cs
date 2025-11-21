@@ -552,7 +552,7 @@ public class ChessBoard2 : MonoBehaviour
 		pieceOn = 0;
 		
 		// spawn white pieces
-		for (int i = 1; i >= 0; i--)
+		for (int i = map.startingBlackTiles[1]; i >= map.startingBlackTiles[1] - 2; i--)
 		{
 			for (int j = map.startingBlackTiles[0]; j >= map.startingBlackTiles[0] - 7; j--)
 			{
