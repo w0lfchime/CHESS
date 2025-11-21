@@ -42,6 +42,12 @@ public class TitleScreenButtons : MonoBehaviour
         gameData.map = mapList[0];
         LoadTeams();
     }
+
+    public void DeleteAllTeams()
+    {
+        PlayerPrefs.DeleteAll();
+        gameData.teams.Clear();
+    }
     public void MoveToTeamCreation()
     {
         // Makes team slots

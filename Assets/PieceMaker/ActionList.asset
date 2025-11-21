@@ -62,6 +62,6 @@ MonoBehaviour:
     visualGrid: []
     grid: 
   - name: bulldoze
-    traits: 020000001200000009000000
+    traits: 040000001200000009000000
     visualGrid: []
     grid: 
