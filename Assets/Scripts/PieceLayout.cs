@@ -23,15 +23,28 @@ public static class PieceProperties
         {"StandardRook", 5},
         {"StandardQueen", 9},
         {"StandardKing", 0},
-        {"Boykisser", 2},
-        {"Frank", 3},
-        {"Frog", 2},
+        {"Boykisser", 6},
+        {"Frank", 1},
+        {"Frog", 3},
         {"Hornet", 6},
-        {"KitchenSink", 4},
+        {"KitchenSink", 5},
         {"Pope", 6},
         {"Checkers", 3},
         {"MpregKing", 0},
-        {"FibPawn", 2}
+        {"FibPawn", 4},
+        {"Amazon", 12},
+        {"Ant", 3},
+        {"Cardinal", 7},
+        {"Hungry", 3},
+        {"Kamikaze", 2},
+        {"Nuke", 5},
+        {"PawnWGun", 3},
+        {"PirateShip", 5},
+        {"Pope", 6},
+        {"Spy", 6},
+        {"Rogue", 4},
+        {"Wizard", 5},
+        {"ZombiePawn", 4}
     };
 
     public static readonly HashSet<String> LifelinePieces = new HashSet<string> { "StandardKing" };
