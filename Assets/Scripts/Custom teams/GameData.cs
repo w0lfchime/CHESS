@@ -7,6 +7,7 @@ public class GameData : MonoBehaviour
 	public static GameData Instance { get; private set; }
 
 	[Header("Teams")]
+	public Dictionary<string, string[]> teams = new Dictionary<string, string[]>();
 	public List<string[]> teamList = new List<string[]>();
 	public List<string> teamNames = new List<string>();
 

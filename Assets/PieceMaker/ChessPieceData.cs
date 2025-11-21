@@ -21,7 +21,9 @@ public enum ActionTrait
 {
     //conditional traits
     remove_unselected = 0,
-    remove_unselected_inline = 12,
+    remove_unselected_far = 12,
+    remove_unselected_line = 18,
+    remove_if_unloaded = 16,
 
     apply_to_empty_space = 2,
     apply_to_ownteam_space = 3,
@@ -37,6 +39,9 @@ public enum ActionTrait
     //traits that do something
     spawn_water = 8,
     command_killpiece = 9,
+    command_removetile = 14,
+    command_reload = 15,
+    command_respawn = 17,
 
     spawn_explosion_effect = 10,
 

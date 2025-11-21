@@ -28,6 +28,7 @@ public abstract class ChessPiece : MonoBehaviour
     public int currentX;
     public int currentY;
     public int moves;
+    public Tile originalTile;
     public GameObject deathEffect;
     [SerializeField] private String _id;
     public String ID
@@ -62,13 +63,14 @@ public abstract class ChessPiece : MonoBehaviour
     protected Vector3 targetScale = new Vector3(1, 1, 1);
     private float boardY;
 
+    private bool dead;
+
     private void Awake()
     {
         meshFilter = GetComponent<MeshFilter>();
         transform.rotation = Quaternion.Euler((team == Team.Black) ? Vector3.zero : new Vector3(0f, 180f, 0f));
         PieceTags = new();
         PieceBehaviors = new();
-        this.boardY = GameManager.Instance.Board.transform.position.y;
         SetupPiece();
     }
 
@@ -102,31 +104,38 @@ public abstract class ChessPiece : MonoBehaviour
         currentTile = tile;
 
         targetPosition = currentTile.transform.position;
-        targetPosition.y = boardY;
+        targetPosition.y = currentTile.gameObject.transform.position.y;
     }
 
     public void Kill()
     {
-        if (deathEffect != null) Instantiate(deathEffect, transform.position, Quaternion.identity);
-
-        if (_isLifeline)
+        if(!dead)
         {
-            ChessBoard2 board = GameObject.Find("ChessBoard").GetComponent<ChessBoard2>();
+            dead = true;
+            ChessBoard2.Instance.DeathTrigger(this);
+            currentTile.RemovePiece(this);
 
-            if (team == Team.White)
+            if (deathEffect != null) Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+            if (_isLifeline)
             {
-                // board.deadWhitePieces.Add(this);
-                board.DisplayVictory(1);
+                ChessBoard2 board = GameObject.Find("ChessBoard").GetComponent<ChessBoard2>();
+
+                if (team == Team.White)
+                {
+                    // board.deadWhitePieces.Add(this);
+                    board.DisplayVictory(1);
+                }
+                else
+                {
+                    // board.deadBlackPieces.Add(this);
+                    board.DisplayVictory(0);
+                }
             }
-            else
-            {
-                // board.deadBlackPieces.Add(this);
-                board.DisplayVictory(0);
-            }
+            
+
+            Destroy(gameObject, .01f);
         }
-        
-
-        Destroy(gameObject, .01f);
     }
 
     private void Update()

@@ -1087,6 +1087,8 @@ MonoBehaviour:
     prefab: {fileID: 4026744677435548049, guid: 2760f4b10200f134ab7cb3b35384191d, type: 3}
   - id: FibPawn
     prefab: {fileID: 7009996306650167107, guid: d101774788e0547409b4624cf7bd3b08, type: 3}
+  - id: ZombiePawn
+    prefab: {fileID: 7009996306650167107, guid: 458b2786cf09cf6478d5211541f6fdbd, type: 3}
 --- !u!23 &330483919
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1173,7 +1175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &365488707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3260,7 +3262,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092958619}
-  m_Mesh: {fileID: -5495902117074765545, guid: 904ccad198e3ae64cbaa0470f1bd65bf, type: 3}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1092958622
 Transform:
   m_ObjectHideFlags: 0
@@ -3269,13 +3271,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092958619}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -2.6075, z: 0}
-  m_LocalScale: {x: 119.69, y: 119.69, z: 114.24295}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.85, z: 0}
+  m_LocalScale: {x: 2.23, y: 2.23, z: 2.23}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1806641029}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1144408910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3631,7 +3633,7 @@ MonoBehaviour:
   springStrength: 500
   damping: 25
   overshootFactor: 0.2
-  lockYToStart: 1
+  increaseY: 0
   inactivityDelay: 1
   idleSpeedThreshold: 0.01
   fadeOutSeconds: 0.75
@@ -9509,7 +9511,7 @@ MonoBehaviour:
   teamNames: []
   whiteTeamIndex: 0
   blackTeamIndex: 0
-  map: {fileID: 0}
+  map: {fileID: 11400000, guid: fc7bf3fa28035a745a9fcb7135c1eaf7, type: 2}
 --- !u!23 &1609172982
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10150,7 +10152,7 @@ MonoBehaviour:
   springStrength: 500
   damping: 50
   overshootFactor: 0.2
-  lockYToStart: 0
+  increaseY: 4
   inactivityDelay: 1
   idleSpeedThreshold: 0.01
   fadeOutSeconds: 0.75
