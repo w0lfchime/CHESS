@@ -16,7 +16,7 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        image = gameObject.GetComponent<Image>();
+        image = gameObject.transform.GetChild(0).GetComponent<Image>();
         gameData = GameObject.Find("GameData").GetComponent<GameData>();
         titleScreenButtons = GameObject.Find("TitleScreenButtons").GetComponent<TitleScreenButtons>();
         
