@@ -2,6 +2,7 @@ using System;
 //using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
@@ -15,7 +16,7 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        image = gameObject.GetComponent<Image>();
+        image = gameObject.transform.GetChild(0).GetComponent<Image>();
         gameData = GameObject.Find("GameData").GetComponent<GameData>();
         titleScreenButtons = GameObject.Find("TitleScreenButtons").GetComponent<TitleScreenButtons>();
         
@@ -38,21 +39,24 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
 
             if (dropped.tag == "Draggable Piece" && !(titleScreenButtons.matValue - mat + PieceProperties.PieceValues[pieceData.pieceId] > titleScreenButtons.maxMaterial))
             {
-                if (titleScreenButtons.lifelineCount() > 0 && (pieceData.pieceId == "StandardKing"))
+                if (titleScreenButtons.lifelineCount() > 0 && (pieceData.pieceId == "StandardKing" || pieceData.pieceId == "MpregKing"))
                 {
                     titleScreenButtons.editMatTextStuff("Too many lifelines");
                 }
                 else
                 {
                     titleScreenButtons.tempTeam[slotNum] = pieceData.pieceId;
+                    int currentMat = mat * -1;
 
                     titleScreenButtons.matValue -= mat;
                     mat = PieceProperties.PieceValues[pieceData.pieceId];
                     titleScreenButtons.matValue += mat;
+                    currentMat += mat;
 
                     image.sprite = pieceData.sprite;
 
                     titleScreenButtons.updateMatText();
+                    titleScreenButtons.editMatTextNotError(pieceData.name + " " + ((currentMat >= 0) ? "+" + currentMat : currentMat.ToString()));
                 }
                 
             }

@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
+  audioRange: 0000000000000000
   currentX: 0
   currentY: 0
   moves: 0
@@ -110,4 +111,5 @@ MonoBehaviour:
   pieceType: 0
   IsTileOccupant: 1
   currentTile: {fileID: 0}
+  meshFilter: {fileID: 0}
   chessPieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}

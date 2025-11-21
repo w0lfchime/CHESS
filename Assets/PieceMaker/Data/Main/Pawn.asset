@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: Pawn
   m_EditorClassIdentifier: 
-  name: NoNameSet
+  pieceName: Pawn
   model: {fileID: -6005560307962694990, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
   model_scale_multiplier: 1
+  description: NoDescriptionSet
+  image: {fileID: 21300000, guid: e0043f2ea8c939e4a9a01748a569869b, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11

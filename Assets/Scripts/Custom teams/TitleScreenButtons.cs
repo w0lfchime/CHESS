@@ -25,9 +25,12 @@ public class TitleScreenButtons : MonoBehaviour
     public GameObject how2ChessMenu;
     public GameObject teamContent;
     public GameObject slotPrefab;
+    public GameObject creditsMenu;
     public GameData gameData;
     public TMP_Dropdown whiteDropDown;
     public TMP_Dropdown blackDropDown;
+    public AudioClip[] titleScreenMusic;
+    public AudioSource musicSource;
     public string[] tempTeam = new string[16];
     public List<MapData> mapList = new List<MapData>();
     public int maxMaterial = 39;
@@ -67,12 +70,26 @@ public class TitleScreenButtons : MonoBehaviour
     public void MoveToCollections()
     {
         collectionsMenu.SetActive(true);
+        musicSource.clip = titleScreenMusic[1];
+        musicSource.Play();
         mainMenu.SetActive(false);
     }
     public void MoveTOHow2()
     {
         how2ChessMenu.SetActive(true);
         mainMenu.SetActive(false);
+    }
+
+    public void MoveToCredits()
+    {
+        creditsMenu.SetActive(true);
+        mainMenu.SetActive(false);
+    }
+
+    public void MoveOffCredits()
+    {
+        creditsMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     public void StartGame()
@@ -149,6 +166,13 @@ public class TitleScreenButtons : MonoBehaviour
         insultScript.DisplayRandomInsult();
     }
 
+    public void BackChangeMusic()
+    {
+        BackButton();
+        musicSource.clip = titleScreenMusic[0];
+        musicSource.Play();
+    }
+
     public void SinglePlayerBUtton()
     {
         insultScript.insultText.text = "Not in this demo dummy.";
@@ -184,6 +208,9 @@ public class TitleScreenButtons : MonoBehaviour
         }
         else
         {
+            StopAllCoroutines();
+            matText.color = Color.white;
+
             if (name.Length <= 1)
             {
                 StartCoroutine(showErrorText("Name too short"));
@@ -255,8 +282,17 @@ public class TitleScreenButtons : MonoBehaviour
     public void editMatTextStuff(string error)
     {
         Debug.Log("Started");
+        StopAllCoroutines();
+        matText.color = Color.white;
         StartCoroutine(flashMatText(1));
         StartCoroutine(showErrorText(error));
+    }
+
+    public void editMatTextNotError(string text)
+    {
+        StopAllCoroutines();
+        matText.color = Color.white;
+        StartCoroutine(showErrorText(text));
     }
 
     public void updateMatText()
@@ -280,7 +316,7 @@ public class TitleScreenButtons : MonoBehaviour
 
         for (int i = 0; i < 16; i++)
         {
-            if (tempTeam[i] != null && tempTeam[i] == "StandardKing")
+            if (tempTeam[i] != null && tempTeam[i] == "StandardKing" || tempTeam[i] == "MpregKing")
             {
                 lifeLineCount++;
             }
@@ -291,6 +327,7 @@ public class TitleScreenButtons : MonoBehaviour
 
     public IEnumerator showErrorText(string error)
     {
+
         errorTextText.text = error;
         errorText.SetActive(true);
         yield return new WaitForSeconds(2f);

@@ -12,11 +12,13 @@ public class MapData : ScriptableObject
     public string scene;
     public int height = 8;
     public int width = 8;
+
+    
     [HideInInspector]
     public int[] nullTiles;
     [HideInInspector]
     public float[] tileHeights;
-    [HideInInspector]
+    // [HideInInspector]
 
     // These vars hold the top left and bottom right coords of where pieces will spawn
 
