@@ -1221,7 +1221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -193.99994, y: -43.400024}
+  m_AnchoredPosition: {x: -193.99992, y: -43.400017}
   m_SizeDelta: {x: -444.715, y: -101.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127503228
@@ -4582,164 +4582,166 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
     - {fileID: 21300000, guid: 45dacfa31abdeee4fa932828358b8734, type: 3}
     pieces:
-    - blackIcon: {fileID: 21300000, guid: 74e2e85aa1bf1f046a9ecfcc504ad10a, type: 3}
-      whiteIcon: {fileID: 21300000, guid: e0043f2ea8c939e4a9a01748a569869b, type: 3}
+    - blackIcon: {fileID: 21300000, guid: c57c8ddbbf5bc9e4795f87446c9ba12f, type: 3}
+      whiteIcon: {fileID: 21300000, guid: c57c8ddbbf5bc9e4795f87446c9ba12f, type: 3}
       name: Amazon
-      tagLine: 
+      tagLine: A mighty warrior
       materialValue: 12
-      description: 
+      description: A soldier who only knows war. A death machine.
       pieceObject: {fileID: -4994612650314603349, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    - blackIcon: {fileID: 21300000, guid: cf37b841602955c4dba85d378565e590, type: 3}
-      whiteIcon: {fileID: 21300000, guid: ec24d667eeade3949b2a7d593c36da83, type: 3}
+    - blackIcon: {fileID: 21300000, guid: b65be8f3554e4444c9d1dcd317302eb9, type: 3}
+      whiteIcon: {fileID: 21300000, guid: b65be8f3554e4444c9d1dcd317302eb9, type: 3}
       name: Ant
-      tagLine: 
+      tagLine: Just an ant
       materialValue: 3
-      description: 
+      description: This guy will move at random. Good luck.
       pieceObject: {fileID: -4175768614775622670, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 72e82141817f936418da174ff57eb4db, type: 2}
     - blackIcon: {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
       whiteIcon: {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
       name: Boykisser
-      tagLine: 
+      tagLine: You like kissing boys?
       materialValue: 6
-      description: 
+      description: Likes long walks. Reading books. Kissing BOYS.
       pieceObject: {fileID: 8740901809286357084, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 1049cac099dc5664aa4ef2e89446f2ec, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 52f97005d618fdd459c20bb3138751db, type: 3}
-      whiteIcon: {fileID: 21300000, guid: 501595795ac56b14685470e9097a9097, type: 3}
+    - blackIcon: {fileID: 21300000, guid: 51817c9dce33d6049adef85960944e83, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 51817c9dce33d6049adef85960944e83, type: 3}
       name: Cardinal
-      tagLine: 
+      tagLine: Like the pope, but red
       materialValue: 7
-      description: 
+      description: A man of high religious authority. Cross him and you will get
+        smitten..
       pieceObject: {fileID: -6436994527706703880, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 8705316d0405e6d489bb69d58532225d, type: 3}
-      whiteIcon: {fileID: 21300000, guid: 8705316d0405e6d489bb69d58532225d, type: 3}
+    - blackIcon: {fileID: 21300000, guid: 646ef8d77e663be429428539aff434a9, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 646ef8d77e663be429428539aff434a9, type: 3}
       name: Checkers
-      tagLine: 
+      tagLine: King me.
       materialValue: 3
-      description: 
+      description: The superior game, sucked through a VG Dimension.
       pieceObject: {fileID: 653439950732891744, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: b9ef2c3ab912357449ce0cddd1bf0a65, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
       name: Fibonacci
-      tagLine: 
+      tagLine: 0, 1, 1, 2, 3, 5, 8...
       materialValue: 4
-      description: 
+      description: Moves in the golden ratio. You WILL get ratio'd.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 45dacfa31abdeee4fa932828358b8734, type: 3}
       whiteIcon: {fileID: 21300000, guid: 45dacfa31abdeee4fa932828358b8734, type: 3}
       name: Frank
-      tagLine: 
+      tagLine: Just Frank
       materialValue: 1
-      description: 
+      description: He's just Frank.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 6719a3d6dc6239348b0321dee0143f62, type: 3}
       whiteIcon: {fileID: 21300000, guid: 6719a3d6dc6239348b0321dee0143f62, type: 3}
       name: Froggy
-      tagLine: 
+      tagLine: Ribbit
       materialValue: 3
-      description: 
+      description: Frog likes jumping. Hop to uh.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 51e1c4864ee539a408baf83f673d3031, type: 3}
       whiteIcon: {fileID: 21300000, guid: 51e1c4864ee539a408baf83f673d3031, type: 3}
-      name: Hornet
-      tagLine: 
+      name: Wasp
+      tagLine: Definitely NOT hornet
       materialValue: 8
-      description: 
+      description: Silksong is love, silksong is life. I would die for skong.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}
       name: Hungry
-      tagLine: 
+      tagLine: How hungry?
       materialValue: 3
-      description: 
+      description: This guy eats anything, pieces, tiles, boykissers. You name it.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: e1aced1bf4d1555499d17f7c520fce93, type: 3}
+      whiteIcon: {fileID: 21300000, guid: e1aced1bf4d1555499d17f7c520fce93, type: 3}
       name: Kamikaze
-      tagLine: 
+      tagLine: I'm boutta blow.
       materialValue: 2
-      description: 
+      description: Taking one for the team, this guy knows how to get stuff done.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: 091b1180cb3f5ec40afacaac454eb3cc, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 091b1180cb3f5ec40afacaac454eb3cc, type: 3}
       name: Nuke
-      tagLine: 
+      tagLine: It's giving... Oppenheimer
       materialValue: 5
-      description: 
+      description: This piece does not move, will destroy everything in its path.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: 2ff9e27bedb500a4c9f3911da070543b, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 2ff9e27bedb500a4c9f3911da070543b, type: 3}
       name: Pawn With a Gun
-      tagLine: 
+      tagLine: Jonathon no....
       materialValue: 3
-      description: 
+      description: This pawn takes no shit from no one. Prepare to meet your maker.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: a055e3e57a504c340a581049a1d0c95b, type: 3}
+      whiteIcon: {fileID: 21300000, guid: a055e3e57a504c340a581049a1d0c95b, type: 3}
       name: Pirate Ship
-      tagLine: 
+      tagLine: One Piece!!!!!
       materialValue: 5
-      description: 
+      description: Set sail on a voyage laddie. Fire at will!
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}
       name: Pope
-      tagLine: 
+      tagLine: Blessed be upon ye.
       materialValue: 6
-      description: 
+      description: In the name of the father, the son, and the holy bishop, checkmate
+        this fool.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: 4f8412b3f8f893348b5e20154ea8da58, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 4f8412b3f8f893348b5e20154ea8da58, type: 3}
       name: Spy
-      tagLine: 
+      tagLine: Incognito
       materialValue: 6
-      description: 
+      description: There's a spy? Where? It could be any one of us...
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: ac143085ec3ba5d489d5cddbc80d95c4, type: 3}
+      whiteIcon: {fileID: 21300000, guid: ac143085ec3ba5d489d5cddbc80d95c4, type: 3}
       name: The Rogue
-      tagLine: 
+      tagLine: One
       materialValue: 4
-      description: 
+      description: Hiding in the shadows, lurking at night, ready to pounce.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 9d317301de74c904dad81902c88cdc1c, type: 3}
       whiteIcon: {fileID: 21300000, guid: 9d317301de74c904dad81902c88cdc1c, type: 3}
       name: The Sink
-      tagLine: 
+      tagLine: A sink? Really?
       materialValue: 5
-      description: 
+      description: Why is this a piece in the game, this is stupid.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: e8c53a6552729794aad98969ab5425d7, type: 3}
+      whiteIcon: {fileID: 21300000, guid: e8c53a6552729794aad98969ab5425d7, type: 3}
       name: The Wizard
-      tagLine: 
+      tagLine: It's wizarding time #!&&!#$
       materialValue: 5
-      description: 
+      description: Merlin, Gandalf, Houdini, got nothing on this guy.
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
-    - blackIcon: {fileID: 21300000, guid: 0bdebe0a86a666046ba85926e1823321, type: 3}
-      whiteIcon: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
+    - blackIcon: {fileID: 21300000, guid: eae9b550d78e63b40b26f5d5d29b0914, type: 3}
+      whiteIcon: {fileID: 21300000, guid: eae9b550d78e63b40b26f5d5d29b0914, type: 3}
       name: Zombie Pawn
-      tagLine: 
+      tagLine: You've got red on you.
       materialValue: 4
-      description: 
+      description: Zombie is hungry, zombie wants blood, brainzz....
       pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
   whitePieceMaterial: {fileID: 2100000, guid: 711d811e19862824396c6595f2e9477b, type: 2}
