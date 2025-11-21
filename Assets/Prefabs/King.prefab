@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  audioRange: 0000000006000000
+  audioRange: 0000000000000000
   currentX: 0
   currentY: 0
   moves: 0

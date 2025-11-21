@@ -28,6 +28,8 @@ public class TitleScreenButtons : MonoBehaviour
     public GameData gameData;
     public TMP_Dropdown whiteDropDown;
     public TMP_Dropdown blackDropDown;
+    public AudioClip[] titleScreenMusic;
+    public AudioSource musicSource;
     public string[] tempTeam = new string[16];
     public List<MapData> mapList = new List<MapData>();
     public int maxMaterial = 39;
@@ -66,6 +68,8 @@ public class TitleScreenButtons : MonoBehaviour
     public void MoveToCollections()
     {
         collectionsMenu.SetActive(true);
+        musicSource.clip = titleScreenMusic[1];
+        musicSource.Play();
         mainMenu.SetActive(false);
     }
     public void MoveTOHow2()
@@ -158,6 +162,13 @@ public class TitleScreenButtons : MonoBehaviour
         mainMenu.SetActive(true);
 
         insultScript.DisplayRandomInsult();
+    }
+
+    public void BackChangeMusic()
+    {
+        BackButton();
+        musicSource.clip = titleScreenMusic[0];
+        musicSource.Play();
     }
 
     public void SinglePlayerBUtton()
