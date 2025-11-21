@@ -122,7 +122,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Size: 9.4
+    - _Size: 18.95
     - _Smoothness: 0.515
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
@@ -137,7 +137,7 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     - _difference: 0.642
-    - _heightSize: 11.59
+    - _heightSize: 10.2
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal.Internal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class TitleScreenButtons : MonoBehaviour
 {
@@ -39,6 +40,13 @@ public class TitleScreenButtons : MonoBehaviour
     {
         gameData = GameObject.Find("GameData").GetComponent<GameData>();
         gameData.map = mapList[0];
+        LoadTeams();
+    }
+
+    public void DeleteAllTeams()
+    {
+        PlayerPrefs.DeleteAll();
+        gameData.teams.Clear();
     }
     public void MoveToTeamCreation()
     {
@@ -58,8 +66,8 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void MoveToTeamSelection()
     {
-        blackDropDown.AddOptions(gameData.teamNames);
-        whiteDropDown.AddOptions(gameData.teamNames);
+        blackDropDown.AddOptions(gameData.teams.Keys.ToList());
+        whiteDropDown.AddOptions(gameData.teams.Keys.ToList());
 
         teamSelectMenu.SetActive(true);
         mainMenu.SetActive(false);
@@ -92,7 +100,9 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void StartGame()
     {
-        if (gameData.teamNames.Count != 0)
+        SetWhiteTeam(0);
+        SetBlackTeam(0);
+        if (gameData.teams.Keys.Count != 0)
         {
             SceneManager.LoadScene(gameData.map.scene);    
         }
@@ -112,14 +122,14 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void SetWhiteTeam(int team)
     {
-        Debug.Log(team);
-        gameData.whiteTeamIndex = team;
+        Debug.Log(whiteDropDown.options[whiteDropDown.value].text);
+        gameData.whiteTeamName = whiteDropDown.options[whiteDropDown.value].text;
     }
 
     public void SetBlackTeam(int team)
     {
-        Debug.Log(team);
-        gameData.blackTeamIndex = team;
+        Debug.Log(blackDropDown.options[blackDropDown.value].text);
+        gameData.blackTeamName = blackDropDown.options[blackDropDown.value].text;
     }
 
     public void SetMap(int index)
@@ -183,21 +193,25 @@ public class TitleScreenButtons : MonoBehaviour
 
         if (lifelineCount() == 1 && !(name.Length <= 1))
         {
-            string[] copy = new string[16];
-
+            string[] copy = new string[17];
+            copy[0] = name;
             for (int i = 0; i < 16; i++)
             {
-                copy[i] = tempTeam[i];
+                copy[i+1] = tempTeam[i];
             }
 
-            if (checkName(name) == -1)
+            if (nameIndex(name) == -1)
             {
-                gameData.teamList.Add(copy);
-                gameData.teamNames.Add(name);
+                gameData.teams.Add(name, copy);
+                PlayerPrefs.SetString(getNumber().ToString(), string.Join(':', copy));
+                print(PlayerPrefs.GetString(getNumber().ToString()));
             }
             else
             {
-                gameData.teamList[checkName(name)] = copy;
+                string index = nameIndex(name).ToString();
+                PlayerPrefs.DeleteKey(index);
+                gameData.teams[name] = copy;
+                PlayerPrefs.SetString(index, string.Join(':', copy));
             }
         }
         else
@@ -221,17 +235,46 @@ public class TitleScreenButtons : MonoBehaviour
 
     }
 
-    public int checkName(string name)
+    public void LoadTeams()
     {
-        for (int i = 0; i < gameData.teamNames.Count; i++)
+        for(int i = 0; i < getNumber(); i++)
         {
-            if (gameData.teamNames[i] == name)
+            string[] teamData = PlayerPrefs.GetString(i.ToString()).Split(':');
+            string name = teamData[0];
+            string[] team = teamData.Skip(1).ToArray();
+            gameData.teams.Add(name, team);
+        }
+    }
+
+    public int nameIndex(string name)
+    {
+        bool search = true;
+        int index = 0;
+        bool hasname = false;
+        while(search)
+        {
+            if(!PlayerPrefs.HasKey(index.ToString())) break;
+            if(name == PlayerPrefs.GetString(index.ToString()).Split(':')[0])
             {
-                return i;
+                search = false;
+                hasname = true;
+                return index;
             }
+            index++;
         }
 
         return -1;
+    }
+
+    public int getNumber()
+    {
+        int index = 0;
+        while(PlayerPrefs.HasKey(index.ToString()))
+        {
+            index++;
+        }
+
+        return index;
     }
 
     public void updateCollectionMenu(GameObject clicked)

@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4026744677435548049}
-  m_Mesh: {fileID: -5495902117074765545, guid: 60abd8a9eb5c508468a9a62188ec7981, type: 3}
+  m_Mesh: {fileID: 4536773283001372330, guid: f834ba5e7e9d5aa47b4436e1212950fd, type: 3}
 --- !u!23 &131375348773600245
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100,14 +100,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
+  audioRange: 0000000000000000
   currentX: 0
   currentY: 0
   moves: 0
-  deathEffect: {fileID: 8081762785826782278, guid: 26eaf180a9e333541ac1ee595b6ca8c4, type: 3}
-  _id: 
+  originalTile: {fileID: 0}
+  deathEffect: {fileID: 919132149155446097, guid: f834ba5e7e9d5aa47b4436e1212950fd, type: 3}
+  _id: KitchenSink
   _value: 0
   _isLifeline: 0
   pieceType: 0
   IsTileOccupant: 1
   currentTile: {fileID: 0}
-  chessPieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
+  meshFilter: {fileID: 0}
+  chessPieceData: {fileID: 11400000, guid: 51c10ab70b111b847ac7cba8ca97289a, type: 2}

@@ -7,12 +7,13 @@ public class GameData : MonoBehaviour
 	public static GameData Instance { get; private set; }
 
 	[Header("Teams")]
+	public Dictionary<string, string[]> teams = new Dictionary<string, string[]>();
 	public List<string[]> teamList = new List<string[]>();
 	public List<string> teamNames = new List<string>();
 
 	[Header("Indices")]
-	public int whiteTeamIndex = 0;
-	public int blackTeamIndex = 0;
+	public string whiteTeamName = "";
+	public string blackTeamName = "";
 	public MapData map;
 
 	private void Awake()
