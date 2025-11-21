@@ -9,6 +9,7 @@ public class pieceInfoDisplay : MonoBehaviour
     public static pieceInfoDisplay instance;
     public PieceInfoText pieceInfoText;
     public pieceInfoPicture pieceInfoPicture;
+    public PieceInfoName pieceInfoName;
     public static bool inDisplay = false;
     private static bool isAnimating = false;
     public UnityEngine.Vector3 originalPosition;
@@ -42,6 +43,7 @@ public class pieceInfoDisplay : MonoBehaviour
         StartCoroutine(moveStep(1));
         pieceInfoText.disTex(pieceData.description);
         pieceInfoPicture.setPicture(pieceData.image);
+        pieceInfoName.disTex(pieceData.pieceName);
     }
     public void unDisplay()
     {

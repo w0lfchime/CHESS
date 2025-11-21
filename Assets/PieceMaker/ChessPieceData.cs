@@ -3,6 +3,8 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
+using Unity.VisualScripting;
+using System.IO;
 
 //All the action triggers. The chess board activates the triggers based on what is happening in the game.
 public enum TriggerType
@@ -91,8 +93,7 @@ public enum Elements { CanMove, CantMove }
 [CreateAssetMenu(fileName = "New Chess Piece Data", menuName = "Chess/ChessPieceData")]
 public class ChessPieceData : ScriptableObject
 {
-
-    public string name = "NoNameSet";
+    public string pieceName = "NewChessPiece";
     public Mesh model;
     public float model_scale_multiplier;
     public String description = "NoDescriptionSet";
@@ -127,7 +128,7 @@ public class ChessPieceDataEditor : Editor
     {
         serializedObject.Update();
         ChessPieceData script = (ChessPieceData)target;
-
+        script.pieceName = EditorGUILayout.TextField("Piece Name", script.pieceName);
         //extra variables
         script.model = (Mesh)EditorGUILayout.ObjectField(
             "3D Model",
