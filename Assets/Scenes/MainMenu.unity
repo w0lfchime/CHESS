@@ -389,6 +389,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2ff9e27bedb500a4c9f3911da070543b, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (21)
@@ -417,6 +421,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2ff9e27bedb500a4c9f3911da070543b, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: PawnWGun
@@ -655,6 +663,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a055e3e57a504c340a581049a1d0c95b, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (22)
@@ -683,6 +695,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a055e3e57a504c340a581049a1d0c95b, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: PirateShip
@@ -3789,8 +3805,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 701683815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.25849319}
+  m_AnchorMax: {x: 1, y: 0.99999994}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4165,8 +4181,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 253.433, y: 10.533997}
-  m_SizeDelta: {x: 293.146, y: 340.932}
+  m_AnchoredPosition: {x: 237.38, y: 10.533997}
+  m_SizeDelta: {x: 261.03, y: 340.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &383254863
 MonoBehaviour:
@@ -4334,6 +4350,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e8c53a6552729794aad98969ab5425d7, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (26)
@@ -4362,6 +4382,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e8c53a6552729794aad98969ab5425d7, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Wizard
@@ -4428,7 +4452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5113,6 +5137,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (11)
@@ -5141,6 +5169,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: FibPawn
@@ -6237,6 +6269,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 091b1180cb3f5ec40afacaac454eb3cc, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (20)
@@ -6265,6 +6301,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 091b1180cb3f5ec40afacaac454eb3cc, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Nuke
@@ -6503,6 +6543,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4f8412b3f8f893348b5e20154ea8da58, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (24)
@@ -6531,6 +6575,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4f8412b3f8f893348b5e20154ea8da58, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Spy
@@ -6597,7 +6645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 90
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9912,136 +9960,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
   m_PrefabInstance: {fileID: 289211506}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &829790101
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1406354773}
-    m_Modifications:
-    - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_Name
-      value: DraggableUIPiece (23)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: pieceId
-      value: Pope
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -365
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
---- !u!224 &829790102 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
-  m_PrefabInstance: {fileID: 829790101}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &835218802
 GameObject:
   m_ObjectHideFlags: 0
@@ -10473,7 +10391,7 @@ PrefabInstance:
     - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8705316d0405e6d489bb69d58532225d, type: 3}
+      objectReference: {fileID: 21300000, guid: 646ef8d77e663be429428539aff434a9, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece
@@ -10505,7 +10423,7 @@ PrefabInstance:
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8705316d0405e6d489bb69d58532225d, type: 3}
+      objectReference: {fileID: 21300000, guid: 646ef8d77e663be429428539aff434a9, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Checkers
@@ -11953,6 +11871,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c6e267798abb8294893ae5bb7685d4f9, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (10)
@@ -11981,6 +11903,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c6e267798abb8294893ae5bb7685d4f9, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: MpregKing
@@ -12155,6 +12081,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e1aced1bf4d1555499d17f7c520fce93, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (19)
@@ -12183,6 +12113,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e1aced1bf4d1555499d17f7c520fce93, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Kamikaze
@@ -13299,6 +13233,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 51817c9dce33d6049adef85960944e83, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (17)
@@ -13327,6 +13265,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 51817c9dce33d6049adef85960944e83, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Cardinal
@@ -15737,7 +15679,6 @@ RectTransform:
   - {fileID: 571669683}
   - {fileID: 54793150}
   - {fileID: 79376785}
-  - {fileID: 829790102}
   - {fileID: 577790208}
   - {fileID: 2033175281}
   - {fileID: 396647409}
@@ -15747,7 +15688,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.000022913588}
-  m_SizeDelta: {x: 0, y: 340.93}
+  m_SizeDelta: {x: 0, y: 459.78}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1406354774
 MonoBehaviour:
@@ -15771,8 +15712,8 @@ MonoBehaviour:
   m_StartAxis: 0
   m_CellSize: {x: 50, y: 50}
   m_Spacing: {x: 5, y: 5}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_Constraint: 1
+  m_ConstraintCount: 4
 --- !u!1 &1449019232
 GameObject:
   m_ObjectHideFlags: 0
@@ -17875,6 +17816,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (18)
@@ -17903,6 +17848,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Hungry
@@ -19761,8 +19710,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 351072254}
   m_HandleRect: {fileID: 351072253}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 0.99999976
+  m_Size: 0.74150676
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21276,6 +21225,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eae9b550d78e63b40b26f5d5d29b0914, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (27)
@@ -21304,6 +21257,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eae9b550d78e63b40b26f5d5d29b0914, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: ZombiePawn
@@ -21370,11 +21327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 35
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -420
+      value: -365
       objectReference: {fileID: 0}
     - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21406,6 +21363,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b65be8f3554e4444c9d1dcd317302eb9, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (16)
@@ -21434,6 +21395,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b65be8f3554e4444c9d1dcd317302eb9, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Ant
@@ -22635,6 +22600,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ac143085ec3ba5d489d5cddbc80d95c4, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (25)
@@ -22663,6 +22632,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ac143085ec3ba5d489d5cddbc80d95c4, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Rogue
@@ -22729,7 +22702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 145
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8336067042001468828, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -23532,6 +23505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c57c8ddbbf5bc9e4795f87446c9ba12f, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (15)
@@ -23560,6 +23537,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c57c8ddbbf5bc9e4795f87446c9ba12f, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Amazon
@@ -23662,6 +23643,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406354773}
     m_Modifications:
+    - target: {fileID: 4671581527359447842, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}
     - target: {fileID: 4843730174075593309, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_Name
       value: DraggableUIPiece (13)
@@ -23690,6 +23675,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: pieceId
       value: Pope
