@@ -202,6 +202,7 @@ public class TitleScreenButtons : MonoBehaviour
         }
         else
         {
+            StopAllCoroutines();
             if (name.Length <= 1)
             {
                 StartCoroutine(showErrorText("Name too short"));
@@ -244,8 +245,15 @@ public class TitleScreenButtons : MonoBehaviour
     public void editMatTextStuff(string error)
     {
         Debug.Log("Started");
+        StopAllCoroutines();
         StartCoroutine(flashMatText(1));
         StartCoroutine(showErrorText(error));
+    }
+
+    public void editMatTextNotError(string text)
+    {
+        StopAllCoroutines();
+        StartCoroutine(showErrorText(text));
     }
 
     public void updateMatText()
@@ -280,6 +288,7 @@ public class TitleScreenButtons : MonoBehaviour
 
     public IEnumerator showErrorText(string error)
     {
+
         errorTextText.text = error;
         errorText.SetActive(true);
         yield return new WaitForSeconds(2f);

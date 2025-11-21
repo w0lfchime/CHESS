@@ -2,6 +2,7 @@ using System;
 //using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
@@ -45,14 +46,17 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
                 else
                 {
                     titleScreenButtons.tempTeam[slotNum] = pieceData.pieceId;
+                    int currentMat = mat * -1;
 
                     titleScreenButtons.matValue -= mat;
                     mat = PieceProperties.PieceValues[pieceData.pieceId];
                     titleScreenButtons.matValue += mat;
+                    currentMat += mat;
 
                     image.sprite = pieceData.sprite;
 
                     titleScreenButtons.updateMatText();
+                    titleScreenButtons.editMatTextNotError((currentMat >= 0) ? "+" + currentMat : currentMat.ToString());
                 }
                 
             }
