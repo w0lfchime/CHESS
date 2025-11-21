@@ -94,6 +94,8 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void StartGame()
     {
+        SetWhiteTeam(0);
+        SetBlackTeam(0);
         if (gameData.teams.Keys.Count != 0)
         {
             SceneManager.LoadScene(gameData.map.scene);    
@@ -114,14 +116,14 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void SetWhiteTeam(int team)
     {
-        Debug.Log(team);
-        gameData.whiteTeamIndex = team;
+        Debug.Log(whiteDropDown.options[whiteDropDown.value].text);
+        gameData.whiteTeamName = whiteDropDown.options[whiteDropDown.value].text;
     }
 
     public void SetBlackTeam(int team)
     {
-        Debug.Log(team);
-        gameData.blackTeamIndex = team;
+        Debug.Log(blackDropDown.options[blackDropDown.value].text);
+        gameData.blackTeamName = blackDropDown.options[blackDropDown.value].text;
     }
 
     public void SetMap(int index)

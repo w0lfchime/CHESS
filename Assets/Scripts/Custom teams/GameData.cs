@@ -12,8 +12,8 @@ public class GameData : MonoBehaviour
 	public List<string> teamNames = new List<string>();
 
 	[Header("Indices")]
-	public int whiteTeamIndex = 0;
-	public int blackTeamIndex = 0;
+	public string whiteTeamName = "";
+	public string blackTeamName = "";
 	public MapData map;
 
 	private void Awake()
