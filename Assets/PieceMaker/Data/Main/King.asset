@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: King
   m_EditorClassIdentifier: 
-  name: NoNameSet
+  pieceName: King
   model: {fileID: 3246882975058678263, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
   model_scale_multiplier: 1
   description: NoDescriptionSet
