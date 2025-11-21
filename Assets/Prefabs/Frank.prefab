@@ -100,14 +100,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
+  audioRange: 0000000000000000
   currentX: 0
   currentY: 0
   moves: 0
+  originalTile: {fileID: 0}
   deathEffect: {fileID: 8081762785826782278, guid: 26eaf180a9e333541ac1ee595b6ca8c4, type: 3}
-  _id: 
+  _id: Frank
   _value: 0
   _isLifeline: 0
   pieceType: 0
   IsTileOccupant: 1
   currentTile: {fileID: 0}
+  meshFilter: {fileID: 0}
   chessPieceData: {fileID: 11400000, guid: 5bdcb9d7f3309ef4996f43c558e29f3f, type: 2}
