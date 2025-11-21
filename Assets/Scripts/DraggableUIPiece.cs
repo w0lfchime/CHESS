@@ -12,6 +12,7 @@ public class DraggableUIPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     public Image image;
     public Sprite sprite;
     public string pieceId;
+    public string name;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

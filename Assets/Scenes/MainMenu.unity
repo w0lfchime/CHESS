@@ -422,6 +422,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Pawn With a Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 2ff9e27bedb500a4c9f3911da070543b, type: 3}
@@ -694,6 +698,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Pirate Ship
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -1221,7 +1229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -193.99992, y: -43.400017}
+  m_AnchoredPosition: {x: -193.99994, y: -43.400024}
   m_SizeDelta: {x: -444.715, y: -101.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127503228
@@ -3140,6 +3148,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Pawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: e0043f2ea8c939e4a9a01748a569869b, type: 3}
@@ -3889,6 +3901,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Wasp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 51e1c4864ee539a408baf83f673d3031, type: 3}
@@ -4381,6 +4397,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Wizard
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -5170,6 +5190,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Fibonacci
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
@@ -5946,6 +5970,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Rook
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 501595795ac56b14685470e9097a9097, type: 3}
@@ -6302,6 +6330,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Nuke
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 091b1180cb3f5ec40afacaac454eb3cc, type: 3}
@@ -6574,6 +6606,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Spy
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -7300,6 +7336,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Bishop
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: a1422d3e1175e4941a00669f97218a71, type: 3}
@@ -7700,6 +7740,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Frog
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -10155,6 +10199,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Queen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1efe229995923164c91c35e53fd6051d, type: 3}
@@ -10288,6 +10336,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Boy Kisser
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
@@ -10419,6 +10471,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Checkers
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -11904,6 +11960,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Pregnant King
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: c6e267798abb8294893ae5bb7685d4f9, type: 3}
@@ -12112,6 +12172,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Kamikaze
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -12542,8 +12606,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -51.3, y: -50}
-  m_SizeDelta: {x: 271.173, y: 50}
+  m_AnchoredPosition: {x: -47.4, y: -46.3}
+  m_SizeDelta: {x: 271.17, y: 36.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1081521422
 CanvasRenderer:
@@ -12603,7 +12667,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -12638,7 +12702,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -99.01569, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.14141062, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13266,6 +13330,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Cardinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 51817c9dce33d6049adef85960944e83, type: 3}
@@ -13683,6 +13751,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Frank
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -17716,6 +17788,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: The Sink
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 9d317301de74c904dad81902c88cdc1c, type: 3}
@@ -17847,6 +17923,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Hungry
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -20617,6 +20697,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: ec24d667eeade3949b2a7d593c36da83, type: 3}
@@ -21258,6 +21342,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Zombi e Pawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: eae9b550d78e63b40b26f5d5d29b0914, type: 3}
@@ -21394,6 +21482,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Ant
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -22633,6 +22725,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Rogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: ac143085ec3ba5d489d5cddbc80d95c4, type: 3}
@@ -22905,6 +23001,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: King
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
@@ -23538,6 +23638,10 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Amazon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: c57c8ddbbf5bc9e4795f87446c9ba12f, type: 3}
@@ -23674,6 +23778,10 @@ PrefabInstance:
     - target: {fileID: 5210704070875179348, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
+      propertyPath: name
+      value: Pope
       objectReference: {fileID: 0}
     - target: {fileID: 6361593571106904587, guid: 082950d2b37156b42a68d2c3cdd7bf50, type: 3}
       propertyPath: sprite

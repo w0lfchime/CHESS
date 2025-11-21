@@ -203,6 +203,8 @@ public class TitleScreenButtons : MonoBehaviour
         else
         {
             StopAllCoroutines();
+            matText.color = Color.white;
+
             if (name.Length <= 1)
             {
                 StartCoroutine(showErrorText("Name too short"));
@@ -246,6 +248,7 @@ public class TitleScreenButtons : MonoBehaviour
     {
         Debug.Log("Started");
         StopAllCoroutines();
+        matText.color = Color.white;
         StartCoroutine(flashMatText(1));
         StartCoroutine(showErrorText(error));
     }
@@ -253,6 +256,7 @@ public class TitleScreenButtons : MonoBehaviour
     public void editMatTextNotError(string text)
     {
         StopAllCoroutines();
+        matText.color = Color.white;
         StartCoroutine(showErrorText(text));
     }
 
@@ -277,7 +281,7 @@ public class TitleScreenButtons : MonoBehaviour
 
         for (int i = 0; i < 16; i++)
         {
-            if (tempTeam[i] != null && tempTeam[i] == "StandardKing")
+            if (tempTeam[i] != null && tempTeam[i] == "StandardKing" || tempTeam[i] == "MpregKing")
             {
                 lifeLineCount++;
             }
