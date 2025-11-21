@@ -783,11 +783,13 @@ MonoBehaviour:
   - {fileID: 4416262150501988080, guid: ab0e55fd4b5c4b5438bc1d84f7d289bc, type: 3}
   - {fileID: 9220435598230958415, guid: cc17b581264d5f040ac590282b43c656, type: 3}
   - {fileID: 8022404987501856287, guid: 170e8504d9406e44ca51fdda660d4b74, type: 3}
+  - {fileID: 4629007307264143066, guid: c7e585b219dad69469815fc9dee1d86e, type: 3}
   environmentBackgroundColors:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0.43081754, g: 1, b: 0.9791049, a: 0}
   - {r: 1, g: 0.89001536, b: 0.27358478, a: 0}
   - {r: 0.39747235, g: 0.5471698, b: 0.5305368, a: 0}
+  - {r: 0.3483446, g: 0.3584906, b: 0.35718983, a: 0}
   environmentParent: {fileID: 893751790}
   mainCamera: {fileID: 1534876041}
 --- !u!4 &274993203
