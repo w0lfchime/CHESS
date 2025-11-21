@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 729318315306308123}
   - component: {fileID: -969099142421124707}
   m_Layer: 0
-  m_Name: Checkers
+  m_Name: Hungry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7009996306650167107}
-  m_Mesh: {fileID: 8314571269056883277, guid: c5bae6c16f8e87849bd2b0fed53c5eac, type: 3}
+  m_Mesh: {fileID: 6048690187724599393, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
 --- !u!23 &729318315306308123
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113,4 +113,4 @@ MonoBehaviour:
   IsTileOccupant: 1
   currentTile: {fileID: 0}
   meshFilter: {fileID: 0}
-  chessPieceData: {fileID: 11400000, guid: f0834b5660e427f4b9a9050111b2a62b, type: 2}
+  chessPieceData: {fileID: 11400000, guid: 3de524c44ab5ed74aa892bba9fa46df7, type: 2}
