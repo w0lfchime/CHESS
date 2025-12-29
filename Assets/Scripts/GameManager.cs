@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Scripting.APIUpdating;
 
 
 public class GameManager : MonoBehaviour
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
 	public Team CurrentTurn { get; private set; } = Team.White;
 	public int turnCount = 0;
 	public bool GamePaused { get; private set; } = false;
+	public bool ranPuzzleMoveOnce = false;
 
 
 	public CanvasGroup DebugUI;
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
 
 	// Stuff for the win screen
 	public GameObject gameEndPanel;
+	public GameObject puzzleFailPanel;
 	public TextMeshProUGUI winText;
 
 	private void Awake()
@@ -69,6 +72,15 @@ public class GameManager : MonoBehaviour
 			Debug.Log("Escape key pressed!");
 			TogglePauseMenu();
 		}
+
+		if(GameData.Instance.isDoingPuzzle)
+		{
+			if(CurrentTurn == Team.Black && !ranPuzzleMoveOnce)
+			{
+				ranPuzzleMoveOnce = true;
+				Board.movePuzzlePiece();
+			}
+		}
 	}
 
 	public void StartGame(Team startingTeam)
@@ -84,23 +96,37 @@ public class GameManager : MonoBehaviour
 
 	public void EndTurn()
 	{
-		// Switch turn
-		CurrentTurn = (CurrentTurn == Team.White) ? Team.Black : Team.White;
+		if(GameData.Instance.isDoingPuzzle && CurrentTurn == Team.White && !Board.checkWhitePuzzle())
+		{
+			Debug.Log("Wrong Move");
+			Board.failedPuzzle();
+		} else
+		{
+			if(CurrentTurn == Team.White)
+			{
+				Board.turns[1]++;
+			}
 
-		turnCount++;
+			// Switch turn
+			CurrentTurn = (CurrentTurn == Team.White) ? Team.Black : Team.White;
+			ranPuzzleMoveOnce = false;
 
-		Debug.Log($"Turn ended. Now it's {CurrentTurn}'s move.");
+			turnCount++;
+		
+			Debug.Log($"Turn ended. Now it's {CurrentTurn}'s move.");
 
-		// Update camera to face the active team
-		if (Camera != null)
-			Camera.SetTurn(CurrentTurn == Team.White ? 1 : 0);
+			// Update camera to face the active team
+			if (Camera != null && !GameData.Instance.isDoingPuzzle)
+				Camera.SetTurn(CurrentTurn == Team.White ? 1 : 0);
 
-		// Later: trigger board highlighting, legal move generation, timers, etc.
+			// Later: trigger board highlighting, legal move generation, timers, etc.
 
-		TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
+			TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
 
-		Board.TileTrigger();
-		Board.TurnSwapTrigger();
+			Board.TileTrigger();
+			Board.TurnSwapTrigger();
+		}
+		
 	}
 
 	public void ResetGame()

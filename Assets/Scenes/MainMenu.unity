@@ -15029,7 +15029,7 @@ MonoBehaviour:
   blackDropDown: {fileID: 1605372169}
   titleScreenMusic:
   - {fileID: 8300000, guid: 7290ca9767550794dae162efdec4f6c0, type: 3}
-  - {fileID: 8300000, guid: aba278c2110fc8d488f82b661c5da801, type: 3}
+  - {fileID: 8300000, guid: 1051c5ccc199d7d48a219b1e09f78663, type: 3}
   musicSource: {fileID: 1931489111}
   tempTeam:
   - 
@@ -15054,7 +15054,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f0e156227594554c95b3d7c978a185c, type: 2}
   - {fileID: 11400000, guid: 3ce34d48c135c6b47b4757246dde0cbe, type: 2}
   - {fileID: 11400000, guid: b1cf13bf2f935784eba550617890b2d1, type: 2}
-  puzzleList: []
+  puzzleList:
+  - {fileID: 11400000, guid: d7927b1c77623eb4c8b38e676a0fcfe3, type: 2}
   maxMaterial: 39
   matValue: 0
   teamOn: 0
@@ -23761,13 +23762,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1225922418}
         m_TargetAssemblyTypeName: TitleScreenButtons, Assembly-CSharp
         m_MethodName: SelectPuzzle
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 0 0
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2008551433

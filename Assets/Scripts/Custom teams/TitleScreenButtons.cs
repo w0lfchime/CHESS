@@ -358,9 +358,12 @@ public class TitleScreenButtons : MonoBehaviour
         return lifeLineCount;
     }
 
-    public void SelectPuzzle(int puzzleNum)
+    public void SelectPuzzle(string nums)
     {
-        gameData.puzzle = puzzleList[puzzleNum];
+        string[] split = nums.Split(" ");
+
+        gameData.puzzle = puzzleList[int.Parse(split[0])];
+        gameData.map = mapList[int.Parse(split[1])];
         gameData.isDoingPuzzle = true;
 
         SceneManager.LoadScene(gameData.map.scene);
