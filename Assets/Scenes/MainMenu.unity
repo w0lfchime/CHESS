@@ -1229,7 +1229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -193.99994, y: -43.400024}
+  m_AnchoredPosition: {x: -193.99997, y: -43.400024}
   m_SizeDelta: {x: -444.715, y: -101.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127503228
@@ -4608,7 +4608,7 @@ MonoBehaviour:
       tagLine: A mighty warrior
       materialValue: 12
       description: A soldier who only knows war. A death machine.
-      pieceObject: {fileID: -4994612650314603349, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 5300173313378442753, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
     - blackIcon: {fileID: 21300000, guid: b65be8f3554e4444c9d1dcd317302eb9, type: 3}
       whiteIcon: {fileID: 21300000, guid: b65be8f3554e4444c9d1dcd317302eb9, type: 3}
@@ -4616,7 +4616,7 @@ MonoBehaviour:
       tagLine: Just an ant
       materialValue: 3
       description: This guy will move at random. Good luck.
-      pieceObject: {fileID: -4175768614775622670, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: -189091167416563541, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
       pieceData: {fileID: 11400000, guid: 72e82141817f936418da174ff57eb4db, type: 2}
     - blackIcon: {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
       whiteIcon: {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
@@ -4624,7 +4624,7 @@ MonoBehaviour:
       tagLine: You like kissing boys?
       materialValue: 6
       description: Likes long walks. Reading books. Kissing BOYS.
-      pieceObject: {fileID: 8740901809286357084, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 4492875915383507461, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: 1049cac099dc5664aa4ef2e89446f2ec, type: 2}
     - blackIcon: {fileID: 21300000, guid: 51817c9dce33d6049adef85960944e83, type: 3}
       whiteIcon: {fileID: 21300000, guid: 51817c9dce33d6049adef85960944e83, type: 3}
@@ -4633,7 +4633,7 @@ MonoBehaviour:
       materialValue: 7
       description: A man of high religious authority. Cross him and you will get
         smitten..
-      pieceObject: {fileID: -6436994527706703880, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: -2230664647641518296, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: c952d891b52a2b044a5404e7b1300faa, type: 2}
     - blackIcon: {fileID: 21300000, guid: 646ef8d77e663be429428539aff434a9, type: 3}
       whiteIcon: {fileID: 21300000, guid: 646ef8d77e663be429428539aff434a9, type: 3}
@@ -4641,7 +4641,7 @@ MonoBehaviour:
       tagLine: King me.
       materialValue: 3
       description: The superior game, sucked through a VG Dimension.
-      pieceObject: {fileID: 653439950732891744, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 7389595336874830697, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: b9ef2c3ab912357449ce0cddd1bf0a65, type: 2}
     - blackIcon: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
       whiteIcon: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
@@ -4649,7 +4649,7 @@ MonoBehaviour:
       tagLine: 0, 1, 1, 2, 3, 5, 8...
       materialValue: 4
       description: Moves in the golden ratio. You WILL get ratio'd.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 8262434019629770256, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 45dacfa31abdeee4fa932828358b8734, type: 3}
       whiteIcon: {fileID: 21300000, guid: 45dacfa31abdeee4fa932828358b8734, type: 3}
@@ -4657,7 +4657,7 @@ MonoBehaviour:
       tagLine: Just Frank
       materialValue: 1
       description: He's just Frank.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 799643133089340292, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 6719a3d6dc6239348b0321dee0143f62, type: 3}
       whiteIcon: {fileID: 21300000, guid: 6719a3d6dc6239348b0321dee0143f62, type: 3}
@@ -4665,7 +4665,7 @@ MonoBehaviour:
       tagLine: Ribbit
       materialValue: 3
       description: Frog likes jumping. Hop to uh.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 1822691222806785775, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 51e1c4864ee539a408baf83f673d3031, type: 3}
       whiteIcon: {fileID: 21300000, guid: 51e1c4864ee539a408baf83f673d3031, type: 3}
@@ -4673,7 +4673,7 @@ MonoBehaviour:
       tagLine: Definitely NOT hornet
       materialValue: 8
       description: Silksong is love, silksong is life. I would die for skong.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 8829414129297429972, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}
       whiteIcon: {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}
@@ -4681,7 +4681,7 @@ MonoBehaviour:
       tagLine: How hungry?
       materialValue: 3
       description: This guy eats anything, pieces, tiles, boykissers. You name it.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 8947386780902559802, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: e1aced1bf4d1555499d17f7c520fce93, type: 3}
       whiteIcon: {fileID: 21300000, guid: e1aced1bf4d1555499d17f7c520fce93, type: 3}
@@ -4689,7 +4689,7 @@ MonoBehaviour:
       tagLine: I'm boutta blow.
       materialValue: 2
       description: Taking one for the team, this guy knows how to get stuff done.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: -5133383196235377895, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 091b1180cb3f5ec40afacaac454eb3cc, type: 3}
       whiteIcon: {fileID: 21300000, guid: 091b1180cb3f5ec40afacaac454eb3cc, type: 3}
@@ -4697,7 +4697,7 @@ MonoBehaviour:
       tagLine: It's giving... Oppenheimer
       materialValue: 5
       description: This piece does not move, will destroy everything in its path.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 3936755372227753650, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 2ff9e27bedb500a4c9f3911da070543b, type: 3}
       whiteIcon: {fileID: 21300000, guid: 2ff9e27bedb500a4c9f3911da070543b, type: 3}
@@ -4705,7 +4705,7 @@ MonoBehaviour:
       tagLine: Jonathon no....
       materialValue: 3
       description: This pawn takes no shit from no one. Prepare to meet your maker.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 7487368691651794395, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: a055e3e57a504c340a581049a1d0c95b, type: 3}
       whiteIcon: {fileID: 21300000, guid: a055e3e57a504c340a581049a1d0c95b, type: 3}
@@ -4713,7 +4713,7 @@ MonoBehaviour:
       tagLine: One Piece!!!!!
       materialValue: 5
       description: Set sail on a voyage laddie. Fire at will!
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: -1066572110846504346, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}
       whiteIcon: {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}
@@ -4722,7 +4722,7 @@ MonoBehaviour:
       materialValue: 6
       description: In the name of the father, the son, and the holy bishop, checkmate
         this fool.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 7663774622016522657, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 4f8412b3f8f893348b5e20154ea8da58, type: 3}
       whiteIcon: {fileID: 21300000, guid: 4f8412b3f8f893348b5e20154ea8da58, type: 3}
@@ -4730,7 +4730,7 @@ MonoBehaviour:
       tagLine: Incognito
       materialValue: 6
       description: There's a spy? Where? It could be any one of us...
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 7454737150175465490, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: ac143085ec3ba5d489d5cddbc80d95c4, type: 3}
       whiteIcon: {fileID: 21300000, guid: ac143085ec3ba5d489d5cddbc80d95c4, type: 3}
@@ -4738,7 +4738,7 @@ MonoBehaviour:
       tagLine: One
       materialValue: 4
       description: Hiding in the shadows, lurking at night, ready to pounce.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: -2025885307587238832, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: 9d317301de74c904dad81902c88cdc1c, type: 3}
       whiteIcon: {fileID: 21300000, guid: 9d317301de74c904dad81902c88cdc1c, type: 3}
@@ -4746,7 +4746,7 @@ MonoBehaviour:
       tagLine: A sink? Really?
       materialValue: 5
       description: Why is this a piece in the game, this is stupid.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 919132149155446097, guid: f834ba5e7e9d5aa47b4436e1212950fd, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: e8c53a6552729794aad98969ab5425d7, type: 3}
       whiteIcon: {fileID: 21300000, guid: e8c53a6552729794aad98969ab5425d7, type: 3}
@@ -4754,7 +4754,7 @@ MonoBehaviour:
       tagLine: It's wizarding time #!&&!#$
       materialValue: 5
       description: Merlin, Gandalf, Houdini, got nothing on this guy.
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 3142543473975886292, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     - blackIcon: {fileID: 21300000, guid: eae9b550d78e63b40b26f5d5d29b0914, type: 3}
       whiteIcon: {fileID: 21300000, guid: eae9b550d78e63b40b26f5d5d29b0914, type: 3}
@@ -4762,7 +4762,7 @@ MonoBehaviour:
       tagLine: You've got red on you.
       materialValue: 4
       description: Zombie is hungry, zombie wants blood, brainzz....
-      pieceObject: {fileID: -3772008465264012368, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+      pieceObject: {fileID: 5755049525349597631, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
   whitePieceMaterial: {fileID: 2100000, guid: 711d811e19862824396c6595f2e9477b, type: 2}
   blackPieceMaterial: {fileID: 2100000, guid: 4f965aa9971b8ec4fbdf3b79a96fb050, type: 2}
