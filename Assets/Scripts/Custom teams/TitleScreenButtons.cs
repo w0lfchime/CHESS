@@ -124,12 +124,28 @@ public class TitleScreenButtons : MonoBehaviour
     {
         Debug.Log(whiteDropDown.options[whiteDropDown.value].text);
         gameData.whiteTeamName = whiteDropDown.options[whiteDropDown.value].text;
+
+        string[] theTeam = gameData.teams[whiteDropDown.options[whiteDropDown.value].text];
+
+        for(int i = 0; i < 16; i++)
+        {
+            Debug.Log(theTeam[i]);
+        }
+        Debug.Log(gameData.teams[whiteDropDown.options[whiteDropDown.value].text]);
     }
 
     public void SetBlackTeam(int team)
     {
         Debug.Log(blackDropDown.options[blackDropDown.value].text);
         gameData.blackTeamName = blackDropDown.options[blackDropDown.value].text;
+
+        string[] theTeam = gameData.teams[blackDropDown.options[blackDropDown.value].text];
+
+        for(int i = 0; i < 16; i++)
+        {
+            Debug.Log(theTeam[i]);
+        }
+        Debug.Log(gameData.teams[blackDropDown.options[blackDropDown.value].text]);
     }
 
     public void SetMap(int index)
