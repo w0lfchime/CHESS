@@ -26,6 +26,7 @@ public class TitleScreenButtons : MonoBehaviour
     public GameObject teamContent;
     public GameObject slotPrefab;
     public GameObject creditsMenu;
+    public GameObject singlePlayerMenu;
     public GameData gameData;
     public TMP_Dropdown whiteDropDown;
     public TMP_Dropdown blackDropDown;
@@ -33,6 +34,7 @@ public class TitleScreenButtons : MonoBehaviour
     public AudioSource musicSource;
     public string[] tempTeam = new string[16];
     public List<MapData> mapList = new List<MapData>();
+    public List<Puzzles> puzzleList = new List<Puzzles>();
     public int maxMaterial = 39;
     public int matValue = 0;
     public int teamOn = 0;
@@ -71,6 +73,12 @@ public class TitleScreenButtons : MonoBehaviour
 
         teamSelectMenu.SetActive(true);
         mainMenu.SetActive(false);
+    }
+
+    public void MoveToSingleplayer()
+    {
+        mainMenu.SetActive(false);
+        singlePlayerMenu.SetActive(true);
     }
 
     public void MoveToCollections()
@@ -185,6 +193,7 @@ public class TitleScreenButtons : MonoBehaviour
         teamSelectMenu.SetActive(false);
         collectionsMenu.SetActive(false);
         how2ChessMenu.SetActive(false);
+        singlePlayerMenu.SetActive(false);
         mainMenu.SetActive(true);
 
         insultScript.DisplayRandomInsult();
@@ -347,6 +356,14 @@ public class TitleScreenButtons : MonoBehaviour
         }
 
         return lifeLineCount;
+    }
+
+    public void SelectPuzzle(int puzzleNum)
+    {
+        gameData.puzzle = puzzleList[puzzleNum];
+        gameData.isDoingPuzzle = true;
+
+        SceneManager.LoadScene(gameData.map.scene);
     }
 
     public IEnumerator showErrorText(string error)
