@@ -32,6 +32,6 @@ public class TeamSlot : MonoBehaviour, IDropHandler
         DraggableUIPiece pieceData = dropped.GetComponent<DraggableUIPiece>();
 
 
-        image.sprite = pieceData.sprite;
+        image.sprite = pieceData.image.sprite;
     }
 }

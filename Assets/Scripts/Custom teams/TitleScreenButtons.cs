@@ -10,9 +10,10 @@ using System.Linq;
 
 public class TitleScreenButtons : MonoBehaviour
 {
+    public static TitleScreenButtons Instance { get; private set;}
     public InsultScript insultScript;
     public TextMeshProUGUI matText;
-    public TextMeshProUGUI teamName;
+    public TMP_InputField teamName;
     public TextMeshProUGUI errorTextText;
     public TextMeshProUGUI flavorText;
     public TextMeshProUGUI pieceDescText;
@@ -36,8 +37,13 @@ public class TitleScreenButtons : MonoBehaviour
     public int maxMaterial = 39;
     public int matValue = 0;
     public int teamOn = 0;
+    public DraggableUIPiece selectedPiece;
+    public Slider materialSlider;
+    public ScrollRect TeamView;
+    public GameObject TeamViewPart;
     void Start()
     {
+        Instance = this;
         gameData = GameObject.Find("GameData").GetComponent<GameData>();
         gameData.map = mapList[0];
         LoadTeams();
@@ -202,6 +208,7 @@ public class TitleScreenButtons : MonoBehaviour
 
             if (nameIndex(name) == -1)
             {
+                AddTeamView(name);
                 gameData.teams.Add(name, copy.Skip(1).ToArray());
                 PlayerPrefs.SetString(getNumber().ToString(), string.Join(':', copy));
                 print(PlayerPrefs.GetString(getNumber().ToString()));
@@ -243,8 +250,50 @@ public class TitleScreenButtons : MonoBehaviour
             string name = teamData[0];
             string[] team = teamData.Skip(1).ToArray();
             gameData.teams.Add(name, team);
+            AddTeamView(name);
         }
     }
+
+    void AddTeamView(string name)
+    {
+        GameObject teamViewIns = Instantiate(TeamViewPart, TeamView.content.transform);
+        teamViewIns.GetComponent<TeamButtonUI>().textAsset.text = name;
+    }
+
+    public void EditTeam(string name)
+    {
+        int i = 0;
+        foreach(Transform child in teamContent.transform)
+        {
+            string pieceName = gameData.teams[name][i];
+            child.GetComponent<TeamSlotRework>().SetPiece(pieceName);
+            i++;
+        }
+        teamName.text = name;
+    }
+
+    public void RemoveTeam(string name)
+    {
+        int num = nameIndex(name);
+        if (num == -1)
+        {
+            Debug.LogWarning($"RemoveTeam: team '{name}' not found.");
+            return;
+        }
+
+        int count = getNumber(); // number of existing
+
+        // Shift everything after num down by one
+        for (int i = num + 1; i < count; i++)
+        {
+            string currentString = PlayerPrefs.GetString(i.ToString());
+            PlayerPrefs.SetString((i - 1).ToString(), currentString);
+        }
+
+        // Delete the last
+        PlayerPrefs.DeleteKey((count - 1).ToString());
+    }
+
 
     public int nameIndex(string name)
     {
@@ -305,6 +354,7 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void updateMatText()
     {
+        materialSlider.value = (float)matValue/(float)maxMaterial;
         matText.text = "Material: " + matValue;
     }
 

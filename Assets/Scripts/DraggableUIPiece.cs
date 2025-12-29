@@ -4,22 +4,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
-public class DraggableUIPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableUIPiece : MonoBehaviour
 {
-    public Canvas canvas;
-    public Camera cam;
-    public GameObject originalParent;
     public Image image;
-    public Sprite sprite;
     public string pieceId;
-    public string name;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        image = gameObject.GetComponent<Image>();
-        originalParent = transform.parent.gameObject;
-        cam = GameObject.Find("Camera").GetComponent<Camera>();
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        pieceId = image.sprite.name;
     }
 
     // Update is called once per frame
@@ -28,24 +20,15 @@ public class DraggableUIPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         // transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
         transform.localScale = new Vector3(1, 1, 0);
     }
-
-    public void OnBeginDrag(PointerEventData eventData)
+    public void SelectPiece()
     {
-        image.raycastTarget = false;
-        transform.SetParent(transform.root);
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+        if(TitleScreenButtons.Instance.selectedPiece!=null) TitleScreenButtons.Instance.selectedPiece.DeselectPiece();
+        GetComponent<Outline>().enabled = true;
+        TitleScreenButtons.Instance.selectedPiece = this;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void DeselectPiece()
     {
-        Vector2 pos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, canvas.worldCamera, out pos);
-        transform.position = canvas.transform.TransformPoint(pos);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        image.raycastTarget = true;
-        transform.SetParent(originalParent.gameObject.transform);
+        GetComponent<Outline>().enabled = false;
     }
 }

@@ -608,6 +608,8 @@ public class ChessBoard2 : MonoBehaviour
 			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
 		}
 
+		pieceGO.transform.Rotate(-90, 180, 0);
+
 		piece.originalTile = TileLocations[boardLoc.y, boardLoc.x];
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
 	}
@@ -656,6 +658,8 @@ public class ChessBoard2 : MonoBehaviour
 			rend.sharedMaterial = BlackPieceMat;
 			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
 		}
+
+		piece.transform.Rotate(-90, 0, 0);
 
 		piece.originalTile = TileLocations[boardLoc.y, boardLoc.x];
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);

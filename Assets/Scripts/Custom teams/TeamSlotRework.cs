@@ -6,9 +6,8 @@ using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
-public class TeamSlotRework : MonoBehaviour, IDropHandler
+public class TeamSlotRework : MonoBehaviour, IPointerClickHandler
 {
-    public TitleScreenButtons titleScreenButtons;
     public Image image;
     public GameData gameData;
     public int slotNum;
@@ -17,9 +16,7 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
     void Start()
     {
         image = gameObject.transform.GetChild(0).GetComponent<Image>();
-        gameData = GameObject.Find("GameData").GetComponent<GameData>();
-        titleScreenButtons = GameObject.Find("TitleScreenButtons").GetComponent<TitleScreenButtons>();
-        
+        gameData = GameObject.Find("GameData").GetComponent<GameData>();        
     }
 
     // Update is called once per frame
@@ -29,42 +26,42 @@ public class TeamSlotRework : MonoBehaviour, IDropHandler
         transform.localScale = new Vector3(1, 1, 0);
     }
 
-    public void OnDrop(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData != null)
-        {
-            Debug.Log("Dropped");
-            GameObject dropped = eventData.pointerDrag;
-            DraggableUIPiece pieceData = dropped.GetComponent<DraggableUIPiece>();
+        TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
+        DraggableUIPiece pieceData = titleScreenButtons.selectedPiece;
+        SetPiece(pieceData.pieceId);
 
-            if (dropped.tag == "Draggable Piece" && !(titleScreenButtons.matValue - mat + PieceProperties.PieceValues[pieceData.pieceId] > titleScreenButtons.maxMaterial))
+            
+
+    }
+
+    public void SetPiece(string pieceId)
+    {
+        TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
+        if (!(titleScreenButtons.matValue - mat + PieceProperties.PieceValues[pieceId] > titleScreenButtons.maxMaterial))
             {
-                if (titleScreenButtons.lifelineCount() > 0 && (pieceData.pieceId == "StandardKing" || pieceData.pieceId == "MpregKing"))
+                if (titleScreenButtons.lifelineCount() > 0 && (pieceId == "StandardKing" || pieceId == "MpregKing"))
                 {
                     titleScreenButtons.editMatTextStuff("Too many lifelines");
                 }
                 else
                 {
-                    titleScreenButtons.tempTeam[slotNum] = pieceData.pieceId;
+                    titleScreenButtons.tempTeam[slotNum] = pieceId;
                     int currentMat = mat * -1;
 
                     titleScreenButtons.matValue -= mat;
-                    mat = PieceProperties.PieceValues[pieceData.pieceId];
+                    mat = PieceProperties.PieceValues[pieceId];
                     titleScreenButtons.matValue += mat;
                     currentMat += mat;
 
-                    image.sprite = pieceData.sprite;
+                    image.sprite = UIPieceSpawner.Instance.NameToImage(pieceId);
 
                     titleScreenButtons.updateMatText();
-                    titleScreenButtons.editMatTextNotError(pieceData.name + " " + ((currentMat >= 0) ? "+" + currentMat : currentMat.ToString()));
+                    titleScreenButtons.editMatTextNotError(pieceId + " " + ((currentMat >= 0) ? "+" + currentMat : currentMat.ToString()));
                 }
                 
             }
-            else if(dropped.tag == "Draggable Piece")
-            {
-                titleScreenButtons.editMatTextStuff("Max 39");
-            }
-        }
-
+            else titleScreenButtons.editMatTextStuff("Max 39");
     }
 }
