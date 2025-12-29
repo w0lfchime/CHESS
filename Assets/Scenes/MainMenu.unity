@@ -4643,6 +4643,14 @@ MonoBehaviour:
       description: The superior game, sucked through a VG Dimension.
       pieceObject: {fileID: 7389595336874830697, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: f0834b5660e427f4b9a9050111b2a62b, type: 2}
+    - blackIcon: {fileID: 21300000, guid: e08c8550b2fab6645b40de7dc27ba285, type: 3}
+      whiteIcon: {fileID: 21300000, guid: e08c8550b2fab6645b40de7dc27ba285, type: 3}
+      name: Demon
+      tagLine: Demon
+      materialValue: 4
+      description: Demon
+      pieceObject: {fileID: 1043830259349886573, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
+      pieceData: {fileID: 11400000, guid: fb7d4a9b4cfef3c45bae23ca82107ea0, type: 2}
     - blackIcon: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
       whiteIcon: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
       name: Fibonacci

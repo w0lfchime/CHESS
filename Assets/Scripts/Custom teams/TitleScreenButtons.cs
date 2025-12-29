@@ -218,7 +218,7 @@ public class TitleScreenButtons : MonoBehaviour
 
             if (nameIndex(name) == -1)
             {
-                gameData.teams.Add(name, copy);
+                gameData.teams.Add(name, copy.Skip(1).ToArray());
                 PlayerPrefs.SetString(getNumber().ToString(), string.Join(':', copy));
                 print(PlayerPrefs.GetString(getNumber().ToString()));
             }
