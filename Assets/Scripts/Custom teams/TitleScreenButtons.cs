@@ -76,9 +76,9 @@ public class TitleScreenButtons : MonoBehaviour
     public void MoveToCollections()
     {
         collectionsMenu.SetActive(true);
+        mainMenu.SetActive(false);
         musicSource.clip = titleScreenMusic[1];
         musicSource.Play();
-        mainMenu.SetActive(false);
     }
     public void MoveTOHow2()
     {

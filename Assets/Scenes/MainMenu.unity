@@ -1229,7 +1229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -193.99997, y: -43.400024}
+  m_AnchoredPosition: {x: -193.99994, y: -43.400024}
   m_SizeDelta: {x: -444.715, y: -101.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127503228
@@ -14580,12 +14580,14 @@ MonoBehaviour:
   how2ChessMenu: {fileID: 1277218216}
   teamContent: {fileID: 1268568342}
   slotPrefab: {fileID: 4459709128143952516, guid: ce7c6a961a35e3d4ea6ac99ac33d29bb, type: 3}
-  creditsMenu: {fileID: 0}
+  creditsMenu: {fileID: 810271154}
   gameData: {fileID: 0}
   whiteDropDown: {fileID: 462769990}
   blackDropDown: {fileID: 1605372169}
-  titleScreenMusic: []
-  musicSource: {fileID: 0}
+  titleScreenMusic:
+  - {fileID: 8300000, guid: 7290ca9767550794dae162efdec4f6c0, type: 3}
+  - {fileID: 8300000, guid: aba278c2110fc8d488f82b661c5da801, type: 3}
+  musicSource: {fileID: 1931489111}
   tempTeam:
   - 
   - 
