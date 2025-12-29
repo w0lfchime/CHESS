@@ -558,7 +558,7 @@ public class ChessBoard2 : MonoBehaviour
 			return false;
 		}
 
-		if(tile.tileOccupants[0].ID == tempList[0])
+		if(tile.tileOccupants[0].ID == tempList[0] && tile.tileOccupants[0].team == Team.White)
 		{
 			// turns[1]++;
 			return true;
@@ -572,7 +572,7 @@ public class ChessBoard2 : MonoBehaviour
 			}
 
 			// turns[1]++;
-			return tile.tileOccupants[0].ID == tempList[3];
+			return tile.tileOccupants[0].ID == tempList[3] && tile.tileOccupants[0].team == Team.White;
 		} else
 		{
 			// turns[1]++;
