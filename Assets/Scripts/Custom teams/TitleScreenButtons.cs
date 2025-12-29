@@ -27,6 +27,7 @@ public class TitleScreenButtons : MonoBehaviour
     public GameObject teamContent;
     public GameObject slotPrefab;
     public GameObject creditsMenu;
+    public GameObject singlePlayerMenu;
     public GameData gameData;
     public TMP_Dropdown whiteDropDown;
     public TMP_Dropdown blackDropDown;
@@ -34,6 +35,7 @@ public class TitleScreenButtons : MonoBehaviour
     public AudioSource musicSource;
     public string[] tempTeam = new string[16];
     public List<MapData> mapList = new List<MapData>();
+    public List<Puzzles> puzzleList = new List<Puzzles>();
     public int maxMaterial = 39;
     public int matValue = 0;
     public int teamOn = 0;
@@ -79,6 +81,12 @@ public class TitleScreenButtons : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
+    public void MoveToSingleplayer()
+    {
+        mainMenu.SetActive(false);
+        singlePlayerMenu.SetActive(true);
+    }
+
     public void MoveToCollections()
     {
         collectionsMenu.SetActive(true);
@@ -108,6 +116,7 @@ public class TitleScreenButtons : MonoBehaviour
     {
         SetWhiteTeam(0);
         SetBlackTeam(0);
+        gameData.isDoingPuzzle = false;
         if (gameData.teams.Keys.Count != 0)
         {
             SceneManager.LoadScene(gameData.map.scene);    
@@ -130,12 +139,28 @@ public class TitleScreenButtons : MonoBehaviour
     {
         Debug.Log(whiteDropDown.options[whiteDropDown.value].text);
         gameData.whiteTeamName = whiteDropDown.options[whiteDropDown.value].text;
+
+        string[] theTeam = gameData.teams[whiteDropDown.options[whiteDropDown.value].text];
+
+        for(int i = 0; i < 16; i++)
+        {
+            Debug.Log(theTeam[i]);
+        }
+        Debug.Log(gameData.teams[whiteDropDown.options[whiteDropDown.value].text]);
     }
 
     public void SetBlackTeam(int team)
     {
         Debug.Log(blackDropDown.options[blackDropDown.value].text);
         gameData.blackTeamName = blackDropDown.options[blackDropDown.value].text;
+
+        string[] theTeam = gameData.teams[blackDropDown.options[blackDropDown.value].text];
+
+        for(int i = 0; i < 16; i++)
+        {
+            Debug.Log(theTeam[i]);
+        }
+        Debug.Log(gameData.teams[blackDropDown.options[blackDropDown.value].text]);
     }
 
     public void SetMap(int index)
@@ -175,6 +200,7 @@ public class TitleScreenButtons : MonoBehaviour
         teamSelectMenu.SetActive(false);
         collectionsMenu.SetActive(false);
         how2ChessMenu.SetActive(false);
+        singlePlayerMenu.SetActive(false);
         mainMenu.SetActive(true);
 
         insultScript.DisplayRandomInsult();
@@ -381,6 +407,17 @@ public class TitleScreenButtons : MonoBehaviour
         }
 
         return lifeLineCount;
+    }
+
+    public void SelectPuzzle(string nums)
+    {
+        string[] split = nums.Split(" ");
+
+        gameData.puzzle = puzzleList[int.Parse(split[0])];
+        gameData.map = mapList[int.Parse(split[1])];
+        gameData.isDoingPuzzle = true;
+
+        SceneManager.LoadScene(gameData.map.scene);
     }
 
     public IEnumerator showErrorText(string error)

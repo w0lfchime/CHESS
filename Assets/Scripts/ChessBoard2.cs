@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using TMPro;
+using System.Collections;
 
 public class ChessBoard2 : MonoBehaviour
 {
@@ -38,9 +39,12 @@ public class ChessBoard2 : MonoBehaviour
 
 	// Stuff for the win screen
 	public GameObject gameEndPanel;
+	public GameObject puzzleFailPanel;
 	public TextMeshProUGUI winText;
 
 	private int abilityClickLayer;
+
+	public int[] turns = new int[] {0, 0};
 
 	void Awake()
 	{
@@ -125,6 +129,7 @@ public class ChessBoard2 : MonoBehaviour
 	//triggered when a tile is clicked, a little weird since the first click will give you green spaces and the second click will be on those spaces
 	public void InteractTrigger(Tile tile)
 	{
+		Debug.Log("Ran " + tile);
 		ChessPiece selected = (tile.tileOccupants.Count > 0) ? tile.tileOccupants[0] : null;
 
 		if (tile == null)
@@ -525,6 +530,56 @@ public class ChessBoard2 : MonoBehaviour
         }
 	}
 
+	public void movePuzzlePiece()
+	{
+		Puzzles puzzle = GameData.Instance.puzzle;
+		string[] tempList = puzzle.blackTeamMovements[turns[0]].Split(" ");
+		Tile tile1 = TileLocations[int.Parse(tempList[1]), int.Parse(tempList[0])];
+		Tile tile2 = TileLocations[int.Parse(tempList[3]), int.Parse(tempList[2])];
+
+		Debug.Log(tile2);
+		Debug.Log(int.Parse(tempList[0]) + " " + int.Parse(tempList[1]) + " " + int.Parse(tempList[2]) + " " + int.Parse(tempList[3]));
+
+		InteractTrigger(tile1);
+		StartCoroutine(delayTime(0.5f, tile2));
+
+		turns[0]++;
+	}
+
+	public bool checkWhitePuzzle()
+	{
+		Puzzles puzzle = GameData.Instance.puzzle;
+		string[] tempList = puzzle.whiteTeamMovements[turns[1]].Split(" ");
+
+		Tile tile = TileLocations[int.Parse(tempList[2]), int.Parse(tempList[1])];
+
+		if(tile.tileOccupants.Count < 1)
+		{
+			return false;
+		}
+
+		if(tile.tileOccupants[0].ID == tempList[0] && tile.tileOccupants[0].team == Team.White)
+		{
+			// turns[1]++;
+			return true;
+		} else if (tempList.Length > 3)
+		{
+			tile = TileLocations[int.Parse(tempList[5]), int.Parse(tempList[4])];
+
+			if(tile.tileOccupants.Count < 1)
+			{
+				return false;
+			}
+
+			// turns[1]++;
+			return tile.tileOccupants[0].ID == tempList[3] && tile.tileOccupants[0].team == Team.White;
+		} else
+		{
+			// turns[1]++;
+			return false;
+		}
+	}
+
 	public void SpawnAllPieces()
 	{
 		string[] whiteTeam = GameData.Instance.teams[GameData.Instance.whiteTeamName];
@@ -566,7 +621,26 @@ public class ChessBoard2 : MonoBehaviour
 		}
 	}
 
+	public void SpawnAllPuzzlePieces()
+	{
+		Puzzles puzzle = GameData.Instance.puzzle;
 
+		// spawn black
+		for(int i = 0; i < puzzle.blackTeamSpawning.Count; i++)
+		{
+			string[] tempList = puzzle.blackTeamSpawning[i].Split(" ");
+
+			SpawnPiece(tempList[0], new Vector2Int(int.Parse(tempList[1]), int.Parse(tempList[2])), Team.Black);
+		}
+
+		// spawn white
+		for(int i = 0; i < puzzle.whiteTeamSpawning.Count; i++)
+		{
+			string[] tempList = puzzle.whiteTeamSpawning[i].Split(" ");
+
+			SpawnPiece(tempList[0], new Vector2Int(int.Parse(tempList[1]), int.Parse(tempList[2])), Team.White);
+		}
+	}
 
 
 	// For regular spawning
@@ -672,6 +746,18 @@ public class ChessBoard2 : MonoBehaviour
 			return tile.tileOccupants[0].GetComponent<ChessPieceObject>();
 		}
 		return null;
+	}
+
+	public IEnumerator delayTime(float time, Tile tile)
+	{
+		yield return new WaitForSeconds(time);
+		InteractTrigger(tile);
+	}
+
+	public void failedPuzzle()
+	{
+		puzzleFailPanel.SetActive(true);
+		Time.timeScale = 0f;
 	}
 }
 
