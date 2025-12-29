@@ -110,6 +110,7 @@ public class TitleScreenButtons : MonoBehaviour
     {
         SetWhiteTeam(0);
         SetBlackTeam(0);
+        gameData.isDoingPuzzle = false;
         if (gameData.teams.Keys.Count != 0)
         {
             SceneManager.LoadScene(gameData.map.scene);    

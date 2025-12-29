@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
 
 	public void ResetGame()
 	{
+		Time.timeScale = 1f;
 		SceneManager.LoadScene("Welcome2Chess");
 	}
 
