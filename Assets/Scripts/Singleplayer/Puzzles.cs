@@ -9,7 +9,7 @@ public class Puzzles : ScriptableObject
     // format: PieceId startX startY endX endY, ...
     public List<string> blackTeamMovements;
 
-    public List<string> whiteTeamIds;
+    public List<string> whiteTeamSpawning;
     public List<string> whiteTeamMovements;
 
     public Map map;

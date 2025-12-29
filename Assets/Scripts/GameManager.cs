@@ -43,7 +43,15 @@ public class GameManager : MonoBehaviour
 
 		// Example: start with White
 		Board.InitBoard();
-		Board.SpawnAllPieces();
+
+		if(!GameData.Instance.isDoingPuzzle)
+		{
+			Board.SpawnAllPieces();
+		} else
+		{
+			Board.SpawnAllPuzzlePieces();
+		}
+		
 		StartGame(Team.White);
 	}
 
