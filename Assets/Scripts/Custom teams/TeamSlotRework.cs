@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
-public class TeamSlotRework : MonoBehaviour, IPointerClickHandler
+public class TeamSlotRework : MonoBehaviour
 {
     public Image image;
     public GameData gameData;
@@ -26,14 +26,11 @@ public class TeamSlotRework : MonoBehaviour, IPointerClickHandler
         transform.localScale = new Vector3(1, 1, 0);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick()
     {
         TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
         DraggableUIPiece pieceData = titleScreenButtons.selectedPiece;
         SetPiece(pieceData.pieceId);
-
-            
-
     }
 
     public void SetPiece(string pieceId)
