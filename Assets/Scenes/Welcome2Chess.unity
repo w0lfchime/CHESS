@@ -1235,7 +1235,21 @@ MonoBehaviour:
   - id: FibPawn
     prefab: {fileID: 7009996306650167107, guid: d101774788e0547409b4624cf7bd3b08, type: 3}
   - id: ZombiePawn
-    prefab: {fileID: 7009996306650167107, guid: 458b2786cf09cf6478d5211541f6fdbd, type: 3}
+    prefab: {fileID: 7009996306650167107, guid: 2e3b0c7b4623c9a44b2ba52060c73cd1, type: 3}
+  - id: Amazon
+    prefab: {fileID: 7009996306650167107, guid: 2e3aa0888c6f66046b9739b9f20eaac1, type: 3}
+  - id: Kamikaze
+    prefab: {fileID: 7009996306650167107, guid: 7513857004cf3534e9a39f6b664c055d, type: 3}
+  - id: Nuke
+    prefab: {fileID: 7009996306650167107, guid: 24cd152465bc30345b107851d6fb3035, type: 3}
+  - id: PawnWGun
+    prefab: {fileID: 7009996306650167107, guid: 7dc9671c137ebee41b03a87e11608802, type: 3}
+  - id: PirateShip
+    prefab: {fileID: 7009996306650167107, guid: 924268b171f18834e83679dd8dda76d8, type: 3}
+  - id: Spy
+    prefab: {fileID: 7009996306650167107, guid: c8f037d7674076c429841cdd5d39b3b1, type: 3}
+  - id: Rogue
+    prefab: {fileID: 7009996306650167107, guid: 042de058a42e8ca49a4959b3672c441a, type: 3}
 --- !u!23 &330483919
 MeshRenderer:
   m_ObjectHideFlags: 0
