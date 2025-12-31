@@ -4754,18 +4754,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1225922418}
-        m_TargetAssemblyTypeName: TitleScreenButtons, Assembly-CSharp
-        m_MethodName: PopulateYourDropdown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!222 &246024879
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16926,18 +16914,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1225922418}
-        m_TargetAssemblyTypeName: TitleScreenButtons, Assembly-CSharp
-        m_MethodName: PopulateYourDropdown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1025722608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22494,6 +22470,7 @@ GameObject:
   - component: {fileID: 1354207224}
   - component: {fileID: 1354207219}
   - component: {fileID: 1354207223}
+  - component: {fileID: 1354207225}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -22603,6 +22580,31 @@ MonoBehaviour:
   _transports:
   - {fileID: 1354207223}
   - {fileID: 1354207219}
+--- !u!114 &1354207225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354207218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4778b5edf2476448bcb3ac3d9c35d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _automaticCloudSetups:
+    _adaptToEdgegap: 1
+  _serverPort: 5001
+  _maxConnections: 1
+  _forceIpv4: 0
+  _address: 127.0.0.1
+  _query: 
+  _path: 
+  _pollEventsInUpdate: 0
+  _enableSSL: 0
+  _certPath: 
+  _certPassword: 
+  _sslProtocols: 0
 --- !u!1 &1355670401
 GameObject:
   m_ObjectHideFlags: 0
