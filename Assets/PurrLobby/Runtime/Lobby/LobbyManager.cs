@@ -258,6 +258,7 @@ namespace PurrLobby
                 EnsureProviderSet();
                 await _currentProvider.LeaveLobbyAsync();
                 OnRoomLeft?.Invoke();
+                StopNetwork();
             });
         }
 
@@ -326,6 +327,14 @@ namespace PurrLobby
             if(_lobbyDataHolder.CurrentLobby.IsOwner){
                 NetworkManager.main.StartServer();
             }else StartCoroutine(StartClient());
+        }
+
+        void StopNetwork()
+        {
+            if(NetworkManager.main==null) return;
+            if(_lobbyDataHolder.CurrentLobby.IsOwner){
+                NetworkManager.main.StopServer();
+            }else NetworkManager.main.StopClient();
         }
 
         private IEnumerator StartClient()

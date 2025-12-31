@@ -95,7 +95,7 @@ namespace PurrNet.Transports
         internal void StopServer(INetworkManager manager)
         {
             if (TryGetNetworkManager(manager, out var networkManager))
-                networkManager.InternalUnregisterServerModules();
+                //networkManager.InternalUnregisterServerModules();
 
             StopServerInternal();
         }
