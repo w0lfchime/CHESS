@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 80d9cad03f774c54eb8a4181eec687f4
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Third-Party Notices.txt
+  uploadId: 837734

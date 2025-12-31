@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d8799083b96579a42b8b2d03e4ceae98
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Defaults/NetworkRules/Unsafe.asset
+  uploadId: 837734

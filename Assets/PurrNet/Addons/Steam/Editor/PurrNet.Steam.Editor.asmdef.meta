@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8c7d941f47efa864fbb6f079e53db97b
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Addons/Steam/Editor/PurrNet.Steam.Editor.asmdef
+  uploadId: 837734

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dba262929e5f96840934f586a06191c0
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Tools/ProfileBandwidth/PurrNet.Profiler.Editor.asmdef
+  uploadId: 837734

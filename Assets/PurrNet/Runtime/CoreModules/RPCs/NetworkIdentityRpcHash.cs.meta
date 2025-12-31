@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: d0d38dcb747d4a0fbec9c6464393a596
+timeCreated: 1762273724
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/RPCs/NetworkIdentityRpcHash.cs
+  uploadId: 837734

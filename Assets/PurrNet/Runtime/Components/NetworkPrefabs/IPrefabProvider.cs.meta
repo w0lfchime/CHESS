@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 740198d5edf656542942c6e9ac4b545f
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Components/NetworkPrefabs/IPrefabProvider.cs
+  uploadId: 837734

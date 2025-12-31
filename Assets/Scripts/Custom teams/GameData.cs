@@ -14,6 +14,7 @@ public class GameData : MonoBehaviour
 	[Header("Indices")]
 	public string whiteTeamName = "";
 	public string blackTeamName = "";
+	public string yourTeamName = "";
 	public bool isDoingPuzzle = false;
 	public MapData map;
 	public Puzzles puzzle;

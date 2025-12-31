@@ -2,9 +2,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting.APIUpdating;
+using PurrNet;
 
 
-public class GameManager : MonoBehaviour
+
+public class GameManager : NetworkIdentity
 {
 	public static GameManager Instance { get; private set; }
 
@@ -33,6 +35,24 @@ public class GameManager : MonoBehaviour
 	public GameObject puzzleFailPanel;
 	public TextMeshProUGUI winText;
 
+	protected override void OnSpawned(bool asServer)
+    {
+        base.OnSpawned(asServer);
+
+        Camera.SetTurn(asServer ? Team.White : Team.Black);
+
+        if (asServer)
+        {
+            Debug.Log("SERVER: sending to client");
+            Board.SendTeamToClient(GameData.Instance.teams[GameData.Instance.yourTeamName]);
+        }
+        else
+        {
+            Debug.Log("CLIENT: sending to server");
+            Board.SendTeamToServer(GameData.Instance.teams[GameData.Instance.yourTeamName]);
+        }
+    }
+
 	private void Awake()
 	{
 		if (Instance != null && Instance != this)
@@ -49,7 +69,11 @@ public class GameManager : MonoBehaviour
 
 		if(!GameData.Instance.isDoingPuzzle)
 		{
-			Board.SpawnAllPieces();
+
+			if(!NetworkManager.main.isServer && !NetworkManager.main.isClient)
+			{
+				Board.SpawnAllPieces(null);
+			}
 		} else
 		{
 			Board.SpawnAllPuzzlePieces();
@@ -88,8 +112,8 @@ public class GameManager : MonoBehaviour
 		CurrentTurn = startingTeam;
 
 		// Update camera for the starting player
-		if (Camera != null)
-			Camera.SetTurn(CurrentTurn == Team.White ? 1 : 0);
+		if (Camera != null && (!NetworkManager.main.isServer && !NetworkManager.main.isClient))
+			Camera.SetTurn(CurrentTurn);
 
 		Debug.Log($"Game started. {CurrentTurn} moves first.");
 	}
@@ -116,8 +140,8 @@ public class GameManager : MonoBehaviour
 			Debug.Log($"Turn ended. Now it's {CurrentTurn}'s move.");
 
 			// Update camera to face the active team
-			if (Camera != null && !GameData.Instance.isDoingPuzzle)
-				Camera.SetTurn(CurrentTurn == Team.White ? 1 : 0);
+			if (Camera != null && !GameData.Instance.isDoingPuzzle && (!NetworkManager.main.isServer && !NetworkManager.main.isClient))
+				Camera.SetTurn(CurrentTurn);
 
 			// Later: trigger board highlighting, legal move generation, timers, etc.
 

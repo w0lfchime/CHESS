@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1beb10fd218482c4c919c79f867341a0
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/LiteNetLib/LiteNetLib.asmdef
+  uploadId: 837734

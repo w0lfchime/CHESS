@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 6d1d4a4016e0fab41ab6c2e2c3974a20
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/Ownership/GlobalOwnershipModule.cs
+  uploadId: 837734

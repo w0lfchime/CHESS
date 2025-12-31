@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 73e541e8f1a54f49ae7e7356c2bc3656
+timeCreated: 1760024785
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Transports/AutomaticCloudSetups.cs
+  uploadId: 837734

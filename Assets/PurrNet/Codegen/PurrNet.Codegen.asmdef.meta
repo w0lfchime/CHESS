@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e909c8f97969c754fad1d4efc08cd558
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Codegen/PurrNet.Codegen.asmdef
+  uploadId: 837734

@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: a89a06aa3b7e956459096548be753809
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Editor/StateMachineEditor.cs
+  uploadId: 837734

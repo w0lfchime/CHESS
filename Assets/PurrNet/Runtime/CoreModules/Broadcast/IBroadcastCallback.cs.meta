@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: b9bda374e5974b119f47b1cd54b2b858
+timeCreated: 1762514457
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/Broadcast/IBroadcastCallback.cs
+  uploadId: 837734

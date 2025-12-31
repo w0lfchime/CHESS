@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 0f97aa0f6df5462390d646d138682423
+timeCreated: 1746813344
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Components/NetworkBehaviour/QuaternionWithParent.cs
+  uploadId: 837734

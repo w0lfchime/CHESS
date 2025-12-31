@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: c47015371500d0e45ad91a61bc3e268d
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Utils/PurrLockAttribute.cs
+  uploadId: 837734

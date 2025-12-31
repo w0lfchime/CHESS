@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: d09d97b160b8463585da33127d57412a
+timeCreated: 1760102204
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Editor/UnityHubHelper.cs
+  uploadId: 837734

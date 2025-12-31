@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 2251a92956849e2488f0c9a9fca40e68
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/RPCs/LocalModeAttribute.cs
+  uploadId: 837734

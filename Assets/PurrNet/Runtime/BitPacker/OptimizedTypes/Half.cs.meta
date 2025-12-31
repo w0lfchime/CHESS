@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: efc58d94f5b58914aa126ccf4e841916
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/BitPacker/OptimizedTypes/Half.cs
+  uploadId: 837734

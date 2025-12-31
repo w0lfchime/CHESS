@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: ea7a99126cb2408d876ff5b254b65881
+timeCreated: 1744747666
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Tools/ProfileDeltas/Runtime/FloatProfile.cs
+  uploadId: 837734

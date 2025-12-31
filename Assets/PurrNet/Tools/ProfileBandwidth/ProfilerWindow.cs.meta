@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: c03920b3d7912824995b1e86e3f02c24
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Tools/ProfileBandwidth/ProfilerWindow.cs
+  uploadId: 837734

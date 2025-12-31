@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 8425166b1251f724280912baa4245a9f
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/LiteNetLib/NetPacket.cs
+  uploadId: 837734

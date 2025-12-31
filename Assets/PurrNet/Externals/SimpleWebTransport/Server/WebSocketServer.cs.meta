@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5c434db044777d2439bae5a57d4e8ee7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/SimpleWebTransport/Server/WebSocketServer.cs
+  uploadId: 837734

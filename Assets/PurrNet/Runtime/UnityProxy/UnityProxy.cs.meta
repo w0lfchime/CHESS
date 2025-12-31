@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 05f47a99d3966d741a1740a1b28cba92
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/UnityProxy/UnityProxy.cs
+  uploadId: 837734

@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 96bb2277052053d48836021aec499f3c
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/RPCs/RPCModule.cs
+  uploadId: 837734

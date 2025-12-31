@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 01f34c04fbd51e2418032e57014c2fff
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/Ticks/TickManager.cs
+  uploadId: 837734

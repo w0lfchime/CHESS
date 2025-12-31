@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 138b62048fb9b5b43ad19709a8d1ec86
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Examples/AutoStartCanvas.prefab
+  uploadId: 837734

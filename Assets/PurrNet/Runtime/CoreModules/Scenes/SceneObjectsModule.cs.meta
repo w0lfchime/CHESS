@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: fea3b5059b469de45a400644ab0d67eb
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/Scenes/SceneObjectsModule.cs
+  uploadId: 837734

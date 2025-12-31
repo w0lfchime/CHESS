@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: bc4c1c3442ac59b488bd29b64acf9a5d
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/RPCs/GuardFailureAction.cs
+  uploadId: 837734

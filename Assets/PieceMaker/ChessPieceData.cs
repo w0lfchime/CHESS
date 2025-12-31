@@ -2,7 +2,6 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using Unity.VisualScripting;
 using System.IO;
 

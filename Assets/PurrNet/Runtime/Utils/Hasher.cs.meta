@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: a729293d7f594464c9fab7ab6f13edff
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Utils/Hasher.cs
+  uploadId: 837734

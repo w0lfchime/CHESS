@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 9447442d50c7b7b4e81b1d292a1f24ac
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/BitPacker/Delta/CompressedVector2.cs
+  uploadId: 837734

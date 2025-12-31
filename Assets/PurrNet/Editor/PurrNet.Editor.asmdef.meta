@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 629ad64ea20117f43b28b33033f75b88
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Editor/PurrNet.Editor.asmdef
+  uploadId: 837734

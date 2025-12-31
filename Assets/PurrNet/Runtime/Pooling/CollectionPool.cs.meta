@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 4b9dccd6844d49ff9cdfe2a08e0881b0
+timeCreated: 1727099765
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Pooling/CollectionPool.cs
+  uploadId: 837734

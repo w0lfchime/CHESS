@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: a39a68d58f6a4aa29ed8082e045c5c08
+timeCreated: 1761605800
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Interpolation/InterpolatedWithDispose.cs
+  uploadId: 837734

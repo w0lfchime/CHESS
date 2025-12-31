@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: e2a8f39665fa4e6c9f3171916e0633eb
+timeCreated: 1731688227
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/BitPacker/OptimizedTypes/HalfVector3.cs
+  uploadId: 837734

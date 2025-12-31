@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: e9766da5a94e4e9780f46e5adab183c1
+timeCreated: 1762509070
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/Broadcast/ReliableConnectionHistory.cs
+  uploadId: 837734

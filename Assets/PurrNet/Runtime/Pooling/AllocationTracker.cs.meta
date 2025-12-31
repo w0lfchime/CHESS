@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: aebfbb3b0f484cfe91278ced8081a746
+timeCreated: 1753872717
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Pooling/AllocationTracker.cs
+  uploadId: 837734

@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 10b9e840fd9dd5d439da1b41f57850f0
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/BitPacker/Delta/DeltaPackInteger.cs
+  uploadId: 837734

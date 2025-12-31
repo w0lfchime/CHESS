@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: d1efbb1a207e4dcaae15dd74df742837
+timeCreated: 1722540260
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Components/NetworkBehaviour/ActionAuth.cs
+  uploadId: 837734

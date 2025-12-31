@@ -1921,6 +1921,7 @@ GameObject:
   - component: {fileID: 532147083}
   - component: {fileID: 532147084}
   - component: {fileID: 532147085}
+  - component: {fileID: 532147086}
   m_Layer: 0
   m_Name: GameBox
   m_TagString: Untagged
@@ -2008,6 +2009,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0dfcde59446e246ab322650799ddb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   Camera: {fileID: 420926316}
   Board: {fileID: 771100082}
   Cursor: {fileID: 0}
@@ -2141,6 +2151,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &532147086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532147078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb763cfb0fbf2c44b3587223c4aad1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _trackedBehaviour: {fileID: 532147083}
+  _trackedFields:
+  - type: 1
+    name: CurrentTurn
+  - type: 0
+    name: turnCount
+  _ownerAuth: 1
 --- !u!1 &536616665
 GameObject:
   m_ObjectHideFlags: 0
@@ -3131,6 +3169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 771100081}
   - component: {fileID: 771100082}
+  - component: {fileID: 771100083}
   m_Layer: 0
   m_Name: ChessBoard
   m_TagString: Untagged
@@ -3165,6 +3204,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd943d088022bc74d9fbac2cd722e09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
   BoardTileHeight: 8
   BoardTileWidth: 8
   TileSize: 2.24
@@ -3184,6 +3232,27 @@ MonoBehaviour:
   puzzleFailPanel: {fileID: 955192587}
   winText: {fileID: 1351460847}
   turns: 0000000000000000
+--- !u!114 &771100083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771100080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5681fe548eb84304ea28a286062791f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
 --- !u!1 &810918162
 GameObject:
   m_ObjectHideFlags: 0
@@ -5691,6 +5760,7 @@ MonoBehaviour:
   teamNames: []
   whiteTeamName: 
   blackTeamName: 
+  yourTeamName: 
   isDoingPuzzle: 0
   map: {fileID: 11400000, guid: fc7bf3fa28035a745a9fcb7135c1eaf7, type: 2}
   puzzle: {fileID: 0}

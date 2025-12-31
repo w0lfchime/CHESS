@@ -1,0 +1,22 @@
+{
+  "name": "dev.purrnet.purrnet",
+  "version": "1.18.1-beta.3",
+  "author": {
+    "name": "PurrNet Team",
+    "url": "https://purrnet.dev/"
+  },
+  "description": "A unity networking framework",
+  "displayName": "PurrNet",
+  "documentationUrl": "https://purrnet.gitbook.io/",
+  "changelogUrl": "https://github.com/PurrNet/PurrNet/blob/dev/Assets/PurrNet/CHANGELOG.md",
+  "hideInEditor": false,
+  "keywords": [
+    "purrnet",
+    "networking",
+    "multiplayer"
+  ],
+  "dependencies": {
+    "com.unity.nuget.mono-cecil": "1.11.4",
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  }
+}

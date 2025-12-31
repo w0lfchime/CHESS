@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e58c4a9006af09346903ab0dc242ad48
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Tools/ProfileDeltas/Editor/PurrNet.Profiler.Deltas.Editor.asmdef
+  uploadId: 837734

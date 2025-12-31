@@ -1,19 +1,15 @@
 using Steamworks;             // Steamworks.NET
 using PurrNet;
 using PurrNet.Steam;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace SteamExample
 {
-    /// <summary>
-    /// Simple Steam + PurrNet connection manager using Steamworks.NET
-    /// - Only a Host, StartGame, and Back button.
-    /// - Host waits for at least one client, then StartGame loads the game scene.
-    /// </summary>
     public sealed class ConnectionManager : NetworkIdentity
     {
-        [Header("UI")]
+        [Header("Core UI")]
         [SerializeField] private Button hostButton;
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button backButton;
@@ -22,11 +18,33 @@ namespace SteamExample
         [SerializeField] private string gameSceneName = "GameScene";
 
         [Header("Player Requirements")]
-        [Tooltip("Total players required (host + clients) before StartGame is allowed.")]
+        [Tooltip("Total players required (host + clients) before Start button is usable.")]
         [SerializeField] private int requiredPlayers = 2;
+
+        [Header("Steam")]
+        [Tooltip("Your Steam AppID. Use 480 for local testing, replace with your own for production.")]
+        [SerializeField] private uint appId = 480;
+
+        [Header("Friends Hosting List UI")]
+        [Tooltip("The ScrollRect that will contain your friend buttons.")]
+        [SerializeField] private ScrollRect friendsScrollRect;
+
+        [Tooltip("The content Transform inside the ScrollRect (where buttons will be parented).")]
+        [SerializeField] private Transform friendsContentRoot;
+
+        [Tooltip("A prefab GameObject with a Button + Text/TMP_Text child that will display a friend's name.")]
+        [SerializeField] private GameObject friendButtonPrefab;
+
+        [Tooltip("How often (in seconds) to refresh the list of hosting friends.")]
+        [SerializeField] private float friendsRefreshInterval = 5f;
+
+        [Header("Testing")]
+        [Tooltip("If true, also show a 'self' entry so another instance (editor/build) can join your own host for testing.")]
+        [SerializeField] private bool allowSelfJoinForTesting = true;
 
         private bool _steamInitialized;
         private bool _isHosting;
+        private float _friendsRefreshTimer;
 
         private void Awake()
         {
@@ -40,6 +58,9 @@ namespace SteamExample
 
             if (backButton != null)
                 backButton.interactable = false;
+
+            if (_steamInitialized)
+                PopulateFriendsHostingList();
         }
 
         private void OnEnable()
@@ -71,6 +92,12 @@ namespace SteamExample
             base.OnDestroy();
             InstanceHandler.UnregisterInstance<ConnectionManager>();
 
+            if (_isHosting && _steamInitialized)
+            {
+                // Clear hosting flag when we go away
+                SteamFriends.ClearRichPresence();
+            }
+
             if (_steamInitialized)
             {
                 SteamAPI.Shutdown();
@@ -82,18 +109,23 @@ namespace SteamExample
         {
             if (_steamInitialized)
             {
-                // Keep Steam callbacks processing
                 SteamAPI.RunCallbacks();
+
+                // Periodically refresh who is hosting among your friends
+                _friendsRefreshTimer += Time.deltaTime;
+                if (_friendsRefreshTimer >= friendsRefreshInterval)
+                {
+                    _friendsRefreshTimer = 0f;
+                    PopulateFriendsHostingList();
+                }
             }
 
-            // Only the host cares about player count for enabling the Start Game button
+            // Only the host/server cares about enabling Start Game based on player count
             if (_isHosting && NetworkManager.main != null && NetworkManager.main.isServer)
             {
-                // NOTE: The exact property name may differ depending on your PurrNet version.
-                // In the docs they refer to "player count" on the NetworkManager inspector.
-                // If this line errors, try renaming playerCount → connections, clientCount, etc.
-                int playerCount = NetworkManager.main.playerCount; 
-
+                // If your PurrNet version uses a different property name,
+                // change playerCount accordingly (e.g. connectionCount).
+                int playerCount = NetworkManager.main.playerCount;
                 bool hasEnoughPlayers = playerCount >= requiredPlayers;
 
                 if (startGameButton != null)
@@ -101,19 +133,18 @@ namespace SteamExample
             }
         }
 
-        /// <summary>
-        /// Initialize Steamworks.NET.
-        /// </summary>
+        // --------------------------------------------------------------------
+        // Steam + PurrNet Core
+        // --------------------------------------------------------------------
+
         private void InitializeSteam()
         {
             if (_steamInitialized)
                 return;
 
-            // Replace 480 with your real AppID when you have it.
-            const uint appId = 480;
+            AppId_t appId_t = new AppId_t(appId);
 
-            // If the user is running the game outside Steam, this will relaunch it via Steam.
-            if (SteamAPI.RestartAppIfNecessary(new AppId_t(appId)))
+            if (SteamAPI.RestartAppIfNecessary(appId_t))
             {
                 Application.Quit();
                 return;
@@ -128,9 +159,6 @@ namespace SteamExample
             _steamInitialized = true;
         }
 
-        /// <summary>
-        /// Configure SteamTransport and start hosting.
-        /// </summary>
         public void StartHost()
         {
             if (!_steamInitialized)
@@ -146,7 +174,6 @@ namespace SteamExample
                 return;
             }
 
-            // Get this user's SteamID from Steamworks.NET
             CSteamID userId = SteamUser.GetSteamID();
             string address = userId.m_SteamID.ToString();
 
@@ -157,7 +184,10 @@ namespace SteamExample
             NetworkManager.main.StartHost();
             _isHosting = true;
 
-            // While hosting, back button becomes usable, start is disabled until client joins.
+            // Mark ourselves as hosting in Steam Rich Presence so friends (and our own 2nd instance) can see us
+            SteamFriends.SetRichPresence("purr_host", "1");
+            SteamFriends.SetRichPresence("steam_display", "#StatusHosting");
+
             if (backButton != null)
                 backButton.interactable = true;
 
@@ -165,10 +195,6 @@ namespace SteamExample
                 startGameButton.interactable = false;
         }
 
-        /// <summary>
-        /// Start a client given a string SteamID of host (Hex or decimal).
-        /// (You can call this from some other UI if you want client-side joining.)
-        /// </summary>
         public void StartClient(string hostSteamIdString)
         {
             if (!_steamInitialized)
@@ -190,7 +216,6 @@ namespace SteamExample
                 return;
             }
 
-            // You can customize how you parse this (decimal vs hex, etc.)
             if (!ulong.TryParse(hostSteamIdString, out ulong hostId))
             {
                 Debug.LogError($"{hostSteamIdString} is not a valid SteamID (ulong parse failed).");
@@ -205,7 +230,110 @@ namespace SteamExample
         }
 
         // --------------------------------------------------------------------
-        // UI handlers
+        // Friends Hosting List (+ self hosting entry)
+        // --------------------------------------------------------------------
+
+        private void PopulateFriendsHostingList()
+        {
+            if (!_steamInitialized)
+                return;
+
+            if (friendsContentRoot == null || friendButtonPrefab == null)
+            {
+                // Not wired in inspector, just skip UI
+                return;
+            }
+
+            // Clear existing children
+            for (int i = friendsContentRoot.childCount - 1; i >= 0; i--)
+            {
+                Destroy(friendsContentRoot.GetChild(i).gameObject);
+            }
+
+            AppId_t thisAppId = new AppId_t(appId);
+
+            // Optional: self entry for testing (join your own host from another instance)
+            if (allowSelfJoinForTesting)
+            {
+                CSteamID selfId = SteamUser.GetSteamID();
+                string selfName = SteamFriends.GetPersonaName();
+
+                // We don't strictly need to check app/game here: if you're running this,
+                // you're in this game. The host instance will set rich presence when hosting.
+                // This lets a second instance (editor or build) click and join.
+                CreateHostingEntryButton(
+                    label: $"{selfName} (You)",
+                    hostSteamId: selfId.m_SteamID.ToString()
+                );
+            }
+
+            int friendCount = SteamFriends.GetFriendCount(EFriendFlags.k_EFriendFlagImmediate);
+
+            for (int i = 0; i < friendCount; i++)
+            {
+                CSteamID friendId = SteamFriends.GetFriendByIndex(i, EFriendFlags.k_EFriendFlagImmediate);
+                string friendName = SteamFriends.GetFriendPersonaName(friendId);
+
+                // 1) Are they in a game at all, and is it THIS game?
+                if (!SteamFriends.GetFriendGamePlayed(friendId, out FriendGameInfo_t gameInfo))
+                    continue;
+
+                if (!gameInfo.m_gameID.IsValid())
+                    continue;
+
+                // Check AppID matches
+                if (!gameInfo.m_gameID.AppID().Equals(thisAppId))
+                    continue;
+
+                // 2) Are they marked as hosting via our rich presence key?
+                string hostFlag = SteamFriends.GetFriendRichPresence(friendId, "purr_host");
+                if (string.IsNullOrEmpty(hostFlag) || hostFlag != "1")
+                    continue;
+
+                // Now we consider them "hosting this game", so we add a button
+                CreateHostingEntryButton(
+                    label: friendName,
+                    hostSteamId: friendId.m_SteamID.ToString()
+                );
+            }
+        }
+
+        private void CreateHostingEntryButton(string label, string hostSteamId)
+        {
+            GameObject go = Instantiate(friendButtonPrefab, friendsContentRoot);
+            go.name = $"Host_{label}";
+
+            Button friendButton = go.GetComponent<Button>();
+            if (friendButton == null)
+                friendButton = go.GetComponentInChildren<Button>();
+
+            if (friendButton == null)
+            {
+                Debug.LogError("Friend button prefab has no Button component.", go);
+                Destroy(go);
+                return;
+            }
+
+            // Set the label text (TMP or legacy Text)
+            TMP_Text tmpText = go.GetComponentInChildren<TMP_Text>();
+            if (tmpText != null)
+                tmpText.text = label;
+            else
+            {
+                Text uiText = go.GetComponentInChildren<Text>();
+                if (uiText != null)
+                    uiText.text = label;
+            }
+
+            friendButton.onClick.AddListener(() =>
+            {
+                Debug.Log($"Joining host: {label} ({hostSteamId})");
+                StartClient(hostSteamId);
+            });
+        }
+
+        // --------------------------------------------------------------------
+        // UI Handlers
         // --------------------------------------------------------------------
 
         private void HandleHostClicked()
@@ -228,23 +356,22 @@ namespace SteamExample
                 if (startGameButton != null)
                     startGameButton.interactable = false;
 
+                // Also clear rich presence if host failed
+                if (_steamInitialized)
+                    SteamFriends.ClearRichPresence();
+
                 return;
             }
 
-            // Once we start hosting, we usually don't want to re-press host
             hostButton.interactable = false;
         }
 
         private void HandleStartGameClicked()
         {
             if (!_isHosting || NetworkManager.main == null || !NetworkManager.main.isServer)
-            {
-                // Only the server/host should be allowed to start the match
                 return;
-            }
 
-            // Double-check we have enough players before loading the game scene
-            int playerCount = NetworkManager.main.playerCount; // adjust property name if needed
+            int playerCount = NetworkManager.main.playerCount;
 
             if (playerCount < requiredPlayers)
             {
@@ -258,25 +385,25 @@ namespace SteamExample
                 return;
             }
 
-            // Use PurrNet's Scene Module to load a networked scene for all connections.
-            // This runs on the server and automatically moves the clients.
+            // Load a networked scene for all connections
             NetworkManager.main.sceneModule.LoadSceneAsync(gameSceneName);
         }
 
         private void HandleBackClicked()
         {
-            // Cancel hosting / leave network and go back to "offline" state.
             if (NetworkManager.main != null)
             {
-                // PurrNet exposes a Shutdown() API to stop networking completely.
-                // If your version uses a different method (e.g. StopHost/StopClient),
-                // replace the line below as appropriate.
                 NetworkManager.main.StopServer();
             }
 
             _isHosting = false;
 
-            // Reset UI state
+            if (_steamInitialized)
+            {
+                // We are no longer hosting, clear presence
+                SteamFriends.ClearRichPresence();
+            }
+
             if (hostButton != null)
                 hostButton.interactable = true;
 

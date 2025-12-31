@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 4dd62cd0cc6edfe49a900f07559290dc
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/LiteNetLib/SequencedChannel.cs
+  uploadId: 837734

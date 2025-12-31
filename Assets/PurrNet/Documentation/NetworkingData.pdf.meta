@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fdfbc851c19a4cc41bd07f569a205ee8
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Documentation/NetworkingData.pdf
+  uploadId: 837734

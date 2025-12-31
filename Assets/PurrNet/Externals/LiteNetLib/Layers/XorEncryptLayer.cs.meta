@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 92ddafc70ad894947af358e86c48443f
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/LiteNetLib/Layers/XorEncryptLayer.cs
+  uploadId: 837734

@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 8b46787bff9d29448a59caa86d372838
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/7zip/K4os.Compression.LZ4.dll
+  uploadId: 837734

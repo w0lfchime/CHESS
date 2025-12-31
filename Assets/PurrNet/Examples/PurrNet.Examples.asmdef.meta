@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8567ee6d60ddf0945b4db4727787e5e2
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Examples/PurrNet.Examples.asmdef
+  uploadId: 837734

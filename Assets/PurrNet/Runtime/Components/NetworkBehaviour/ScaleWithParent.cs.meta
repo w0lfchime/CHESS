@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 49838f93fb14445d98b64814eb918804
+timeCreated: 1747136322
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Components/NetworkBehaviour/ScaleWithParent.cs
+  uploadId: 837734

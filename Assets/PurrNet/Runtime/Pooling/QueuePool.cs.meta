@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 29cfa6dad8794ca6a80666bd3ef28036
+timeCreated: 1734041154
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Pooling/QueuePool.cs
+  uploadId: 837734

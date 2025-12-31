@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 5dd625bf92ea4dc59172c99a948784d2
+timeCreated: 1762357083
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/RPCs/ChildRPCPacket.cs
+  uploadId: 837734

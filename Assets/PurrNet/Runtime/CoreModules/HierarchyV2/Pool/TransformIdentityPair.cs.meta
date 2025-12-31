@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: d8949dd4c5b54b00a6689884ea146310
+timeCreated: 1734053444
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/HierarchyV2/Pool/TransformIdentityPair.cs
+  uploadId: 837734

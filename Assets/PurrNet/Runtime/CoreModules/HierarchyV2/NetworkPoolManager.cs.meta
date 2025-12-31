@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 1f47f09540814d189955224ebf6ff4bf
+timeCreated: 1734277761
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/HierarchyV2/NetworkPoolManager.cs
+  uploadId: 837734

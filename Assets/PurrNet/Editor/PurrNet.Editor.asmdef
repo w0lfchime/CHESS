@@ -1,0 +1,53 @@
+{
+    "name": "PurrNet.Editor",
+    "rootNamespace": "PurrNet.Editor",
+    "references": [
+        "GUID:6e20f757a1bae164fa42750dd2b27dcb",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:e851236b9ac2b9b4eaaa99506366edea",
+        "GUID:0a0471484b079be408cb3a0d7fe94736",
+        "GUID:68bd7fdb68ef2684e982e8a9825b18a5",
+        "GUID:11f08811e3b3210439e90d43d6ab9d83",
+        "GUID:58ff3a2ca929d114eaf0ca373ff1e07a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll",
+        "Sirenix.OdinInspector.Editor.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.codewriter.triinspector",
+            "expression": "",
+            "define": "TRI_INSPECTOR_PACKAGE"
+        },
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "",
+            "define": "UNITASK_PURRNET_SUPPORT"
+        },
+        {
+            "name": "com.rlabrecque.steamworks.net",
+            "expression": "",
+            "define": "STEAMWORKS_NET_PACKAGE"
+        },
+        {
+            "name": "com.edgegap.unity-servers-plugin",
+            "expression": "",
+            "define": "EDGEGAP_PURRNET_SUPPORT"
+        },
+        {
+            "name": "com.unity.multiplayer.playmode",
+            "expression": "",
+            "define": "UNITY_PLAYMODE"
+        }
+    ],
+    "noEngineReferences": false
+}

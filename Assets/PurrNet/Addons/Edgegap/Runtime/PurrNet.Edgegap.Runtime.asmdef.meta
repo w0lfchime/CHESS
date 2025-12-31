@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6c512c1d945cc374885c9a38d9b21034
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Addons/Edgegap/Runtime/PurrNet.Edgegap.Runtime.asmdef
+  uploadId: 837734

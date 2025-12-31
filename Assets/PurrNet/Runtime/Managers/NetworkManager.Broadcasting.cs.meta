@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 44d72dc0303dcec4cbfd3bcd996a3b3e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Managers/NetworkManager.Broadcasting.cs
+  uploadId: 837734

@@ -31,6 +31,7 @@ public class TitleScreenButtons : MonoBehaviour
     public GameData gameData;
     public TMP_Dropdown whiteDropDown;
     public TMP_Dropdown blackDropDown;
+    public TMP_Dropdown yourDropDown;
     public AudioClip[] titleScreenMusic;
     public AudioSource musicSource;
     public string[] tempTeam = new string[16];
@@ -79,6 +80,11 @@ public class TitleScreenButtons : MonoBehaviour
 
         teamSelectMenu.SetActive(true);
         mainMenu.SetActive(false);
+    }
+
+    public void PopulateYourDropdown()
+    {
+        yourDropDown.AddOptions(gameData.teams.Keys.ToList());
     }
 
     public void MoveToSingleplayer()
@@ -140,13 +146,13 @@ public class TitleScreenButtons : MonoBehaviour
         Debug.Log(whiteDropDown.options[whiteDropDown.value].text);
         gameData.whiteTeamName = whiteDropDown.options[whiteDropDown.value].text;
 
-        string[] theTeam = gameData.teams[whiteDropDown.options[whiteDropDown.value].text];
+        // string[] theTeam = gameData.teams[whiteDropDown.options[whiteDropDown.value].text];
 
-        for(int i = 0; i < 16; i++)
-        {
-            Debug.Log(theTeam[i]);
-        }
-        Debug.Log(gameData.teams[whiteDropDown.options[whiteDropDown.value].text]);
+        // for(int i = 0; i < 16; i++)
+        // {
+        //     Debug.Log(theTeam[i]);
+        // }
+        // Debug.Log(gameData.teams[whiteDropDown.options[whiteDropDown.value].text]);
     }
 
     public void SetBlackTeam(int team)
@@ -154,13 +160,19 @@ public class TitleScreenButtons : MonoBehaviour
         Debug.Log(blackDropDown.options[blackDropDown.value].text);
         gameData.blackTeamName = blackDropDown.options[blackDropDown.value].text;
 
-        string[] theTeam = gameData.teams[blackDropDown.options[blackDropDown.value].text];
+        // string[] theTeam = gameData.teams[blackDropDown.options[blackDropDown.value].text];
 
-        for(int i = 0; i < 16; i++)
-        {
-            Debug.Log(theTeam[i]);
-        }
-        Debug.Log(gameData.teams[blackDropDown.options[blackDropDown.value].text]);
+        // for(int i = 0; i < 16; i++)
+        // {
+        //     Debug.Log(theTeam[i]);
+        // }
+        // Debug.Log(gameData.teams[blackDropDown.options[blackDropDown.value].text]);
+    }
+
+    public void SetYourTeam(int team)
+    {
+        Debug.Log(yourDropDown.options[yourDropDown.value].text);
+        gameData.yourTeamName = yourDropDown.options[yourDropDown.value].text;
     }
 
     public void SetMap(int index)

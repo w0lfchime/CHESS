@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 47c416d4167fd1545986e98ddde28c95
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/LiteNetLib/PausedSocketFix.cs
+  uploadId: 837734

@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: ba6910ddf8e94aed932fb539ebabcd00
+timeCreated: 1763974821
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Components/NetworkBehaviour/INetworkTransform.cs
+  uploadId: 837734

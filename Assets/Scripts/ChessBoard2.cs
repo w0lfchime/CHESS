@@ -5,8 +5,9 @@ using System.Linq;
 using System.Net.Mail;
 using TMPro;
 using System.Collections;
+using PurrNet;
 
-public class ChessBoard2 : MonoBehaviour
+public class ChessBoard2 : NetworkIdentity
 {
 	public static ChessBoard2 Instance { get; private set; }
 	public int BoardTileHeight = 8;  // rows (Z+, top to bottom)
@@ -127,8 +128,12 @@ public class ChessBoard2 : MonoBehaviour
 	}
 
 	//triggered when a tile is clicked, a little weird since the first click will give you green spaces and the second click will be on those spaces
-	public void InteractTrigger(Tile tile)
+	public void InteractTrigger(Tile tile, bool RPC = false)
 	{
+		if(NetworkManager.main!=null && (GameManager.Instance.CurrentTurn != Team.White) == NetworkManager.main.isServer && !RPC) return;
+		if(NetworkManager.main.isClient && !RPC) SendInteractToServer(tile.TileBoardX, tile.TileBoardY);
+		if(NetworkManager.main.isServer && !RPC) SendInteractToClient(tile.TileBoardX, tile.TileBoardY);
+
 		Debug.Log("Ran " + tile);
 		ChessPiece selected = (tile.tileOccupants.Count > 0) ? tile.tileOccupants[0] : null;
 
@@ -152,7 +157,7 @@ public class ChessBoard2 : MonoBehaviour
 			RemoveHighlightTiles(activeChessPiece);
 			foreach (TriggerType trigger in triggers)
 			{
-				TriggerOnePiece(activeChessPiece, trigger, tile, true, true);
+				TriggerOnePiece(activeChessPiece, trigger, tile, true, !RPC);
 			}
 			activeChessPiece = null;
 		}
@@ -173,6 +178,18 @@ public class ChessBoard2 : MonoBehaviour
 		
 		if (selected == null || activeChessPiece != selected) abilityClickLayer = 0;
 		
+	}
+
+	[ServerRpc]
+	void SendInteractToServer(int y, int x)
+	{
+		InteractTrigger(TileLocations[x,y], true);
+	}
+
+	[ObserversRpc]
+	void SendInteractToClient(int y, int x)
+	{
+		InteractTrigger(TileLocations[x,y], true);
 	}
 
 	//triggered inbetween turns
@@ -256,10 +273,24 @@ public class ChessBoard2 : MonoBehaviour
 		if (did_anything_happen > 0)
 		{
 			piece.moves++;
-			if(endTurn) GameManager.Instance.EndTurn(); // Switch turn
+			if(endTurn) {
+				GameManager.Instance.EndTurn(); // Switch turn
+				if(NetworkManager.main.isServer) EndClientTurn();
+				if(NetworkManager.main.isClient) EndServerTurn();
+			}
 		}
 	}
 
+	[ServerRpc]
+	void EndServerTurn()
+	{
+		GameManager.Instance.EndTurn();
+	}
+	[ObserversRpc]
+	void EndClientTurn()
+	{
+		GameManager.Instance.EndTurn();
+	}
 
 	void GetHighlightTiles(ChessPiece piece, List<TriggerType> triggers, int layer)
 	{
@@ -580,10 +611,28 @@ public class ChessBoard2 : MonoBehaviour
 		}
 	}
 
-	public void SpawnAllPieces()
+	public void SpawnAllPieces(string[] theirTeam)
 	{
-		string[] whiteTeam = GameData.Instance.teams[GameData.Instance.whiteTeamName];
-		string[] blackTeam = GameData.Instance.teams[GameData.Instance.blackTeamName];
+		string[] whiteTeam = new string[0];
+		string[] blackTeam = new string[0];
+
+		print(NetworkManager.main.isServer);
+
+		if (NetworkManager.main.isServer)
+		{
+			whiteTeam = GameData.Instance.teams[GameData.Instance.yourTeamName];
+			blackTeam = theirTeam;
+		}else if (NetworkManager.main.isClient)
+		{
+			whiteTeam = theirTeam;
+			blackTeam = GameData.Instance.teams[GameData.Instance.yourTeamName];
+		}
+		else
+		{
+			whiteTeam = GameData.Instance.teams[GameData.Instance.whiteTeamName];
+			blackTeam = GameData.Instance.teams[GameData.Instance.blackTeamName];
+		}
+		
 
 		// GameManager.Instance.CurrentTurn = Team.Black;
 
@@ -596,7 +645,7 @@ public class ChessBoard2 : MonoBehaviour
 			{
 				if (whiteTeam[pieceOn] != null && whiteTeam[pieceOn] != "")
 				{
-					Debug.Log("Spawned piece");
+					//Debug.Log("Spawned piece");
 					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
 				}
 
@@ -621,6 +670,19 @@ public class ChessBoard2 : MonoBehaviour
 		}
 	}
 
+	[ServerRpc(requireOwnership: false)]
+    public void SendTeamToServer(string[] team)
+    {
+        Debug.Log("SendTeamToServer RPC received");
+        SpawnAllPieces(team);
+    }
+
+    [ObserversRpc(bufferLast: true)]
+    public void SendTeamToClient(string[] team)
+    {
+        Debug.Log("SendTeamToClient RPC received");
+        SpawnAllPieces(team);
+    }
 	public void SpawnAllPuzzlePieces()
 	{
 		Puzzles puzzle = GameData.Instance.puzzle;

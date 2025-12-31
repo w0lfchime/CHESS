@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 1b18765fdcec4a68ba5084f87903fdf2
+timeCreated: 1749649393
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/RPCs/StripCodeMode.cs
+  uploadId: 837734

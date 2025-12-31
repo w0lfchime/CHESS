@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 8e07eed71e9e06b4d8f8607fe09d4e93
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/ColliderRollback/ColliderRollbackFactory.cs
+  uploadId: 837734

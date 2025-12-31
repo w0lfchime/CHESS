@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 18a5171625f342a8883e1beb10458fa1
+timeCreated: 1729173649
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Pooling/HashSetPool.cs
+  uploadId: 837734

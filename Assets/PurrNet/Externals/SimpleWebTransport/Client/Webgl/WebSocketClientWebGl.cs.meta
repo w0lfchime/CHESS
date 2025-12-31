@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 015c5b1915fd1a64cbe36444d16b2f7d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/SimpleWebTransport/Client/Webgl/WebSocketClientWebGl.cs
+  uploadId: 837734

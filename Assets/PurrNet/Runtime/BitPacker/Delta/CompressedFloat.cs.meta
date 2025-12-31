@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 09bf4307143b4ca9ab851b76d1011ed9
+timeCreated: 1744111836
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/BitPacker/Delta/CompressedFloat.cs
+  uploadId: 837734

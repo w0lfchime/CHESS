@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: e378b251b3061724e95aec5499b58c0e
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Addons/Steam/Editor/SteamTransportInspector.cs
+  uploadId: 837734

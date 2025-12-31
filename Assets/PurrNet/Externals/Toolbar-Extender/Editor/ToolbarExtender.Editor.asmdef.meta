@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0a0471484b079be408cb3a0d7fe94736
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/Toolbar-Extender/Editor/ToolbarExtender.Editor.asmdef
+  uploadId: 837734

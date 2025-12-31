@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 509f175d0162982449f219e50aed57b9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _transport: {instanceID: 0}
+  - _networkRules: {fileID: 11400000, guid: 57ad4cc976c21074181652c4f7179d44, type: 2}
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 031cedd513d97b249afb4d5e573041bf, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Managers/RawNetManager.cs
+  uploadId: 837734

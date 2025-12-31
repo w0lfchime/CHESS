@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: afa1f0634a644850b88c8e0b2494b9e4
+timeCreated: 1743417433
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/CoreModules/DeltaMessager/AckDeltaMessage.cs
+  uploadId: 837734

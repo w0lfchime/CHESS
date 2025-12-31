@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 56732e2b3d4b4dd385f9cbd0e033157f
+timeCreated: 1725618413
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Components/NetworkVisibility/INetworkVisibilityRule.cs
+  uploadId: 837734

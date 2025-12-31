@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: cbff98a87fa44fbb93b32044046676e0
+timeCreated: 1747053155
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Tools/ProfileDeltas/Runtime/NetworkIDProfile.cs
+  uploadId: 837734

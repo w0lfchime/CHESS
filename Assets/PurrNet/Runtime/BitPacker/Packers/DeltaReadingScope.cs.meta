@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 1a9df88e348f4989b7948478f40a650d
+timeCreated: 1758713396
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/BitPacker/Packers/DeltaReadingScope.cs
+  uploadId: 837734

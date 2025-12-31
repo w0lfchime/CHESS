@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: efa6919cc63c4ee6a774da5621963cda
+timeCreated: 1758624569
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/BitPacker/Packers/MyersPackDisposableLists.cs
+  uploadId: 837734

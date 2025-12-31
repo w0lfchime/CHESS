@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2b2213188c66e534489205d559c59594
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 6f6ec8edd4fda2e4fb4e73bc673d4410, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Components/NetworkBones/NetworkBones.cs
+  uploadId: 837734

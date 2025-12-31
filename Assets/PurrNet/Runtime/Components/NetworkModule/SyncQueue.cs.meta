@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 772eb76595b03b5449f381cd0c367bf2
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Components/NetworkModule/SyncQueue.cs
+  uploadId: 837734

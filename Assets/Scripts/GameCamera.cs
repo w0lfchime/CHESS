@@ -137,19 +137,18 @@ public class GameCamera : MonoBehaviour
 		pivotTargetPos = cameraPivot.position;
 	}
 
-	public void SetTurn(int turn)
+	public void SetTurn(Team turn)
 	{
-		this.turn = turn;
 		StopAllCoroutines();
 		StartCoroutine(SwitchTurnRoutine(turn));
 	}
 
-	IEnumerator SwitchTurnRoutine(int turn)
+	IEnumerator SwitchTurnRoutine(Team turn)
 	{
 		inputEnabled = false;
 
 		Quaternion startRot = cameraPivot.rotation;
-		Quaternion endRot = (GameManager.Instance.CurrentTurn == Team.White) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180f, 0);
+		Quaternion endRot = (turn == Team.White) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180f, 0);
 
 		Vector3 startPos = cameraPivot.position;
 		Vector3 endPos = Vector3.zero;

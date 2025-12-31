@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 69b2798325f3c7f4ba29d15988858af9
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Runtime/Utils/PurrButtonAttribute.cs
+  uploadId: 837734

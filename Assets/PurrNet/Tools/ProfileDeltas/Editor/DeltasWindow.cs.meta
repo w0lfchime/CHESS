@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 5ee064c77df5ed243898a8158ab7b33e
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Tools/ProfileDeltas/Editor/DeltasWindow.cs
+  uploadId: 837734

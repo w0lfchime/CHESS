@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 83195b756cb372f4f81ab28fa0613e49
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/7zip/LICENSE.txt
+  uploadId: 837734

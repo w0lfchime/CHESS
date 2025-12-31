@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e56c32634aad56949bf996df9ba9257b
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297320
+  packageName: 'PurrNet: Multiplayer Networking'
+  packageVersion: v1.18.1-beta.3
+  assetPath: Assets/PurrNet/Externals/Toolbar-Extender/README.md
+  uploadId: 837734
