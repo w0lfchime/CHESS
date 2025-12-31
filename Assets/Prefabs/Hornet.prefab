@@ -113,4 +113,4 @@ MonoBehaviour:
   IsTileOccupant: 1
   currentTile: {fileID: 0}
   meshFilter: {fileID: 0}
-  chessPieceData: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
+  chessPieceData: {fileID: 11400000, guid: 6b6c8714568aff84db12c70916aec619, type: 2}
