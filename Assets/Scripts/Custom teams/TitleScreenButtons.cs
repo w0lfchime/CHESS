@@ -84,6 +84,7 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void PopulateYourDropdown()
     {
+        yourDropDown.ClearOptions();
         yourDropDown.AddOptions(gameData.teams.Keys.ToList());
     }
 
@@ -297,6 +298,7 @@ public class TitleScreenButtons : MonoBehaviour
         GameObject teamViewIns = Instantiate(TeamViewPart, TeamView.content.transform);
         teamViewIns.GetComponent<TeamButtonUI>().textAsset.text = name;
         LayoutRebuilder.ForceRebuildLayoutImmediate(TeamView.content.GetComponent<RectTransform>());
+        PopulateYourDropdown();
     }
 
     public void EditTeam(string name)

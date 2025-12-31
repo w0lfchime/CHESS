@@ -130,7 +130,7 @@ public class ChessBoard2 : NetworkIdentity
 	//triggered when a tile is clicked, a little weird since the first click will give you green spaces and the second click will be on those spaces
 	public void InteractTrigger(Tile tile, bool RPC = false)
 	{
-		if(NetworkManager.main!=null && (GameManager.Instance.CurrentTurn != Team.White) == NetworkManager.main.isServer && !RPC) return;
+		if((NetworkManager.main.isServer || NetworkManager.main.isClient) && (GameManager.Instance.CurrentTurn != Team.White) == NetworkManager.main.isServer && !RPC) return;
 		if(NetworkManager.main.isClient && !RPC) SendInteractToServer(tile.TileBoardX, tile.TileBoardY);
 		if(NetworkManager.main.isServer && !RPC) SendInteractToClient(tile.TileBoardX, tile.TileBoardY);
 
