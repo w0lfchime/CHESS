@@ -296,6 +296,7 @@ public class TitleScreenButtons : MonoBehaviour
     {
         GameObject teamViewIns = Instantiate(TeamViewPart, TeamView.content.transform);
         teamViewIns.GetComponent<TeamButtonUI>().textAsset.text = name;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(TeamView.content.GetComponent<RectTransform>());
     }
 
     public void EditTeam(string name)
