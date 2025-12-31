@@ -1252,8 +1252,8 @@ MonoBehaviour:
     prefab: {fileID: 7009996306650167107, guid: 042de058a42e8ca49a4959b3672c441a, type: 3}
   - id: Hungry
     prefab: {fileID: 7009996306650167107, guid: 5bfa31f78bc95e04eb3dc8ebcf9cde47, type: 3}
-  - id: Hungry
-    prefab: {fileID: 7009996306650167107, guid: 5bfa31f78bc95e04eb3dc8ebcf9cde47, type: 3}
+  - id: Cardinal
+    prefab: {fileID: 7009996306650167107, guid: 04daec856cfe877439e4551d6ee83e42, type: 3}
 --- !u!23 &330483919
 MeshRenderer:
   m_ObjectHideFlags: 0
