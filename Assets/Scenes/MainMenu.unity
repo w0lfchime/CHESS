@@ -1939,7 +1939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -193.99997, y: -43.400024}
+  m_AnchoredPosition: {x: -193.99994, y: -43.400024}
   m_SizeDelta: {x: -444.715, y: -101.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127503228
@@ -12103,9 +12103,9 @@ RectTransform:
   m_Children:
   - {fileID: 354588729}
   - {fileID: 2045407203}
-  - {fileID: 1664904801}
   - {fileID: 246024876}
   - {fileID: 1025722602}
+  - {fileID: 1664904801}
   - {fileID: 1138739020}
   - {fileID: 362193117}
   m_Father: {fileID: 987653647}
@@ -22978,7 +22978,6 @@ GameObject:
   - component: {fileID: 1354207224}
   - component: {fileID: 1354207219}
   - component: {fileID: 1354207223}
-  - component: {fileID: 1354207225}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -23000,8 +22999,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _masterServer: https://purrtransport.purrservers.com/
   _roomName: 1aa20e2074be4a8b81a4b84b59c21279
-  _region: france
-  _host: purrtransport-france.purrservers.com
+  _region: nj-us
+  _host: purrtransport-nj-us.purrservers.com
   _timeoutInSeconds: 5
   _pollEventsInUpdate: 0
 --- !u!114 &1354207220
@@ -23087,32 +23086,6 @@ MonoBehaviour:
   _ensureAllServersStart: 0
   _transports:
   - {fileID: 1354207223}
-  - {fileID: 1354207219}
---- !u!114 &1354207225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354207218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de4778b5edf2476448bcb3ac3d9c35d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _automaticCloudSetups:
-    _adaptToEdgegap: 1
-  _serverPort: 5001
-  _maxConnections: 1
-  _forceIpv4: 0
-  _address: 127.0.0.1
-  _query: 
-  _path: 
-  _pollEventsInUpdate: 0
-  _enableSSL: 0
-  _certPath: 
-  _certPassword: 
-  _sslProtocols: 0
 --- !u!1 &1355670401
 GameObject:
   m_ObjectHideFlags: 0
@@ -23327,7 +23300,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1364836402}
   m_HandleRect: {fileID: 0}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
