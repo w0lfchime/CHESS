@@ -38,7 +38,7 @@ public class TeamSlotRework : MonoBehaviour
         TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
         if (!(titleScreenButtons.matValue - mat + PieceProperties.PieceValues[pieceId] > titleScreenButtons.maxMaterial))
             {
-                if (titleScreenButtons.lifelineCount() > 0 && (pieceId == "StandardKing" || pieceId == "MpregKing"))
+                if (titleScreenButtons.lifelineCount() > 0 && PieceProperties.LifelinePieces.Contains(pieceId))
                 {
                     titleScreenButtons.editMatTextStuff("Too many lifelines");
                 }

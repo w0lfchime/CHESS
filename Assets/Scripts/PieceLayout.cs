@@ -46,7 +46,7 @@ public static class PieceProperties
         {"ZombiePawn", 4}
     };
 
-    public static readonly HashSet<String> LifelinePieces = new HashSet<string> { "StandardKing" };
+    public static readonly HashSet<String> LifelinePieces = new HashSet<string> { "StandardKing", "MpregKing" };
 }
 
 [Serializable]

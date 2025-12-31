@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HandMove : MonoBehaviour
 {
-    public float offset;
+    public Vector2 offset;
     public float turnAmount = 1;
     private Vector3 targetPos;
 
@@ -12,7 +12,7 @@ public class HandMove : MonoBehaviour
     }
     public void Move(Transform button)
     {
-        targetPos = new Vector3(transform.parent.position.x, button.position.y + offset, transform.parent.position.z);
+        targetPos = new Vector3(button.position.x+offset.x, button.position.y + offset.y, transform.parent.position.z);
     }
     
     void Update()
