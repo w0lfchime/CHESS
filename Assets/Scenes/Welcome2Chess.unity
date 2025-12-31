@@ -1227,7 +1227,7 @@ MonoBehaviour:
   - id: KitchenSink
     prefab: {fileID: 4026744677435548049, guid: cf239f95b1c246547837f18609e31128, type: 3}
   - id: Pope
-    prefab: {fileID: 4026744677435548049, guid: cf239f95b1c246547837f18609e31128, type: 3}
+    prefab: {fileID: 4026744677435548049, guid: 58dc0073c9bf06345842da8ae53bcba2, type: 3}
   - id: Checkers
     prefab: {fileID: 7009996306650167107, guid: fc5ab3a2ae669184f848990c2e5a72c4, type: 3}
   - id: MpregKing
@@ -1250,6 +1250,10 @@ MonoBehaviour:
     prefab: {fileID: 7009996306650167107, guid: c8f037d7674076c429841cdd5d39b3b1, type: 3}
   - id: Rogue
     prefab: {fileID: 7009996306650167107, guid: 042de058a42e8ca49a4959b3672c441a, type: 3}
+  - id: Hungry
+    prefab: {fileID: 7009996306650167107, guid: 5bfa31f78bc95e04eb3dc8ebcf9cde47, type: 3}
+  - id: Hungry
+    prefab: {fileID: 7009996306650167107, guid: 5bfa31f78bc95e04eb3dc8ebcf9cde47, type: 3}
 --- !u!23 &330483919
 MeshRenderer:
   m_ObjectHideFlags: 0
