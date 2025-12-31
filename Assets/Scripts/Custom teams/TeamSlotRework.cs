@@ -30,7 +30,15 @@ public class TeamSlotRework : MonoBehaviour
     {
         TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
         DraggableUIPiece pieceData = titleScreenButtons.selectedPiece;
-        SetPiece(pieceData.pieceId);
+
+        if (image.sprite != UIPieceSpawner.Instance.NameToImage(""))
+        {
+            SetPiece("");
+        }
+        else
+        {
+            SetPiece(pieceData.pieceId);
+        }
     }
 
     public void SetPiece(string pieceId)
