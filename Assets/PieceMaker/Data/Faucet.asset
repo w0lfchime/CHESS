@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: Faucet
   m_EditorClassIdentifier: 
-  name: NoNameSet
-  model: {fileID: 4711208715938537054, guid: 026e44fc93a4aa742803c3fefdce5642, type: 3}
+  pieceName: NewChessPiece
+  model: {fileID: 4536773283001372330, guid: f834ba5e7e9d5aa47b4436e1212950fd, type: 3}
   model_scale_multiplier: 1
+  description: NoDescriptionSet
+  image: {fileID: 0}
   lifeLine: 0
   promotable:
   - {fileID: 0}
