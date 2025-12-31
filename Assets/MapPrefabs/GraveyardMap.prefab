@@ -645,7 +645,7 @@ Transform:
   m_GameObject: {fileID: 7152857321272687364}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.7200012, y: 4.659999, z: 5.2299995}
+  m_LocalPosition: {x: 0, y: 2.71, z: 0}
   m_LocalScale: {x: 2.1375902, y: 1.5834, z: 1.5834}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -841,7 +841,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.42955682, g: 0.46226418, b: 0.45919788, a: 0.019607844}
+      maxColor: {r: 0.42955682, g: 0.46226418, b: 0.45919788, a: 0.050980393}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -905,7 +905,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 25
+      scalar: 38.32
       minScalar: 15
       maxCurve:
         serializedVersion: 2
@@ -1290,7 +1290,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 15, y: 1, z: 1}
+    m_Scale: {x: 50, y: 1, z: 78.21}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1488,7 +1488,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 99
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5398,7 +5398,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8057,7 +8057,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 446266218996497545, guid: 0357ab5e4a7f241fab61391b3eca7d05, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.95004004
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 446266218996497545, guid: 0357ab5e4a7f241fab61391b3eca7d05, type: 3}
       propertyPath: m_LocalScale.y
@@ -8065,7 +8065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 446266218996497545, guid: 0357ab5e4a7f241fab61391b3eca7d05, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.95004004
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 446266218996497545, guid: 0357ab5e4a7f241fab61391b3eca7d05, type: 3}
       propertyPath: m_LocalPosition.x
