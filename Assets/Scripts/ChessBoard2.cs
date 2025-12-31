@@ -431,7 +431,7 @@ public class ChessBoard2 : NetworkIdentity
 
 		bool wasTileSelected = false;
 
-		Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY);
+		Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardY, cp.currentTile.TileBoardX);
 
 		foreach ((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
 		{
@@ -449,7 +449,7 @@ public class ChessBoard2 : NetworkIdentity
 				continue;
 			}
 			if (actionTraits.Contains(ActionTrait.remove_unselected_line)){
-				List<Vector2Int> path = GridLine.GetLine(previousPosition, new Vector2Int(selectedTile.TileBoardX, selectedTile.TileBoardY));
+				List<Vector2Int> path = GridLine.GetLine(previousPosition, new Vector2Int(selectedTile.TileBoardY, selectedTile.TileBoardX));
 				if(!path.Contains(tilePosition)){
 					continue;
 				}
