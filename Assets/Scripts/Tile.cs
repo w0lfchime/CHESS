@@ -29,6 +29,12 @@ public class Tile : MonoBehaviour
 		foreach (var o in tileOccupants) yield return o;
 	}
 
+	public void SwapColor(bool white)
+	{
+		rend.sharedMaterial = white ? ChessBoard2.Instance.WhiteTileMat : ChessBoard2.Instance.BlackTileMat;
+		isWhite = white;
+	}
+
 	public void AddPiece(ChessPiece piece)
 	{
 		tileOccupants.Add(piece);

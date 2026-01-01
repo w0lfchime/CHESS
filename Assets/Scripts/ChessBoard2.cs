@@ -548,11 +548,16 @@ public class ChessBoard2 : NetworkIdentity
 				TileLocations[tilePosition.x, tilePosition.y].AddPiece(cp);
 			}
 
-			if (actionTraits.Contains(ActionTrait.command_bring))// if trait moves the active piece
+			if (actionTraits.Contains(ActionTrait.command_bring))// if trait brings the other piece here
 			{
 				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
 				ocp.currentTile.RemovePiece(ocp);
 				TileLocations[previousPosition.x, previousPosition.y].AddPiece(ocp);
+			}
+
+			if (actionTraits.Contains(ActionTrait.command_swapcolor))// if trait swaps the tile color
+			{
+				TileLocations[tilePosition.x, tilePosition.y].SwapColor(!TileLocations[tilePosition.x, tilePosition.y].isWhite);
 			}
 
 
