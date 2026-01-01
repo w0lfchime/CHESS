@@ -21,6 +21,7 @@ public class UIPieceSpawner : MonoBehaviour
                 UIPieceIns.GetComponent<Image>().color = lifeLineColor;
             }
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
 
     public Sprite NameToImage(string name)
