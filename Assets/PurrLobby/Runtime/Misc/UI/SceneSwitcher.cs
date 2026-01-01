@@ -12,7 +12,7 @@ namespace PurrLobby
         public void SwitchScene()
         {
             lobbyManager.SetLobbyStarted();
-            SceneManager.LoadSceneAsync(nextScene);
+            NetworkManager.main.sceneModule.LoadSceneAsync(nextScene);
         }
     }
 }
