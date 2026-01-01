@@ -1262,6 +1262,8 @@ MonoBehaviour:
     prefab: {fileID: 7009996306650167107, guid: 0e45517367d7119418a9bd9a544d355e, type: 3}
   - id: Bulldozer
     prefab: {fileID: 7009996306650167107, guid: 3b1c9a9a77224224ba548e6c0103a859, type: 3}
+  - id: Unicorn
+    prefab: {fileID: 7009996306650167107, guid: 2720c3e2833f3c94dae2ff16807910ef, type: 3}
 --- !u!23 &330483919
 MeshRenderer:
   m_ObjectHideFlags: 0
