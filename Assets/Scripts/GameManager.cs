@@ -38,7 +38,6 @@ public class GameManager : NetworkIdentity
 
 	protected override void OnSpawned(bool asServer)
     {
-		Instance = this;
         base.OnSpawned(asServer);
 
         Camera.SetTurn(asServer ? Team.White : Team.Black);
@@ -55,7 +54,17 @@ public class GameManager : NetworkIdentity
         }
     }
 
-	public void Start()
+    void Awake()
+    {
+        Instance = this;
+    }
+
+	void Start()
+	{
+		if(!NetworkManager.main.isServer && !NetworkManager.main.isClient) Initialize();
+	}
+
+    public void Initialize()
 	{
 		Instance = this;
 

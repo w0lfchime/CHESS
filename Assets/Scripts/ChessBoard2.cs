@@ -479,7 +479,7 @@ public class ChessBoard2 : NetworkIdentity
 
 			if (actionTraits.Contains(ActionTrait.command_pushback))// if trait pushes another piece
 			{
-				Vector2Int newpos = new Vector2Int(TileLocations[tilePosition.x, tilePosition.y].TileBoardY, TileLocations[tilePosition.x, tilePosition.y].TileBoardX) + Vector2Int.RoundToInt((new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardY, TileLocations[tilePosition.x, tilePosition.y].TileBoardX) - new Vector2(cp.currentTile.TileBoardY, cp.currentTile.TileBoardX)).normalized);
+				Vector2Int newpos = new Vector2Int(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY) + Vector2Int.RoundToInt((new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY) - new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY)).normalized);
 				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
 
 				TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
@@ -673,7 +673,7 @@ public class ChessBoard2 : NetworkIdentity
 	[ServerRpc(requireOwnership: false)]
     public void SendTeamToServer(string[] team)
     {
-		GameManager.Instance.Start();
+		GameManager.Instance.Initialize();
         Debug.Log("SendTeamToServer RPC received");
         SpawnAllPieces(team);
     }
@@ -681,7 +681,7 @@ public class ChessBoard2 : NetworkIdentity
     [ObserversRpc(bufferLast: true)]
     public void SendTeamToClient(string[] team)
     {
-		GameManager.Instance.Start();
+		GameManager.Instance.Initialize();
         Debug.Log("SendTeamToClient RPC received");
         SpawnAllPieces(team);
     }
