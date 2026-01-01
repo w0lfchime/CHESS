@@ -10,7 +10,7 @@ public class Puzzles : ScriptableObject
     public List<string> blackTeamMovements;
 
     public List<string> whiteTeamSpawning;
-    // format: PieceId endX endY, ...
+    // format: PieceId endX endY sequenceOld sequenceNew, ...
     public List<string> whiteTeamMovements;
 
     public Map map;
