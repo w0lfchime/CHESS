@@ -1258,6 +1258,8 @@ MonoBehaviour:
     prefab: {fileID: 7009996306650167107, guid: 14ea5f9bb6e46784ba6dc2505d214daa, type: 3}
   - id: Demon
     prefab: {fileID: 7009996306650167107, guid: 0fbd9f7894260cf419a54edf0a21d297, type: 3}
+  - id: Archer
+    prefab: {fileID: 7009996306650167107, guid: 0e45517367d7119418a9bd9a544d355e, type: 3}
 --- !u!23 &330483919
 MeshRenderer:
   m_ObjectHideFlags: 0
