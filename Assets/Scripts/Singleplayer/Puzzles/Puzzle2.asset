@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79951f334a11c0e4d852604b061451d1, type: 3}
   m_Name: Puzzle2
   m_EditorClassIdentifier: 
-  blackTeamSpawning: []
-  blackTeamMovements: []
-  whiteTeamSpawning: []
-  whiteTeamMovements: []
+  blackTeamSpawning:
+  - StandardPawn 0 1
+  - StandardPawn 1 1
+  - StandardPawn 2 1
+  - StandardKing 0 0
+  - StandardRook 7 0
+  blackTeamMovements:
+  - 7 0 3 0
+  whiteTeamSpawning:
+  - StandardRook 3 7
+  - StandardRook 3 6
+  - StandardKing 7 7
+  whiteTeamMovements:
+  - StandardRook 3 0 0 0
+  - StandardRook 3 0 0 0
   map: {fileID: 0}
