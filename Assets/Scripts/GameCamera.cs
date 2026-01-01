@@ -112,7 +112,7 @@ public class GameCamera : MonoBehaviour
 
 	void HandleZoom()
 	{
-		if(GameManager.Instance!=null){
+		if(GameManager.Instance!=null && GameManager.Instance.Cursor!=null){
 			Vector3 pos = new Vector3(GameManager.Instance.Cursor.hitPoint.x, 0, GameManager.Instance.Cursor.hitPoint.z);
 			pivotTargetPos = pos * (1 - (currentZoomDistance / maxZoomDistance));
 		}

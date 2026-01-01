@@ -177,7 +177,13 @@ public class GameManager : NetworkIdentity
 	public void ResetGame()
 	{
 		Time.timeScale = 1f;
-		SceneManager.LoadScene("Welcome2Chess");
+		if(!NetworkManager.main.isServer && !NetworkManager.main.isClient){
+			SceneManager.LoadScene("Welcome2Chess");
+		}
+		else
+		{
+			NetworkManager.main.sceneModule.LoadSceneAsync("Welcome2Chess");
+		}
 	}
 
 	public void TogglePauseMenu()

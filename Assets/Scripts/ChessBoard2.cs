@@ -447,8 +447,8 @@ public class ChessBoard2 : NetworkIdentity
 
 			//check if selected
 			if (actionTraits.Contains(ActionTrait.remove_unselected) && selectedTile != TileLocations[tilePosition.x, tilePosition.y]) continue;
-			if (actionTraits.Contains(ActionTrait.remove_unselected_far) && (Mathf.Abs(selectedTile.TileBoardX-tilePosition.x) > 1 || Mathf.Abs(selectedTile.TileBoardY-tilePosition.y) > 1)){
-				print(new Vector2(Mathf.Abs(selectedTile.TileBoardY-tilePosition.x), Mathf.Abs(selectedTile.TileBoardX-tilePosition.y)));
+			if (actionTraits.Contains(ActionTrait.remove_unselected_far) && (Mathf.Abs(selectedTile.TileBoardY - tilePosition.x) > 1 || Mathf.Abs(selectedTile.TileBoardX - tilePosition.y) > 1))
+			{
 				continue;
 			}
 			if (actionTraits.Contains(ActionTrait.remove_unselected_line)){
@@ -477,21 +477,37 @@ public class ChessBoard2 : NetworkIdentity
 
 			}
 
-			if (actionTraits.Contains(ActionTrait.command_pushback))// if trait pushes another piece
+			if (actionTraits.Contains(ActionTrait.command_pushback))
 			{
-				Vector2Int newpos = new Vector2Int(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY) + Vector2Int.RoundToInt((new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY) - new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY)).normalized);
-				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
+				Vector2Int targetIndex = tilePosition;
+				Vector2Int cpIndex     = previousPosition;
 
-				TileLocations[tilePosition.x, tilePosition.y].RemovePiece(ocp);
-                try
-                {
-                    TileLocations[newpos.y, newpos.x].AddPiece(ocp);
-                }
-                catch
-                {
+				Vector2Int dir = targetIndex - cpIndex;
+
+				dir.x = Mathf.Clamp(dir.x, -1, 1);
+				dir.y = Mathf.Clamp(dir.y, -1, 1);
+
+				Vector2Int newIndex = targetIndex + dir;
+
+				TileLocations[targetIndex.x, targetIndex.y].RemovePiece(ocp);
+
+				// Bounds check
+				bool outOfBounds =
+					newIndex.x < 0 || newIndex.x >= BoardTileHeight ||
+					newIndex.y < 0 || newIndex.y >= BoardTileWidth ||
+					TileLocations[newIndex.x, newIndex.y] == null ||
+					(TileLocations[newIndex.x, newIndex.y] != null && TileLocations[newIndex.x, newIndex.y].obstructed);
+
+				if (outOfBounds)
+				{
 					ocp.Kill();
-                }
+				}
+				else
+				{
+					TileLocations[newIndex.x, newIndex.y].AddPiece(ocp);
+				}
 			}
+
 
 			if (actionTraits.Contains(ActionTrait.command_goto))// if trait moves the active piece
 			{
