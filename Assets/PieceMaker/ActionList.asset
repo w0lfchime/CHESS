@@ -73,3 +73,7 @@ MonoBehaviour:
     traits: 0300000004000000050000001300000000000000
     visualGrid: []
     grid: 
+  - name: colorswap
+    traits: 03000000040000000200000015000000
+    visualGrid: []
+    grid: 
