@@ -16,7 +16,7 @@ MonoBehaviour:
   model: {fileID: 0}
   model_scale_multiplier: 0
   description: NoDescriptionSet
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 9d42aa823f8fa054dbcf676f51a41e7b, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11

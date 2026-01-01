@@ -16,7 +16,7 @@ MonoBehaviour:
   model: {fileID: 0}
   model_scale_multiplier: 0
   description: NoDescriptionSet
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: b4b1a4eea6da1b24094aa968833e211a, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11
@@ -24,6 +24,7 @@ MonoBehaviour:
   - name: Nay
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: move
       traits: 00000000020000000600000005000000
@@ -43,6 +44,7 @@ MonoBehaviour:
   - name: Move
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: push
       traits: 0300000004000000000000000c0000000500000006000000
