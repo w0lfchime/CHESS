@@ -57,11 +57,6 @@ public class GameManager : NetworkIdentity
 
 	public void Start()
 	{
-		if (Instance != null && Instance != this)
-		{
-			Destroy(gameObject);
-			return;
-		}
 		Instance = this;
 
 		Cursor = this.gameObject.GetComponent<CursorManager>();
