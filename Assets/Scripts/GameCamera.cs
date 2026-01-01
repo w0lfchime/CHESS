@@ -112,8 +112,10 @@ public class GameCamera : MonoBehaviour
 
 	void HandleZoom()
 	{
-		Vector3 pos = new Vector3(GameManager.Instance.Cursor.hitPoint.x, 0, GameManager.Instance.Cursor.hitPoint.z);
-		pivotTargetPos = pos * (1 - (currentZoomDistance / maxZoomDistance));
+		if(GameManager.Instance!=null){
+			Vector3 pos = new Vector3(GameManager.Instance.Cursor.hitPoint.x, 0, GameManager.Instance.Cursor.hitPoint.z);
+			pivotTargetPos = pos * (1 - (currentZoomDistance / maxZoomDistance));
+		}
 		
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
 		if (Mathf.Abs(scroll) > 0.01f)

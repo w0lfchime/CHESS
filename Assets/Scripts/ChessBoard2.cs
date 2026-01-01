@@ -668,6 +668,7 @@ public class ChessBoard2 : NetworkIdentity
 	[ServerRpc(requireOwnership: false)]
     public void SendTeamToServer(string[] team)
     {
+		GameManager.Instance.Start();
         Debug.Log("SendTeamToServer RPC received");
         SpawnAllPieces(team);
     }
@@ -675,6 +676,7 @@ public class ChessBoard2 : NetworkIdentity
     [ObserversRpc(bufferLast: true)]
     public void SendTeamToClient(string[] team)
     {
+		GameManager.Instance.Start();
         Debug.Log("SendTeamToClient RPC received");
         SpawnAllPieces(team);
     }
