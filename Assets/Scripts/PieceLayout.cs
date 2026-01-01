@@ -45,7 +45,8 @@ public static class PieceProperties
         {"Wizard", 5},
         {"ZombiePawn", 4},
         {"Demon", 5}, 
-        {"Archer", 3}
+        {"Archer", 3},
+        {"Bulldozer", 3}
     };
 
     public static readonly HashSet<String> LifelinePieces = new HashSet<string> { "StandardKing", "MpregKing" };
