@@ -65,3 +65,7 @@ MonoBehaviour:
     traits: 04000000030000001200000009000000
     visualGrid: []
     grid: 
+  - name: AutoPush
+    traits: 030000000400000006000000
+    visualGrid: []
+    grid: 
