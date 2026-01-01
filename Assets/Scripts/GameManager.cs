@@ -128,7 +128,7 @@ public class GameManager : NetworkIdentity
 			
 		} else
 		{
-			if(CurrentTurn == Team.White)
+			if(CurrentTurn == Team.White && GameData.Instance.isDoingPuzzle)
 			{
 				Board.turns[1]++;
 
