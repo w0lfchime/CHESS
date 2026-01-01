@@ -23633,6 +23633,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 83dca6e3b3f3f694d9a77b658da76fef, type: 3}
   - {fileID: 21300000, guid: 271fb122fa57cf142b5c64a5c365d5e9, type: 3}
   - {fileID: 21300000, guid: 13e8c8525139eb545b68b10476dbb01a, type: 3}
+  - {fileID: 21300000, guid: 9d42aa823f8fa054dbcf676f51a41e7b, type: 3}
   lifeLineColor: {r: 0.9528302, g: 0.7053104, b: 0.31910825, a: 1}
   emptySprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1408370016
