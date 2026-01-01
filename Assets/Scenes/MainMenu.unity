@@ -10720,7 +10720,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 564970418}
   m_HandleRect: {fileID: 0}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -23617,7 +23617,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9d317301de74c904dad81902c88cdc1c, type: 3}
   - {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}
   - {fileID: 21300000, guid: c57c8ddbbf5bc9e4795f87446c9ba12f, type: 3}
-  - {fileID: 21300000, guid: e2e35d4d534d9e946907d04fc6fed512, type: 3}
   - {fileID: 21300000, guid: 697ad826adcd94f43aa39361c424eaf9, type: 3}
   - {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}
   - {fileID: 21300000, guid: e1aced1bf4d1555499d17f7c520fce93, type: 3}
@@ -23626,8 +23625,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: aa30dac70505bc045adb6d2639e9b52c, type: 3}
   - {fileID: 21300000, guid: 4f8412b3f8f893348b5e20154ea8da58, type: 3}
   - {fileID: 21300000, guid: ee85b22feb1643748a00e27ce557353c, type: 3}
-  - {fileID: 21300000, guid: 22e4e40c41d9b714f967b6266ffe2e86, type: 3}
   - {fileID: 21300000, guid: eae9b550d78e63b40b26f5d5d29b0914, type: 3}
+  - {fileID: 21300000, guid: e08c8550b2fab6645b40de7dc27ba285, type: 3}
   lifeLineColor: {r: 0.9528302, g: 0.7053104, b: 0.31910825, a: 1}
   emptySprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1408370016
