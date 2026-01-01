@@ -6,6 +6,7 @@ using System.Net.Mail;
 using TMPro;
 using System.Collections;
 using PurrNet;
+using UnityEngine.UI;
 
 public class ChessBoard2 : NetworkIdentity
 {
@@ -49,6 +50,8 @@ public class ChessBoard2 : NetworkIdentity
 
 	public int[] turns = new int[] {0, 0};
 	public bool isPuzzleDone = false;
+	public GameObject abilityToggle;
+	private GameObject abilityToggleTemp;
 
 	void Awake()
 	{
@@ -133,9 +136,12 @@ public class ChessBoard2 : NetworkIdentity
 	//triggered when a tile is clicked, a little weird since the first click will give you green spaces and the second click will be on those spaces
 	public void InteractTrigger(Tile tile, bool RPC = false)
 	{
+		if(abilityToggleTemp!=null) Destroy(abilityToggleTemp);
+
 		if((NetworkManager.main.isServer || NetworkManager.main.isClient) && (GameManager.Instance.CurrentTurn != Team.White) == NetworkManager.main.isServer && !RPC) return;
 		if(NetworkManager.main.isClient && !RPC) SendInteractToServer(tile.TileBoardX, tile.TileBoardY);
 		if(NetworkManager.main.isServer && !RPC) SendInteractToClient(tile.TileBoardX, tile.TileBoardY);
+
 
 		Debug.Log("Ran " + tile);
 		ChessPiece selected = (tile.tileOccupants.Count > 0) ? tile.tileOccupants[0] : null;
@@ -282,6 +288,8 @@ public class ChessBoard2 : NetworkIdentity
 				if(NetworkManager.main.isClient) EndServerTurn();
 			}
 		}
+
+		if(abilityToggleTemp!=null) Destroy(abilityToggleTemp);
 	}
 
 	[ServerRpc]
@@ -329,6 +337,13 @@ public class ChessBoard2 : NetworkIdentity
 		}
 
 		int selectedLayer = (layer >= abilityDict.Count) ? layer % abilityDict.Count : layer;
+
+		GameObject abilityToggleIns = Instantiate(abilityToggle, piece.transform.position+transform.up*2, Quaternion.identity);
+		for(int i = 1; i < abilityDict.Count; i++){
+			Instantiate(abilityToggleIns.transform.GetChild(0).GetChild(0).gameObject, abilityToggleIns.transform.GetChild(0));
+		}
+		abilityToggleIns.transform.GetChild(0).GetChild(selectedLayer).GetComponent<Toggle>().isOn = true;
+		abilityToggleTemp = abilityToggleIns;
 
 		return abilityDict[selectedLayer];
 	}

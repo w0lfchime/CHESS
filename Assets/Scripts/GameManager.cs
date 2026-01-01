@@ -125,7 +125,7 @@ public class GameManager : NetworkIdentity
 	}
 
 	public void EndTurn()
-	{
+	{		
 		if(GameData.Instance.isDoingPuzzle && CurrentTurn == Team.White && !Board.checkWhitePuzzle())
 		{
 			Debug.Log("Wrong Move");

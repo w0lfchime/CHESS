@@ -3258,6 +3258,7 @@ MonoBehaviour:
   puzzleSequence: 0
   turns: 0000000000000000
   isPuzzleDone: 0
+  abilityToggle: {fileID: 1779978264764634250, guid: 411a915dda719164a932d1eda82b2502, type: 3}
 --- !u!114 &771100083
 MonoBehaviour:
   m_ObjectHideFlags: 0
