@@ -48,6 +48,7 @@ public class ChessBoard2 : NetworkIdentity
 	private int abilityClickLayer;
 
 	public int[] turns = new int[] {0, 0};
+	public bool puzzleDone = false;
 
 	void Awake()
 	{
@@ -565,18 +566,22 @@ public class ChessBoard2 : NetworkIdentity
 
 	public void movePuzzlePiece()
 	{
-		Puzzles puzzle = GameData.Instance.puzzle;
-		string[] tempList = puzzle.blackTeamMovements[turns[0]].Split(" ");
-		Tile tile1 = TileLocations[int.Parse(tempList[1]), int.Parse(tempList[0])];
-		Tile tile2 = TileLocations[int.Parse(tempList[3]), int.Parse(tempList[2])];
+		if(!puzzleDone)
+		{
+			Puzzles puzzle = GameData.Instance.puzzle;
+			string[] tempList = puzzle.blackTeamMovements[turns[0]].Split(" ");
+			Tile tile1 = TileLocations[int.Parse(tempList[1]), int.Parse(tempList[0])];
+			Tile tile2 = TileLocations[int.Parse(tempList[3]), int.Parse(tempList[2])];
 
-		Debug.Log(tile2);
-		Debug.Log(int.Parse(tempList[0]) + " " + int.Parse(tempList[1]) + " " + int.Parse(tempList[2]) + " " + int.Parse(tempList[3]));
+			Debug.Log(tile2);
+			Debug.Log(int.Parse(tempList[0]) + " " + int.Parse(tempList[1]) + " " + int.Parse(tempList[2]) + " " + int.Parse(tempList[3]));
 
-		InteractTrigger(tile1);
-		StartCoroutine(delayTime(0.5f, tile2));
+			InteractTrigger(tile1);
+			StartCoroutine(delayTime(0.5f, tile2));
 
-		turns[0]++;
+			turns[0]++;
+		}
+		
 	}
 
 	public bool checkWhitePuzzle()

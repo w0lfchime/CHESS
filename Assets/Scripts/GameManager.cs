@@ -136,6 +136,7 @@ public class GameManager : NetworkIdentity
 				{
 					Board.DisplayVictory(0);
 					Board.winText.text = "Puzzle complete!";
+					Board.puzzleDone = true;
 				}
 			}
 
