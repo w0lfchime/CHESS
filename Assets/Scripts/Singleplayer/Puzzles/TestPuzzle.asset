@@ -16,8 +16,13 @@ MonoBehaviour:
   - StandardKing 0 0
   blackTeamMovements:
   - 0 0 1 0
+  - 1 0 2 0
+  - 2 0 1 0
   whiteTeamSpawning:
   - StandardKing 7 7
+  - StandardRook 5 5
+  - StandardQueen 6 5
   whiteTeamMovements:
-  - StandardKing 7 6
+  - StandardQueen 6 1 0 0 StandardRook 5 1 1 1
+  - StandardRook 5 0 0 0 StandardQueen 6 0 1 1
   map: {fileID: 0}
