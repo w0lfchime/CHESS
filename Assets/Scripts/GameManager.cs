@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting.APIUpdating;
 using PurrNet;
-using PurrLobby;
 
 
 
@@ -54,7 +53,7 @@ public class GameManager : NetworkIdentity
         }
     }
 
-	private void Start()
+	private void Awake()
 	{
 		if (Instance != null && Instance != this)
 		{
@@ -71,7 +70,7 @@ public class GameManager : NetworkIdentity
 		if(!GameData.Instance.isDoingPuzzle)
 		{
 
-			if(!NetworkManager.main.isServer && !NetworkManager.main.isClient && (LobbyDataHolder.Instance.CurrentLobby.LobbyId == ""))
+			if(!NetworkManager.main.isServer && !NetworkManager.main.isClient)
 			{
 				Board.SpawnAllPieces(null);
 			}
