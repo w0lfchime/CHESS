@@ -582,33 +582,22 @@ public class ChessBoard2 : NetworkIdentity
 		Puzzles puzzle = GameData.Instance.puzzle;
 		string[] tempList = puzzle.whiteTeamMovements[turns[1]].Split(" ");
 
-		Tile tile = TileLocations[int.Parse(tempList[2]), int.Parse(tempList[1])];
-
-		if(tile.tileOccupants.Count < 1)
+		for(int i = 0; i < tempList.Length; i += 3)
 		{
-			return false;
-		}
-
-		if(tile.tileOccupants[0].ID == tempList[0] && tile.tileOccupants[0].team == Team.White)
-		{
-			// turns[1]++;
-			return true;
-		} else if (tempList.Length > 3)
-		{
-			tile = TileLocations[int.Parse(tempList[5]), int.Parse(tempList[4])];
+			Tile tile = TileLocations[int.Parse(tempList[i+2]), int.Parse(tempList[i+1])];
 
 			if(tile.tileOccupants.Count < 1)
 			{
-				return false;
+				continue;
 			}
 
-			// turns[1]++;
-			return tile.tileOccupants[0].ID == tempList[3] && tile.tileOccupants[0].team == Team.White;
-		} else
-		{
-			// turns[1]++;
-			return false;
+			if(tile.tileOccupants[0].ID == tempList[i] && tile.tileOccupants[0].team == Team.White)
+			{
+				return true;
+			}
 		}
+
+		return false;
 	}
 
 	public void SpawnAllPieces(string[] theirTeam)

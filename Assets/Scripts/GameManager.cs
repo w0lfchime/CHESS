@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting.APIUpdating;
 using PurrNet;
+using System.Collections;
 
 
 
@@ -123,16 +124,24 @@ public class GameManager : NetworkIdentity
 		if(GameData.Instance.isDoingPuzzle && CurrentTurn == Team.White && !Board.checkWhitePuzzle())
 		{
 			Debug.Log("Wrong Move");
-			Board.failedPuzzle();
+			StartCoroutine(WaitForIncorrectPuzzle());
+			
 		} else
 		{
 			if(CurrentTurn == Team.White)
 			{
 				Board.turns[1]++;
+
+				if(Board.turns[1] == GameData.Instance.puzzle.whiteTeamMovements.Count)
+				{
+					Board.DisplayVictory(0);
+					Board.winText.text = "Puzzle complete!";
+				}
 			}
 
 			// Switch turn
 			CurrentTurn = (CurrentTurn == Team.White) ? Team.Black : Team.White;
+			Cursor.currentTurn = CurrentTurn;
 			ranPuzzleMoveOnce = false;
 
 			turnCount++;
@@ -151,6 +160,12 @@ public class GameManager : NetworkIdentity
 			Board.TurnSwapTrigger();
 		}
 		
+	}
+
+	public IEnumerator WaitForIncorrectPuzzle()
+	{
+		yield return new WaitForSeconds(0.5f);
+		Board.failedPuzzle();
 	}
 
 	public void ResetGame()

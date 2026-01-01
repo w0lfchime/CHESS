@@ -25,6 +25,8 @@ public class CursorManager : MonoBehaviour
 	private Camera _cam;
 	public Vector3 hitPoint;
 
+	public Team currentTurn;
+
 	void Awake()
 	{
 		_cam = Camera.main;
@@ -102,6 +104,7 @@ public class CursorManager : MonoBehaviour
 
 		if (Input.GetMouseButtonDown(1))
         {
+			Debug.Log("Ran this");
 			if(pieceInfoDisplay.inDisplay == false){
 				if(_currentTile != null && _currentTile.GetComponent<Tile>().tileOccupants.Count > 0)
                 {
@@ -121,6 +124,7 @@ public class CursorManager : MonoBehaviour
 			}
         }
 		if (!Input.GetMouseButtonDown(0)) return;
+		if(GameData.Instance.isDoingPuzzle && currentTurn == Team.Black) return;
 		if (pieceInfoDisplay.inDisplay == true) pieceInfoDisplay.instance.unDisplay();
 		// Update SelectedTile only on click
 		if (_currentTile != null)
