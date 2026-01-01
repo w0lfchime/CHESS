@@ -6453,8 +6453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ensureAllServersStart: 0
   _transports:
-  - {fileID: 1642505754}
   - {fileID: 1642505755}
+  - {fileID: 1642505754}
 --- !u!114 &1642505757
 MonoBehaviour:
   m_ObjectHideFlags: 0
