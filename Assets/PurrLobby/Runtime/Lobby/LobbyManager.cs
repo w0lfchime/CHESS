@@ -294,7 +294,6 @@ namespace PurrLobby
                 if (room.IsValid)
                 {
                     OnRoomJoined?.Invoke(room);
-                    InitializeNetwork();
                 }
                 else
                 {
@@ -321,8 +320,9 @@ namespace PurrLobby
             });
         }
 
-        void InitializeNetwork()
+        public void InitializeNetwork()
         {
+            Debug.Log("initializing network");
             if(NetworkManager.main==null) return;
             if(_lobbyDataHolder.CurrentLobby.IsOwner){
                 NetworkManager.main.StartServer();
