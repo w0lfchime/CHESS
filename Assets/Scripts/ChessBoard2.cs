@@ -613,8 +613,6 @@ public class ChessBoard2 : NetworkIdentity
 		string[] whiteTeam = new string[0];
 		string[] blackTeam = new string[0];
 
-		print(NetworkManager.main.isServer);
-
 		if (NetworkManager.main.isServer)
 		{
 			whiteTeam = GameData.Instance.teams[GameData.Instance.yourTeamName];

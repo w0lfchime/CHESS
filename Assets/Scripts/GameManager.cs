@@ -54,7 +54,7 @@ public class GameManager : NetworkIdentity
         }
     }
 
-	private void Awake()
+	private void Start()
 	{
 		if (Instance != null && Instance != this)
 		{
