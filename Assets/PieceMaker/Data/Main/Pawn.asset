@@ -24,6 +24,7 @@ MonoBehaviour:
   - name: PawnMove
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: move
       traits: 00000000020000000600000005000000
@@ -43,6 +44,7 @@ MonoBehaviour:
   - name: 
     BasicMovement: 1
     trigger: 1
+    triggerConditions: 0
     actions:
     - name: move
       traits: 00000000020000000600000005000000
@@ -62,6 +64,7 @@ MonoBehaviour:
   - name: 
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: movetake
       traits: 0000000004000000060000000500000009000000

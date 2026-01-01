@@ -24,6 +24,7 @@ MonoBehaviour:
   - name: Move
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: move
       traits: 00000000020000000600000005000000
@@ -43,6 +44,7 @@ MonoBehaviour:
   - name: Shoot
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: shoot
       traits: 0400000003000000000000000600000009000000

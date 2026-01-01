@@ -113,6 +113,7 @@ public class ChessBoard2 : NetworkIdentity
 					if (rend != null)
 					{
 						bool isWhite = ((r + c) % 2) == 0;
+						tilecomp.isWhite = isWhite;
 						rend.sharedMaterial = isWhite ? WhiteTileMat : BlackTileMat;
 
 						if (ScaleChildToTileSize)
@@ -133,8 +134,20 @@ public class ChessBoard2 : NetworkIdentity
 		}
 	}
 
+	[ServerRpc]
+	void SendInteractToServer(int y, int x)
+	{
+		InteractTrigger(TileLocations[x,y], true);
+	}
+
+	[ObserversRpc]
+	void SendInteractToClient(int y, int x)
+	{
+		InteractTrigger(TileLocations[x,y], true);
+	}
+
 	//triggered when a tile is clicked, a little weird since the first click will give you green spaces and the second click will be on those spaces
-	public void InteractTrigger(Tile tile, bool RPC = false)
+	public void InteractTrigger(Tile tile, bool RPC = false, TriggerConditions conditions = TriggerConditions.None)
 	{
 		if(abilityToggleTemp!=null) Destroy(abilityToggleTemp);
 
@@ -189,26 +202,14 @@ public class ChessBoard2 : NetworkIdentity
 		
 	}
 
-	[ServerRpc]
-	void SendInteractToServer(int y, int x)
-	{
-		InteractTrigger(TileLocations[x,y], true);
-	}
-
-	[ObserversRpc]
-	void SendInteractToClient(int y, int x)
-	{
-		InteractTrigger(TileLocations[x,y], true);
-	}
-
 	//triggered inbetween turns
-	public void TurnSwapTrigger()
+	public void TurnSwapTrigger(TriggerConditions conditions = TriggerConditions.None)
 	{
-		TriggerAllPieces(TriggerType.OnTurnSwap, false);
+		TriggerAllPieces(TriggerType.OnTurnSwap, false, conditions);
 	}
 
 	//Updates tiles between turns
-	public void TileTrigger()
+	public void TileTrigger(TriggerConditions conditions = TriggerConditions.None)
 	{
 		foreach (Tile tile in TileLocations)
 		{
@@ -225,8 +226,24 @@ public class ChessBoard2 : NetworkIdentity
 		TriggerOnePiece(piece, TriggerType.OnDeath);
 	}
 
+	bool TriggerConditionTester(TriggerConditions conditions, ChessPiece piece)
+	{
+		if(conditions==TriggerConditions.None) return true;
 
-	private bool TriggerAllPieces(TriggerType trigger,  bool endTurn = false)
+		if(conditions.HasFlag(TriggerConditions.OnWhiteSquare))
+		{
+			if(piece.currentTile.isWhite) return true;
+		}
+		if(conditions.HasFlag(TriggerConditions.OnBlackSquare))
+		{
+			if(!piece.currentTile.isWhite) return true;
+		}
+
+		return false;
+	}
+
+
+	private bool TriggerAllPieces(TriggerType trigger,  bool endTurn = false, TriggerConditions conditions = TriggerConditions.None)
 	{
 		List<ChessPiece> pieces = new List<ChessPiece>();
 		foreach (Tile tile in TileLocations)
@@ -310,7 +327,7 @@ public class ChessBoard2 : NetworkIdentity
 			List <Ability_TG> abilityLayer = GetAbilityLayer(piece, trigger, layer, true);
 			foreach (Ability_TG ability in abilityLayer)
 			{
-				if (ability.actions.Count > 0)
+				if (ability.actions.Count > 0 && TriggerConditionTester(ability.triggerConditions, piece))
 				{
 					availableMoves.AddRange(ability.actions[0].grid);
 				}

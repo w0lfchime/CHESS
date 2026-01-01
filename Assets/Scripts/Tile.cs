@@ -19,6 +19,7 @@ public class Tile : MonoBehaviour
 	public List<ChessPiece> tileOccupants = new List<ChessPiece>();
 	public Dictionary<string, int> effects = new Dictionary<string, int>();
 	public bool obstructed;
+	public bool isWhite;
 	private Coroutine raise;
 
 	void Awake() => rend = GetComponentInChildren<Renderer>();

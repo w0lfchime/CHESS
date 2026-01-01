@@ -12,6 +12,7 @@ public class Ability_TG
 {
     public string name;
     public bool BasicMovement;
+    public TriggerConditions triggerConditions;
     public List<Action_TG> actions = new List<Action_TG>();
 }
 
@@ -50,6 +51,7 @@ public class ChessPieceObject : ChessPiece
                 Ability_TG ability_TG = new Ability_TG(); // basically all actions
                 ability_TG.name = ability.name;
                 ability_TG.BasicMovement = ability.BasicMovement;
+                ability_TG.triggerConditions = ability.triggerConditions;
 
                 int actionCount = 0;
 

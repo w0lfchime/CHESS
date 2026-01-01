@@ -18,6 +18,15 @@ public enum TriggerType
     OnTurnSwap
 }
 
+
+[System.Flags]
+public enum TriggerConditions
+{
+    None          = 0,
+    OnWhiteSquare        = 1 << 0,
+    OnBlackSquare   = 1 << 1
+}
+
 //All the action traits. These are low level traits that determine how an action specifically interacts with the tiles around it.
 public enum ActionTrait
 {
@@ -58,6 +67,7 @@ public class Ability
     public string name;
     public bool BasicMovement; // basically just for anything that should be shown without having to switch abilities, so multiple abilities and triggers can still be basicmovement
     public TriggerType trigger;
+    public TriggerConditions triggerConditions;
     public List<Action> actions = new List<Action>();
 }
 
@@ -181,6 +191,10 @@ public class ChessPieceDataEditor : Editor
             ability.name = EditorGUILayout.TextField("Ability Name", ability.name);
             ability.BasicMovement = EditorGUILayout.Toggle("Basic Movement", ability.BasicMovement);
             ability.trigger = (TriggerType)EditorGUILayout.EnumPopup("Trigger", ability.trigger);
+
+            ability.triggerConditions = (TriggerConditions)EditorGUILayout.EnumFlagsField(
+                ability.triggerConditions
+            );
 
             GUILayout.Space(5);
             GUILayout.Label("Actions:", EditorStyles.boldLabel);
