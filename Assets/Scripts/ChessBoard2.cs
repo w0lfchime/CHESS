@@ -548,6 +548,13 @@ public class ChessBoard2 : NetworkIdentity
 				TileLocations[tilePosition.x, tilePosition.y].AddPiece(cp);
 			}
 
+			if (actionTraits.Contains(ActionTrait.command_bring))// if trait moves the active piece
+			{
+				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
+				ocp.currentTile.RemovePiece(ocp);
+				TileLocations[previousPosition.x, previousPosition.y].AddPiece(ocp);
+			}
+
 
 			if (actionTraits.Contains(ActionTrait.spawn_explosion_effect)) //if trait explodes
 			{

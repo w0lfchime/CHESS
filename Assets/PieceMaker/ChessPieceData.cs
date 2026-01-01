@@ -41,7 +41,8 @@ public enum ActionTrait
     apply_to_opposingteam_space = 4,
 
     command_goto = 5,
-    command_pushback = 12,
+    command_pushback = 20,
+    command_bring = 19,
     remove_obstructed = 6,
     remove_unobstructed = 13,
 
