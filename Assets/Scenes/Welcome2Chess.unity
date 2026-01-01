@@ -1254,6 +1254,8 @@ MonoBehaviour:
     prefab: {fileID: 7009996306650167107, guid: 5bfa31f78bc95e04eb3dc8ebcf9cde47, type: 3}
   - id: Cardinal
     prefab: {fileID: 7009996306650167107, guid: 04daec856cfe877439e4551d6ee83e42, type: 3}
+  - id: Wizard
+    prefab: {fileID: 7009996306650167107, guid: 14ea5f9bb6e46784ba6dc2505d214daa, type: 3}
   - id: Demon
     prefab: {fileID: 7009996306650167107, guid: 0fbd9f7894260cf419a54edf0a21d297, type: 3}
 --- !u!23 &330483919
@@ -3255,6 +3257,7 @@ MonoBehaviour:
   winText: {fileID: 1351460847}
   puzzleSequence: 0
   turns: 0000000000000000
+  isPuzzleDone: 0
 --- !u!114 &771100083
 MonoBehaviour:
   m_ObjectHideFlags: 0
