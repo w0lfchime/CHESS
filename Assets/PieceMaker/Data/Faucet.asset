@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: Faucet
   m_EditorClassIdentifier: 
   pieceName: Faucet
-<<<<<<< HEAD
   materialValue: 0
-=======
->>>>>>> 15090aa9704a43448f1dbe047ab27948774991f8
   model: {fileID: 4536773283001372330, guid: f834ba5e7e9d5aa47b4436e1212950fd, type: 3}
   model_scale_multiplier: 1
   description: NoDescriptionSet

@@ -13,14 +13,10 @@ MonoBehaviour:
   m_Name: Demon
   m_EditorClassIdentifier: 
   pieceName: Demon
-<<<<<<< HEAD
   materialValue: 0
   model: {fileID: -2350919397670358339, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
   whiteMaterialList: []
   blackMaterialList: []
-=======
-  model: {fileID: 4875639812679763883, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
->>>>>>> 15090aa9704a43448f1dbe047ab27948774991f8
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: e08c8550b2fab6645b40de7dc27ba285, type: 3}

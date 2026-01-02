@@ -54,7 +54,6 @@ public class ChessBoard2 : NetworkIdentity
 	public GameObject abilityToggle;
 	private GameObject abilityToggleTemp;
 	public List<Tile> allClickedOnTiles;
-	public List<ChessPiece> allClickedOnPieces;
 	public GameObject promoteUI;
 	private GameObject promoteUITemp;
 	public GameObject piecePrefab;
@@ -166,11 +165,6 @@ public class ChessBoard2 : NetworkIdentity
 		allClickedOnTiles.Add(tile);
 		ChessPiece selected = (tile.tileOccupants.Count > 0) ? tile.tileOccupants[0] : null;
 
-		// if(selected != null)
-		// {
-		// 	allClickedOnPieces.Add(selected.ID);
-		// }
-
 		if (tile == null)
 		{
 			RemoveHighlightTiles(activeChessPiece);
@@ -194,8 +188,6 @@ public class ChessBoard2 : NetworkIdentity
 				TriggerOnePiece(activeChessPiece, trigger, tile, true, !RPC);
 			}
 			activeChessPiece = null;
-
-			
 		}
 		else // if clicking on piece
 		{
@@ -203,7 +195,6 @@ public class ChessBoard2 : NetworkIdentity
 			activeChessPiece = null;
 			if (tile.tileOccupants.Count > 0)
 			{
-				allClickedOnPieces.Add(selected);
 				activeChessPiece = selected;
 
 				GetHighlightTiles(activeChessPiece, triggers, abilityClickLayer);
