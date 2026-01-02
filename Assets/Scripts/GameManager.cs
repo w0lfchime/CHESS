@@ -168,7 +168,7 @@ public class GameManager : NetworkIdentity
 			TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
 
 			GameObject newMoveSpot = Instantiate(moveTrackerElementPrefab);
-			newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2] + " -> " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1];
+			newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1] + " at " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardY + " -> " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardX + ", "  + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardY;
 			newMoveSpot.transform.SetParent(moveTrackerContent.transform);
 
 			Board.TileTrigger();
