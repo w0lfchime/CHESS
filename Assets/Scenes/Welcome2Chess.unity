@@ -9585,7 +9585,7 @@ MonoBehaviour:
   pieceInfoText: {fileID: 746618140}
   pieceInfoPicture: {fileID: 159102469}
   pieceInfoName: {fileID: 641056876}
-  pieceInfoMoveset: {fileID: 0}
+  pieceInfoMoveset: {fileID: 1520468643}
   originalPosition: {x: 2169, y: 830, z: 0}
 --- !u!114 &1151811108
 MonoBehaviour:
