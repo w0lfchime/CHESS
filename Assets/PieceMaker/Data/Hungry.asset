@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: Hungry
   m_EditorClassIdentifier: 
-  pieceName: NewChessPiece
+  pieceName: Hungry
   model: {fileID: 0}
   model_scale_multiplier: 1
   description: NoDescriptionSet
