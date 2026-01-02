@@ -52,6 +52,7 @@ public class ChessBoard2 : NetworkIdentity
 	public bool isPuzzleDone = false;
 	public GameObject abilityToggle;
 	private GameObject abilityToggleTemp;
+	public List<Tile> allClickedOnTiles;
 
 	void Awake()
 	{
@@ -157,6 +158,7 @@ public class ChessBoard2 : NetworkIdentity
 
 
 		Debug.Log("Ran " + tile);
+		allClickedOnTiles.Add(tile);
 		ChessPiece selected = (tile.tileOccupants.Count > 0) ? tile.tileOccupants[0] : null;
 
 		if (tile == null)
