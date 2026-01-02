@@ -173,7 +173,10 @@ public class GameManager : NetworkIdentity
 			GameObject newMoveSpot = Instantiate(moveTrackerElementPrefab);
 			newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].ID + " at " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardY + " -> " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardX + ", "  + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardY;
 			newMoveSpot.transform.GetChild(1).GetComponent<UnityEngine.UI.Image>().sprite = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.image;
+			
 			newMoveSpot.transform.SetParent(moveTrackerContent.transform);
+			newMoveSpot.transform.SetAsFirstSibling();
+			
 
 			Board.TileTrigger();
 			Board.TurnSwapTrigger();
