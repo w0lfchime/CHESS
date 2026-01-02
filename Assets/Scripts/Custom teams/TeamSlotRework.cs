@@ -43,13 +43,14 @@ public class TeamSlotRework : MonoBehaviour
 
     public void SetPiece(string pieceId)
     {
-        if(pieceId == "")
+        TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
+        if(pieceId == "" || pieceId == null)
         {
-            image.sprite = UIPieceSpawner.Instance.NameToImage(pieceId);
+            image.sprite = UIPieceSpawner.Instance.NameToImage("");
+            titleScreenButtons.tempTeam[slotNum] = null;
             return;
         }
         int materialValue = PieceLibrary.Instance.GetPrefab(pieceId).materialValue;
-        TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
         if (!(titleScreenButtons.matValue - mat + materialValue > titleScreenButtons.maxMaterial))
             {
                 if (titleScreenButtons.lifelineCount() > 0 && PieceLibrary.Instance.GetPrefab(pieceId).lifeLine)

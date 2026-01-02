@@ -75,8 +75,7 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void MoveToTeamSelection()
     {
-        blackDropDown.AddOptions(gameData.teams.Keys.ToList());
-        whiteDropDown.AddOptions(gameData.teams.Keys.ToList());
+        PopulateYourDropdown();
 
         teamSelectMenu.SetActive(true);
         mainMenu.SetActive(false);
@@ -85,7 +84,12 @@ public class TitleScreenButtons : MonoBehaviour
     public void PopulateYourDropdown()
     {
         yourDropDown.ClearOptions();
+        blackDropDown.ClearOptions();
+        whiteDropDown.ClearOptions();
+
         yourDropDown.AddOptions(gameData.teams.Keys.ToList());
+        blackDropDown.AddOptions(gameData.teams.Keys.ToList());
+        whiteDropDown.AddOptions(gameData.teams.Keys.ToList());
     }
 
     public void MoveToSingleplayer()
@@ -290,6 +294,7 @@ public class TitleScreenButtons : MonoBehaviour
             string name = teamData[0];
             string[] team = teamData.Skip(1).ToArray();
             gameData.teams.Add(name, team);
+            AddTeamView(name);
         }
     }
 
@@ -333,6 +338,8 @@ public class TitleScreenButtons : MonoBehaviour
 
         // Delete the last
         PlayerPrefs.DeleteKey((count - 1).ToString());
+        gameData.teams.Remove(name);
+        PopulateYourDropdown();
     }
 
 
