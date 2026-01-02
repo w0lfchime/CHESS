@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   pieceName: Archer
-  materialValue: 0
-  model: {fileID: 6820360667100504876, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}
+  model: {fileID: 0}
   model_scale_multiplier: 0
   description: NoDescriptionSet
-  image: {fileID: 21300000, guid: f6a12ca8574862544906ee4d6f391516, type: 3}
+  image: {fileID: 21300000, guid: 18f1160bf56b3844c9ee33184e1192fb, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11

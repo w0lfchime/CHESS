@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Scripting.APIUpdating;
 using PurrNet;
 using System.Collections;
+using System.Collections.Generic;
 
 
 
@@ -35,6 +36,10 @@ public class GameManager : NetworkIdentity
 	public GameObject gameEndPanel;
 	public GameObject puzzleFailPanel;
 	public TextMeshProUGUI winText;
+
+	// Stuff for adding a move to the move log
+	public GameObject moveTrackerContent;
+	public GameObject moveTrackerElementPrefab;
 
 	protected override void OnSpawned(bool asServer)
     {
@@ -161,6 +166,10 @@ public class GameManager : NetworkIdentity
 			// Later: trigger board highlighting, legal move generation, timers, etc.
 
 			TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
+
+			GameObject newMoveSpot = Instantiate(moveTrackerElementPrefab);
+			newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2] + " -> " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1];
+			newMoveSpot.transform.SetParent(moveTrackerContent.transform);
 
 			Board.TileTrigger();
 			Board.TurnSwapTrigger();
