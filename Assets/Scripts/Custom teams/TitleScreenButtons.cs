@@ -235,7 +235,6 @@ public class TitleScreenButtons : MonoBehaviour
     public void SaveTeam()
     {
         string name = teamName.text;
-        Debug.Log(name.Length);
 
         if (lifelineCount() == 1 && !(name.Length <= 1))
         {
@@ -244,6 +243,7 @@ public class TitleScreenButtons : MonoBehaviour
             for (int i = 0; i < 16; i++)
             {
                 copy[i+1] = tempTeam[i];
+                Debug.Log(tempTeam[i]);
             }
 
             if (nameIndex(name) == -1)
@@ -290,7 +290,6 @@ public class TitleScreenButtons : MonoBehaviour
             string name = teamData[0];
             string[] team = teamData.Skip(1).ToArray();
             gameData.teams.Add(name, team);
-            AddTeamView(name);
         }
     }
 
@@ -416,7 +415,7 @@ public class TitleScreenButtons : MonoBehaviour
 
         for (int i = 0; i < 16; i++)
         {
-            if (tempTeam[i] != null && PieceProperties.LifelinePieces.Contains(tempTeam[i]))
+            if (tempTeam[i] != null && PieceLibrary.Instance.GetPrefab(tempTeam[i]).lifeLine)
             {
                 lifeLineCount++;
             }

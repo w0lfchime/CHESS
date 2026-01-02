@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Cardinal
   m_EditorClassIdentifier: 
   pieceName: Cardinal
+  materialValue: 0
   model: {fileID: 0}
   model_scale_multiplier: 1
   description: NoDescriptionSet
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 697ad826adcd94f43aa39361c424eaf9, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11
@@ -24,6 +25,7 @@ MonoBehaviour:
   - name: Cardinal move
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: move
       traits: 00000000020000000600000005000000
@@ -43,6 +45,7 @@ MonoBehaviour:
   - name: CardinalTake
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: movetake
       traits: 0000000004000000060000000500000009000000

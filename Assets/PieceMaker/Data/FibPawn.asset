@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: FibPawn
   m_EditorClassIdentifier: 
-  name: NoNameSet
+  pieceName: FibPawn
+  materialValue: 0
   model: {fileID: -5457738678620746011, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
   model_scale_multiplier: 1
   description: NoDescriptionSet
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11
@@ -24,6 +25,7 @@ MonoBehaviour:
   - name: FibPawnMove
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: move
       traits: 00000000020000000600000005000000
@@ -43,6 +45,7 @@ MonoBehaviour:
   - name: FibPawnCapture
     BasicMovement: 1
     trigger: 4
+    triggerConditions: 0
     actions:
     - name: movetake
       traits: 0000000004000000060000000500000009000000

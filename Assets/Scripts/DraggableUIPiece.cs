@@ -7,12 +7,8 @@ using Image = UnityEngine.UI.Image;
 public class DraggableUIPiece : MonoBehaviour
 {
     public Image image;
-    public string pieceId;
+    public ChessPieceData pieceId;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        pieceId = image.sprite.name;
-    }
 
     // Update is called once per frame
     void Update()

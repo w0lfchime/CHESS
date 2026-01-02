@@ -6,17 +6,18 @@ public class UIPieceSpawner : MonoBehaviour
 {
     public static UIPieceSpawner Instance;
     public GameObject UIPiece;
-    public List<Sprite> Sprites = new List<Sprite>();
     public Color lifeLineColor;
     public Sprite emptySprite;
     void Awake()
     {
         Instance = this;
-        foreach(Sprite sprite in Sprites)
+        foreach(PieceEntry entry in PieceLibrary.Instance.pieces)
         {
             GameObject UIPieceIns = Instantiate(UIPiece, transform);
-            UIPieceIns.GetComponent<DraggableUIPiece>().image.sprite = sprite;
-            if (PieceProperties.LifelinePieces.Contains(sprite.name))
+            UIPieceIns.GetComponent<DraggableUIPiece>().image.sprite = entry.data.image;
+            UIPieceIns.GetComponent<DraggableUIPiece>().pieceId = entry.data;
+            
+            if (PieceProperties.LifelinePieces.Contains(entry.id))
             {
                 UIPieceIns.GetComponent<Image>().color = lifeLineColor;
             }
@@ -27,9 +28,9 @@ public class UIPieceSpawner : MonoBehaviour
     public Sprite NameToImage(string name)
     {
         if(name=="") return emptySprite;
-        foreach(Sprite sprite in Sprites)
+        foreach(PieceEntry entry in PieceLibrary.Instance.pieces)
         {
-            if(sprite.name == name) return sprite;
+            if(entry.id == name) return entry.data.image;
         }
         return null;
     }

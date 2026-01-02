@@ -37,16 +37,17 @@ public class TeamSlotRework : MonoBehaviour
         }
         else
         {
-            SetPiece(pieceData.pieceId);
+            SetPiece(pieceData.pieceId.pieceName);
         }
     }
 
     public void SetPiece(string pieceId)
     {
+        int materialValue = PieceLibrary.Instance.GetPrefab(pieceId).materialValue;
         TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
-        if (!(titleScreenButtons.matValue - mat + PieceProperties.PieceValues[pieceId] > titleScreenButtons.maxMaterial))
+        if (!(titleScreenButtons.matValue - mat + materialValue > titleScreenButtons.maxMaterial))
             {
-                if (titleScreenButtons.lifelineCount() > 0 && PieceProperties.LifelinePieces.Contains(pieceId))
+                if (titleScreenButtons.lifelineCount() > 0 && PieceLibrary.Instance.GetPrefab(pieceId).lifeLine)
                 {
                     titleScreenButtons.editMatTextStuff("Too many lifelines");
                 }
@@ -56,7 +57,7 @@ public class TeamSlotRework : MonoBehaviour
                     int currentMat = mat * -1;
 
                     titleScreenButtons.matValue -= mat;
-                    mat = PieceProperties.PieceValues[pieceId];
+                    mat = materialValue;
                     titleScreenButtons.matValue += mat;
                     currentMat += mat;
 

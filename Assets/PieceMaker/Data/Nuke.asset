@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Nuke
   m_EditorClassIdentifier: 
   pieceName: Nuke
+  materialValue: 0
   model: {fileID: 0}
   model_scale_multiplier: 1
   description: NoDescriptionSet
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 52581af5206b1d449880f8ae5907aee2, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11
@@ -24,6 +25,7 @@ MonoBehaviour:
   - name: NukeTake
     BasicMovement: 0
     trigger: 3
+    triggerConditions: 0
     actions:
     - name: explode
       traits: 020000000300000004000000090000000a000000

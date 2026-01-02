@@ -110,6 +110,7 @@ public enum Elements { CanMove, CantMove }
 public class ChessPieceData : ScriptableObject
 {
     public string pieceName = "NewChessPiece";
+    public int materialValue;
     public Mesh model;
     public float model_scale_multiplier;
     public String description = "NoDescriptionSet";

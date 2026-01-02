@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: Wizard
   m_EditorClassIdentifier: 
-  pieceName: NewChessPiece
+  pieceName: Wizard
+  materialValue: 0
   model: {fileID: 0}
   model_scale_multiplier: 0
   description: NoDescriptionSet
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 22e4e40c41d9b714f967b6266ffe2e86, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11
@@ -24,6 +25,7 @@ MonoBehaviour:
   - name: Teleport
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: move
       traits: 00000000020000000600000005000000

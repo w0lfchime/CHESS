@@ -7,6 +7,7 @@ using TMPro;
 using System.Collections;
 using PurrNet;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class ChessBoard2 : NetworkIdentity
 {
@@ -52,6 +53,9 @@ public class ChessBoard2 : NetworkIdentity
 	public bool isPuzzleDone = false;
 	public GameObject abilityToggle;
 	private GameObject abilityToggleTemp;
+	public GameObject promoteUI;
+	private GameObject promoteUITemp;
+	public GameObject piecePrefab;
 
 	void Awake()
 	{
@@ -224,6 +228,41 @@ public class ChessBoard2 : NetworkIdentity
 	public void DeathTrigger(ChessPiece piece)
 	{
 		TriggerOnePiece(piece, TriggerType.OnDeath);
+	}
+
+	public void MoveTrigger(ChessPiece piece, TriggerConditions conditions = TriggerConditions.None)
+	{
+		TriggerOnePiece(piece, TriggerType.OnMove);
+
+		if(piece.team == Team.Black && GameData.Instance.map.height-1 == piece.currentTile.TileBoardY)
+		{
+			SpawnPromoteUI(piece);
+		}
+
+		if(piece.team == Team.White && 0 == piece.currentTile.TileBoardY)
+		{
+			SpawnPromoteUI(piece);
+		}
+	}
+
+	void SpawnPromoteUI(ChessPiece piece)
+	{
+		if(piece.GetComponent<ChessPieceObject>().chessPieceData.promotable.Count == 0) return;
+		promoteUITemp = Instantiate(promoteUI, piece.currentTile.transform.position + Vector3.up*3, Quaternion.identity);
+		foreach(ChessPieceData data in piece.GetComponent<ChessPieceObject>().chessPieceData.promotable)
+		{
+			GameObject UIPiece = Instantiate(promoteUITemp.transform.GetChild(0).GetChild(0).gameObject, promoteUITemp.transform.GetChild(0));
+			UIPiece.transform.GetChild(0).GetComponent<Image>().sprite = data.image;
+			UIPiece.GetComponent<Button>().onClick.AddListener(() => Promote(piece, data));
+		}
+		Destroy(promoteUITemp.transform.GetChild(0).GetChild(0).gameObject);
+	}
+
+	void Promote(ChessPiece piece, ChessPieceData data)
+	{
+		piece.gameObject.GetComponent<MeshFilter>().mesh = data.model;
+		piece.gameObject.GetComponent<ChessPieceObject>().chessPieceData = data;
+		Destroy(promoteUITemp);
 	}
 
 	bool TriggerConditionTester(TriggerConditions conditions, ChessPiece piece)
@@ -546,6 +585,7 @@ public class ChessBoard2 : NetworkIdentity
 				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
 				cp.currentTile.RemovePiece(cp);
 				TileLocations[tilePosition.x, tilePosition.y].AddPiece(cp);
+				MoveTrigger(cp);
 			}
 
 			if (actionTraits.Contains(ActionTrait.command_bring))// if trait brings the other piece here
@@ -770,23 +810,26 @@ public class ChessBoard2 : NetworkIdentity
 	// For regular spawning
 	public void SpawnPiece(string pieceID, Vector2Int boardLoc, Team team, GameObject obj = null)
 	{
-		GameObject prefab = null;
+		ChessPieceData data = null;
+		
 		if(obj)
 		{
-			prefab = obj;
+			
 		}
 		else
 		{
-			prefab = PieceLibrary.Instance.GetPrefab(pieceID);
+			data = PieceLibrary.Instance.GetPrefab(pieceID);
 		}
 
-		if (prefab == null) return;
+		if (data == null) return;
 
 		// Spawn at the tile�s world position
 		Vector3 spawnPos = gameObject.transform.position;
 		Quaternion spawnRot = Quaternion.identity;
 
-		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
+		GameObject pieceGO = Instantiate(piecePrefab, spawnPos, spawnRot);
+		pieceGO.GetComponent<MeshFilter>().mesh = data.model;
+		pieceGO.GetComponent<ChessPieceObject>().chessPieceData = data;
 
 		// If the prefab has a ChessPiece script, register it with the tile
 		ChessPiece piece = pieceGO.GetComponent<ChessPiece>();
@@ -815,16 +858,17 @@ public class ChessBoard2 : NetworkIdentity
 	// For debug spawning
 	public void SpawnPiece(string pieceID, Vector2Int boardLoc, GameObject obj = null)
 	{
-		GameObject prefab = null;
+		ChessPieceData data = null;
+
 		if(obj)
 		{
-			prefab = obj;
+			
 		}
 		else
 		{
-			prefab = PieceLibrary.Instance.GetPrefab(pieceID);
+			data = PieceLibrary.Instance.GetPrefab(pieceID);
 		}
-		if (prefab == null) return;
+		if (data == null) return;
 
 		// Spawn at the tile�s world position
 		Vector3 spawnPos = gameObject.transform.position;
@@ -837,7 +881,9 @@ public class ChessBoard2 : NetworkIdentity
 		//	spawnRot *= Quaternion.Euler(0f, 180f, 0f);
 		//}
 
-		GameObject pieceGO = Instantiate(prefab, spawnPos, spawnRot);
+		GameObject pieceGO = Instantiate(piecePrefab, spawnPos, spawnRot);
+		pieceGO.GetComponent<MeshFilter>().mesh = data.model;
+		pieceGO.GetComponent<ChessPieceObject>().chessPieceData = data;
 
 		// If the prefab has a ChessPiece script, register it with the tile
 		ChessPiece piece = pieceGO.GetComponent<ChessPiece>();

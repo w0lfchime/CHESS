@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class ChessBoard2Extra : MonoBehaviour
 {
@@ -338,7 +339,7 @@ public class ChessBoard2Extra : MonoBehaviour
 
 	public void SpawnPiece(string pieceID, Vector2Int boardLoc)
 	{
-		GameObject prefab = PieceLibrary.Instance.GetPrefab(pieceID);
+		GameObject prefab = null;
 		if (prefab == null) return;
 
 		// Spawn at the tile�s world position
