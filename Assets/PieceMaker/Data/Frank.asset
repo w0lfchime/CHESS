@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: Frank
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   pieceName: NewChessPiece
   materialValue: 0
   model: {fileID: -2806725375699767854, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
   whiteMaterialList: []
   blackMaterialList: []
+=======
+  pieceName: Frank
+  model: {fileID: -9187296823713534141, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+>>>>>>> 15090aa9704a43448f1dbe047ab27948774991f8
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 45dacfa31abdeee4fa932828358b8734, type: 3}
