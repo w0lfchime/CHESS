@@ -2067,7 +2067,7 @@ MonoBehaviour:
   puzzleFailPanel: {fileID: 0}
   winText: {fileID: 0}
   moveTrackerContent: {fileID: 1516384582}
-  moveTrackerElementPrefab: {fileID: 3810993856864324749, guid: b91eb732e4eaf1c49914d8dbf777ddc6, type: 3}
+  moveTrackerElementPrefab: {fileID: 7202499500140624770, guid: 1dc7a7c88c4fae1489eda430fd3c240d, type: 3}
 --- !u!114 &532147084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3351,6 +3351,7 @@ MonoBehaviour:
   isPuzzleDone: 0
   abilityToggle: {fileID: 1779978264764634250, guid: 411a915dda719164a932d1eda82b2502, type: 3}
   allClickedOnTiles: []
+  allClickedOnPieces: []
 --- !u!114 &771100083
 MonoBehaviour:
   m_ObjectHideFlags: 0

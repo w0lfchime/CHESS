@@ -53,7 +53,7 @@ public class ChessBoard2 : NetworkIdentity
 	public GameObject abilityToggle;
 	private GameObject abilityToggleTemp;
 	public List<Tile> allClickedOnTiles;
-	public List<string> allClickedOnPieces;
+	public List<ChessPiece> allClickedOnPieces;
 
 	void Awake()
 	{
@@ -199,7 +199,7 @@ public class ChessBoard2 : NetworkIdentity
 			activeChessPiece = null;
 			if (tile.tileOccupants.Count > 0)
 			{
-				allClickedOnPieces.Add(selected.ID);
+				allClickedOnPieces.Add(selected);
 				activeChessPiece = selected;
 
 				GetHighlightTiles(activeChessPiece, triggers, abilityClickLayer);
