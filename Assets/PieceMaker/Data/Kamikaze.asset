@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Kamikaze
   m_EditorClassIdentifier: 
   pieceName: NewChessPiece
-  model: {fileID: 0}
+  materialValue: 0
+  model: {fileID: 4894730939566943245, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: e1aced1bf4d1555499d17f7c520fce93, type: 3}

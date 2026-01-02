@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Unicorn
   m_EditorClassIdentifier: 
   pieceName: Unicorn
-  model: {fileID: 0}
+  materialValue: 0
+  model: {fileID: -8832312659721980211, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: b4b1a4eea6da1b24094aa968833e211a, type: 3}

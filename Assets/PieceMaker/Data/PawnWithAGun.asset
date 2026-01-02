@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: PawnWithAGun
   m_EditorClassIdentifier: 
   pieceName: NewChessPiece
-  model: {fileID: 0}
+  materialValue: 0
+  model: {fileID: -3566185172471563758, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 907863ae51e3c5840a10625dd81230ad, type: 3}

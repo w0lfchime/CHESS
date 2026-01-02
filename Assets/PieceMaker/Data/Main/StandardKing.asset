@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: StandardKing
   m_EditorClassIdentifier: 
   pieceName: King
-  model: {fileID: 0}
+  materialValue: 0
+  model: {fileID: 3246882975058678263, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
@@ -24,6 +27,7 @@ MonoBehaviour:
   - name: KingMove
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: move
       traits: 00000000020000000600000005000000
@@ -43,6 +47,7 @@ MonoBehaviour:
   - name: KingTake
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: movetake
       traits: 0000000004000000060000000500000009000000

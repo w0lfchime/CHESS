@@ -43,6 +43,11 @@ public class TeamSlotRework : MonoBehaviour
 
     public void SetPiece(string pieceId)
     {
+        if(pieceId == "")
+        {
+            image.sprite = UIPieceSpawner.Instance.NameToImage(pieceId);
+            return;
+        }
         int materialValue = PieceLibrary.Instance.GetPrefab(pieceId).materialValue;
         TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
         if (!(titleScreenButtons.matValue - mat + materialValue > titleScreenButtons.maxMaterial))

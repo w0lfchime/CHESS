@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Nuke
   materialValue: 0
-  model: {fileID: 0}
+  model: {fileID: 1438244261547966620, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 52581af5206b1d449880f8ae5907aee2, type: 3}

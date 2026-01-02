@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Wasp
   materialValue: 0
-  model: {fileID: -6819425536786765585, guid: 0292d2f3441839442baabb68de8e54a3, type: 3}
+  model: {fileID: 1777747526001728494, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 51e1c4864ee539a408baf83f673d3031, type: 3}

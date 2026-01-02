@@ -831,6 +831,7 @@ public class ChessBoard2 : NetworkIdentity
 
 		GameObject pieceGO = Instantiate(piecePrefab, spawnPos, spawnRot);
 		pieceGO.GetComponent<MeshFilter>().mesh = data.model;
+		pieceGO.transform.localScale = Vector3.one * data.model_scale_multiplier;
 		pieceGO.GetComponent<ChessPieceObject>().chessPieceData = data;
 
 		// If the prefab has a ChessPiece script, register it with the tile
@@ -841,13 +842,15 @@ public class ChessBoard2 : NetworkIdentity
 		piece.team = team;
 		if (team == Team.White)
 		{
-			rend.sharedMaterial = WhitePieceMat;
+			//rend.sharedMaterial = WhitePieceMat;
+			pieceGO.GetComponent<MeshRenderer>().materials = data.whiteMaterialList.ToArray();
 			piece.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
 		}
 		else
 		{
 			pieceGO.transform.Rotate(0, 180, 0);
-			rend.sharedMaterial = BlackPieceMat;
+			//rend.sharedMaterial = BlackPieceMat;
+			pieceGO.GetComponent<MeshRenderer>().materials = data.blackMaterialList.ToArray();
 			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
 		}
 
@@ -885,6 +888,7 @@ public class ChessBoard2 : NetworkIdentity
 
 		GameObject pieceGO = Instantiate(piecePrefab, spawnPos, spawnRot);
 		pieceGO.GetComponent<MeshFilter>().mesh = data.model;
+		pieceGO.transform.localScale = Vector3.one * data.model_scale_multiplier;
 		pieceGO.GetComponent<ChessPieceObject>().chessPieceData = data;
 
 		// If the prefab has a ChessPiece script, register it with the tile

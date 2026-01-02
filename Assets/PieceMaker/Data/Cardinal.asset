@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Cardinal
   materialValue: 0
-  model: {fileID: 0}
+  model: {fileID: -6251289580094385694, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 697ad826adcd94f43aa39361c424eaf9, type: 3}

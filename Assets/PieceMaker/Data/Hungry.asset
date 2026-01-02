@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Hungry
   m_EditorClassIdentifier: 
   pieceName: NewChessPiece
-  model: {fileID: 0}
+  materialValue: 0
+  model: {fileID: 6048690187724599393, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}

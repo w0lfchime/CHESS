@@ -112,6 +112,8 @@ public class ChessPieceData : ScriptableObject
     public string pieceName = "NewChessPiece";
     public int materialValue;
     public Mesh model;
+    public List<Material> whiteMaterialList = new List<Material>();
+    public List<Material> blackMaterialList = new List<Material>();
     public float model_scale_multiplier;
     public String description = "NoDescriptionSet";
     public Sprite image = null;
@@ -145,8 +147,17 @@ public class ChessPieceDataEditor : Editor
     {
         serializedObject.Update();
         ChessPieceData script = (ChessPieceData)target;
-        script.pieceName = EditorGUILayout.TextField("Piece Name", script.pieceName);
+
+        GUILayout.Label("Text:", new GUIStyle(EditorStyles.boldLabel) { fontSize = 16 });
+
+        script.pieceName = EditorGUILayout.TextField("Piece Name / ID", script.pieceName);
+        script.description = EditorGUILayout.TextField("Description", script.description);
         //extra variables
+        EditorGUI.BeginChangeCheck();
+
+        GUILayout.Space(10);
+        GUILayout.Label("Visuals:", new GUIStyle(EditorStyles.boldLabel) { fontSize = 16 });
+
         script.model = (Mesh)EditorGUILayout.ObjectField(
             "3D Model",
             script.model,
@@ -154,18 +165,34 @@ public class ChessPieceDataEditor : Editor
             false
         );
 
+        if (EditorGUI.EndChangeCheck())
+        {
+            AutoFillMaterials(script);
+            EditorUtility.SetDirty(script);
+        }
+
 		script.model_scale_multiplier = EditorGUILayout.FloatField(
 	        "Model Scale Multiplier",
 	        script.model_scale_multiplier
            );
 
-        script.description = EditorGUILayout.TextField("Description", script.description);
+        SerializedProperty whiteMaterialListProp = serializedObject.FindProperty("whiteMaterialList");
+        EditorGUILayout.PropertyField(whiteMaterialListProp, new GUIContent("White Materials"), true);
+
+        SerializedProperty blackMaterialListProp = serializedObject.FindProperty("blackMaterialList");
+        EditorGUILayout.PropertyField(blackMaterialListProp, new GUIContent("Black Materials"), true);
+
+
         script.image = (Sprite)EditorGUILayout.ObjectField(
             "Piece Image",
             script.image,
             typeof(Sprite),
             false
         );
+
+        GUILayout.Space(10);
+        GUILayout.Label("Gameplay:", new GUIStyle(EditorStyles.boldLabel) { fontSize = 16 });
+
 		script.lifeLine = EditorGUILayout.Toggle("LifeLine", script.lifeLine);
 
         SerializedProperty promotableList = serializedObject.FindProperty("promotable");
@@ -177,6 +204,7 @@ public class ChessPieceDataEditor : Editor
             typeof(ActionList),
             false
         );
+
 
 
         GUILayout.Space(10);
@@ -389,6 +417,57 @@ public class ChessPieceDataEditor : Editor
             Debug.LogWarning(e);
         }
     }
+
+    #if UNITY_EDITOR
+void AutoFillMaterials(ChessPieceData script)
+{
+    Undo.RecordObject(script, "Auto Fill Materials");
+    script.whiteMaterialList.Clear();
+    script.blackMaterialList.Clear();
+
+    if (script.model == null)
+        return;
+
+    string path = AssetDatabase.GetAssetPath(script.model);
+    if (string.IsNullOrEmpty(path))
+        return;
+
+    GameObject fbxRoot = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+    if (fbxRoot == null)
+        return;
+
+    // 1. Check MeshRenderers
+    foreach (var mr in fbxRoot.GetComponentsInChildren<MeshRenderer>(true))
+    {
+        var mf = mr.GetComponent<MeshFilter>();
+        if (mf != null && mf.sharedMesh == script.model)
+        {
+            script.whiteMaterialList.AddRange(mr.sharedMaterials);
+            script.blackMaterialList.AddRange(mr.sharedMaterials);
+            return;
+        }
+    }
+
+    // 2. Check SkinnedMeshRenderers (very important for characters)
+    foreach (var smr in fbxRoot.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+    {
+        if (smr.sharedMesh == script.model)
+        {
+            script.whiteMaterialList.AddRange(smr.sharedMaterials);
+            script.blackMaterialList.AddRange(smr.sharedMaterials);
+            return;
+        }
+    }
+
+    Debug.LogWarning(
+        $"No renderer found using mesh '{script.model.name}' in FBX '{path}'",
+        script
+    );
+}
+#endif
+
+
+
 }
 #endif
 

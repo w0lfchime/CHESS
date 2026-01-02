@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Amazon
   materialValue: 0
-  model: {fileID: 3687157475581213324, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  model: {fileID: 3687157475581213324, guid: daf954465e93bb54fa2afcdf42d270e3, type: 3}
+  whiteMaterialList:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  blackMaterialList:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: c57c8ddbbf5bc9e4795f87446c9ba12f, type: 3}

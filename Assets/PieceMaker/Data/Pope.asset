@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Pope
   materialValue: 0
-  model: {fileID: -6819425536786765585, guid: 0292d2f3441839442baabb68de8e54a3, type: 3}
+  model: {fileID: -5632610348854509004, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}

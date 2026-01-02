@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Spy
   materialValue: 0
-  model: {fileID: 0}
+  model: {fileID: -336116280748233392, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 4f8412b3f8f893348b5e20154ea8da58, type: 3}

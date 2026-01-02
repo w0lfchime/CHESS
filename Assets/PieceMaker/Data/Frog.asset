@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Frog
   m_EditorClassIdentifier: 
   pieceName: NewChessPiece
-  model: {fileID: -2614091083408215590, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+  materialValue: 0
+  model: {fileID: -4454997591212173726, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
+  whiteMaterialList: []
+  blackMaterialList: []
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 6719a3d6dc6239348b0321dee0143f62, type: 3}
