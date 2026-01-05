@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: StandardKnight
   m_EditorClassIdentifier: 
   pieceName: Knight
+  materialValue: 0
   model: {fileID: -6007548702594196167, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+  whiteMaterialList:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  blackMaterialList:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1
   description: Horse
   image: {fileID: 21300000, guid: ec24d667eeade3949b2a7d593c36da83, type: 3}
@@ -24,6 +29,7 @@ MonoBehaviour:
   - name: HorseJump
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: jump
       traits: 0000000002000000050000000b000000
@@ -43,6 +49,7 @@ MonoBehaviour:
   - name: HorseTake
     BasicMovement: 1
     trigger: 0
+    triggerConditions: 0
     actions:
     - name: jumptake
       traits: 000000000400000005000000090000000b000000

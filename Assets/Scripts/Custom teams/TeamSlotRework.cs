@@ -48,6 +48,10 @@ public class TeamSlotRework : MonoBehaviour
         {
             image.sprite = UIPieceSpawner.Instance.NameToImage("");
             titleScreenButtons.tempTeam[slotNum] = null;
+            gameData = null;
+            titleScreenButtons.matValue -= mat;
+            mat = 0;
+            titleScreenButtons.updateMatText();
             return;
         }
         int materialValue = PieceLibrary.Instance.GetPrefab(pieceId).materialValue;

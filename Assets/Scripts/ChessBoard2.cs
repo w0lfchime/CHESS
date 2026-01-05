@@ -843,14 +843,18 @@ public class ChessBoard2 : NetworkIdentity
 		if (team == Team.White)
 		{
 			//rend.sharedMaterial = WhitePieceMat;
-			pieceGO.GetComponent<MeshRenderer>().materials = data.whiteMaterialList.ToArray();
+			Material[] matList = data.whiteMaterialList.ToArray();
+			matList[0] = WhitePieceMat;
+			pieceGO.GetComponent<MeshRenderer>().materials = matList;
 			piece.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
 		}
 		else
 		{
 			pieceGO.transform.Rotate(0, 180, 0);
 			//rend.sharedMaterial = BlackPieceMat;
-			pieceGO.GetComponent<MeshRenderer>().materials = data.blackMaterialList.ToArray();
+			Material[] matList = data.blackMaterialList.ToArray();
+			matList[0] = BlackPieceMat;
+			pieceGO.GetComponent<MeshRenderer>().materials = matList;
 			piece.gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
 		}
 
