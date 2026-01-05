@@ -15,8 +15,16 @@ MonoBehaviour:
   pieceName: Bulldozer
   materialValue: 0
   model: {fileID: -1550514412580984892, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
-  whiteMaterialList: []
-  blackMaterialList: []
+  whiteMaterialList:
+  - {fileID: 4874126678125670354, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
+  - {fileID: -3846018093981099296, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
+  - {fileID: -6922793697723135513, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
+  - {fileID: -6629797300637803691, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
+  blackMaterialList:
+  - {fileID: 4874126678125670354, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
+  - {fileID: -3846018093981099296, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
+  - {fileID: -6922793697723135513, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
+  - {fileID: -6629797300637803691, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 3d3b2f36328ea5e4f974bcc8d3391fb1, type: 3}

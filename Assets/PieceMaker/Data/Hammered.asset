@@ -15,8 +15,18 @@ MonoBehaviour:
   pieceName: Hammered
   materialValue: 0
   model: {fileID: -6994845876080834086, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
-  whiteMaterialList: []
-  blackMaterialList: []
+  whiteMaterialList:
+  - {fileID: 2768710986838361614, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+  - {fileID: -585104901239114477, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+  - {fileID: 4874126678125670354, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+  - {fileID: -6478536213147159724, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+  - {fileID: 1209857149565726836, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+  blackMaterialList:
+  - {fileID: 2768710986838361614, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+  - {fileID: -585104901239114477, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+  - {fileID: 4874126678125670354, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+  - {fileID: -6478536213147159724, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+  - {fileID: 1209857149565726836, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: da32a20b578002740926276f891a3fe5, type: 3}

@@ -14,9 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Pirate Ship
   materialValue: 0
-  model: {fileID: -7230036262162562051, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
-  whiteMaterialList: []
-  blackMaterialList: []
+  model: {fileID: -7230036262162562051, guid: da3f8ca176accb741bbfb94a1959dcfc, type: 3}
+  whiteMaterialList:
+  - {fileID: -4770390735465466038, guid: da3f8ca176accb741bbfb94a1959dcfc, type: 3}
+  - {fileID: 3315042358087236154, guid: da3f8ca176accb741bbfb94a1959dcfc, type: 3}
+  - {fileID: -8808162046880026678, guid: da3f8ca176accb741bbfb94a1959dcfc, type: 3}
+  blackMaterialList:
+  - {fileID: -4770390735465466038, guid: da3f8ca176accb741bbfb94a1959dcfc, type: 3}
+  - {fileID: 3315042358087236154, guid: da3f8ca176accb741bbfb94a1959dcfc, type: 3}
+  - {fileID: -8808162046880026678, guid: da3f8ca176accb741bbfb94a1959dcfc, type: 3}
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: aa30dac70505bc045adb6d2639e9b52c, type: 3}

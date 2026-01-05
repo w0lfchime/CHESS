@@ -15,6 +15,10 @@ MonoBehaviour:
   pieceName: Faucet
   materialValue: 0
   model: {fileID: 4536773283001372330, guid: f834ba5e7e9d5aa47b4436e1212950fd, type: 3}
+  whiteMaterialList:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  blackMaterialList:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 9d317301de74c904dad81902c88cdc1c, type: 3}

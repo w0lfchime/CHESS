@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: NewChessPiece
   materialValue: 0
-  model: {fileID: -4454997591212173726, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
-  whiteMaterialList: []
-  blackMaterialList: []
+  model: {fileID: -4454997591212173726, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  whiteMaterialList:
+  - {fileID: -7132718531627317848, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: 1280446133571650962, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  blackMaterialList:
+  - {fileID: -7132718531627317848, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: 1280446133571650962, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 6719a3d6dc6239348b0321dee0143f62, type: 3}
