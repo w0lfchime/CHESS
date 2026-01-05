@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: disco
   materialValue: 0
-  model: {fileID: 8150116196911664783, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
-  whiteMaterialList: []
-  blackMaterialList: []
+  model: {fileID: 8150116196911664783, guid: 82df9d8875bb06147b57d5dfaa715fdc, type: 3}
+  whiteMaterialList:
+  - {fileID: -3162307534163198015, guid: 82df9d8875bb06147b57d5dfaa715fdc, type: 3}
+  blackMaterialList:
+  - {fileID: -3162307534163198015, guid: 82df9d8875bb06147b57d5dfaa715fdc, type: 3}
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: ac59ba9b0209b0b4ca6491397ab6b261, type: 3}
