@@ -473,7 +473,7 @@ public class ChessBoard2 : NetworkIdentity
 				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
 				foreach (Vector2Int pos in path)
 				{
-					if (TileLocations[pos.x, pos.y] != null && TileLocations[pos.x, pos.y].obstructed)
+					if (TileLocations[pos.x, pos.y] != null && isObstructed(cp, TileLocations[pos.x, pos.y].obstructed))
 					{ 
 						add = false;
 						break;
@@ -486,7 +486,7 @@ public class ChessBoard2 : NetworkIdentity
 				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
 				foreach (Vector2Int pos in path)
 				{
-					if (TileLocations[pos.x, pos.y] != null && !TileLocations[pos.x, pos.y].obstructed)
+					if (TileLocations[pos.x, pos.y] != null && !isObstructed(cp, TileLocations[pos.x, pos.y].obstructed))
 					{ 
 						add = false;
 						break;
@@ -499,6 +499,13 @@ public class ChessBoard2 : NetworkIdentity
 		}
 
 		return returnList;
+	}
+
+	bool isObstructed(ChessPiece cp, Tile.conditions conditions)
+	{
+		if(cp.team == Team.White && conditions.HasFlag(Tile.conditions.White)) return true;
+		if(cp.team == Team.Black && conditions.HasFlag(Tile.conditions.Black)) return true;
+		return false;
 	}
 
 	private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[])> allTriggeredTiles)
@@ -569,7 +576,7 @@ public class ChessBoard2 : NetworkIdentity
 					newIndex.x < 0 || newIndex.x >= BoardTileHeight ||
 					newIndex.y < 0 || newIndex.y >= BoardTileWidth ||
 					TileLocations[newIndex.x, newIndex.y] == null ||
-					(TileLocations[newIndex.x, newIndex.y] != null && TileLocations[newIndex.x, newIndex.y].obstructed);
+					(TileLocations[newIndex.x, newIndex.y] != null && isObstructed(cp, TileLocations[newIndex.x, newIndex.y].obstructed));
 
 				if (outOfBounds)
 				{
