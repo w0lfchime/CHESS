@@ -152,6 +152,7 @@ public class ChessPieceDataEditor : Editor
 
         script.pieceName = EditorGUILayout.TextField("Piece Name / ID", script.pieceName);
         script.description = EditorGUILayout.TextField("Description", script.description);
+        script.materialValue = EditorGUILayout.IntField("Material Value", script.materialValue);
         //extra variables
         EditorGUI.BeginChangeCheck();
 
