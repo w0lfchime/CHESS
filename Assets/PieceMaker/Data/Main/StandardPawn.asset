@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StandardPawn
   m_EditorClassIdentifier: 
   pieceName: Pawn
-  materialValue: 0
-  model: {fileID: -6005560307962694990, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+  materialValue: 1
+  model: {fileID: -6005560307962694990, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   whiteMaterialList:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   blackMaterialList:

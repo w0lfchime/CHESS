@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StandardKnight
   m_EditorClassIdentifier: 
   pieceName: Knight
-  materialValue: 0
-  model: {fileID: -6007548702594196167, guid: 1a46be343efbb6649929ceaec593de55, type: 3}
+  materialValue: 3
+  model: {fileID: -6007548702594196167, guid: daf954465e93bb54fa2afcdf42d270e3, type: 3}
   whiteMaterialList:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   blackMaterialList:
