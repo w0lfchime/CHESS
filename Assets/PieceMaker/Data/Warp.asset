@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Warp
   materialValue: 0
-  model: {fileID: -1144792092810803784, guid: ea89f45904e079445bd7394b631bb854, type: 3}
-  whiteMaterialList: []
-  blackMaterialList: []
+  model: {fileID: -1144792092810803784, guid: e323a32d7876d514a9a0a7093b94899f, type: 3}
+  whiteMaterialList:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  blackMaterialList:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 63e6f6e06b6e9b34f8dc7820f51fe046, type: 3}

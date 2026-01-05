@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Demon
   materialValue: 0
-  model: {fileID: -2350919397670358339, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
-  whiteMaterialList: []
-  blackMaterialList: []
+  model: {fileID: -2350919397670358339, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  whiteMaterialList:
+  - {fileID: 4913911580219713836, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  blackMaterialList:
+  - {fileID: 4913911580219713836, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   model_scale_multiplier: 0
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: e08c8550b2fab6645b40de7dc27ba285, type: 3}

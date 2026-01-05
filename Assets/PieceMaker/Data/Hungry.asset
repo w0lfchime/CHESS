@@ -14,9 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: NewChessPiece
   materialValue: 0
-  model: {fileID: 6048690187724599393, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
-  whiteMaterialList: []
-  blackMaterialList: []
+  model: {fileID: 6048690187724599393, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  whiteMaterialList:
+  - {fileID: -6478536213147159724, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: -6922793697723135513, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: -3846018093981099296, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: 4874126678125670354, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: -6629797300637803691, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  blackMaterialList:
+  - {fileID: -6478536213147159724, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: -6922793697723135513, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: -3846018093981099296, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: 4874126678125670354, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: -6629797300637803691, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}
