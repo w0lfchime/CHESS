@@ -29,7 +29,7 @@ MonoBehaviour:
   - {fileID: -6629797300637803691, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   model_scale_multiplier: 1
   description: NoDescriptionSet
-  image: {fileID: 21300000, guid: 66d375aec830ae742a5d26112af5bee1, type: 3}
+  image: {fileID: 21300000, guid: 8f0e33c3648d69446bcc76474d3d028e, type: 3}
   lifeLine: 0
   promotable: []
   gridSize: 11
