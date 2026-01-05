@@ -1,4 +1,5 @@
 //using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,13 +9,10 @@ public class DraggableUIPiece : MonoBehaviour
 {
     public Image image;
     public ChessPieceData pieceId;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    // Update is called once per frame
-    void Update()
+    public TMP_Text materialValue;
+    void Start()
     {
-        // transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-        transform.localScale = new Vector3(1, 1, 0);
+        materialValue.text = pieceId.materialValue.ToString();
     }
     public void SelectPiece()
     {
