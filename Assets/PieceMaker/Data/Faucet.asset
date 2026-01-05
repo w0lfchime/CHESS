@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Faucet
   m_EditorClassIdentifier: 
   pieceName: Faucet
-  materialValue: 0
+  materialValue: 5
   model: {fileID: 4536773283001372330, guid: f834ba5e7e9d5aa47b4436e1212950fd, type: 3}
   whiteMaterialList:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}

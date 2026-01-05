@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cardinal
   m_EditorClassIdentifier: 
   pieceName: Cardinal
-  materialValue: 0
+  materialValue: 7
   model: {fileID: -6251289580094385694, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
   whiteMaterialList:
   - {fileID: -1469330466383095072, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Nuke
   m_EditorClassIdentifier: 
   pieceName: Nuke
-  materialValue: 0
+  materialValue: 5
   model: {fileID: 1438244261547966620, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
   whiteMaterialList:
   - {fileID: 2413751341462511734, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}

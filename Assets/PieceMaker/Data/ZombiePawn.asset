@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ZombiePawn
   m_EditorClassIdentifier: 
   pieceName: ZombiePawn
-  materialValue: 0
+  materialValue: 4
   model: {fileID: -75511810279648594, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
   whiteMaterialList:
   - {fileID: 3367465401377082725, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}

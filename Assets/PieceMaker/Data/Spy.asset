@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spy
   m_EditorClassIdentifier: 
   pieceName: Spy
-  materialValue: 0
+  materialValue: 6
   model: {fileID: -336116280748233392, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
   whiteMaterialList:
   - {fileID: -1580535799172915004, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}

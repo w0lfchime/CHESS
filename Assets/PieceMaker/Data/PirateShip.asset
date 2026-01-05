@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PirateShip
   m_EditorClassIdentifier: 
   pieceName: Pirate Ship
-  materialValue: 0
+  materialValue: 5
   model: {fileID: -7230036262162562051, guid: da3f8ca176accb741bbfb94a1959dcfc, type: 3}
   whiteMaterialList:
   - {fileID: -4770390735465466038, guid: da3f8ca176accb741bbfb94a1959dcfc, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hammered
   m_EditorClassIdentifier: 
   pieceName: Hammered
-  materialValue: 0
+  materialValue: 5
   model: {fileID: -6994845876080834086, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
   whiteMaterialList:
   - {fileID: 2768710986838361614, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}

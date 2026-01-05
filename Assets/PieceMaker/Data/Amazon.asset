@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Amazon
   m_EditorClassIdentifier: 
   pieceName: Amazon
-  materialValue: 0
+  materialValue: 12
   model: {fileID: 3687157475581213324, guid: daf954465e93bb54fa2afcdf42d270e3, type: 3}
   whiteMaterialList:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}

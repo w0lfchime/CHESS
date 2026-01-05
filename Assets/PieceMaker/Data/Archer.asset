@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   pieceName: Archer
-  materialValue: 0
+  materialValue: 3
   model: {fileID: 6820360667100504876, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}
   whiteMaterialList:
   - {fileID: -6478536213147159724, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}

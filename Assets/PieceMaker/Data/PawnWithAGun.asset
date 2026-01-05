@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: PawnWithAGun
   m_EditorClassIdentifier: 
-  pieceName: NewChessPiece
-  materialValue: 0
+  pieceName: Pawn With A Gun
+  materialValue: 3
   model: {fileID: -3566185172471563758, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
   whiteMaterialList:
   - {fileID: -7990002640931158143, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}

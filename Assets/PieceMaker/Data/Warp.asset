@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Warp
   m_EditorClassIdentifier: 
   pieceName: Warp
-  materialValue: 0
+  materialValue: 5
   model: {fileID: -1144792092810803784, guid: e323a32d7876d514a9a0a7093b94899f, type: 3}
   whiteMaterialList:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: Frog
   m_EditorClassIdentifier: 
-  pieceName: NewChessPiece
-  materialValue: 0
+  pieceName: Frog
+  materialValue: 3
   model: {fileID: -4454997591212173726, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   whiteMaterialList:
   - {fileID: -7132718531627317848, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}

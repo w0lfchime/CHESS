@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bulldozer
   m_EditorClassIdentifier: 
   pieceName: Bulldozer
-  materialValue: 0
+  materialValue: 3
   model: {fileID: -1550514412580984892, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
   whiteMaterialList:
   - {fileID: 4874126678125670354, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}

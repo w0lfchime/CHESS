@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Frank
   m_EditorClassIdentifier: 
   pieceName: NewChessPiece
-  materialValue: 0
+  materialValue: 1
   model: {fileID: 3349682329314511912, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   whiteMaterialList:
   - {fileID: 1110233775959259594, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}

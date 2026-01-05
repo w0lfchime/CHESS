@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   pieceName: Wizard
-  materialValue: 0
+  materialValue: 5
   model: {fileID: 6449654466282237968, guid: 33bbe08e8f076b042b3935660c57ca28, type: 3}
   whiteMaterialList:
   - {fileID: 4663463079005394034, guid: 33bbe08e8f076b042b3935660c57ca28, type: 3}

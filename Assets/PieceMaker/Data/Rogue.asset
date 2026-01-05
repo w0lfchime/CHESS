@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rogue
   m_EditorClassIdentifier: 
   pieceName: Rogue
-  materialValue: 0
+  materialValue: 4
   model: {fileID: -288424564280352781, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
   whiteMaterialList:
   - {fileID: 1250685891144886708, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}

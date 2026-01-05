@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hornet
   m_EditorClassIdentifier: 
   pieceName: Wasp
-  materialValue: 0
+  materialValue: 6
   model: {fileID: 1777747526001728494, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
   whiteMaterialList:
   - {fileID: -1285507144799149237, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
