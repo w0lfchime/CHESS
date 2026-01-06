@@ -19,6 +19,10 @@ public class Ability_TG
 public class ChessPieceObject : ChessPiece
 {
     public ChessPieceData chessPieceData;
+    
+    // For Frankenstein piece - stores the currently active moveset
+    [HideInInspector]
+    public ChessPieceData activeFrankensteinMoveset = null;
 
     void Start()
     {
@@ -37,14 +41,18 @@ public class ChessPieceObject : ChessPiece
 
     public override List<Ability_TG> GetTileTags(TriggerType trigger = TriggerType.TurnAction, bool visual = false)
     {        
+        // Use Frankenstein moveset if active, otherwise use base data
+        ChessPieceData dataToUse = (chessPieceData.isFrankenstein && activeFrankensteinMoveset != null) 
+            ? activeFrankensteinMoveset 
+            : chessPieceData;
 
-        Vector2Int center = new Vector2Int(chessPieceData.gridSize/2, chessPieceData.gridSize/2);
+        Vector2Int center = new Vector2Int(dataToUse.gridSize/2, dataToUse.gridSize/2);
 
 
         List<Ability_TG> allTaggedAbilities = new List<Ability_TG>(); // basically all abilities
 
 
-        foreach(Ability ability in chessPieceData.abilities) //iterate through each ability (needs to be reworked in the future to only work on selected abilities)
+        foreach(Ability ability in dataToUse.abilities) //iterate through each ability (needs to be reworked in the future to only work on selected abilities)
         {
             if(ability.trigger == trigger){
 
@@ -64,17 +72,17 @@ public class ChessPieceObject : ChessPiece
                     
                     var action_TG = ability_TG.actions[ability_TG.actions.Count-1];
 
-                    for (int y = 0; y < chessPieceData.gridSize; y++) // go through each y tile
+                    for (int y = 0; y < dataToUse.gridSize; y++) // go through each y tile
                     {
-                        for (int x = 0; x < chessPieceData.gridSize; x++){ // go through each x tile
-                            if(action.grid[y * chessPieceData.gridSize + x] == 1) //detect if ui tile is selected
+                        for (int x = 0; x < dataToUse.gridSize; x++){ // go through each x tile
+                            if(action.grid[y * dataToUse.gridSize + x] == 1) //detect if ui tile is selected
                             {
                                 Vector2Int pos = new Vector2Int(x, y) - center;
                                 pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y)); // flip direction based on team
 
                                 action_TG.grid.Add((pos, action.traits));
                             }
-                            if(action.grid[y * chessPieceData.gridSize + x] == 2) //detect if ui tile is selected
+                            if(action.grid[y * dataToUse.gridSize + x] == 2) //detect if ui tile is selected
                             {
                                 Vector2Int pos = new Vector2Int(x-center.x, y-center.y);
                                 pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y));

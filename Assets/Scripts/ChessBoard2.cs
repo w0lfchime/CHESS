@@ -211,6 +211,9 @@ public class ChessBoard2 : NetworkIdentity
 	//triggered inbetween turns
 	public void TurnSwapTrigger(TriggerConditions conditions = TriggerConditions.None)
 	{
+		// Randomize Frankenstein movesets for the new turn
+		RandomizeFrankensteinMovesets();
+		
 		TriggerAllPieces(TriggerType.OnTurnSwap, false, conditions);
 	}
 
@@ -665,6 +668,63 @@ public class ChessBoard2 : NetworkIdentity
 	{
 		DisplayVictory(team);
 	}
+	
+	// Randomize movesets for all Frankenstein pieces on the board
+	private void RandomizeFrankensteinMovesets()
+	{
+		foreach (Tile tile in TileLocations)
+		{
+			if (tile != null)
+			{
+				foreach (ChessPiece piece in tile.tileOccupants)
+				{
+					ChessPieceObject pieceObj = piece.GetComponent<ChessPieceObject>();
+					if (pieceObj != null && pieceObj.chessPieceData.isFrankenstein)
+					{
+						SelectRandomMoveset(pieceObj);
+					}
+				}
+			}
+		}
+	}
+	
+	// Select a random moveset for a Frankenstein piece based on weights
+	private void SelectRandomMoveset(ChessPieceObject frankensteinPiece)
+	{
+		ChessPieceData data = frankensteinPiece.chessPieceData;
+		
+		if (data.frankensteinMovesets.Count == 0)
+		{
+			Debug.LogWarning($"Frankenstein piece {frankensteinPiece.name} has no movesets configured!");
+			return;
+		}
+		
+		// Calculate total weight
+		float totalWeight = 0f;
+		foreach (WeightedMoveset moveset in data.frankensteinMovesets)
+		{
+			totalWeight += moveset.weightPercentage;
+		}
+		
+		// Select random value
+		float randomValue = UnityEngine.Random.Range(0f, totalWeight);
+		
+		// Find the selected moveset
+		float cumulativeWeight = 0f;
+		foreach (WeightedMoveset moveset in data.frankensteinMovesets)
+		{
+			cumulativeWeight += moveset.weightPercentage;
+			if (randomValue <= cumulativeWeight)
+			{
+				frankensteinPiece.activeFrankensteinMoveset = moveset.movesetData;
+				Debug.Log($"Frankenstein {frankensteinPiece.name} selected moveset: {moveset.movesetData.pieceName}");
+				return;
+			}
+		}
+		
+		// Fallback to first moveset
+		frankensteinPiece.activeFrankensteinMoveset = data.frankensteinMovesets[0].movesetData;
+	}
 
 	public void DisplayVictory(int winningTeam)
 	{
@@ -876,6 +936,13 @@ public class ChessBoard2 : NetworkIdentity
 
 		piece.originalTile = TileLocations[boardLoc.y, boardLoc.x];
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
+		
+		// Initialize Frankenstein moveset if this is a Frankenstein piece
+		ChessPieceObject pieceObj = piece.GetComponent<ChessPieceObject>();
+		if (pieceObj != null && pieceObj.chessPieceData.isFrankenstein)
+		{
+			SelectRandomMoveset(pieceObj);
+		}
 	}
 
 	// For debug spawning
