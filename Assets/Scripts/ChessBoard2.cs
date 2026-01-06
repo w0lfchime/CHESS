@@ -530,7 +530,8 @@ public class ChessBoard2 : NetworkIdentity
 
 		Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardY, cp.currentTile.TileBoardX);
 
-		Vector2Int randomPositionFromSelected = allTriggeredTiles[UnityEngine.Random.Range(0, allTriggeredTiles.Count-1)].Item1;
+		Vector2Int randomPositionFromSelected = -Vector2Int.one;
+		if(allTriggeredTiles.Count >= 1) randomPositionFromSelected = allTriggeredTiles[UnityEngine.Random.Range(0, allTriggeredTiles.Count-1)].Item1;
 
 		foreach ((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
 		{

@@ -209,7 +209,8 @@ public abstract class ChessPiece : MonoBehaviour
 
 	internal void SetScale(Vector3 vector3)
 	{
-        targetScale = vector3;
+        targetScale = vector3 * GetComponent<ChessPieceObject>().chessPieceData.model_scale_multiplier;
+        
 	}
 
     internal void SetPosition(Vector3 vector3, bool force)
