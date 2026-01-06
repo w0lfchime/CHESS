@@ -106,6 +106,15 @@ public class Action
  
 public enum Elements { CanMove, CantMove }
 
+// Weighted moveset for Frankenstein piece
+[System.Serializable]
+public class WeightedMoveset
+{
+    public ChessPieceData movesetData;
+    [Range(0, 100)]
+    public float weightPercentage = 10f;
+}
+
 // Holds general chess piece data
 [CreateAssetMenu(fileName = "New Chess Piece Data", menuName = "Chess/ChessPieceData")]
 public class ChessPieceData : ScriptableObject
@@ -122,6 +131,9 @@ public class ChessPieceData : ScriptableObject
 
     public List<ChessPieceData> promotable = new List<ChessPieceData>();
 
+    [Header("Frankenstein Settings")]
+    public bool isFrankenstein = false;
+    public List<WeightedMoveset> frankensteinMovesets = new List<WeightedMoveset>();
 
     public int gridSize = 11;
 
@@ -199,6 +211,16 @@ public class ChessPieceDataEditor : Editor
 
         SerializedProperty promotableList = serializedObject.FindProperty("promotable");
         EditorGUILayout.PropertyField(promotableList, new GUIContent("Promotable"), true);
+
+        GUILayout.Space(10);
+        
+        script.isFrankenstein = EditorGUILayout.Toggle("Is Frankenstein", script.isFrankenstein);
+        
+        if (script.isFrankenstein)
+        {
+            SerializedProperty frankensteinMovesetsList = serializedObject.FindProperty("frankensteinMovesets");
+            EditorGUILayout.PropertyField(frankensteinMovesetsList, new GUIContent("Frankenstein Movesets"), true);
+        }
 
         script.actionList = (ActionList)EditorGUILayout.ObjectField(
             "Action List",
