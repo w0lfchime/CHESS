@@ -38,7 +38,7 @@ MonoBehaviour:
   abilities:
   - name: Aura
     BasicMovement: 0
-    trigger: 7
+    trigger: 0
     triggerConditions: 0
     actions:
     - name: scareopposing

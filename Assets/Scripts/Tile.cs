@@ -150,15 +150,17 @@ public class Tile : MonoBehaviour
     {
 		yield return new WaitForSeconds(distance / 10f);
 
-		float size = rend.materials[mat].GetFloat("_EffectSize");
+		if(rend.materials[mat].HasFloat("_EffectSize")){
+			float size = rend.materials[mat].GetFloat("_EffectSize");
 
-		while (Mathf.Abs(size - set) > .01f)
-		{
+			while (Mathf.Abs(size - set) > .01f)
+			{
 
-			rend.materials[mat].SetFloat("_EffectSize", size + (set - size) * .05f);
-			size = rend.materials[mat].GetFloat("_EffectSize");
+				rend.materials[mat].SetFloat("_EffectSize", size + (set - size) * .05f);
+				size = rend.materials[mat].GetFloat("_EffectSize");
 
-			yield return new WaitForSeconds(.01f);
+				yield return new WaitForSeconds(.01f);
+			}
 		}
 
 		if (set >= 0) UpdateEffects(false, distance);
