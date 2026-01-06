@@ -156,8 +156,13 @@ MonoBehaviour:
   effectDictionary:
   - key: water
     value: {fileID: 2100000, guid: 462cb799eed675b41801edbaf8ea9dc5, type: 2}
+  - key: scarewhite
+    value: {fileID: 4913911580219713836, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - key: scareblack
+    value: {fileID: 4913911580219713836, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   TileBoardX: 0
   TileBoardY: 0
   rend: {fileID: 6845780054913544564}
   tileOccupants: []
   obstructed: 0
+  isWhite: 0

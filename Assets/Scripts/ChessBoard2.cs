@@ -624,6 +624,13 @@ public class ChessBoard2 : NetworkIdentity
 				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", 4, distance);
 			}
 
+			if (actionTraits.Contains(ActionTrait.spawn_opposing_obstruct)) // if trait spawns water
+			{
+				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
+				if(cp.team == Team.White) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scarewhite", 4, distance);
+				if(cp.team == Team.Black) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scareblack", 4, distance);
+			}
+
 			if (actionTraits.Contains(ActionTrait.command_removetile)) // if trait removes the tile
 			{
 				Destroy(TileLocations[tilePosition.x, tilePosition.y].gameObject);
