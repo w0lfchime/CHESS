@@ -56,6 +56,7 @@ public enum ActionTrait
     command_reload = 15,
     command_respawn = 17,
     command_swapcolor = 21,
+    command_random_move = 24,
 
     spawn_explosion_effect = 10,
 

@@ -334,6 +334,28 @@ public class ChessBoard2 : NetworkIdentity
 			{
 				List<(Vector2Int, ActionTrait[])> allTriggeredTiles = action.grid;
 				allTriggeredTiles = FilterTiles(piece, allTriggeredTiles);
+				
+				//ANT STUFF
+				// Check if this action uses command_random_move
+				bool hasRandomMove = false;
+				foreach (var triggeredTile in allTriggeredTiles)
+				{
+					if (triggeredTile.Item2.Contains(ActionTrait.command_random_move))
+					{
+						hasRandomMove = true;
+						break;
+					}
+				}
+				
+				// If random move, select a random tile automatically
+				if (hasRandomMove && allTriggeredTiles.Count > 0)
+				{
+					int randomIndex = UnityEngine.Random.Range(0, allTriggeredTiles.Count);
+					Vector2Int randomTilePos = allTriggeredTiles[randomIndex].Item1;
+					tile = TileLocations[randomTilePos.x, randomTilePos.y];
+					Debug.Log($"{piece.name} randomly moving to ({randomTilePos.x}, {randomTilePos.y})");
+				}
+				
 				bool result = RunTiles(piece, tile, allTriggeredTiles);
 				if (!result) break;
 				did_anything_happen += result ? 1 : 0;
