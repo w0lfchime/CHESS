@@ -54,6 +54,7 @@ public class ChessBoard2 : NetworkIdentity
 	public GameObject abilityToggle;
 	private GameObject abilityToggleTemp;
 	public List<Tile> allClickedOnTiles;
+	public List<ChessPiece> allClickedOnPieces;
 	public GameObject promoteUI;
 	private GameObject promoteUITemp;
 	public GameObject piecePrefab;
@@ -195,6 +196,7 @@ public class ChessBoard2 : NetworkIdentity
 			activeChessPiece = null;
 			if (tile.tileOccupants.Count > 0)
 			{
+				allClickedOnPieces.Add(selected);
 				activeChessPiece = selected;
 
 				GetHighlightTiles(activeChessPiece, triggers, abilityClickLayer);
@@ -334,6 +336,28 @@ public class ChessBoard2 : NetworkIdentity
 			{
 				List<(Vector2Int, ActionTrait[])> allTriggeredTiles = action.grid;
 				allTriggeredTiles = FilterTiles(piece, allTriggeredTiles);
+				
+				//ANT STUFF
+				// Check if this action uses command_random_move
+				bool hasRandomMove = false;
+				foreach (var triggeredTile in allTriggeredTiles)
+				{
+					if (triggeredTile.Item2.Contains(ActionTrait.command_random_move))
+					{
+						hasRandomMove = true;
+						break;
+					}
+				}
+				
+				// If random move, select a random tile automatically
+				if (hasRandomMove && allTriggeredTiles.Count > 0)
+				{
+					int randomIndex = UnityEngine.Random.Range(0, allTriggeredTiles.Count);
+					Vector2Int randomTilePos = allTriggeredTiles[randomIndex].Item1;
+					tile = TileLocations[randomTilePos.x, randomTilePos.y];
+					Debug.Log($"{piece.name} randomly moving to ({randomTilePos.x}, {randomTilePos.y})");
+				}
+				
 				bool result = RunTiles(piece, tile, allTriggeredTiles);
 				if (!result) break;
 				did_anything_happen += result ? 1 : 0;
@@ -607,6 +631,72 @@ public class ChessBoard2 : NetworkIdentity
 				float jump = actionTraits.Contains(ActionTrait.animate_jump) ? 10 : 0;
 				ocp.currentTile.RemovePiece(ocp);
 				TileLocations[previousPosition.x, previousPosition.y].AddPiece(ocp);
+			}
+
+			if (actionTraits.Contains(ActionTrait.command_pull_piece))// if trait pulls the other piece closer
+			{
+				if (ocp != null)
+				{
+					Vector2Int targetIndex = tilePosition;
+					Vector2Int cpIndex = previousPosition;
+
+					// Calculate direction from target to fisherman
+					Vector2Int dir = cpIndex - targetIndex;
+
+					// Normalize to single step
+					dir.x = Mathf.Clamp(dir.x, -1, 1);
+					dir.y = Mathf.Clamp(dir.y, -1, 1);
+
+					Vector2Int newIndex = targetIndex + dir;
+
+					// Check if pulled onto fisherman's square
+					if (newIndex == cpIndex)
+					{
+						// Remove from current position
+						TileLocations[targetIndex.x, targetIndex.y].RemovePiece(ocp);
+						
+						// Piece dies when pulled onto fisherman
+						if (ocp.isLifeline)
+						{
+							CheckMate(1);
+						}
+						ocp.Kill();
+					}
+					else
+					{
+						// Bounds check and obstruction check
+						bool outOfBounds =
+							newIndex.x < 0 || newIndex.x >= BoardTileHeight ||
+							newIndex.y < 0 || newIndex.y >= BoardTileWidth ||
+							TileLocations[newIndex.x, newIndex.y] == null;
+
+						// Check if destination tile is occupied
+						bool isOccupied = !outOfBounds && 
+							TileLocations[newIndex.x, newIndex.y].tileOccupants.Count > 0;
+
+						// Check if destination tile is obstructed
+						bool isBlocked = !outOfBounds && 
+							isObstructed(ocp, TileLocations[newIndex.x, newIndex.y].obstructed);
+
+						if (outOfBounds || isOccupied || isBlocked)
+						{
+							// Don't pull the piece - leave it where it is
+							// Optionally could kill it if out of bounds
+							if (outOfBounds)
+							{
+								TileLocations[targetIndex.x, targetIndex.y].RemovePiece(ocp);
+								ocp.Kill();
+							}
+							// If occupied or blocked, do nothing (piece stays in place)
+						}
+						else
+						{
+							// Safe to pull
+							TileLocations[targetIndex.x, targetIndex.y].RemovePiece(ocp);
+							TileLocations[newIndex.x, newIndex.y].AddPiece(ocp);
+						}
+					}
+				}
 			}
 
 			if (actionTraits.Contains(ActionTrait.command_swapcolor))// if trait swaps the tile color

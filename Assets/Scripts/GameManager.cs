@@ -5,6 +5,8 @@ using UnityEngine.Scripting.APIUpdating;
 using PurrNet;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
+using Unity.VisualScripting;
 
 
 
@@ -168,8 +170,10 @@ public class GameManager : NetworkIdentity
 			TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
 
 			GameObject newMoveSpot = Instantiate(moveTrackerElementPrefab);
-			newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2] + " -> " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1];
+			newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.name + " at (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardY + ") -> (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardY + ")";
+			newMoveSpot.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.image;
 			newMoveSpot.transform.SetParent(moveTrackerContent.transform);
+			newMoveSpot.transform.SetAsFirstSibling();
 
 			Board.TileTrigger();
 			Board.TurnSwapTrigger();
