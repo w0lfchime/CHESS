@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Collections;
+using System;
 
 [System.Serializable]
 public class nameMaterialPair
@@ -18,7 +19,16 @@ public class Tile : MonoBehaviour
 
 	public List<ChessPiece> tileOccupants = new List<ChessPiece>();
 	public Dictionary<string, int> effects = new Dictionary<string, int>();
-	public bool obstructed;
+
+	[Flags]
+	public enum conditions
+	{
+		None    = 0,
+		Black   = 1 << 0,
+		White     = 1 << 1,
+		All   = ~0
+	}
+	public conditions obstructed;
 	public bool isWhite;
 	private Coroutine raise;
 
@@ -112,8 +122,15 @@ public class Tile : MonoBehaviour
 
 		rend.materials = newMaterialsArray;
 
-		obstructed = tileOccupants.Count > 0 || effects.ContainsKey("water");
 
+		if (tileOccupants.Count > 0 || effects.ContainsKey("water"))
+			obstructed |= conditions.All;
+
+		if (effects.ContainsKey("scarewhite"))
+			obstructed |= conditions.White;
+
+		if (effects.ContainsKey("scareblack"))
+			obstructed |= conditions.Black;
 	}
 
 	public void Highlight(float distance)
