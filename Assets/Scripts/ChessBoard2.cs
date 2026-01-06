@@ -337,27 +337,6 @@ public class ChessBoard2 : NetworkIdentity
 				List<(Vector2Int, ActionTrait[])> allTriggeredTiles = action.grid;
 				allTriggeredTiles = FilterTiles(piece, allTriggeredTiles);
 				
-				//ANT STUFF
-				// Check if this action uses command_random_move
-				bool hasRandomMove = false;
-				foreach (var triggeredTile in allTriggeredTiles)
-				{
-					if (triggeredTile.Item2.Contains(ActionTrait.command_random_move))
-					{
-						hasRandomMove = true;
-						break;
-					}
-				}
-				
-				// If random move, select a random tile automatically
-				if (hasRandomMove && allTriggeredTiles.Count > 0)
-				{
-					int randomIndex = UnityEngine.Random.Range(0, allTriggeredTiles.Count);
-					Vector2Int randomTilePos = allTriggeredTiles[randomIndex].Item1;
-					tile = TileLocations[randomTilePos.x, randomTilePos.y];
-					Debug.Log($"{piece.name} randomly moving to ({randomTilePos.x}, {randomTilePos.y})");
-				}
-				
 				bool result = RunTiles(piece, tile, allTriggeredTiles);
 				if (!result) break;
 				did_anything_happen += result ? 1 : 0;
@@ -537,6 +516,12 @@ public class ChessBoard2 : NetworkIdentity
 		return false;
 	}
 
+	[ObserversRpc]
+	public void SetSeed(int seed)
+	{
+		UnityEngine.Random.InitState(seed);
+	}
+
 	private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[])> allTriggeredTiles)
 	{
 		RemoveHighlightTiles(cp);
@@ -544,6 +529,8 @@ public class ChessBoard2 : NetworkIdentity
 		bool wasTileSelected = false;
 
 		Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardY, cp.currentTile.TileBoardX);
+
+		Vector2Int randomPositionFromSelected = allTriggeredTiles[UnityEngine.Random.Range(0, allTriggeredTiles.Count-1)].Item1;
 
 		foreach ((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
 		{
@@ -560,6 +547,7 @@ public class ChessBoard2 : NetworkIdentity
 			{
 				continue;
 			}
+			if(actionTraits.Contains(ActionTrait.remove_all_but_one_random) && tilePosition != randomPositionFromSelected) continue;
 			if (actionTraits.Contains(ActionTrait.remove_unselected_line)){
 				List<Vector2Int> path = GridLine.GetLine(previousPosition, new Vector2Int(selectedTile.TileBoardY, selectedTile.TileBoardX));
 				if(!path.Contains(tilePosition)){

@@ -53,6 +53,10 @@ public class GameManager : NetworkIdentity
         {
             Debug.Log("SERVER: sending to client");
             Board.SendTeamToClient(GameData.Instance.teams[GameData.Instance.yourTeamName]);
+
+			int seed = Random.Range(0, 999999);
+			Random.InitState(seed);
+			Board.SetSeed(seed);
         }
         else
         {

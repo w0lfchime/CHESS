@@ -35,6 +35,7 @@ public enum ActionTrait
     remove_unselected_far = 12,
     remove_unselected_line = 18,
     remove_if_unloaded = 16,
+    remove_all_but_one_random = 22,
 
     apply_to_empty_space = 2,
     apply_to_ownteam_space = 3,
@@ -50,7 +51,7 @@ public enum ActionTrait
 
     //traits that do something
     spawn_water = 8,
-    spawn_opposing_obstruct = 22,
+    spawn_opposing_obstruct = 23,
     command_killpiece = 9,
     command_removetile = 14,
     command_reload = 15,
