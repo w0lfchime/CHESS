@@ -81,7 +81,6 @@ public class Tile : MonoBehaviour
 
     public void UpdateEffects(bool turnPass = true, float distance = 0f)
     {
-        // ---- decrement safely ----
         if (turnPass)
         {
             var keys = effects.Keys.ToList();
@@ -93,7 +92,6 @@ public class Tile : MonoBehaviour
             }
         }
 
-        // ---- rebuild materials cleanly ----
         var mats = new List<Material> { rend.materials[0] };
 
         foreach (var kvp in effects)
@@ -105,7 +103,6 @@ public class Tile : MonoBehaviour
 
         rend.materials = mats.ToArray();
 
-        // ---- reset and recalc obstruction flags ----
         obstructed = conditions.None;
 
         if (tileOccupants.Count > 0 || effects.ContainsKey("water"))

@@ -521,6 +521,8 @@ public class ChessBoard2 : NetworkIdentity
 				}
 			}
 
+			if(actionTraits.Contains(ActionTrait.apply_to_empty_space) && isObstructed(cp, TileLocations[tilePosition.x, tilePosition.y].obstructed)) add = false;
+
 			(Vector2Int, ActionTrait[]) newTile = (tilePosition, tile.Item2);
 			if (add) returnList.Add(newTile);
 		}
@@ -720,8 +722,8 @@ public class ChessBoard2 : NetworkIdentity
 			if (actionTraits.Contains(ActionTrait.spawn_opposing_obstruct)) // if trait spawns water
 			{
 				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
-				if(cp.team == Team.White) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scarewhite", 1, distance);
-				if(cp.team == Team.Black) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scareblack", 1, distance);
+				if(cp.team == Team.Black) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scarewhite", 1, distance);
+				if(cp.team == Team.White) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scareblack", 1, distance);
 			}
 
 			if (actionTraits.Contains(ActionTrait.command_removetile)) // if trait removes the tile
