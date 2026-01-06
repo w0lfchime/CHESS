@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
+  m_Name: Joker
+  m_EditorClassIdentifier: 
+  pieceName: NewChessPiece
+  materialValue: 0
+  model: {fileID: 0}
+  whiteMaterialList: []
+  blackMaterialList: []
+  model_scale_multiplier: 0
+  description: NoDescriptionSet
+  image: {fileID: 0}
+  lifeLine: 0
+  promotable: []
+  isFrankenstein: 0
+  frankensteinMovesets: []
+  gridSize: 11
+  abilities: []
+  actionList: {fileID: 0}
