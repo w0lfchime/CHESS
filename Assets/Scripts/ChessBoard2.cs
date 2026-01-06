@@ -629,6 +629,72 @@ public class ChessBoard2 : NetworkIdentity
 				TileLocations[previousPosition.x, previousPosition.y].AddPiece(ocp);
 			}
 
+			if (actionTraits.Contains(ActionTrait.command_pull_piece))// if trait pulls the other piece closer
+			{
+				if (ocp != null)
+				{
+					Vector2Int targetIndex = tilePosition;
+					Vector2Int cpIndex = previousPosition;
+
+					// Calculate direction from target to fisherman
+					Vector2Int dir = cpIndex - targetIndex;
+
+					// Normalize to single step
+					dir.x = Mathf.Clamp(dir.x, -1, 1);
+					dir.y = Mathf.Clamp(dir.y, -1, 1);
+
+					Vector2Int newIndex = targetIndex + dir;
+
+					// Check if pulled onto fisherman's square
+					if (newIndex == cpIndex)
+					{
+						// Remove from current position
+						TileLocations[targetIndex.x, targetIndex.y].RemovePiece(ocp);
+						
+						// Piece dies when pulled onto fisherman
+						if (ocp.isLifeline)
+						{
+							CheckMate(1);
+						}
+						ocp.Kill();
+					}
+					else
+					{
+						// Bounds check and obstruction check
+						bool outOfBounds =
+							newIndex.x < 0 || newIndex.x >= BoardTileHeight ||
+							newIndex.y < 0 || newIndex.y >= BoardTileWidth ||
+							TileLocations[newIndex.x, newIndex.y] == null;
+
+						// Check if destination tile is occupied
+						bool isOccupied = !outOfBounds && 
+							TileLocations[newIndex.x, newIndex.y].tileOccupants.Count > 0;
+
+						// Check if destination tile is obstructed
+						bool isBlocked = !outOfBounds && 
+							isObstructed(ocp, TileLocations[newIndex.x, newIndex.y].obstructed);
+
+						if (outOfBounds || isOccupied || isBlocked)
+						{
+							// Don't pull the piece - leave it where it is
+							// Optionally could kill it if out of bounds
+							if (outOfBounds)
+							{
+								TileLocations[targetIndex.x, targetIndex.y].RemovePiece(ocp);
+								ocp.Kill();
+							}
+							// If occupied or blocked, do nothing (piece stays in place)
+						}
+						else
+						{
+							// Safe to pull
+							TileLocations[targetIndex.x, targetIndex.y].RemovePiece(ocp);
+							TileLocations[newIndex.x, newIndex.y].AddPiece(ocp);
+						}
+					}
+				}
+			}
+
 			if (actionTraits.Contains(ActionTrait.command_swapcolor))// if trait swaps the tile color
 			{
 				TileLocations[tilePosition.x, tilePosition.y].SwapColor(!TileLocations[tilePosition.x, tilePosition.y].isWhite);
