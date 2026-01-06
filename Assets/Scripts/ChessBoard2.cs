@@ -521,7 +521,7 @@ public class ChessBoard2 : NetworkIdentity
 				}
 			}
 
-			if(actionTraits.Contains(ActionTrait.apply_to_empty_space) && isObstructed(cp, TileLocations[tilePosition.x, tilePosition.y].obstructed)) add = false;
+			if(actionTraits.Contains(ActionTrait.apply_to_empty_space) && !actionTraits.Contains(ActionTrait.apply_to_ownteam_space) && !actionTraits.Contains(ActionTrait.apply_to_opposingteam_space)&& isObstructed(cp, TileLocations[tilePosition.x, tilePosition.y].obstructed)) add = false;
 
 			(Vector2Int, ActionTrait[]) newTile = (tilePosition, tile.Item2);
 			if (add) returnList.Add(newTile);

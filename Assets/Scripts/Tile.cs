@@ -31,7 +31,7 @@ public class Tile : MonoBehaviour
 	public conditions obstructed;
 	public bool isWhite;
 	private Coroutine raise;
-	private Dictionary<int, Coroutine> tempEffectList = new Dictionary<int, Coroutine>();
+	private Dictionary<string, Coroutine> tempEffectList = new Dictionary<string, Coroutine>();
 
 	void Awake() => rend = GetComponentInChildren<Renderer>();
 
@@ -68,7 +68,7 @@ public class Tile : MonoBehaviour
 		UpdateEffects(false, distance);
 
 		StartCoroutine(EffectRaise(-.3f, distance, effects.Count));
-		if(tempEffectList.Keys.Contains(effects.Count)) StopCoroutine(tempEffectList[effects.Count]);
+		if(tempEffectList.Keys.Contains(name)) StopCoroutine(tempEffectList[name]);
 	}
 
 	public void RemovePiece(ChessPiece piece)
@@ -110,7 +110,7 @@ public class Tile : MonoBehaviour
 
 				Material mat = rend.materials[count];
 				newMaterialsArray[count] = mat;
-				tempEffectList[count] = StartCoroutine(EffectRaise(0, distance,count));
+				tempEffectList[name] = StartCoroutine(EffectRaise(0, distance,count));
 				
 				count++;
 			}
@@ -152,16 +152,17 @@ public class Tile : MonoBehaviour
 	
 	IEnumerator EffectRaise(float set, float distance, int mat)
     {
+		Material matVar = rend.materials[mat];
 		yield return new WaitForSeconds(distance / 10f);
 
-		if(rend.materials[mat].HasFloat("_EffectSize")){
+		if(matVar.HasFloat("_EffectSize")){
 			float size = rend.materials[mat].GetFloat("_EffectSize");
 
 			while (Mathf.Abs(size - set) > .01f)
 			{
 
-				rend.materials[mat].SetFloat("_EffectSize", size + (set - size) * .05f);
-				size = rend.materials[mat].GetFloat("_EffectSize");
+				matVar.SetFloat("_EffectSize", size + (set - size) * .05f);
+				size = matVar.GetFloat("_EffectSize");
 
 				yield return new WaitForSeconds(.01f);
 			}
