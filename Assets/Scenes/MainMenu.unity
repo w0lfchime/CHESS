@@ -1939,7 +1939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -193.99994, y: -43.400024}
+  m_AnchoredPosition: {x: -193.99991, y: -43.400024}
   m_SizeDelta: {x: -444.715, y: -101.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127503228
@@ -8257,6 +8257,14 @@ MonoBehaviour:
       description: This guy will move at random. Good luck.
       pieceObject: {fileID: -189091167416563541, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
       pieceData: {fileID: 11400000, guid: 72e82141817f936418da174ff57eb4db, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 18f1160bf56b3844c9ee33184e1192fb, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 18f1160bf56b3844c9ee33184e1192fb, type: 3}
+      name: Archer
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}
+      pieceData: {fileID: 11400000, guid: d09b54b2ffb86a14a909b21a8e332521, type: 2}
     - blackIcon: {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
       whiteIcon: {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
       name: Boykisser
@@ -8411,6 +8419,110 @@ MonoBehaviour:
       description: Zombie is hungry, zombie wants blood, brainzz....
       pieceObject: {fileID: 5755049525349597631, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: 97b694fdf4c16e94592bb2325b00ca1d, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 3d3b2f36328ea5e4f974bcc8d3391fb1, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 3d3b2f36328ea5e4f974bcc8d3391fb1, type: 3}
+      name: Bulldozer
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
+      pieceData: {fileID: 11400000, guid: d0525e7ce36a6f546a3dc1acf04cf39b, type: 2}
+    - blackIcon: {fileID: 21300000, guid: f9399541153b7964c9961953721e7ad3, type: 3}
+      whiteIcon: {fileID: 21300000, guid: f9399541153b7964c9961953721e7ad3, type: 3}
+      name: Cloud
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 1742e45a3fbad644399cd6a05bbec8b7, type: 3}
+      pieceData: {fileID: 11400000, guid: f6dad6b227b3c5d42b2a9c94d7c2bc02, type: 2}
+    - blackIcon: {fileID: 21300000, guid: ac59ba9b0209b0b4ca6491397ab6b261, type: 3}
+      whiteIcon: {fileID: 21300000, guid: ac59ba9b0209b0b4ca6491397ab6b261, type: 3}
+      name: Disco
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 82df9d8875bb06147b57d5dfaa715fdc, type: 3}
+      pieceData: {fileID: 11400000, guid: 9ccf3d9a2a036484fab700a56c1019ab, type: 2}
+    - blackIcon: {fileID: 21300000, guid: edfa4ebadedb3464caff7fc4db5ca31d, type: 3}
+      whiteIcon: {fileID: 21300000, guid: edfa4ebadedb3464caff7fc4db5ca31d, type: 3}
+      name: Fisherman
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 60bbec4575b69e74c9cc2ec4e7954b2d, type: 3}
+      pieceData: {fileID: 11400000, guid: 51870ccb47d72a14d9539595deb3cb83, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 93fa4ebe68548224baa85d5718a4c925, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 93fa4ebe68548224baa85d5718a4c925, type: 3}
+      name: Frankenstein
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 60bbec4575b69e74c9cc2ec4e7954b2d, type: 3}
+      pieceData: {fileID: 11400000, guid: 16cb7e81802e0f44686811db011ab72d, type: 2}
+    - blackIcon: {fileID: 21300000, guid: da32a20b578002740926276f891a3fe5, type: 3}
+      whiteIcon: {fileID: 21300000, guid: da32a20b578002740926276f891a3fe5, type: 3}
+      name: Frankenstein
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+      pieceData: {fileID: 11400000, guid: aa3eb4eac463268418ee5a80682e28b3, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 49aaafe534b9f2c4188c7dd942c0565e, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 49aaafe534b9f2c4188c7dd942c0565e, type: 3}
+      name: ICBM
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+      pieceData: {fileID: 11400000, guid: 0b4b294ddd7f17c40bf78b09f4ada979, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 618738a2669114e46890821be386777b, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 618738a2669114e46890821be386777b, type: 3}
+      name: Joker
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 0225a207483c28e438ae2cb5c9489058, type: 3}
+      pieceData: {fileID: 11400000, guid: 6a8e81b78fe0b9542a19f21bf8a09308, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 9d583cd059262584c9411bc513dbcd89, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 9d583cd059262584c9411bc513dbcd89, type: 3}
+      name: Paintress
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 0276e585145ddee4b9653b694d4e509b, type: 3}
+      pieceData: {fileID: 11400000, guid: 3eda5e364217cb045bb966710d39b12e, type: 2}
+    - blackIcon: {fileID: 21300000, guid: a6232401c2c4b024caf1ff4d11b82654, type: 3}
+      whiteIcon: {fileID: 21300000, guid: a6232401c2c4b024caf1ff4d11b82654, type: 3}
+      name: Scarecrow
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 0276e585145ddee4b9653b694d4e509b, type: 3}
+      pieceData: {fileID: 11400000, guid: 3393a705ccc64be4fbceda96f73f820e, type: 2}
+    - blackIcon: {fileID: 21300000, guid: b4b1a4eea6da1b24094aa968833e211a, type: 3}
+      whiteIcon: {fileID: 21300000, guid: b4b1a4eea6da1b24094aa968833e211a, type: 3}
+      name: Unicorn
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 86e919ab7739a9e4e98c7dd503f939e5, type: 3}
+      pieceData: {fileID: 11400000, guid: 5ef78abfb5636b94cac920e5f2b908a7, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 63e6f6e06b6e9b34f8dc7820f51fe046, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 63e6f6e06b6e9b34f8dc7820f51fe046, type: 3}
+      name: Warp
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 7009996306650167107, guid: dc3bf196b2d2abc4d936df8032814ce1, type: 3}
+      pieceData: {fileID: 11400000, guid: e88ee9073defb26418e8da99b74d70e0, type: 2}
+    - blackIcon: {fileID: 21300000, guid: baf702d9016d6b142b5617951d09a2f5, type: 3}
+      whiteIcon: {fileID: 21300000, guid: baf702d9016d6b142b5617951d09a2f5, type: 3}
+      name: YinYang
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 8fb9874670cfd4d4691e62a1b075139a, type: 3}
+      pieceData: {fileID: 11400000, guid: 5fd792f058931d342871f4c27cd11609, type: 2}
   whitePieceMaterial: {fileID: 2100000, guid: 711d811e19862824396c6595f2e9477b, type: 2}
   blackPieceMaterial: {fileID: 2100000, guid: 4f965aa9971b8ec4fbdf3b79a96fb050, type: 2}
 --- !u!224 &410925900
@@ -11031,7 +11143,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 564970418}
   m_HandleRect: {fileID: 0}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
