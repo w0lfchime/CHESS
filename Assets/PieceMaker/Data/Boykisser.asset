@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: -3167674105308058297, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   - {fileID: -2030901756695967124, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   model_scale_multiplier: 1
-  description: You like boys, huh?
+  description: You like kissing boys?
   image: {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
   lifeLine: 0
   promotable: []
