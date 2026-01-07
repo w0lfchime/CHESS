@@ -140,9 +140,11 @@ public class GameManager : NetworkIdentity
 
 	public void EndTurn()
 	{		
-		endTurnButton.GetComponent<Image>().sprite = CurrentTurn == Team.White ? buttonColors[0] : buttonColors[1];
+		endTurnButton.GetComponent<Image>().sprite = (CurrentTurn == Team.Black) ? buttonColors[0] : buttonColors[1];
 		SpriteState state = endTurnButton.spriteState;
-		state.highlightedSprite = CurrentTurn == Team.White ? buttonColors[2] : buttonColors[3];
+		state.highlightedSprite = (CurrentTurn == Team.Black) ? buttonColors[2] : buttonColors[3];
+		endTurnButton.spriteState = state;
+		
 		if(GameData.Instance.isDoingPuzzle && CurrentTurn == Team.White && !Board.checkWhitePuzzle())
 		{
 			Debug.Log("Wrong Move");

@@ -15,6 +15,7 @@ public class Ability_TG
     public bool BasicMovement;
     public TriggerConditions triggerConditions;
     public List<Action_TG> actions = new List<Action_TG>();
+    public AudioClip sound;
 }
 
 public class ChessPieceObject : ChessPiece
@@ -61,6 +62,7 @@ public class ChessPieceObject : ChessPiece
                 ability_TG.name = ability.name;
                 ability_TG.BasicMovement = ability.BasicMovement;
                 ability_TG.triggerConditions = ability.triggerConditions;
+                ability_TG.sound = ability.sound;
 
                 int actionCount = 0;
 

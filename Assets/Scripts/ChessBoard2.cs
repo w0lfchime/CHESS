@@ -335,6 +335,7 @@ public class ChessBoard2 : NetworkIdentity
 				if (!result) break;
 				did_anything_happen += result ? 1 : 0;
 			}
+			if(ability.sound!=null) AudioSource.PlayClipAtPoint(ability.sound, piece.transform.position, 1);
 		}
 
 		if (did_anything_happen > 0)

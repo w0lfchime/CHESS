@@ -74,6 +74,7 @@ public class Ability
     public TriggerType trigger;
     public TriggerConditions triggerConditions;
     public List<Action> actions = new List<Action>();
+    public AudioClip sound;
 }
 
 [System.Serializable]
@@ -131,7 +132,6 @@ public class ChessPieceData : ScriptableObject
     public String description = "NoDescriptionSet";
     public Sprite image = null;
     public bool lifeLine;
-
     public List<ChessPieceData> promotable = new List<ChessPieceData>();
 
     [Header("Frankenstein Settings")]
@@ -247,6 +247,12 @@ public class ChessPieceDataEditor : Editor
             GUI.backgroundColor = oldColor;
 
             ability.name = EditorGUILayout.TextField("Ability Name", ability.name);
+            ability.sound = (AudioClip)EditorGUILayout.ObjectField(
+                "Clip",
+                ability.sound,
+                typeof(AudioClip),
+                false
+            );
             ability.BasicMovement = EditorGUILayout.Toggle("Basic Movement", ability.BasicMovement);
             ability.trigger = (TriggerType)EditorGUILayout.EnumPopup("Trigger", ability.trigger);
 
