@@ -342,7 +342,7 @@ MonoBehaviour:
       - m_Target: {fileID: 532147083}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: EndTurn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1900,6 +1900,7 @@ MonoBehaviour:
   winText: {fileID: 0}
   moveTrackerContent: {fileID: 1516384582}
   moveTrackerElementPrefab: {fileID: 5134818603460997368, guid: 881445d04fc4e05479fe6de5b2cd5944, type: 3}
+  canMakeTracker: 1
 --- !u!114 &532147084
 MonoBehaviour:
   m_ObjectHideFlags: 0
