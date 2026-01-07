@@ -106,6 +106,7 @@ public abstract class ChessPiece : MonoBehaviour
 
         targetPosition = currentTile.transform.position;
         targetPosition.y = currentTile.gameObject.transform.position.y;
+        ScaleLongestAxis();
     }
 
     public void Kill()

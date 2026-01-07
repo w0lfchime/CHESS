@@ -70,7 +70,7 @@ public class GameManager : NetworkIdentity
         }
     }
 
-	[ObserversRpc]
+	[ObserversRpc(bufferLast: true)]
 	public void SetSeed(int seed)
 	{
 		print("RANDOM SEED: "+seed);
@@ -165,7 +165,7 @@ public class GameManager : NetworkIdentity
 			{
 				Board.turns[1]++;
 
-				if(Board.turns[1] == GameData.Instance.puzzle.whiteTeamMovements.Count)
+				if(Board.turns[1] == GameData.Instance.puzzle.whiteTeamMovements.Length)
 				{
 					Board.DisplayVictory(0);
 					Board.winText.text = "Puzzle complete!";

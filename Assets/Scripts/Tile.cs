@@ -49,7 +49,7 @@ public class Tile : MonoBehaviour
 	public void AddPiece(ChessPiece piece)
 	{
 		tileOccupants.Add(piece);
-		piece.SetScale(Vector3.one);
+		piece.ScaleLongestAxis();
 		UpdatePieces();
 		UpdateEffects();
 	}
