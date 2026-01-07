@@ -61,6 +61,7 @@ public class GameManager : NetworkIdentity
 			int seed = Random.Range(0, 999999);
 			Random.InitState(seed);
 			SetSeed(seed);
+			print("RANDOM SEED: "+seed);
         }
         else
         {
@@ -72,6 +73,7 @@ public class GameManager : NetworkIdentity
 	[ObserversRpc]
 	public void SetSeed(int seed)
 	{
+		print("RANDOM SEED: "+seed);
 		UnityEngine.Random.InitState(seed);
 	}
 
