@@ -56,7 +56,7 @@ public class GameCamera : MonoBehaviour
 
 		//RecomputeZoomBounds();
 
-		maxZoomDistance = maxZoomDistance * GameData.Instance.map.height/8;
+		maxZoomDistance = maxZoomDistance * Mathf.Clamp(GameData.Instance.map.height/12f, 1f, 2f);
 		targetZoomDistance = maxZoomDistance;
 		currentZoomDistance = maxZoomDistance;
 

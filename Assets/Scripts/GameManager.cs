@@ -5,8 +5,8 @@ using UnityEngine.Scripting.APIUpdating;
 using PurrNet;
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 
 
@@ -42,6 +42,9 @@ public class GameManager : NetworkIdentity
 	// Stuff for adding a move to the move log
 	public GameObject moveTrackerContent;
 	public GameObject moveTrackerElementPrefab;
+	
+	public Button endTurnButton;
+	public List<Sprite> buttonColors = new List<Sprite>();
 	public bool canMakeTracker = true;
 
 	protected override void OnSpawned(bool asServer)
@@ -138,6 +141,9 @@ public class GameManager : NetworkIdentity
 
 	public void EndTurn()
 	{		
+		endTurnButton.GetComponent<Image>().sprite = CurrentTurn == Team.White ? buttonColors[0] : buttonColors[1];
+		SpriteState state = endTurnButton.spriteState;
+		state.highlightedSprite = CurrentTurn == Team.White ? buttonColors[2] : buttonColors[3];
 		if(GameData.Instance.isDoingPuzzle && CurrentTurn == Team.White && !Board.checkWhitePuzzle())
 		{
 			Debug.Log("Wrong Move");
