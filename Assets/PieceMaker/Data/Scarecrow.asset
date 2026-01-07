@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Scarecrow
   materialValue: 5
-  model: {fileID: 2922394958108647756, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  model: {fileID: 2922394958108647756, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
   whiteMaterialList:
-  - {fileID: -4576068083109919760, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: 1589487249450911417, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: 1493370413022115818, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: 145615223514590520, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: -6087771358165109452, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: -5254752162498044798, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: -4576068083109919760, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: 1589487249450911417, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: 1493370413022115818, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: 145615223514590520, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: -6087771358165109452, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: -5254752162498044798, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
   blackMaterialList:
-  - {fileID: -4576068083109919760, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: 1589487249450911417, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: 1493370413022115818, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: 145615223514590520, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: -6087771358165109452, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: -5254752162498044798, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  model_scale_multiplier: 1
+  - {fileID: -4576068083109919760, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: 1589487249450911417, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: 1493370413022115818, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: 145615223514590520, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: -6087771358165109452, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  - {fileID: -5254752162498044798, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
+  model_scale_multiplier: 1.2
   description: Jeepers! That's creepy
   image: {fileID: 21300000, guid: a6232401c2c4b024caf1ff4d11b82654, type: 3}
   lifeLine: 0
