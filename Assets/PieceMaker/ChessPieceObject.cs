@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Action_TG
 { // TG stands for trait grid
+    public float actionEffectMult = 1;
     public List<(Vector2Int, ActionTrait[])> grid = new List<(Vector2Int, ActionTrait[])>();
 }
 
@@ -71,6 +72,8 @@ public class ChessPieceObject : ChessPiece
                     if(!ability.BasicMovement || ability_TG.actions.Count == 0 || !visual) ability_TG.actions.Add(new Action_TG());
                     
                     var action_TG = ability_TG.actions[ability_TG.actions.Count-1];
+
+                    action_TG.actionEffectMult = action.actionEffectMult;
 
                     for (int y = 0; y < dataToUse.gridSize; y++) // go through each y tile
                     {

@@ -240,16 +240,6 @@ public class ChessBoard2 : NetworkIdentity
 	public void MoveTrigger(ChessPiece piece, TriggerConditions conditions = TriggerConditions.None)
 	{
 		TriggerOnePiece(piece, TriggerType.OnMove);
-
-		if(piece.team == Team.Black && GameData.Instance.map.height-1 == piece.currentTile.TileBoardY)
-		{
-			SpawnPromoteUI(piece);
-		}
-
-		if(piece.team == Team.White && 0 == piece.currentTile.TileBoardY)
-		{
-			SpawnPromoteUI(piece);
-		}
 	}
 
 	void SpawnPromoteUI(ChessPiece piece)
@@ -270,6 +260,10 @@ public class ChessBoard2 : NetworkIdentity
 		piece.gameObject.GetComponent<MeshFilter>().mesh = data.model;
 		piece.gameObject.GetComponent<ChessPieceObject>().chessPieceData = data;
 		Destroy(promoteUITemp);
+
+		GameManager.Instance.EndTurn(); // Switch turn
+		if(NetworkManager.main.isServer) EndClientTurn();
+		if(NetworkManager.main.isClient) EndServerTurn();
 	}
 
 	bool TriggerConditionTester(TriggerConditions conditions, ChessPiece piece)
@@ -337,7 +331,7 @@ public class ChessBoard2 : NetworkIdentity
 				List<(Vector2Int, ActionTrait[])> allTriggeredTiles = action.grid;
 				allTriggeredTiles = FilterTiles(piece, allTriggeredTiles);
 				
-				bool result = RunTiles(piece, tile, allTriggeredTiles);
+				bool result = RunTiles(piece, tile, allTriggeredTiles, action.actionEffectMult);
 				if (!result) break;
 				did_anything_happen += result ? 1 : 0;
 			}
@@ -347,9 +341,17 @@ public class ChessBoard2 : NetworkIdentity
 		{
 			piece.moves++;
 			if(endTurn) {
-				GameManager.Instance.EndTurn(); // Switch turn
-				if(NetworkManager.main.isServer) EndClientTurn();
-				if(NetworkManager.main.isClient) EndServerTurn();
+				if(piece.team == Team.Black && GameData.Instance.map.height-1 == piece.currentTile.TileBoardY)
+				{
+					SpawnPromoteUI(piece);
+				}else if(piece.team == Team.White && 0 == piece.currentTile.TileBoardY)
+				{
+					SpawnPromoteUI(piece);
+				}else{
+					GameManager.Instance.EndTurn(); // Switch turn
+					if(NetworkManager.main.isServer) EndClientTurn();
+					if(NetworkManager.main.isClient) EndServerTurn();
+				}
 			}
 		}
 
@@ -522,7 +524,7 @@ public class ChessBoard2 : NetworkIdentity
 		UnityEngine.Random.InitState(seed);
 	}
 
-	private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[])> allTriggeredTiles)
+	private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[])> allTriggeredTiles, float actionEffectMult = 1)
 	{
 		RemoveHighlightTiles(cp);
 
@@ -705,14 +707,14 @@ public class ChessBoard2 : NetworkIdentity
 			if (actionTraits.Contains(ActionTrait.spawn_water)) // if trait spawns water
 			{
 				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
-				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", 4, distance);
+				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", (int)actionEffectMult, distance);
 			}
 
 			if (actionTraits.Contains(ActionTrait.spawn_opposing_obstruct)) // if trait spawns water
 			{
 				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
-				if(cp.team == Team.Black) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scarewhite", 1, distance);
-				if(cp.team == Team.White) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scareblack", 1, distance);
+				if(cp.team == Team.Black) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scarewhite", (int)actionEffectMult, distance);
+				if(cp.team == Team.White) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scareblack", (int)actionEffectMult, distance);
 			}
 
 			if (actionTraits.Contains(ActionTrait.command_removetile)) // if trait removes the tile

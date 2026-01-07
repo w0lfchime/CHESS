@@ -85,6 +85,7 @@ public class Action
 
     [HideInInspector]
     public Wrapper<Elements>[] visualGrid;
+    public float actionEffectMult = 1;
 
     [HideInInspector]
     public int[] grid;
@@ -126,7 +127,7 @@ public class ChessPieceData : ScriptableObject
     public Mesh model;
     public List<Material> whiteMaterialList = new List<Material>();
     public List<Material> blackMaterialList = new List<Material>();
-    public float model_scale_multiplier;
+    public float model_scale_multiplier = 1;
     public String description = "NoDescriptionSet";
     public Sprite image = null;
     public bool lifeLine;
@@ -274,6 +275,8 @@ public class ChessPieceDataEditor : Editor
                 if (selectedIndex < 0) selectedIndex = 0;
 
                 int newIndex = EditorGUILayout.Popup("Action " + j, selectedIndex, options);
+                GUILayout.Space(20);
+                ability.actions[j].actionEffectMult = EditorGUILayout.FloatField("", ability.actions[j].actionEffectMult, GUILayout.Width(25));
 
                 // If changed, update the action’s name
                 if (newIndex != selectedIndex)

@@ -82,7 +82,7 @@ MonoBehaviour:
     visualGrid: []
     grid: 
   - name: RandomMove
-    traits: 0200000004000000180000000500000009000000
+    traits: 0200000004000000160000000500000009000000
     visualGrid: []
     grid: 
   - name: Pull

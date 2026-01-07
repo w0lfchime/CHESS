@@ -27,11 +27,13 @@ MonoBehaviour:
   - {fileID: -6922793697723135513, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}
   - {fileID: 4874126678125670354, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}
   - {fileID: -6629797300637803691, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}
-  model_scale_multiplier: 0
+  model_scale_multiplier: 1
   description: NoDescriptionSet
   image: {fileID: 21300000, guid: 18f1160bf56b3844c9ee33184e1192fb, type: 3}
   lifeLine: 0
   promotable: []
+  isFrankenstein: 0
+  frankensteinMovesets: []
   gridSize: 11
   abilities:
   - name: Move
