@@ -845,23 +845,34 @@ public class ChessBoard2 : NetworkIdentity
 		Puzzles puzzle = GameData.Instance.puzzle;
 		string[] tempList = puzzle.whiteTeamMovements[turns[1]].Split(" ");
 
-		for(int i = 0; i < tempList.Length; i += 5)
+		// for(int i = 0; i < tempList.Length; i += 5)
+		// {
+		// 	Tile tile = TileLocations[int.Parse(tempList[i+2]), int.Parse(tempList[i+1])];
+
+		// 	if(turns[1] == 0)
+		// 	{
+		// 		puzzleSequence = int.Parse(tempList[i+3]);
+		// 	}
+
+		// 	if(tile.tileOccupants.Count < 1)
+		// 	{
+		// 		continue;
+		// 	}
+
+		// 	if(tile.tileOccupants[0].ID == tempList[i] && tile.tileOccupants[0].team == Team.White && puzzleSequence == int.Parse(tempList[i+3]))
+		// 	{
+		// 		puzzleSequence = int.Parse(tempList[i+4]);
+		// 		return true;
+		// 	}
+		// }
+
+		for(int i = 0; i < tempList.Length; i += 4)
 		{
-			Tile tile = TileLocations[int.Parse(tempList[i+2]), int.Parse(tempList[i+1])];
+			Tile firstTile = allClickedOnTiles[allClickedOnTiles.Count - 2];
+			Tile secondTile = allClickedOnTiles[allClickedOnTiles.Count - 1];
 
-			if(turns[1] == 0)
+			if(firstTile.TileBoardX == int.Parse(tempList[i]) && firstTile.TileBoardY == int.Parse(tempList[i + 1]) && secondTile.TileBoardX == int.Parse(tempList[i + 2]) && secondTile.TileBoardY == int.Parse(tempList[i + 3]))
 			{
-				puzzleSequence = int.Parse(tempList[i+3]);
-			}
-
-			if(tile.tileOccupants.Count < 1)
-			{
-				continue;
-			}
-
-			if(tile.tileOccupants[0].ID == tempList[i] && tile.tileOccupants[0].team == Team.White && puzzleSequence == int.Parse(tempList[i+3]))
-			{
-				puzzleSequence = int.Parse(tempList[i+4]);
 				return true;
 			}
 		}
