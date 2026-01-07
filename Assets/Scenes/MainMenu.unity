@@ -8523,6 +8523,22 @@ MonoBehaviour:
       description: 
       pieceObject: {fileID: 919132149155446097, guid: 8fb9874670cfd4d4691e62a1b075139a, type: 3}
       pieceData: {fileID: 11400000, guid: 5fd792f058931d342871f4c27cd11609, type: 2}
+    - blackIcon: {fileID: 21300000, guid: bc59e4aeb62de1145ac6d773e8f05a60, type: 3}
+      whiteIcon: {fileID: 21300000, guid: bc59e4aeb62de1145ac6d773e8f05a60, type: 3}
+      name: Kraken
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: efe2e2b56e13c124e8679d40fc2ce580, type: 3}
+      pieceData: {fileID: 11400000, guid: a2cfcae838f1f5845a386437ce82f385, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 60a2d4d7982d493448292301981d115f, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 60a2d4d7982d493448292301981d115f, type: 3}
+      name: Superhero
+      tagLine: 
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceData: {fileID: 11400000, guid: 6dcf8e54f7194a04ebde00d6ed6e78c9, type: 2}
   whitePieceMaterial: {fileID: 2100000, guid: 711d811e19862824396c6595f2e9477b, type: 2}
   blackPieceMaterial: {fileID: 2100000, guid: 4f965aa9971b8ec4fbdf3b79a96fb050, type: 2}
 --- !u!224 &410925900
