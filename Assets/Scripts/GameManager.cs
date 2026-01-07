@@ -45,6 +45,7 @@ public class GameManager : NetworkIdentity
 	
 	public Button endTurnButton;
 	public List<Sprite> buttonColors = new List<Sprite>();
+	public bool canMakeTracker = true;
 
 	protected override void OnSpawned(bool asServer)
     {
@@ -181,17 +182,29 @@ public class GameManager : NetworkIdentity
 
 			TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
 
-			GameObject newMoveSpot = Instantiate(moveTrackerElementPrefab);
-			newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.name + " at (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardY + ") -> (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardY + ")";
-			newMoveSpot.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.image;
-			newMoveSpot.transform.SetParent(moveTrackerContent.transform);
-			newMoveSpot.transform.SetAsFirstSibling();
+			if(canMakeTracker)
+			{
+				GameObject newMoveSpot = Instantiate(moveTrackerElementPrefab);
+				newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.name + " at (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardY + ") -> (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardY + ")";
+				newMoveSpot.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.image;
+				newMoveSpot.transform.SetParent(moveTrackerContent.transform);
+				newMoveSpot.transform.SetAsFirstSibling();
+			}
+			
+			canMakeTracker = true;
 
 			Board.TileTrigger();
 			Board.TurnSwapTrigger();
 		}
 		
 	}
+
+	public void EndTurn(int literallyUseless)
+	{
+		canMakeTracker = false;
+		EndTurn();
+	}
+
 
 	public IEnumerator WaitForIncorrectPuzzle()
 	{
