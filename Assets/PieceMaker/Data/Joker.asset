@@ -27,8 +27,8 @@ MonoBehaviour:
   - {fileID: -905690159841262435, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
   - {fileID: -382652638819485698, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
   - {fileID: 2926557707537190794, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
-  model_scale_multiplier: 0
-  description: NoDescriptionSet
+  model_scale_multiplier: 1
+  description: Why so serious
   image: {fileID: 21300000, guid: 618738a2669114e46890821be386777b, type: 3}
   lifeLine: 0
   promotable: []

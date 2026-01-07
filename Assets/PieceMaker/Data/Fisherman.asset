@@ -31,8 +31,8 @@ MonoBehaviour:
   - {fileID: -7828181104068881822, guid: 60bbec4575b69e74c9cc2ec4e7954b2d, type: 3}
   - {fileID: 2768710986838361614, guid: 60bbec4575b69e74c9cc2ec4e7954b2d, type: 3}
   - {fileID: 623745476747331691, guid: 60bbec4575b69e74c9cc2ec4e7954b2d, type: 3}
-  model_scale_multiplier: 0
-  description: NoDescriptionSet
+  model_scale_multiplier: 1
+  description: C'mon. just a nibble
   image: {fileID: 21300000, guid: edfa4ebadedb3464caff7fc4db5ca31d, type: 3}
   lifeLine: 0
   promotable: []

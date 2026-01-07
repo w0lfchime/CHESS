@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 4874126678125670354, guid: efe2e2b56e13c124e8679d40fc2ce580, type: 3}
   - {fileID: -6922793697723135513, guid: efe2e2b56e13c124e8679d40fc2ce580, type: 3}
   model_scale_multiplier: 1
-  description: NoDescriptionSet
+  description: That's a big fish
   image: {fileID: 21300000, guid: bc59e4aeb62de1145ac6d773e8f05a60, type: 3}
   lifeLine: 0
   promotable: []

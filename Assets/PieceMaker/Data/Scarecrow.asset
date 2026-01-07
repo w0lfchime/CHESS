@@ -30,7 +30,7 @@ MonoBehaviour:
   - {fileID: -6087771358165109452, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   - {fileID: -5254752162498044798, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   model_scale_multiplier: 1
-  description: NoDescriptionSet
+  description: Jeepers! That's creepy
   image: {fileID: 21300000, guid: a6232401c2c4b024caf1ff4d11b82654, type: 3}
   lifeLine: 0
   promotable: []
