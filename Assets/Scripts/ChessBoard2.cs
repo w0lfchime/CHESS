@@ -949,19 +949,9 @@ public class ChessBoard2 : NetworkIdentity
 		Puzzles puzzle = GameData.Instance.puzzle;
 
 		// spawn black
-		for(int i = 0; i < puzzle.blackTeamSpawning.Count; i++)
+		foreach(PieceBoardData pieceBoardData in puzzle.teamSpawning)
 		{
-			string[] tempList = puzzle.blackTeamSpawning[i].Split(" ");
-
-			SpawnPiece(tempList[0], new Vector2Int(int.Parse(tempList[1]), int.Parse(tempList[2])), Team.Black);
-		}
-
-		// spawn white
-		for(int i = 0; i < puzzle.whiteTeamSpawning.Count; i++)
-		{
-			string[] tempList = puzzle.whiteTeamSpawning[i].Split(" ");
-
-			SpawnPiece(tempList[0], new Vector2Int(int.Parse(tempList[1]), int.Parse(tempList[2])), Team.White);
+			SpawnPiece(pieceBoardData.data.name, pieceBoardData.pos, pieceBoardData.team);
 		}
 	}
 
