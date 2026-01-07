@@ -361,12 +361,12 @@ public class ChessBoard2 : NetworkIdentity
 		if(abilityToggleTemp!=null) Destroy(abilityToggleTemp);
 	}
 
-	[ServerRpc]
+	[ServerRpc(requireOwnership: false)]
 	void EndServerTurn()
 	{
 		GameManager.Instance.EndTurn();
 	}
-	[ObserversRpc]
+	[ObserversRpc(bufferLast: true)]
 	void EndClientTurn()
 	{
 		GameManager.Instance.EndTurn();

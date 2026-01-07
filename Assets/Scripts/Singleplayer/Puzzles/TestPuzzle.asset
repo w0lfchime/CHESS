@@ -12,17 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79951f334a11c0e4d852604b061451d1, type: 3}
   m_Name: TestPuzzle
   m_EditorClassIdentifier: 
-  blackTeamSpawning:
-  - StandardKing 0 0
   blackTeamMovements:
   - 0 0 1 0
   - 1 0 2 0
   - 2 0 1 0
-  whiteTeamSpawning:
-  - StandardKing 7 7
-  - StandardRook 5 5
-  - StandardQueen 6 5
   whiteTeamMovements:
   - StandardQueen 6 1 0 0 StandardRook 5 1 1 1
   - StandardRook 5 0 0 0 StandardQueen 6 0 1 1
-  map: {fileID: 0}
+  mapData: {fileID: 0}
+  PieceToAdd: {fileID: 0}
