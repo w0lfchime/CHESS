@@ -60,7 +60,7 @@ public class GameManager : NetworkIdentity
 
 			int seed = Random.Range(0, 999999);
 			Random.InitState(seed);
-			Board.SetSeed(seed);
+			SetSeed(seed);
         }
         else
         {
@@ -68,6 +68,12 @@ public class GameManager : NetworkIdentity
             Board.SendTeamToServer(GameData.Instance.teams[GameData.Instance.yourTeamName]);
         }
     }
+
+	[ObserversRpc]
+	public void SetSeed(int seed)
+	{
+		UnityEngine.Random.InitState(seed);
+	}
 
     void Awake()
     {

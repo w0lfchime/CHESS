@@ -521,12 +521,6 @@ public class ChessBoard2 : NetworkIdentity
 		return false;
 	}
 
-	[ObserversRpc]
-	public void SetSeed(int seed)
-	{
-		UnityEngine.Random.InitState(seed);
-	}
-
 	private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[])> allTriggeredTiles, float actionEffectMult = 1)
 	{
 		RemoveHighlightTiles(cp);
