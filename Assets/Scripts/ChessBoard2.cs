@@ -8,6 +8,7 @@ using System.Collections;
 using PurrNet;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEngine.Audio;
 
 public class ChessBoard2 : NetworkIdentity
 {
@@ -58,6 +59,7 @@ public class ChessBoard2 : NetworkIdentity
 	public GameObject promoteUI;
 	private GameObject promoteUITemp;
 	public GameObject piecePrefab;
+	public AudioMixerGroup mixerGroup;
 
 	void Awake()
 	{
@@ -335,7 +337,7 @@ public class ChessBoard2 : NetworkIdentity
 				if (!result) break;
 				did_anything_happen += result ? 1 : 0;
 			}
-			if(ability.sound!=null) AudioSource.PlayClipAtPoint(ability.sound, piece.transform.position, 1);
+			if(ability.sound!=null) PlayClipAt(ability.sound, piece.transform.position, mixerGroup, 1);
 		}
 
 		if (did_anything_happen > 0)
@@ -1094,6 +1096,31 @@ public class ChessBoard2 : NetworkIdentity
 		puzzleFailPanel.SetActive(true);
 		Time.timeScale = 0f;
 	}
+
+	public static AudioSource PlayClipAt(AudioClip clip, Vector3 position, AudioMixerGroup outputGroup = null, float volume = 1.0f, float pitch = 1.0f)
+    {
+        GameObject tempGO = new GameObject("TempAudio"); // create the temp object
+        tempGO.transform.position = position; // set its position
+        AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
+        
+        aSource.clip = clip; // define the clip
+        aSource.volume = volume; // set the volume
+        aSource.pitch = pitch; // set the pitch
+        
+        // Assign the output Audio Mixer Group if one is provided
+        if (outputGroup != null)
+        {
+            aSource.outputAudioMixerGroup = outputGroup;
+        }
+        
+        // Set other desired properties here (e.g., spatial blend, priority, etc.)
+        // aSource.spatialBlend = 1.0f; // Set to 3D sound if needed
+
+        aSource.Play(); // start the sound
+        GameObject.Destroy(tempGO, clip.length); // destroy object after clip duration
+
+        return aSource; // return the AudioSource reference if needed for further dynamic changes
+    }
 }
 
 public static class GridLine
@@ -1137,7 +1164,7 @@ public static class GridLine
                 y0 += sy;
             }
         }
-
+		
         return cells;
     }
 }

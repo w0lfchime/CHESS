@@ -1051,7 +1051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &365488707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1763,13 +1763,13 @@ MonoBehaviour:
   winText: {fileID: 0}
   moveTrackerContent: {fileID: 1516384582}
   moveTrackerElementPrefab: {fileID: 5134818603460997368, guid: 881445d04fc4e05479fe6de5b2cd5944, type: 3}
-  canMakeTracker: 1
   endTurnButton: {fileID: 86059847}
   buttonColors:
   - {fileID: 21300000, guid: c5cdc2ca1bbf21e4eb43e25742815dfd, type: 3}
   - {fileID: 21300000, guid: 3f8e1a390ef9c6644b259c417d766b92, type: 3}
   - {fileID: 21300000, guid: 9853acebf34696e41b9de29017ee50f6, type: 3}
   - {fileID: 21300000, guid: d1f0b28200fa7834b9ec7d674df6fe88, type: 3}
+  canMakeTracker: 1
 --- !u!114 &532147084
 MonoBehaviour:
   m_ObjectHideFlags: 0
