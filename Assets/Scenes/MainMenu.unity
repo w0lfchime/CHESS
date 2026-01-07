@@ -8262,7 +8262,7 @@ MonoBehaviour:
       name: Archer
       tagLine: Probably should just use a gun
       materialValue: 0
-      description: 
+      description: Moves short distances but has a hell of a shot.
       pieceObject: {fileID: 919132149155446097, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}
       pieceData: {fileID: 11400000, guid: d09b54b2ffb86a14a909b21a8e332521, type: 2}
     - blackIcon: {fileID: 21300000, guid: 492196f024e09944cb2656443b8a864e, type: 3}
@@ -8295,7 +8295,7 @@ MonoBehaviour:
       name: Demon
       tagLine: I'm actually a pretty nice guy
       materialValue: 4
-      description: Demon
+      description: High mobility, but can't take, can only push.
       pieceObject: {fileID: 1043830259349886573, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
       pieceData: {fileID: 11400000, guid: fb7d4a9b4cfef3c45bae23ca82107ea0, type: 2}
     - blackIcon: {fileID: 21300000, guid: 208c28f9b2ce327419a897e8822e3d42, type: 3}
@@ -8424,7 +8424,7 @@ MonoBehaviour:
       name: Bulldozer
       tagLine: You can't park there
       materialValue: 0
-      description: 
+      description: Uses his parking permit to shove other pieces off the board.
       pieceObject: {fileID: 919132149155446097, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
       pieceData: {fileID: 11400000, guid: d0525e7ce36a6f546a3dc1acf04cf39b, type: 2}
     - blackIcon: {fileID: 21300000, guid: f9399541153b7964c9961953721e7ad3, type: 3}
@@ -8432,7 +8432,7 @@ MonoBehaviour:
       name: Cloud
       tagLine: Save for a rainy day
       materialValue: 0
-      description: 
+      description: Hides pieces behind it from enemy sight.
       pieceObject: {fileID: 919132149155446097, guid: 1742e45a3fbad644399cd6a05bbec8b7, type: 3}
       pieceData: {fileID: 11400000, guid: f6dad6b227b3c5d42b2a9c94d7c2bc02, type: 2}
     - blackIcon: {fileID: 21300000, guid: ac59ba9b0209b0b4ca6491397ab6b261, type: 3}
@@ -8440,7 +8440,8 @@ MonoBehaviour:
       name: Disco
       tagLine: Back in my day...
       materialValue: 0
-      description: 
+      description: Depending on the color of the square, it moves horizontally or
+        vertically.
       pieceObject: {fileID: 919132149155446097, guid: 82df9d8875bb06147b57d5dfaa715fdc, type: 3}
       pieceData: {fileID: 11400000, guid: 9ccf3d9a2a036484fab700a56c1019ab, type: 2}
     - blackIcon: {fileID: 21300000, guid: edfa4ebadedb3464caff7fc4db5ca31d, type: 3}
@@ -8448,7 +8449,7 @@ MonoBehaviour:
       name: Fisherman
       tagLine: C'mon. just a nibble
       materialValue: 0
-      description: 
+      description: Can reel in enemy pieces, captures once reeled in all the way.
       pieceObject: {fileID: 919132149155446097, guid: 60bbec4575b69e74c9cc2ec4e7954b2d, type: 3}
       pieceData: {fileID: 11400000, guid: 51870ccb47d72a14d9539595deb3cb83, type: 2}
     - blackIcon: {fileID: 21300000, guid: 93fa4ebe68548224baa85d5718a4c925, type: 3}
@@ -8456,7 +8457,8 @@ MonoBehaviour:
       name: Frankenstein
       tagLine: 
       materialValue: 0
-      description: 
+      description: A mash-up of several different piece movements, randomly assigned
+        each turn.
       pieceObject: {fileID: 919132149155446097, guid: 60bbec4575b69e74c9cc2ec4e7954b2d, type: 3}
       pieceData: {fileID: 11400000, guid: 16cb7e81802e0f44686811db011ab72d, type: 2}
     - blackIcon: {fileID: 21300000, guid: da32a20b578002740926276f891a3fe5, type: 3}
@@ -8464,7 +8466,7 @@ MonoBehaviour:
       name: Hammered
       tagLine: 
       materialValue: 0
-      description: 
+      description: Small movement but pushes everyone away close to him.
       pieceObject: {fileID: 919132149155446097, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
       pieceData: {fileID: 11400000, guid: aa3eb4eac463268418ee5a80682e28b3, type: 2}
     - blackIcon: {fileID: 21300000, guid: 49aaafe534b9f2c4188c7dd942c0565e, type: 3}
@@ -8472,7 +8474,7 @@ MonoBehaviour:
       name: ICBM
       tagLine: 
       materialValue: 0
-      description: 
+      description: You have one shot to destroy an entire column, will blow up after.
       pieceObject: {fileID: 919132149155446097, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
       pieceData: {fileID: 11400000, guid: 0b4b294ddd7f17c40bf78b09f4ada979, type: 2}
     - blackIcon: {fileID: 21300000, guid: 618738a2669114e46890821be386777b, type: 3}
