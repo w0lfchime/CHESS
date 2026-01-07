@@ -19,6 +19,7 @@ public class DraggableUIPiece : MonoBehaviour
         if(TitleScreenButtons.Instance.selectedPiece!=null) TitleScreenButtons.Instance.selectedPiece.DeselectPiece();
         GetComponent<Outline>().enabled = true;
         TitleScreenButtons.Instance.selectedPiece = this;
+        TitleScreenButtons.Instance.updateMiniCollections();
     }
 
     public void DeselectPiece()

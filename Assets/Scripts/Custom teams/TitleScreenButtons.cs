@@ -7,6 +7,7 @@ using UnityEngine.Rendering.Universal.Internal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class TitleScreenButtons : MonoBehaviour
 {
@@ -44,6 +45,14 @@ public class TitleScreenButtons : MonoBehaviour
     public Slider materialSlider;
     public ScrollRect TeamView;
     public GameObject TeamViewPart;
+    // mini collections
+    public TextMeshProUGUI miniCollectionsName;
+    public TextMeshProUGUI miniCollectionsDesc;
+    public TextMeshProUGUI miniCollectionsAbilityName;
+    public GameObject miniColelctionsGrid;
+    public GameObject miniCollectionsContent;
+    public GameObject noPieceSelected;
+    public int abilityNumber = 0;
     void Start()
     {
         Instance = this;
@@ -220,6 +229,9 @@ public class TitleScreenButtons : MonoBehaviour
         how2ChessMenu.SetActive(false);
         singlePlayerMenu.SetActive(false);
         mainMenu.SetActive(true);
+
+        miniCollectionsContent.SetActive(false);
+        noPieceSelected.SetActive(true);
 
         insultScript.DisplayRandomInsult();
     }
@@ -440,6 +452,68 @@ public class TitleScreenButtons : MonoBehaviour
         gameData.isDoingPuzzle = true;
 
         SceneManager.LoadScene(gameData.map.scene);
+    }
+
+    public void updateMiniCollections()
+    {
+        miniCollectionsContent.SetActive(true);
+        noPieceSelected.SetActive(false);
+        miniCollectionsName.text = selectedPiece.pieceId.name;
+        miniCollectionsDesc.text = selectedPiece.pieceId.description;
+        abilityNumber = 0;
+        miniCollectionsAbilityName.text = selectedPiece.pieceId.abilities[abilityNumber].name;
+        updateAbilityGrid();
+    }
+
+    public void changedViewedAbility(int endAbility)
+    {
+        abilityNumber += endAbility;
+
+        if(abilityNumber < 0)
+        {
+            abilityNumber = selectedPiece.pieceId.abilities.Count - 1;
+        } else if (abilityNumber >= selectedPiece.pieceId.abilities.Count)
+        {
+            abilityNumber = 0;
+        }
+
+        updateAbilityGrid();
+    }
+
+    public void updateAbilityGrid()
+    {
+        miniCollectionsAbilityName.text = selectedPiece.pieceId.abilities[abilityNumber].name;
+
+        int imgCount = 0;
+        for (int i = 0; i < 11; i++)
+        {
+            for (int j = 0; j < 11; j++)
+            {
+                Elements element = selectedPiece.pieceId.abilities[abilityNumber].actions[0].visualGrid[i].values[j];
+                Color baseColor;
+                switch (element)
+                {
+                    case Elements.CanMove:
+                        baseColor = Color.black;
+                        break;
+                    case Elements.CantMove:
+                        baseColor = Color.green;
+                        break;
+                    case (Elements)2:
+                        baseColor = Color.yellow;
+                        break;
+                    default:
+                        baseColor = Color.red;
+                        break;
+                }
+
+                bool darkTile = (i + j) % 2 == 0;
+                float colorMult = darkTile ? 0.85f : 0.95f;
+                miniColelctionsGrid.transform.GetComponentsInChildren<Image>()[imgCount].color = baseColor * colorMult;
+
+                imgCount++;
+            }
+        }
     }
 
     public IEnumerator showErrorText(string error)
