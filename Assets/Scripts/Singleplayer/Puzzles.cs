@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
+//using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 
 public class PieceBoardData
