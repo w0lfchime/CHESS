@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79951f334a11c0e4d852604b061451d1, type: 3}
   m_Name: test
   m_EditorClassIdentifier: 
-  blackTeamSpawning: []
   blackTeamMovements: []
-  whiteTeamSpawning: []
   whiteTeamMovements: []
-  mapData: {fileID: 0}
+  mapData: {fileID: 11400000, guid: fc7bf3fa28035a745a9fcb7135c1eaf7, type: 2}
+  PieceToAdd: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
