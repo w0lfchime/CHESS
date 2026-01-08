@@ -167,6 +167,7 @@ public class GameManager : NetworkIdentity
 
 				if(Board.turns[1] == GameData.Instance.puzzle.whiteTeamMovements.Length)
 				{
+					PlayerPrefs.SetInt("unlocked " + GameData.Instance.puzzle.unlockData.pieceName, 1);
 					Board.DisplayVictory(0);
 					Board.winText.text = "Puzzle complete!";
 					Board.isPuzzleDone = true;

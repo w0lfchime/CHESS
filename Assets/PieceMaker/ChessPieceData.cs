@@ -125,6 +125,7 @@ public class WeightedMoveset
 [CreateAssetMenu(fileName = "New Chess Piece Data", menuName = "Chess/ChessPieceData")]
 public class ChessPieceData : ScriptableObject
 {
+    public bool unlocked = true;
     public string pieceName = "NewChessPiece";
     public int materialValue;
     public Mesh model;
@@ -165,6 +166,8 @@ public class ChessPieceDataEditor : Editor
     {
         serializedObject.Update();
         ChessPieceData script = (ChessPieceData)target;
+
+        script.unlocked = EditorGUILayout.Toggle("Unlocked", script.unlocked);
 
         GUILayout.Label("Text:", new GUIStyle(EditorStyles.boldLabel) { fontSize = 16 });
 

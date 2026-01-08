@@ -15,11 +15,13 @@ public class PieceBoardData
 [CreateAssetMenu(fileName = "Puzzles", menuName = "Scriptable Objects/Puzzles")]
 public class Puzzles : ScriptableObject
 {
+    public ChessPieceData unlockData;
     public string[] blackTeamMovements;
 
     public string[] whiteTeamMovements;
     public MapData mapData;
     public ChessPieceData PieceToAdd;
+    [HideInInspector]
     public PieceBoardData[] teamSpawning;
     public int layerCount = 1;
 }

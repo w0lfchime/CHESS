@@ -13,6 +13,10 @@ public class UIPieceSpawner : MonoBehaviour
         Instance = this;
         foreach(PieceEntry entry in PieceLibrary.Instance.pieces)
         {
+            if(!entry.data.unlocked)
+            {
+                if(!PlayerPrefs.HasKey("unlocked " + entry.data.pieceName)) continue;
+            }
             GameObject UIPieceIns = Instantiate(UIPiece, transform);
             UIPieceIns.GetComponent<DraggableUIPiece>().image.sprite = entry.data.image;
             UIPieceIns.GetComponent<DraggableUIPiece>().pieceId = entry.data;
