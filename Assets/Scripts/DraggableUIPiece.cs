@@ -10,9 +10,11 @@ public class DraggableUIPiece : MonoBehaviour
     public Image image;
     public ChessPieceData pieceId;
     public TMP_Text materialValue;
+    public Image lifeline;
     void Start()
     {
         materialValue.text = pieceId.materialValue.ToString();
+        lifeline.enabled = pieceId.lifeLine;
     }
     public void SelectPiece()
     {
