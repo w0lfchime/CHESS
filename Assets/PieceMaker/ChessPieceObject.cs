@@ -39,6 +39,7 @@ public class ChessPieceObject : ChessPiece
 
     public override List<Ability_TG> GetTileTags(TriggerType trigger = TriggerType.TurnAction, bool visual = false)
     {        
+        if (!interactable) return null;
         // Use Frankenstein moveset if active, otherwise use base data
         ChessPieceData dataToUse = (chessPieceData.isFrankenstein && activeFrankensteinMoveset != null) 
             ? activeFrankensteinMoveset 

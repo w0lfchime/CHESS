@@ -160,6 +160,10 @@ MonoBehaviour:
     value: {fileID: 2100000, guid: 5ecf07f51f3bfe64895ec2bd2bf7bb17, type: 2}
   - key: scarewhite
     value: {fileID: 2100000, guid: 5ecf07f51f3bfe64895ec2bd2bf7bb17, type: 2}
+  - key: poison
+    value: {fileID: 2100000, guid: d097c5eea6e34b44882915e44a742871, type: 2}
+  - key: slime
+    value: {fileID: 2100000, guid: 356b2f3f6b3cdd24c9f12b50258fa4e4, type: 2}
   TileBoardX: 0
   TileBoardY: 0
   rend: {fileID: 6845780054913544564}

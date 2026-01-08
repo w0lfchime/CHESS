@@ -707,6 +707,18 @@ public class ChessBoard2 : NetworkIdentity
 				TileLocations[tilePosition.x, tilePosition.y].AddEffect("water", (int)actionEffectMult, distance);
 			}
 
+			if (actionTraits.Contains(ActionTrait.spawn_poison)) // if trait spawns water
+			{
+				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
+				TileLocations[tilePosition.x, tilePosition.y].AddEffect("poison", (int)actionEffectMult, distance);
+			}
+
+			if (actionTraits.Contains(ActionTrait.spawn_slime)) // if trait spawns water
+			{
+				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
+				TileLocations[tilePosition.x, tilePosition.y].AddEffect("slime", (int)actionEffectMult, distance);
+			}
+
 			if (actionTraits.Contains(ActionTrait.spawn_opposing_obstruct)) // if trait spawns water
 			{
 				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));

@@ -52,6 +52,8 @@ public enum ActionTrait
     //traits that do something
     spawn_water = 8,
     spawn_opposing_obstruct = 23,
+    spawn_slime = 26,
+    spawn_poison = 27,
     command_killpiece = 9,
     command_removetile = 14,
     command_reload = 15,

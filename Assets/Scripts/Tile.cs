@@ -52,6 +52,12 @@ public class Tile : MonoBehaviour
 		piece.ScaleLongestAxis();
 		UpdatePieces();
 		UpdateEffects();
+
+		if (effects.ContainsKey("poison"))
+			piece.Kill();
+
+		if (effects.ContainsKey("slime"))
+			piece.interactable = false;
 	}
 
 	public void AddEffect(string name, int duration, float distance = 0)

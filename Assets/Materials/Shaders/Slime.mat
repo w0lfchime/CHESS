@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Scare
+  m_Name: Slime
   m_Shader: {fileID: -6465566751694194690, guid: 11427d9c62d2c2b479445e48df17a1a0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -124,15 +124,15 @@ Material:
     - _ZTest: 2
     - _ZWrite: 1
     - _ZWriteControl: 1
-    - _amount: 2
+    - _amount: 3.84
     - _difference: 1
-    - _edge: 0.5
+    - _edge: -1.05
     - _heightSize: 4.67
-    - _scale: 5
-    - _speed: 0.1
+    - _scale: 10
+    - _speed: 0.02
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.40970984, g: 0.9339623, b: 0.5104485, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
