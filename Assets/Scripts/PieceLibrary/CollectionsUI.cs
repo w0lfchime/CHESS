@@ -75,7 +75,7 @@ public class CollectionsUI : MonoBehaviour
 
             pieceButtonManager.pieceInfo = piece;
 
-            pieceButtonManager.icon.sprite = collectionPageManager.currentColor == "BLACK" ? piece.blackIcon : piece.whiteIcon;
+            pieceButtonManager.icon.sprite = collectionPageManager.currentColor == "BLACK" ? piece.pieceData.image : piece.pieceData.image;
 
             pieceButton.onClick.AddListener(() => SetPiece(piece.name, singleCollectionPage));
 
@@ -170,6 +170,7 @@ public class CollectionsUI : MonoBehaviour
 
         bool isModelBlack = singleCollectionPage.GetComponent<CollectionPageManager>().currentColor == "BLACK";
         GameObject pieceModel = Instantiate(currentPiece.pieceObject);
+        pieceModel.GetComponent<MeshFilter>().mesh = currentPiece.pieceData.model;
         GameObject pieceModelHolder = pieceDisplayManager.pieceModelHolder;
 
         pieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
@@ -179,10 +180,12 @@ public class CollectionsUI : MonoBehaviour
         pieceModel.layer = 5;
 
         pieceModelHolder.AddComponent<Animator>();
-        pieceModelHolder.transform.localPosition = new Vector3(-90f, 15f, -100f);
         pieceModelHolder.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
 
-        pieceModel.GetComponent<MeshRenderer>().material = isModelBlack ? blackPieceMaterial : whitePieceMaterial;
+        Material[] matList = currentPiece.pieceData.whiteMaterialList.ToArray();
+        matList[0] = whitePieceMaterial;
+        pieceModel.GetComponent<MeshRenderer>().materials = matList;
+        pieceModel.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
 
         pieceModel.SetActive(true);
 
@@ -209,25 +212,33 @@ public class CollectionsUI : MonoBehaviour
             {
                 Elements element = currentPiece.pieceData.abilities[currentPDM.currentAbility].actions[0].visualGrid[i].values[j];
                 Color baseColor;
+
+                if ((i + j) % 2 == 0)
+                {
+                    baseColor = new Color(0.255f, 0.255f, 0.255f, 1.000f);
+                }
+                else
+                {
+                    baseColor = new Color(0.294f, 0.294f, 0.294f, 1.000f);
+                }
+
                 switch (element)
                 {
                     case Elements.CanMove:
-                        baseColor = Color.black;
+                        baseColor = baseColor;
                         break;
                     case Elements.CantMove:
-                        baseColor = Color.green;
+                        baseColor = Color.green*3 * baseColor;
                         break;
                     case (Elements)2:
-                        baseColor = Color.yellow;
+                        baseColor = Color.yellow*3 * baseColor;
                         break;
                     default:
-                        baseColor = Color.red;
+                        baseColor = Color.red*3 * baseColor;
                         break;
                 }
 
-                bool darkTile = (i + j) % 2 == 0;
-                float colorMult = darkTile ? 0.85f : 0.95f;
-                currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = baseColor * colorMult;
+                currentPDM.pieceMoveDiagram.transform.GetComponentsInChildren<Image>()[imgCount].color = baseColor;
 
                 imgCount++;
             }
@@ -251,11 +262,11 @@ public class CollectionsUI : MonoBehaviour
             PieceButtonManager pieceButtonManager = pieceButton.GetComponent<PieceButtonManager>();
             if (currentCPM.currentColor == "BLACK")
             {
-                pieceButtonManager.icon.sprite = pieceButtonManager.pieceInfo.blackIcon;
+                pieceButtonManager.icon.sprite = pieceButtonManager.pieceInfo.pieceData.image;
             }
             else
             {
-                pieceButtonManager.icon.sprite = pieceButtonManager.pieceInfo.whiteIcon;
+                pieceButtonManager.icon.sprite = pieceButtonManager.pieceInfo.pieceData.image;
             }
         }
 
@@ -263,11 +274,17 @@ public class CollectionsUI : MonoBehaviour
 
         if (currentCPM.currentColor == "BLACK")
         {
-            currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().material = blackPieceMaterial;
+            Material[] matList = currentPiece.pieceData.whiteMaterialList.ToArray();
+            matList[0] = blackPieceMaterial;
+            currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().materials = matList;
+            currentPDM.pieceModelHolder.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
         }
         else
         {
-            currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().material = whitePieceMaterial;
+            Material[] matList = currentPiece.pieceData.whiteMaterialList.ToArray();
+            matList[0] = whitePieceMaterial;
+            currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().materials = matList;
+            currentPDM.pieceModelHolder.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("BlackOutline");
         }
     }
 
