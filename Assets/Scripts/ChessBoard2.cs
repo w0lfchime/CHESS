@@ -65,6 +65,10 @@ public class ChessBoard2 : NetworkIdentity
 	{
 		Instance = this;
 		transform.position = Vector3.zero;
+
+		//WhitePieceMat = GameData.Instance.matList[int.Parse(whiteTeam[whiteTeam.Length - 1])]
+		//WhiteTileMat = GameData.Instance.matList[int.Parse(GameData.Instance.teams[GameData.Instance.whiteTeamName][GameData.Instance.teams[GameData.Instance.whiteTeamName].Length - 1])];
+		//BlackTileMat = GameData.Instance.matList[int.Parse(GameData.Instance.teams[GameData.Instance.blackTeamName][GameData.Instance.teams[GameData.Instance.blackTeamName].Length - 1])];
 	}
 
 	[ContextMenu("Init Board")]
@@ -911,7 +915,9 @@ public class ChessBoard2 : NetworkIdentity
 			whiteTeam = GameData.Instance.teams[GameData.Instance.whiteTeamName];
 			blackTeam = GameData.Instance.teams[GameData.Instance.blackTeamName];
 		}
-		
+
+		WhitePieceMat = GameData.Instance.matList[int.Parse(whiteTeam[whiteTeam.Length - 1])];
+		BlackPieceMat = GameData.Instance.matList[int.Parse(blackTeam[blackTeam.Length - 1])];		
 
 		// GameManager.Instance.CurrentTurn = Team.Black;
 
@@ -948,6 +954,7 @@ public class ChessBoard2 : NetworkIdentity
 			}
 		}
 	}
+
 
 	[ServerRpc(requireOwnership: false)]
     public void SendTeamToServer(string[] team)

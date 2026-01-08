@@ -8,6 +8,7 @@ public class GameData : MonoBehaviour
 
 	[Header("Teams")]
 	public Dictionary<string, string[]> teams = new Dictionary<string, string[]>();
+	public List<Material> matList;
 	public List<string[]> teamList = new List<string[]>();
 	public List<string> teamNames = new List<string>();
 

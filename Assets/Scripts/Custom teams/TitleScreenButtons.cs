@@ -53,6 +53,10 @@ public class TitleScreenButtons : MonoBehaviour
     public GameObject miniCollectionsContent;
     public GameObject noPieceSelected;
     public int abilityNumber = 0;
+    // assigning custom mat stuff
+    public int tempMatIndex = 0;
+    public GameObject matSelectScreen;
+
     void Start()
     {
         Instance = this;
@@ -76,6 +80,7 @@ public class TitleScreenButtons : MonoBehaviour
         }
 
         matValue = 0;
+        tempMatIndex = 0;
         teamName.text = "";
 
         mainMenu.SetActive(false);
@@ -228,6 +233,7 @@ public class TitleScreenButtons : MonoBehaviour
         collectionsMenu.SetActive(false);
         how2ChessMenu.SetActive(false);
         singlePlayerMenu.SetActive(false);
+        matSelectScreen.SetActive(false);
         mainMenu.SetActive(true);
 
         miniCollectionsContent.SetActive(false);
@@ -254,8 +260,10 @@ public class TitleScreenButtons : MonoBehaviour
 
         if (lifelineCount() == 1 && !(name.Length <= 1))
         {
-            string[] copy = new string[17];
+            string[] copy = new string[18];
             copy[0] = name;
+            copy[17] = "" + tempMatIndex;
+
             for (int i = 0; i < 16; i++)
             {
                 copy[i+1] = tempTeam[i];
@@ -296,6 +304,21 @@ public class TitleScreenButtons : MonoBehaviour
             }
         }
 
+    }
+
+    public void displayMatSelect()
+    {
+        matSelectScreen.SetActive(true);
+    }
+
+    public void colseMatSelect()
+    {
+        matSelectScreen.SetActive(false);
+    }
+
+    public void cangeTempMat(int num)
+    {
+        tempMatIndex = num;
     }
 
     public void LoadTeams()
