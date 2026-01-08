@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79951f334a11c0e4d852604b061451d1, type: 3}
-  m_Name: Knight
+  m_Name: King
   m_EditorClassIdentifier: 
   unlockData: {fileID: 0}
   unlockMat: -1
   blackTeamMovements:
-  - 4 2 4 3
+  - 3 1 3 2
+  - 3 2 3 3
   - 
   whiteTeamMovements:
-  - '1 6 2 4 '
-  - '2 4 4 3 '
+  - '3 6 3 5 '
+  - '3 5 3 4 '
+  - '3 4 3 3 '
   mapData: {fileID: 11400000, guid: fc7bf3fa28035a745a9fcb7135c1eaf7, type: 2}
   PieceToAdd: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
   teamSpawning:
@@ -29,18 +31,15 @@ MonoBehaviour:
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
+  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
+    pos: {x: 2, y: 0}
+    team: 1
+  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
+    pos: {x: 3, y: 0}
     team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
+  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
+    pos: {x: 4, y: 0}
+    team: 1
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
@@ -57,13 +56,16 @@ MonoBehaviour:
     pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 3, y: 1}
+    pos: {x: 2, y: 1}
     team: 0
+  - data: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
+    pos: {x: 3, y: 1}
+    team: 1
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
     pos: {x: 4, y: 1}
     team: 0
-  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 5, y: 1}
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
@@ -79,15 +81,18 @@ MonoBehaviour:
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
     pos: {x: 2, y: 2}
+    team: 1
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 3, y: 2}
-    team: 0
-  - data: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
     pos: {x: 4, y: 2}
     team: 1
-  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 5, y: 2}
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
@@ -95,11 +100,8 @@ MonoBehaviour:
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
-  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 0, y: 3}
-    team: 0
-  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 1, y: 3}
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
     pos: {x: 2, y: 3}
@@ -107,6 +109,12 @@ MonoBehaviour:
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
+  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
+    pos: {x: 4, y: 3}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
@@ -120,20 +128,14 @@ MonoBehaviour:
     pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 0, y: 4}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
+    pos: {x: 2, y: 4}
+    team: 1
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
     pos: {x: 4, y: 4}
-    team: 0
+    team: 1
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
@@ -143,8 +145,8 @@ MonoBehaviour:
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
-  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 0, y: 5}
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
@@ -152,56 +154,59 @@ MonoBehaviour:
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
     pos: {x: 2, y: 5}
     team: 0
-  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 3, y: 5}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 0, y: 6}
+    pos: {x: 4, y: 5}
     team: 0
-  - data: {fileID: 11400000, guid: 72e82141817f936418da174ff57eb4db, type: 2}
-    pos: {x: 1, y: 6}
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
     pos: {x: 2, y: 6}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
+    team: 1
+  - data: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
+    pos: {x: 3, y: 6}
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 0, y: 7}
+    pos: {x: 4, y: 6}
+    team: 1
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
     team: 0
-  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 1, y: 7}
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
     team: 0
   - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
     pos: {x: 2, y: 7}
     team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
+  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
+    pos: {x: 3, y: 7}
+    team: 1
+  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
+    pos: {x: 4, y: 7}
     team: 0
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
@@ -212,7 +217,4 @@ MonoBehaviour:
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
-  - data: {fileID: 0}
-    pos: {x: 0, y: 0}
-    team: 0
-  layerCount: 3
+  layerCount: 4
