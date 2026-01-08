@@ -48,6 +48,7 @@ public abstract class ChessPiece : MonoBehaviour
     }
 
     public bool interactable;
+    public bool unkillable;
 
     //Piece definition
     public ChessPieceType pieceType;
@@ -115,7 +116,7 @@ public abstract class ChessPiece : MonoBehaviour
 
     public void Kill()
     {
-        if(!dead)
+        if(!dead && !unkillable)
         {
             dead = true;
             ChessBoard2.Instance.DeathTrigger(this);
