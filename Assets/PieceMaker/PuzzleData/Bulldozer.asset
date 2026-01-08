@@ -1,0 +1,326 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79951f334a11c0e4d852604b061451d1, type: 3}
+  m_Name: Bulldozer
+  m_EditorClassIdentifier: 
+  unlockData: {fileID: 0}
+  unlockMat: -1
+  blackTeamMovements:
+  - 2 5 2 6
+  - 
+  whiteTeamMovements:
+  - '1 8 1 6 '
+  - '1 6 3 6 1 6 2 6 '
+  mapData: {fileID: 11400000, guid: 0f96d8fd1d9c59349ad954b294ea2b39, type: 2}
+  PieceToAdd: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
+  teamSpawning:
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 11400000, guid: 418de9aa29880314fbee7e94698137dd, type: 2}
+    pos: {x: 2, y: 5}
+    team: 1
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 11400000, guid: d0525e7ce36a6f546a3dc1acf04cf39b, type: 2}
+    pos: {x: 1, y: 8}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  layerCount: 3
