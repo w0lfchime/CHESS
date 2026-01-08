@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 
 public class TitleScreenButtons : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class TitleScreenButtons : MonoBehaviour
     public AudioSource musicSource;
     public string[] tempTeam = new string[16];
     public List<MapData> mapList = new List<MapData>();
-    public List<Puzzles> puzzleList = new List<Puzzles>();
+    public string[] puzzleFolders;
     public int maxMaterial = 39;
     public int matValue = 0;
     public int teamOn = 0;
@@ -56,6 +57,8 @@ public class TitleScreenButtons : MonoBehaviour
     // assigning custom mat stuff
     public int tempMatIndex = 0;
     public GameObject matSelectScreen;
+    public GameObject puzzleButton;
+    public Transform puzzleContent;
 
     void Start()
     {
@@ -63,6 +66,7 @@ public class TitleScreenButtons : MonoBehaviour
         gameData = GameObject.Find("GameData").GetComponent<GameData>();
         gameData.map = mapList[0];
         LoadTeams();
+        CreatePuzzleUI();
     }
 
     public void DeleteAllTeams()
@@ -466,12 +470,22 @@ public class TitleScreenButtons : MonoBehaviour
         return lifeLineCount;
     }
 
-    public void SelectPuzzle(string nums)
+    public void CreatePuzzleUI()
     {
-        string[] split = nums.Split(" ");
+        List<Puzzles> puzzles = FindPuzzlesDataInFolders(puzzleFolders);
+        print(puzzles.Count);
+        foreach(Puzzles puzzle in puzzles)
+        {
+            GameObject puzzleIns = Instantiate(puzzleButton, puzzleContent);
+            puzzleIns.transform.GetChild(0).GetComponent<TMP_Text>().text = puzzle.name;
+            puzzleIns.GetComponent<Button>().onClick.AddListener(() => { SelectPuzzle(puzzle); });
+        }
+    }
 
-        gameData.puzzle = puzzleList[int.Parse(split[0])];
-        gameData.map = mapList[int.Parse(split[1])];
+    public void SelectPuzzle(Puzzles puzzle)
+    {
+        gameData.puzzle = puzzle;
+        gameData.map = puzzle.mapData;
         gameData.isDoingPuzzle = true;
 
         SceneManager.LoadScene(gameData.map.scene);
@@ -557,5 +571,23 @@ public class TitleScreenButtons : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             StartCoroutine(flashMatText(on + 1));
         }
+    }
+
+    public static List<Puzzles> FindPuzzlesDataInFolders(string[] folders)
+    {
+        string filter = "t:Puzzles";
+        string[] guids = AssetDatabase.FindAssets(filter, folders);
+
+        var assets = new List<Puzzles>(guids.Length);
+
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            Puzzles asset = AssetDatabase.LoadAssetAtPath<Puzzles>(path);
+            if (asset != null)
+                assets.Add(asset);
+        }
+
+        return assets;
     }
 }
