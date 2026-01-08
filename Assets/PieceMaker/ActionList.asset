@@ -108,3 +108,8 @@ MonoBehaviour:
     visualGrid: []
     actionEffectMult: 1
     grid: 
+  - name: Push
+    traits: 0400000014000000
+    visualGrid: []
+    actionEffectMult: 1
+    grid: 
