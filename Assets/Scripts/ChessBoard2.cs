@@ -67,8 +67,8 @@ public class ChessBoard2 : NetworkIdentity
 		transform.position = Vector3.zero;
 
 		//WhitePieceMat = GameData.Instance.matList[int.Parse(whiteTeam[whiteTeam.Length - 1])]
-		WhiteTileMat = GameData.Instance.matList[int.Parse(GameData.Instance.teams[GameData.Instance.whiteTeamName][GameData.Instance.teams[GameData.Instance.whiteTeamName].Length - 1])];
-		BlackTileMat = GameData.Instance.matList[int.Parse(GameData.Instance.teams[GameData.Instance.blackTeamName][GameData.Instance.teams[GameData.Instance.blackTeamName].Length - 1])];
+		//WhiteTileMat = GameData.Instance.matList[int.Parse(GameData.Instance.teams[GameData.Instance.whiteTeamName][GameData.Instance.teams[GameData.Instance.whiteTeamName].Length - 1])];
+		//BlackTileMat = GameData.Instance.matList[int.Parse(GameData.Instance.teams[GameData.Instance.blackTeamName][GameData.Instance.teams[GameData.Instance.blackTeamName].Length - 1])];
 	}
 
 	[ContextMenu("Init Board")]
