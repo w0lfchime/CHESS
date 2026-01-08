@@ -104,7 +104,6 @@ public class CursorManager : MonoBehaviour
 
 		if (Input.GetMouseButtonDown(1))
         {
-			Debug.Log("Ran this");
 			if(pieceInfoDisplay.inDisplay == false){
 				if(_currentTile != null && _currentTile.GetComponent<Tile>().tileOccupants.Count > 0)
                 {

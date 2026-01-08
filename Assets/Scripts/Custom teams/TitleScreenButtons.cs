@@ -326,12 +326,15 @@ public class TitleScreenButtons : MonoBehaviour
     void SpawnMats()
     {
         for(int i = 0; i < GameData.Instance.matList.Count; i++){
+            GameObject buttonIns = Instantiate(matButton, matContent);
             if(!GameData.Instance.matList[i].locked || PlayerPrefs.HasKey("unlocked color" + i)) {
-                GameObject buttonIns = Instantiate(matButton, matContent);
-                buttonIns.transform.GetComponentInChildren<Button>().onClick.AddListener(() => { cangeTempMat(i); });
+                var temp = i;
+                buttonIns.GetComponent<Image>().color = Color.white;
+                buttonIns.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => { cangeTempMat(temp); });
+                print(i);
                 buttonIns.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = GameData.Instance.matList[i].material.name;
-                buttonIns.transform.GetChild(0).GetComponent<RawImage>().color = GameData.Instance.matList[i].material.color;
             }
+            buttonIns.transform.GetChild(0).GetComponent<RawImage>().color = GameData.Instance.matList[i].material.color;
         }
     }
 
@@ -347,7 +350,7 @@ public class TitleScreenButtons : MonoBehaviour
             string[] teamData = PlayerPrefs.GetString(i.ToString()).Split(':');
             string name = teamData[0];
             string[] team = teamData.Skip(1).ToArray();
-            gameData.teams.Add(name, team);
+            if(!gameData.teams.ContainsKey(name)) gameData.teams.Add(name, team);
             AddTeamView(name);
         }
     }
@@ -363,6 +366,10 @@ public class TitleScreenButtons : MonoBehaviour
     public void EditTeam(string name)
     {
         int i = 0;
+        foreach(Transform child in teamContent.transform)
+        {
+            child.GetComponent<TeamSlotRework>().SetPiece("");
+        }
         foreach(Transform child in teamContent.transform)
         {
             string pieceName = gameData.teams[name][i];

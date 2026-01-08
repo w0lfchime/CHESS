@@ -10,7 +10,7 @@ public class pieceInfoDisplay : MonoBehaviour
     public PieceInfoText pieceInfoText;
     public pieceInfoPicture pieceInfoPicture;
     public PieceInfoName pieceInfoName;
-    public static bool inDisplay = false;
+    public static bool inDisplay = true;
     private static bool isAnimating = false;
     public UnityEngine.Vector3 originalPosition;
     void Start()
