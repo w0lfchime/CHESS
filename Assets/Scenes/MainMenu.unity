@@ -9104,7 +9104,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1225922418}
         m_TargetAssemblyTypeName: TitleScreenButtons, Assembly-CSharp
-        m_MethodName: BackButton
+        m_MethodName: BackChangeMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -39648,7 +39648,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1775061492}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -40131,7 +40131,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 972458541}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -56579,3 +56579,5 @@ SceneRoots:
   - {fileID: 386955726}
   - {fileID: 1960517369}
   - {fileID: 243175047}
+  - {fileID: 1518806938}
+  - {fileID: 1537577168}
