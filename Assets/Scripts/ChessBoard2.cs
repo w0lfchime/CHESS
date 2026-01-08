@@ -774,6 +774,7 @@ public class ChessBoard2 : NetworkIdentity
 			{
 				foreach (ChessPiece piece in tile.tileOccupants)
 				{
+					if(piece == null) continue;
 					ChessPieceObject pieceObj = piece.GetComponent<ChessPieceObject>();
 					if (pieceObj != null && pieceObj.chessPieceData.isFrankenstein)
 					{
