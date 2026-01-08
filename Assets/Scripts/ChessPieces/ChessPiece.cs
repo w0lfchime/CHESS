@@ -47,6 +47,8 @@ public abstract class ChessPiece : MonoBehaviour
         get => _isLifeline;
     }
 
+    public bool interactable;
+
     //Piece definition
     public ChessPieceType pieceType;
     public HashSet<String> PieceTags { get; private set; }
@@ -107,6 +109,8 @@ public abstract class ChessPiece : MonoBehaviour
         targetPosition = currentTile.transform.position;
         targetPosition.y = currentTile.gameObject.transform.position.y;
         ScaleLongestAxis();
+
+        interactable = true;
     }
 
     public void Kill()
