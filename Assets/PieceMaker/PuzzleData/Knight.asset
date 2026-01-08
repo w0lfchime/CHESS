@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79951f334a11c0e4d852604b061451d1, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  unlockData: {fileID: 0}
+  unlockMat: -1
+  blackTeamMovements: []
+  whiteTeamMovements: []
+  mapData: {fileID: 0}
+  PieceToAdd: {fileID: 0}
+  teamSpawning: []
+  layerCount: 1
