@@ -2,13 +2,19 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class unlockableMaterial
+{
+	public Material material;
+	public bool locked = true;
+}
 public class GameData : MonoBehaviour
 {
 	public static GameData Instance { get; private set; }
 
 	[Header("Teams")]
 	public Dictionary<string, string[]> teams = new Dictionary<string, string[]>();
-	public List<Material> matList;
+	public List<unlockableMaterial> matList;
 	public List<string[]> teamList = new List<string[]>();
 	public List<string> teamNames = new List<string>();
 

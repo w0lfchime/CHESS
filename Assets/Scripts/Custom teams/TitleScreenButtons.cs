@@ -59,6 +59,8 @@ public class TitleScreenButtons : MonoBehaviour
     public GameObject matSelectScreen;
     public GameObject puzzleButton;
     public Transform puzzleContent;
+    public GameObject matButton;
+    public Transform matContent;
 
     void Start()
     {
@@ -67,6 +69,7 @@ public class TitleScreenButtons : MonoBehaviour
         gameData.map = mapList[0];
         LoadTeams();
         CreatePuzzleUI();
+        SpawnMats();
     }
 
     public void DeleteAllTeams()
@@ -318,6 +321,18 @@ public class TitleScreenButtons : MonoBehaviour
     public void colseMatSelect()
     {
         matSelectScreen.SetActive(false);
+    }
+
+    void SpawnMats()
+    {
+        for(int i = 0; i < GameData.Instance.matList.Count; i++){
+            if(!GameData.Instance.matList[i].locked || PlayerPrefs.HasKey("unlocked color" + i)) {
+                GameObject buttonIns = Instantiate(matButton, matContent);
+                buttonIns.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => { cangeTempMat(i); });
+                buttonIns.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = GameData.Instance.matList[i].material.name;
+                buttonIns.transform.GetChild(0).GetComponent<RawImage>().color = GameData.Instance.matList[i].material.color;
+            }
+        }
     }
 
     public void cangeTempMat(int num)

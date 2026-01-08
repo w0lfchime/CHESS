@@ -940,8 +940,8 @@ public class ChessBoard2 : NetworkIdentity
 			}
 		}
 
-		WhitePieceMat = GameData.Instance.matList[whiteIndex];
-		BlackPieceMat = GameData.Instance.matList[blackIndex];		
+		WhitePieceMat = GameData.Instance.matList[whiteIndex].material;
+		BlackPieceMat = GameData.Instance.matList[blackIndex].material;		
 
 		// GameManager.Instance.CurrentTurn = Team.Black;
 

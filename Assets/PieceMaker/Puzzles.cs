@@ -16,6 +16,7 @@ public class PieceBoardData
 public class Puzzles : ScriptableObject
 {
     public ChessPieceData unlockData;
+    public int unlockMat = -1;
     public string[] blackTeamMovements;
 
     public string[] whiteTeamMovements;
