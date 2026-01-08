@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79951f334a11c0e4d852604b061451d1, type: 3}
-  m_Name: test
+  m_Name: Pawn1
   m_EditorClassIdentifier: 
   blackTeamMovements:
   - 3 2 3 3
