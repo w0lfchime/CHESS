@@ -64,18 +64,23 @@ public class Tile : MonoBehaviour
 	{
 		if (effects.ContainsKey(name))
 		{
-			if (duration > effects[name]) effects[name] = duration;
+			if (duration+1 > effects[name]) effects[name] = duration+1;
 		}
-		else 
+		else
 		{
-			effects.Add(name, duration); 
+			effects.Add(name, duration+1);
 		}
 
 		UpdateEffects(false, distance);
 
-		StartCoroutine(EffectRaise(-.3f, distance, effects.Count));
-		if(tempEffectList.Keys.Contains(name)) StopCoroutine(tempEffectList[name]);
+		// Grow once
+		if (tempEffectList.ContainsKey(name))
+			StopCoroutine(tempEffectList[name]);
+
+		int matIndex = effects.Keys.ToList().IndexOf(name) + 1;
+		tempEffectList[name] = StartCoroutine(EffectRaise(-0.3f, distance, matIndex));
 	}
+
 
 	public void RemovePiece(ChessPiece piece)
 	{
@@ -95,53 +100,60 @@ public class Tile : MonoBehaviour
 	}
 
 	public void UpdateEffects(bool turnPass = true, float distance = 0)
+{
+	Material[] current = rend.materials;
+	List<string> expired = new List<string>();
+
+	if (turnPass)
 	{
-		Material[] currentMaterials = rend.materials;
-		Material[] newMaterialsArray = new Material[effects.Count + 1];
-		newMaterialsArray[0] = currentMaterials[0];
-
-		int count = 1;
-		List<string> keysToModify = new List<string>();
-		foreach (string name in effects.Keys)
+		foreach (var key in effects.Keys.ToList())
 		{
-			if (turnPass) keysToModify.Add(name);
+			effects[key]--;
+			if (effects[key] <= 0)
+				expired.Add(key);
 		}
-
-		foreach (string name in keysToModify)
-		{
-			effects[name] -= 1;
-			if (effects[name] <= 0)
-			{
-				effects.Remove(name);
-
-				Material mat = rend.materials[count];
-				newMaterialsArray[count] = mat;
-				tempEffectList[name] = StartCoroutine(EffectRaise(0, distance,count));
-				
-				count++;
-			}
-		}
-
-		foreach (string name in effects.Keys) // set materials for each
-		{
-			Material mat = (rend.materials.Length > count) ? rend.materials[count] : effectDictionary.FirstOrDefault(kvp => kvp.key == name).value;
-			newMaterialsArray[count] = mat;
-			count++;
-		}
-
-		rend.materials = newMaterialsArray;
-
-		obstructed = conditions.None;
-
-		if (tileOccupants.Count > 0 || effects.ContainsKey("water"))
-			obstructed |= conditions.All;
-
-		if (effects.ContainsKey("scarewhite"))
-			obstructed |= conditions.White;
-
-		if (effects.ContainsKey("scareblack"))
-			obstructed |= conditions.Black;
 	}
+
+	// Shrink expired effects
+	foreach (string name in expired)
+	{
+		int matIndex = effects.Keys.ToList().IndexOf(name) + 1;
+
+		if (tempEffectList.ContainsKey(name))
+			StopCoroutine(tempEffectList[name]);
+
+		tempEffectList[name] = StartCoroutine(RemoveEffectAfterShrink(name, matIndex, distance));
+	}
+
+	// rebuild materials for active effects only
+	Material[] newMats = new Material[effects.Count + 1];
+	newMats[0] = current[0];
+
+	int i = 1;
+	foreach (string name in effects.Keys)
+	{
+		newMats[i] =
+			(current.Length > i)
+			? current[i]
+			: effectDictionary.First(k => k.key == name).value;
+		i++;
+	}
+
+	rend.materials = newMats;
+
+	// obstruction logic unchanged
+	obstructed = conditions.None;
+
+	if (tileOccupants.Count > 0 || effects.ContainsKey("water"))
+		obstructed |= conditions.All;
+
+	if (effects.ContainsKey("scarewhite"))
+		obstructed |= conditions.White;
+
+	if (effects.ContainsKey("scareblack"))
+		obstructed |= conditions.Black;
+}
+
 
 	public void Highlight(float distance)
 	{
@@ -201,5 +213,16 @@ public class Tile : MonoBehaviour
 		if(set >= 0) rend.gameObject.layer = LayerMask.NameToLayer("Tile");
 
     }
+
+	IEnumerator RemoveEffectAfterShrink(string name, int matIndex, float distance)
+{
+	yield return EffectRaise(0f, distance, matIndex);
+
+	effects.Remove(name);
+	tempEffectList.Remove(name);
+
+	UpdateEffects(false, distance);
+}
+
 
 }
