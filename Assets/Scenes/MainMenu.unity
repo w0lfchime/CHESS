@@ -4733,6 +4733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ed0aef87698b7489ff2b01d3c70b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matList: []
   teamNames: []
   whiteTeamName: 
   blackTeamName: 
@@ -10432,7 +10433,7 @@ MonoBehaviour:
       materialValue: 0
       description: A mash-up of several different piece movements, randomly assigned
         each turn.
-      pieceObject: {fileID: 919132149155446097, guid: 60bbec4575b69e74c9cc2ec4e7954b2d, type: 3}
+      pieceObject: {fileID: 6242342316316220533, guid: 9261050b646b6014a94f0424877154e1, type: 3}
       pieceData: {fileID: 11400000, guid: 16cb7e81802e0f44686811db011ab72d, type: 2}
     - blackIcon: {fileID: 21300000, guid: da32a20b578002740926276f891a3fe5, type: 3}
       whiteIcon: {fileID: 21300000, guid: da32a20b578002740926276f891a3fe5, type: 3}
@@ -10456,7 +10457,7 @@ MonoBehaviour:
       tagLine: Why so serious
       materialValue: 0
       description: 
-      pieceObject: {fileID: 919132149155446097, guid: 0225a207483c28e438ae2cb5c9489058, type: 3}
+      pieceObject: {fileID: 8710713252437529499, guid: 15f7965fe1953f74abad2d8127187da6, type: 3}
       pieceData: {fileID: 11400000, guid: 6a8e81b78fe0b9542a19f21bf8a09308, type: 2}
     - blackIcon: {fileID: 21300000, guid: 9d583cd059262584c9411bc513dbcd89, type: 3}
       whiteIcon: {fileID: 21300000, guid: 9d583cd059262584c9411bc513dbcd89, type: 3}
@@ -10488,7 +10489,7 @@ MonoBehaviour:
       tagLine: Switcheroo
       materialValue: 0
       description: 
-      pieceObject: {fileID: 7009996306650167107, guid: dc3bf196b2d2abc4d936df8032814ce1, type: 3}
+      pieceObject: {fileID: 919132149155446097, guid: e323a32d7876d514a9a0a7093b94899f, type: 3}
       pieceData: {fileID: 11400000, guid: e88ee9073defb26418e8da99b74d70e0, type: 2}
     - blackIcon: {fileID: 21300000, guid: baf702d9016d6b142b5617951d09a2f5, type: 3}
       whiteIcon: {fileID: 21300000, guid: baf702d9016d6b142b5617951d09a2f5, type: 3}
@@ -27716,6 +27717,8 @@ MonoBehaviour:
   miniCollectionsContent: {fileID: 1255736538}
   noPieceSelected: {fileID: 1466249433}
   abilityNumber: 0
+  tempMatIndex: 0
+  matSelectScreen: {fileID: 0}
 --- !u!4 &1225922419
 Transform:
   m_ObjectHideFlags: 0
