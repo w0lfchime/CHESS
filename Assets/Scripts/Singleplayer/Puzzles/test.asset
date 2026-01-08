@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: test
   m_EditorClassIdentifier: 
   blackTeamMovements:
-  - 7 7 6 7
-  - 7 7 7 6
-  - 6 7 5 7
+  - 
+  - 
   whiteTeamMovements:
-  - '0 0 1 1 0 0 0 1 '
   - 
   - 
   mapData: {fileID: 11400000, guid: fc7bf3fa28035a745a9fcb7135c1eaf7, type: 2}
@@ -212,7 +210,7 @@ MonoBehaviour:
   - data: {fileID: 0}
     pos: {x: 0, y: 0}
     team: 0
-  - data: {fileID: 11400000, guid: d5683304349f355418e6dc887754f315, type: 2}
-    pos: {x: 7, y: 7}
-    team: 1
-  layerCount: 4
+  - data: {fileID: 0}
+    pos: {x: 0, y: 0}
+    team: 0
+  layerCount: 3
