@@ -911,7 +911,9 @@ public class ChessBoard2 : NetworkIdentity
 			whiteTeam = GameData.Instance.teams[GameData.Instance.whiteTeamName];
 			blackTeam = GameData.Instance.teams[GameData.Instance.blackTeamName];
 		}
-		
+
+		WhitePieceMat = GameData.Instance.matList[int.Parse(whiteTeam[whiteTeam.Length - 1])];
+		BlackPieceMat = GameData.Instance.matList[int.Parse(blackTeam[blackTeam.Length - 1])];		
 
 		// GameManager.Instance.CurrentTurn = Team.Black;
 
