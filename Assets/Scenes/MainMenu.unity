@@ -32256,7 +32256,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dbb0442b9281d54f9c090e21e7e9732, type: 2}
   - {fileID: 11400000, guid: 8fa0d15ca2741ea41a98b0c7dcf14ab8, type: 2}
   puzzleList:
-  - {fileID: 11400000, guid: 06fe4d478807d0c4f9a648ab1bff16bf, type: 2}
+  - {fileID: 11400000, guid: 5cb9c899678fe0746911b5c87b7e8961, type: 2}
   maxMaterial: 39
   matValue: 0
   teamOn: 0
