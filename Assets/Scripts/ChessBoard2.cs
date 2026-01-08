@@ -348,10 +348,10 @@ public class ChessBoard2 : NetworkIdentity
 		{
 			piece.moves++;
 			if(endTurn) {
-				if(piece.team == Team.Black && GameData.Instance.map.height-1 == piece.currentTile.TileBoardY)
+				if(piece.team == Team.Black && GameData.Instance.map.height-1 == piece.currentTile.TileBoardY && piece.GetComponent<ChessPieceObject>().chessPieceData.promotable.Count > 0)
 				{
 					SpawnPromoteUI(piece);
-				}else if(piece.team == Team.White && 0 == piece.currentTile.TileBoardY)
+				}else if(piece.team == Team.White && 0 == piece.currentTile.TileBoardY && piece.GetComponent<ChessPieceObject>().chessPieceData.promotable.Count > 0)
 				{
 					SpawnPromoteUI(piece);
 				}else{
