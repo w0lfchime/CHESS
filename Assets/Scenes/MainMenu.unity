@@ -33083,7 +33083,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dbb0442b9281d54f9c090e21e7e9732, type: 2}
   - {fileID: 11400000, guid: 8fa0d15ca2741ea41a98b0c7dcf14ab8, type: 2}
   puzzleList:
-  - {fileID: 11400000, guid: d7927b1c77623eb4c8b38e676a0fcfe3, type: 2}
+  - {fileID: 11400000, guid: c47f4cc76e15f95439fff0ab9f0462e2, type: 2}
   maxMaterial: 39
   matValue: 0
   teamOn: 0
