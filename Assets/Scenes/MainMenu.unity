@@ -4733,6 +4733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ed0aef87698b7489ff2b01d3c70b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matList: []
   teamNames: []
   whiteTeamName: 
   blackTeamName: 
@@ -7457,6 +7458,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1223166970}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1225922418}
         m_TargetAssemblyTypeName: TitleScreenButtons, Assembly-CSharp
         m_MethodName: BackChangeMusic
@@ -20236,7 +20249,6 @@ GameObject:
   m_Component:
   - component: {fileID: 857670421}
   - component: {fileID: 857670420}
-  - component: {fileID: 857670419}
   - component: {fileID: 857670418}
   m_Layer: 0
   m_Name: Camera (2)
@@ -20290,14 +20302,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &857670419
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857670417}
-  m_Enabled: 1
 --- !u!20 &857670420
 Camera:
   m_ObjectHideFlags: 0
@@ -27716,6 +27720,8 @@ MonoBehaviour:
   miniCollectionsContent: {fileID: 1255736538}
   noPieceSelected: {fileID: 1466249433}
   abilityNumber: 0
+  tempMatIndex: 0
+  matSelectScreen: {fileID: 0}
 --- !u!4 &1225922419
 Transform:
   m_ObjectHideFlags: 0
