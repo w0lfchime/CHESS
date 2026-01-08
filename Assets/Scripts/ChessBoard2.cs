@@ -882,9 +882,16 @@ public class ChessBoard2 : NetworkIdentity
 		// 		return true;
 		// 	}
 		// }
-
+		for(int i = 0; i < tempList.Length; i++)
+		{
+			Debug.Log(tempList[i]);
+		}
 		for(int i = 0; i < tempList.Length; i += 4)
 		{
+			if(tempList[i] == null || tempList[i] == "")
+			{
+				continue;
+			}
 			Tile firstTile = allClickedOnTiles[allClickedOnTiles.Count - 2];
 			Tile secondTile = allClickedOnTiles[allClickedOnTiles.Count - 1];
 
