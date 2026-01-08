@@ -45,11 +45,19 @@ public class pieceInfoDisplay : MonoBehaviour
         pieceInfoPicture.setPicture(pieceData.image);
         pieceInfoName.disTex(pieceData.pieceName);
     }
-    public void unDisplay()
+    public void unDisplay(Boolean redisplay = false, ChessPieceData newData = null)
     {
         if (isAnimating) return;
         isAnimating = true;
         StartCoroutine(moveStep(-1));
+        if(redisplay && newData != null){
+            StartCoroutine(redisplayAfterDelay(newData));
+        }
+    }
+    IEnumerator redisplayAfterDelay(ChessPieceData newData)
+    {
+        yield return new WaitForSeconds(0.2f);
+        display(newData);
     }
 
 }

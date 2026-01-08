@@ -104,6 +104,7 @@ public class CursorManager : MonoBehaviour
 
 		if (Input.GetMouseButtonDown(1))
         {
+			ChessPieceData data = null;
 			if(pieceInfoDisplay.inDisplay == false){
 				if(_currentTile != null && _currentTile.GetComponent<Tile>().tileOccupants.Count > 0)
                 {
@@ -114,12 +115,27 @@ public class CursorManager : MonoBehaviour
 					SelectedBoardY = SelectedTile.TileBoardY;
 					if (selectorCursor != null) selectorCursor.SetTargetFromTile(_currentTile);
 					ChessPieceObject first = ChessBoard2.Instance.getFirstOccupant(_currentTile.GetComponent<Tile>()).GetComponent<ChessPieceObject>();
-					ChessPieceData data = first.chessPieceData;
+					data = first.chessPieceData;
 					pieceInfoDisplay.instance.display(data);
                 }
 			}
 			else{
-				pieceInfoDisplay.instance.unDisplay();
+				if(_currentTile != null && _currentTile.GetComponent<Tile>().tileOccupants.Count > 0)
+                {
+					if(!selectorCursor.gameObject.activeSelf) selectorCursor.SetTargetFromTile(_currentTile, true);
+					selectorCursor.gameObject.SetActive(true);
+					Tile SelectedTile = _currentTile.GetComponent<Tile>();
+					SelectedBoardX = SelectedTile.TileBoardX;
+					SelectedBoardY = SelectedTile.TileBoardY;
+					if (selectorCursor != null) selectorCursor.SetTargetFromTile(_currentTile);
+					ChessPieceObject first = ChessBoard2.Instance.getFirstOccupant(_currentTile.GetComponent<Tile>()).GetComponent<ChessPieceObject>();
+					data = first.chessPieceData;
+					pieceInfoDisplay.instance.unDisplay(true, data);
+                }
+				else
+				{
+					pieceInfoDisplay.instance.unDisplay();
+				}
 			}
         }
 		if (!Input.GetMouseButtonDown(0)) return;
