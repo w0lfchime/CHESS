@@ -995,7 +995,8 @@ public class ChessBoard2 : NetworkIdentity
 		// spawn black
 		foreach(PieceBoardData pieceBoardData in puzzle.teamSpawning)
 		{
-			SpawnPiece(pieceBoardData.data.name, pieceBoardData.pos, pieceBoardData.team);
+			if(pieceBoardData.data==null) continue;
+			SpawnPiece(pieceBoardData.data.pieceName, pieceBoardData.pos, pieceBoardData.team);
 		}
 	}
 
