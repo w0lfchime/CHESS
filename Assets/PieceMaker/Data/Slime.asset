@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   pieceName: Slime
-  materialValue: 0
+  materialValue: 2
   model: {fileID: 7113620311128232067, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
   whiteMaterialList:
   - {fileID: -1637880222114644024, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}

@@ -10356,7 +10356,7 @@ MonoBehaviour:
       materialValue: 3
       description: This guy will move at random. Good luck.
       pieceObject: {fileID: -189091167416563541, guid: 585032a8bd4214d47bdaa8adcd84dec4, type: 3}
-      pieceData: {fileID: 11400000, guid: 72e82141817f936418da174ff57eb4db, type: 2}
+      pieceData: {fileID: 11400000, guid: 345953a242a6c5e49853d2d3da74bc16, type: 2}
     - blackIcon: {fileID: 21300000, guid: 18f1160bf56b3844c9ee33184e1192fb, type: 3}
       whiteIcon: {fileID: 21300000, guid: 18f1160bf56b3844c9ee33184e1192fb, type: 3}
       name: Archer
@@ -10559,7 +10559,7 @@ MonoBehaviour:
       materialValue: 0
       description: A mash-up of several different piece movements, randomly assigned
         each turn.
-      pieceObject: {fileID: 919132149155446097, guid: 60bbec4575b69e74c9cc2ec4e7954b2d, type: 3}
+      pieceObject: {fileID: 6242342316316220533, guid: 9261050b646b6014a94f0424877154e1, type: 3}
       pieceData: {fileID: 11400000, guid: 16cb7e81802e0f44686811db011ab72d, type: 2}
     - blackIcon: {fileID: 21300000, guid: da32a20b578002740926276f891a3fe5, type: 3}
       whiteIcon: {fileID: 21300000, guid: da32a20b578002740926276f891a3fe5, type: 3}
@@ -10575,7 +10575,7 @@ MonoBehaviour:
       tagLine: 
       materialValue: 0
       description: You have one shot to destroy an entire column, will blow up after.
-      pieceObject: {fileID: 919132149155446097, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
+      pieceObject: {fileID: 2117167605373071698, guid: afcc35e3839950b46a9666125fd5a644, type: 3}
       pieceData: {fileID: 11400000, guid: 0b4b294ddd7f17c40bf78b09f4ada979, type: 2}
     - blackIcon: {fileID: 21300000, guid: 618738a2669114e46890821be386777b, type: 3}
       whiteIcon: {fileID: 21300000, guid: 618738a2669114e46890821be386777b, type: 3}
@@ -10583,7 +10583,7 @@ MonoBehaviour:
       tagLine: Why so serious
       materialValue: 0
       description: 
-      pieceObject: {fileID: 919132149155446097, guid: 0225a207483c28e438ae2cb5c9489058, type: 3}
+      pieceObject: {fileID: 8710713252437529499, guid: 15f7965fe1953f74abad2d8127187da6, type: 3}
       pieceData: {fileID: 11400000, guid: 6a8e81b78fe0b9542a19f21bf8a09308, type: 2}
     - blackIcon: {fileID: 21300000, guid: 9d583cd059262584c9411bc513dbcd89, type: 3}
       whiteIcon: {fileID: 21300000, guid: 9d583cd059262584c9411bc513dbcd89, type: 3}
@@ -10599,7 +10599,7 @@ MonoBehaviour:
       tagLine: Jeepers! Thats creepy
       materialValue: 0
       description: 
-      pieceObject: {fileID: 919132149155446097, guid: 0276e585145ddee4b9653b694d4e509b, type: 3}
+      pieceObject: {fileID: 919132149155446097, guid: 84b84ffedd8f5c143bfadd9e50623dbd, type: 3}
       pieceData: {fileID: 11400000, guid: 3393a705ccc64be4fbceda96f73f820e, type: 2}
     - blackIcon: {fileID: 21300000, guid: b4b1a4eea6da1b24094aa968833e211a, type: 3}
       whiteIcon: {fileID: 21300000, guid: b4b1a4eea6da1b24094aa968833e211a, type: 3}
@@ -10615,7 +10615,7 @@ MonoBehaviour:
       tagLine: Switcheroo
       materialValue: 0
       description: 
-      pieceObject: {fileID: 7009996306650167107, guid: dc3bf196b2d2abc4d936df8032814ce1, type: 3}
+      pieceObject: {fileID: 4163933307815486997, guid: 9a5282938b2b1e842ae6c718c349fcd9, type: 3}
       pieceData: {fileID: 11400000, guid: e88ee9073defb26418e8da99b74d70e0, type: 2}
     - blackIcon: {fileID: 21300000, guid: baf702d9016d6b142b5617951d09a2f5, type: 3}
       whiteIcon: {fileID: 21300000, guid: baf702d9016d6b142b5617951d09a2f5, type: 3}
@@ -10647,7 +10647,7 @@ MonoBehaviour:
       tagLine: Don't catch a cold
       materialValue: 0
       description: Moves slowly, but can drop lethal poison tiles.
-      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceObject: {fileID: 919132149155446097, guid: 86fa5ae1d032cd64491f8b006755f6d9, type: 3}
       pieceData: {fileID: 11400000, guid: 66580646641fa8d408e2e75d79becb7e, type: 2}
     - blackIcon: {fileID: 21300000, guid: 7a1ec1b88a48c0c498e1c71617fb6337, type: 3}
       whiteIcon: {fileID: 21300000, guid: 7a1ec1b88a48c0c498e1c71617fb6337, type: 3}
@@ -10663,7 +10663,7 @@ MonoBehaviour:
       tagLine: Opposites attract.
       materialValue: 0
       description: Depending on tile color it will either push or pull.
-      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceObject: {fileID: 318939500226234316, guid: a88bc891c15b2ae4fb1f636c0e171dc8, type: 3}
       pieceData: {fileID: 11400000, guid: e51919e79c3d24947b72c86af8e753df, type: 2}
     - blackIcon: {fileID: 21300000, guid: 7e925f4492a6c054685f32ed44389b2e, type: 3}
       whiteIcon: {fileID: 21300000, guid: 7e925f4492a6c054685f32ed44389b2e, type: 3}
@@ -10672,7 +10672,7 @@ MonoBehaviour:
       materialValue: 0
       description: Can either move slowly, poison horizontal tiles, or eat tile in
         front of them.
-      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceObject: {fileID: 5062844416172003581, guid: cc8f8293da419284c8fea970a443de77, type: 3}
       pieceData: {fileID: 11400000, guid: 3c708c6608664ea4ea65a4fb39b00de0, type: 2}
     - blackIcon: {fileID: 21300000, guid: c778d2e8a58aa1e49bea100fd20c7a99, type: 3}
       whiteIcon: {fileID: 21300000, guid: c778d2e8a58aa1e49bea100fd20c7a99, type: 3}
@@ -10680,13 +10680,13 @@ MonoBehaviour:
       tagLine: Happy holidays
       materialValue: 0
       description: 
-      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceObject: {fileID: 3943211812007541980, guid: 61c3ec2086b06ae4bb37e65372780e17, type: 3}
       pieceData: {fileID: 11400000, guid: 760901f718f8f7b47867f46564672a12, type: 2}
     - blackIcon: {fileID: 21300000, guid: 60a2d4d7982d493448292301981d115f, type: 3}
       whiteIcon: {fileID: 21300000, guid: 60a2d4d7982d493448292301981d115f, type: 3}
       name: Superhero
       tagLine: I'm so lonely...
-      materialValue: 0
+      materialValue: 2
       description: 
       pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
       pieceData: {fileID: 11400000, guid: 6dcf8e54f7194a04ebde00d6ed6e78c9, type: 2}

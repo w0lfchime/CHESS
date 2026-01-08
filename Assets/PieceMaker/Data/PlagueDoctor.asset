@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlagueDoctor
   m_EditorClassIdentifier: 
   pieceName: Plague Doctor
-  materialValue: 0
+  materialValue: 3
   model: {fileID: -2124705421725058983, guid: 86fa5ae1d032cd64491f8b006755f6d9, type: 3}
   whiteMaterialList:
   - {fileID: -9103484930961366303, guid: 86fa5ae1d032cd64491f8b006755f6d9, type: 3}
