@@ -123,9 +123,9 @@ public class CollectionsUI : MonoBehaviour
         PieceDisplayManager pieceDisplayManager = piecePage.GetComponent<PieceDisplayManager>();
         pieceDisplayManager.currentAbility = 0;
 
-        pieceDisplayManager.titleText.text = currentPiece.name;
+        pieceDisplayManager.titleText.text = currentPiece.pieceData.name;
         pieceDisplayManager.taglineText.text = currentPiece.tagLine;
-        pieceDisplayManager.materialValueText.text = "+" + currentPiece.materialValue.ToString();
+        pieceDisplayManager.materialValueText.text = "+" + currentPiece.pieceData.materialValue.ToString();
         pieceDisplayManager.descriptionText.text = currentPiece.description;
         pieceDisplayManager.abilityNameText.text = currentPiece.pieceData.abilities[pieceDisplayManager.currentAbility].name;
 
