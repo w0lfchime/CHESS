@@ -10641,6 +10641,63 @@ MonoBehaviour:
       description: 
       pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
       pieceData: {fileID: 11400000, guid: 6dcf8e54f7194a04ebde00d6ed6e78c9, type: 2}
+    - blackIcon: {fileID: 21300000, guid: f126d52d4bbcd804aa98f54b62579613, type: 3}
+      whiteIcon: {fileID: 21300000, guid: f126d52d4bbcd804aa98f54b62579613, type: 3}
+      name: Plague Doctor
+      tagLine: Don't catch a cold
+      materialValue: 0
+      description: Moves slowly, but can drop lethal poison tiles.
+      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceData: {fileID: 11400000, guid: 66580646641fa8d408e2e75d79becb7e, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 7a1ec1b88a48c0c498e1c71617fb6337, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 7a1ec1b88a48c0c498e1c71617fb6337, type: 3}
+      name: Slime
+      tagLine: Just your basic mob.
+      materialValue: 0
+      description: Slimes around, leaving behind a sticky trail.
+      pieceObject: {fileID: 919132149155446097, guid: d6a055d714f981e42a9f53192a1f2923, type: 3}
+      pieceData: {fileID: 11400000, guid: e46b107cf47ea0c45affbf565d7f4365, type: 2}
+    - blackIcon: {fileID: 21300000, guid: a4ee5777fc3d52340abdf0fff630ad37, type: 3}
+      whiteIcon: {fileID: 21300000, guid: a4ee5777fc3d52340abdf0fff630ad37, type: 3}
+      name: Magnet
+      tagLine: Opposites attract.
+      materialValue: 0
+      description: Depending on tile color it will either push or pull.
+      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceData: {fileID: 11400000, guid: e51919e79c3d24947b72c86af8e753df, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 7e925f4492a6c054685f32ed44389b2e, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 7e925f4492a6c054685f32ed44389b2e, type: 3}
+      name: Litch
+      tagLine: Smile for the camera
+      materialValue: 0
+      description: Can either move slowly, poison horizontal tiles, or eat tile in
+        front of them.
+      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceData: {fileID: 11400000, guid: 3c708c6608664ea4ea65a4fb39b00de0, type: 2}
+    - blackIcon: {fileID: 21300000, guid: c778d2e8a58aa1e49bea100fd20c7a99, type: 3}
+      whiteIcon: {fileID: 21300000, guid: c778d2e8a58aa1e49bea100fd20c7a99, type: 3}
+      name: Nutcracker
+      tagLine: Happy holidays
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceData: {fileID: 11400000, guid: 760901f718f8f7b47867f46564672a12, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 60a2d4d7982d493448292301981d115f, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 60a2d4d7982d493448292301981d115f, type: 3}
+      name: Superhero
+      tagLine: I'm so lonely...
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceData: {fileID: 11400000, guid: 6dcf8e54f7194a04ebde00d6ed6e78c9, type: 2}
+    - blackIcon: {fileID: 21300000, guid: 60a2d4d7982d493448292301981d115f, type: 3}
+      whiteIcon: {fileID: 21300000, guid: 60a2d4d7982d493448292301981d115f, type: 3}
+      name: Superhero
+      tagLine: I'm so lonely...
+      materialValue: 0
+      description: 
+      pieceObject: {fileID: 919132149155446097, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
+      pieceData: {fileID: 11400000, guid: 6dcf8e54f7194a04ebde00d6ed6e78c9, type: 2}
   whitePieceMaterial: {fileID: 2100000, guid: 711d811e19862824396c6595f2e9477b, type: 2}
   blackPieceMaterial: {fileID: 2100000, guid: 4f965aa9971b8ec4fbdf3b79a96fb050, type: 2}
 --- !u!224 &410925900

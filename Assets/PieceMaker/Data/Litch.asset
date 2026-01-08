@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Litch
   m_EditorClassIdentifier: 
   pieceName: Litch
-  materialValue: 0
+  materialValue: 8
   model: {fileID: 9114751335958671675, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   whiteMaterialList:
   - {fileID: 1110233775959259594, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
