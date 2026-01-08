@@ -328,8 +328,10 @@ public class TitleScreenButtons : MonoBehaviour
         for(int i = 0; i < GameData.Instance.matList.Count; i++){
             GameObject buttonIns = Instantiate(matButton, matContent);
             if(!GameData.Instance.matList[i].locked || PlayerPrefs.HasKey("unlocked color" + i)) {
+                var temp = i;
                 buttonIns.GetComponent<Image>().color = Color.white;
-                buttonIns.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => { cangeTempMat(i); });
+                buttonIns.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => { cangeTempMat(temp); });
+                print(i);
                 buttonIns.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = GameData.Instance.matList[i].material.name;
             }
             buttonIns.transform.GetChild(0).GetComponent<RawImage>().color = GameData.Instance.matList[i].material.color;
