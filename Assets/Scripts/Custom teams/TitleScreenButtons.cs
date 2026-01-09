@@ -241,6 +241,7 @@ public class TitleScreenButtons : MonoBehaviour
 
     void populateDisplayTeam(Transform content, string name)
     {
+        if(!gameData.teams.ContainsKey(name)) return;
         foreach(Transform child in content)
         {
             child.GetComponent<TeamSlotRework>().SetPiece("");
@@ -255,7 +256,7 @@ public class TitleScreenButtons : MonoBehaviour
 
         int tempMaterial = 0;
         for(int index = 0; index < 15; index++){
-            if(gameData.teams[name][index]=="") continue;
+            if(gameData.teams[name][index]=="" || gameData.teams[name][index]==null) continue;
             tempMaterial+=PieceLibrary.Instance.GetPrefab(gameData.teams[name][index]).materialValue;
         }
         content.parent.parent.GetChild(1).GetComponent<Slider>().value = (float)tempMaterial/maxMaterial;
