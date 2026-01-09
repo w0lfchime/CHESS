@@ -123,3 +123,8 @@ MonoBehaviour:
     visualGrid: []
     actionEffectMult: 1
     grid: 
+  - name: DontKill
+    traits: 1c000000030000000400000002000000
+    visualGrid: []
+    actionEffectMult: 1
+    grid: 
