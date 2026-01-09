@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: StandardKing
   m_EditorClassIdentifier: 
+  unlocked: 1
   pieceName: King
   materialValue: 0
   model: {fileID: 3246882975058678263, guid: daf954465e93bb54fa2afcdf42d270e3, type: 3}
@@ -20,7 +21,7 @@ MonoBehaviour:
   blackMaterialList:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1.25
-  description: NoDescriptionSet
+  description: I used to rule the world.
   image: {fileID: 21300000, guid: a3dd4869ab6df2943844a0af59ea8bc0, type: 3}
   lifeLine: 1
   promotable: []
