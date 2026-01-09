@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 4874126678125670354, guid: 7f527a1806e78424a9c18ae5aec6fb20, type: 3}
   model_scale_multiplier: 1
   description: TMPBABY
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 18b5b4a10a335fc40a8428e374d5a202, type: 3}
   lifeLine: 0
   promotable: []
   isFrankenstein: 0
