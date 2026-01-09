@@ -15,15 +15,15 @@ MonoBehaviour:
   unlocked: 1
   pieceName: Baby
   materialValue: 0
-  model: {fileID: 365146942150305931, guid: 7f527a1806e78424a9c18ae5aec6fb20, type: 3}
+  model: {fileID: 365146942150305931, guid: a28e9d7c783492c4abedd7984c9bd541, type: 3}
   whiteMaterialList:
-  - {fileID: -6478536213147159724, guid: 7f527a1806e78424a9c18ae5aec6fb20, type: 3}
-  - {fileID: -3846018093981099296, guid: 7f527a1806e78424a9c18ae5aec6fb20, type: 3}
-  - {fileID: 4874126678125670354, guid: 7f527a1806e78424a9c18ae5aec6fb20, type: 3}
+  - {fileID: -6478536213147159724, guid: a28e9d7c783492c4abedd7984c9bd541, type: 3}
+  - {fileID: -3846018093981099296, guid: a28e9d7c783492c4abedd7984c9bd541, type: 3}
+  - {fileID: 4874126678125670354, guid: a28e9d7c783492c4abedd7984c9bd541, type: 3}
   blackMaterialList:
-  - {fileID: -6478536213147159724, guid: 7f527a1806e78424a9c18ae5aec6fb20, type: 3}
-  - {fileID: -3846018093981099296, guid: 7f527a1806e78424a9c18ae5aec6fb20, type: 3}
-  - {fileID: 4874126678125670354, guid: 7f527a1806e78424a9c18ae5aec6fb20, type: 3}
+  - {fileID: -6478536213147159724, guid: a28e9d7c783492c4abedd7984c9bd541, type: 3}
+  - {fileID: -3846018093981099296, guid: a28e9d7c783492c4abedd7984c9bd541, type: 3}
+  - {fileID: 4874126678125670354, guid: a28e9d7c783492c4abedd7984c9bd541, type: 3}
   model_scale_multiplier: 1
   description: TMPBABY
   image: {fileID: 21300000, guid: 18b5b4a10a335fc40a8428e374d5a202, type: 3}
