@@ -415,8 +415,8 @@ public class ChessBoard2 : NetworkIdentity
 
 		int selectedLayer = (layer >= abilityDict.Count) ? layer % abilityDict.Count : layer;
 
-		//Vector3 offset = piece.meshFilter.sharedMesh.bounds.size.y*Vector3.up*10;
-		GameObject abilityToggleIns = Instantiate(abilityToggle, piece.transform.position+transform.up*2, Quaternion.identity);
+		float scale = piece.GetComponent<ChessPieceObject>().chessPieceData.model_scale_multiplier;
+		GameObject abilityToggleIns = Instantiate(abilityToggle, piece.transform.position+transform.up*2*scale, Quaternion.identity);
 		for(int i = 1; i < abilityDict.Count; i++){
 			Instantiate(abilityToggleIns.transform.GetChild(0).GetChild(0).gameObject, abilityToggleIns.transform.GetChild(0));
 		}
