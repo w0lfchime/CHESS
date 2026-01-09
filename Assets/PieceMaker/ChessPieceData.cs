@@ -63,8 +63,9 @@ public enum ActionTrait
 
     spawn_explosion_effect = 10,
 
-    animate_jump = 11
+    animate_jump = 11,
 
+    command_dont_kill = 28
 }
 
 
