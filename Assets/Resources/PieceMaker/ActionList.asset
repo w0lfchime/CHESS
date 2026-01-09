@@ -133,3 +133,8 @@ MonoBehaviour:
     visualGrid: []
     actionEffectMult: 1
     grid: 
+  - name: Balloon
+    traits: 02000000000000001e000000
+    visualGrid: []
+    actionEffectMult: 1
+    grid: 

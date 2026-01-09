@@ -22,9 +22,9 @@ public enum TriggerType
 [System.Flags]
 public enum TriggerConditions
 {
-    None          = 0,
-    OnWhiteSquare        = 1 << 0,
-    OnBlackSquare   = 1 << 1
+    None = 0,
+    OnWhiteSquare = 1 << 0,
+    OnBlackSquare = 1 << 1
 }
 
 //All the action traits. These are low level traits that determine how an action specifically interacts with the tiles around it.
@@ -51,6 +51,8 @@ public enum ActionTrait
 
     //traits that do something
     spawn_pawn = 29,
+
+    spawn_balloon = 30,
     spawn_water = 8,
     spawn_opposing_obstruct = 23,
     spawn_slime = 26,
@@ -111,7 +113,7 @@ public class Action
         return new Action { name = this.name, traits = this.traits };
     }
 }
- 
+
 public enum Elements { CanMove, CantMove }
 
 // Weighted moveset for Frankenstein piece
@@ -156,7 +158,7 @@ public class ChessPieceData : ScriptableObject
     }
 }
 
- 
+
 #if UNITY_EDITOR
 [CustomEditor(typeof(ChessPieceData))]
 public class ChessPieceDataEditor : Editor
@@ -460,7 +462,7 @@ public class ChessPieceDataEditor : Editor
         }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
 void AutoFillMaterials(ChessPieceData script)
 {
     Undo.RecordObject(script, "Auto Fill Materials");
@@ -513,7 +515,7 @@ void AutoFillMaterials(ChessPieceData script)
 }
 #endif
 
- 
+
 [System.Serializable]
 public class Wrapper<T>
 {

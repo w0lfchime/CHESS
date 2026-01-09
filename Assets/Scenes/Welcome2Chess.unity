@@ -2909,6 +2909,7 @@ MonoBehaviour:
   piecePrefab: {fileID: 7009996306650167107, guid: 2e3aa0888c6f66046b9739b9f20eaac1, type: 3}
   mixerGroup: {fileID: -6981211469889497049, guid: 6a8fb6d567abff3419b109e3a71f3567, type: 2}
   pawn: {fileID: 11400000, guid: d286f3db729156046a083d6aa867d7d7, type: 2}
+  balloon: {fileID: 11400000, guid: c88b76d2cdfde8e48bd3b93c09f27877, type: 2}
 --- !u!114 &771100083
 MonoBehaviour:
   m_ObjectHideFlags: 0
