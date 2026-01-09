@@ -76,6 +76,7 @@ public class TitleScreenButtons : MonoBehaviour
         CreatePuzzleUI();
         SpawnMats();
         CreateMapButtons();
+        SetMap(0);
 
         for (int i = 0; i < 16; i++)
         {
@@ -143,9 +144,9 @@ public class TitleScreenButtons : MonoBehaviour
         AddOptions(blackDropDown, gameData.teams.Keys.ToList());
         AddOptions(whiteDropDown, gameData.teams.Keys.ToList());
 
-        // SetWhiteTeam(0);
-        // SetBlackTeam(0);
-        // SetYourTeam(0);
+        if(mapDropdown.childCount > 0) mapDropdown.GetChild(0).GetComponent<Toggle>().isOn = true;
+        if(whiteDropDown.childCount > 0) whiteDropDown.GetChild(0).GetComponent<Toggle>().isOn = true;
+        if(blackDropDown.childCount > 0) blackDropDown.GetChild(0).GetComponent<Toggle>().isOn = true;
     }
 
     void AddOptions(Transform content, List<string> names)
@@ -251,6 +252,14 @@ public class TitleScreenButtons : MonoBehaviour
             child.GetComponent<TeamSlotRework>().SetPiece(pieceName);
             i++;
         }
+
+        int tempMaterial = 0;
+        for(int index = 0; index < 15; index++){
+            if(gameData.teams[name][index]=="") continue;
+            tempMaterial+=PieceLibrary.Instance.GetPrefab(gameData.teams[name][index]).materialValue;
+        }
+        content.parent.parent.GetChild(1).GetComponent<Slider>().value = (float)tempMaterial/maxMaterial;
+        content.parent.parent.GetChild(1).GetChild(2).GetComponent<TMP_Text>().text = "Material: "+tempMaterial;
     }
 
     public void SetMap(int index)
@@ -270,7 +279,9 @@ public class TitleScreenButtons : MonoBehaviour
             }
             else
             {
-                tileIns.GetComponent<Image>().color = ((i+(i/gameData.map.width))%2 == 0 ? Color.white : Color.gray);
+                Color tempColor = ((i+(i/gameData.map.width))%2 == 0 ? Color.white : Color.gray);
+                tempColor.a = .5f;
+                tileIns.GetComponent<Image>().color = tempColor;
             }
             i++;
         }
@@ -621,19 +632,28 @@ public class TitleScreenButtons : MonoBehaviour
             {
                 Elements element = selectedPiece.pieceId.abilities[abilityNumber].actions[0].visualGrid[i].values[j];
                 Color baseColor;
+                if ((i + j) % 2 == 0)
+                {
+                    baseColor = new Color(0.255f, 0.255f, 0.255f, 1.000f);
+                }
+                else
+                {
+                    baseColor = new Color(0.294f, 0.294f, 0.294f, 1.000f);
+                }
+
                 switch (element)
                 {
                     case Elements.CanMove:
-                        baseColor = Color.black;
+                        baseColor = baseColor;
                         break;
                     case Elements.CantMove:
-                        baseColor = Color.green;
+                        baseColor = Color.green*3 * baseColor;
                         break;
                     case (Elements)2:
-                        baseColor = Color.yellow;
+                        baseColor = Color.yellow*3 * baseColor;
                         break;
                     default:
-                        baseColor = Color.red;
+                        baseColor = Color.red*3 * baseColor;
                         break;
                 }
 
