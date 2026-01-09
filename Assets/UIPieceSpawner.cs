@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,5 +28,21 @@ public class UIPieceSpawner : MonoBehaviour
             }
         }
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+    }
+
+    public void Search(TMP_InputField name)
+    {
+        List<string> namelist = new List<string>();
+        foreach(Transform child in transform)
+        {
+            if (name.text == "")
+            {
+                child.gameObject.SetActive(true);
+            }
+            if (child.GetComponent<DraggableUIPiece>().pieceId.pieceName.ToLower().Contains(name.text.ToLower()))
+            {
+                child.gameObject.SetActive(true);
+            }else child.gameObject.SetActive(false);
+        }
     }
 }
