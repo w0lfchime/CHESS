@@ -9,6 +9,7 @@ using PurrNet;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using UnityEngine.Audio;
+using Unity.Jobs;
 
 public class ChessBoard2 : NetworkIdentity
 {
@@ -512,6 +513,28 @@ public class ChessBoard2 : NetworkIdentity
 				}
 			}
 
+			if(TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0 && TileLocations[tilePosition.x, tilePosition.y].tileOccupants[0].GetComponent<ChessPieceObject>().chessPieceData.name == "CorruptKing")
+			{
+				Debug.Log("ran");
+				ChessPieceObject[] pieces = GameManager.Instance.GetCurrentPieceCount();
+				Team team = TileLocations[tilePosition.x, tilePosition.y].tileOccupants[0].team;
+
+				int pieceCount = 0;
+
+				for(int i = 0; i < pieces.Length; i++)
+				{
+					if(pieces[i].team == team)
+					{
+						pieceCount++;
+					}
+				}
+
+				if(pieceCount > 1)
+				{
+					add = false;
+				}
+			}
+
 			if
 			(
 				TileLocations[tilePosition.x, tilePosition.y].obstructed != Tile.conditions.None &&
@@ -569,13 +592,38 @@ public class ChessBoard2 : NetworkIdentity
 				}
 			} 
 
+			// stuff for corrupt king
+			bool canKill = true;
+
+			if(actionTraits.Contains(ActionTrait.command_dont_kill))
+			{
+				Debug.Log("Checking if can kill");
+				ChessPieceObject[] list = GameManager.Instance.GetCurrentPieceCount();
+				Team team = ocp.team;
+
+				int teamCount = 0;
+
+				for(int i = 0; i < list.Length; i++)
+				{
+					if(list[i].team == team)
+					{
+						teamCount++;
+					}
+				}
+
+				if(teamCount <= 1)
+				{
+					canKill = false;
+				}
+			} 
+
 			wasTileSelected = true;
 
 			//
 
 			//do all lower level commands
 
-			if (actionTraits.Contains(ActionTrait.command_killpiece)) // if trait kills a piece
+			if (actionTraits.Contains(ActionTrait.command_killpiece) && canKill) // if trait kills a piece
 			{
 				if (ocp != null)
 				{
