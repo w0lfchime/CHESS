@@ -194,14 +194,18 @@ public class GameManager : NetworkIdentity
 			// Later: trigger board highlighting, legal move generation, timers, etc.
 
 			TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
-
-			if (canMakeTracker)
+			try{
+				if (canMakeTracker)
+				{
+					GameObject newMoveSpot = Instantiate(moveTrackerElementPrefab);
+					newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.name + " at (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardY + ") -> (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardY + ")";
+					newMoveSpot.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.image;
+					newMoveSpot.transform.SetParent(moveTrackerContent.transform);
+					newMoveSpot.transform.SetAsFirstSibling();
+				}
+			}catch
 			{
-				GameObject newMoveSpot = Instantiate(moveTrackerElementPrefab);
-				newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.name + " at (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardY + ") -> (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardY + ")";
-				newMoveSpot.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.image;
-				newMoveSpot.transform.SetParent(moveTrackerContent.transform);
-				newMoveSpot.transform.SetAsFirstSibling();
+				print("hurt");
 			}
 
 			canMakeTracker = true;
