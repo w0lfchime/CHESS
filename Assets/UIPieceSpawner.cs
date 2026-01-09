@@ -28,14 +28,4 @@ public class UIPieceSpawner : MonoBehaviour
         }
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
-
-    public Sprite NameToImage(string name)
-    {
-        if(name=="") return emptySprite;
-        foreach(PieceEntry entry in PieceLibrary.Instance.pieces)
-        {
-            if(entry.id == name) return entry.data.image;
-        }
-        return null;
-    }
 }

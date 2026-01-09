@@ -31,9 +31,9 @@ public class TitleScreenButtons : MonoBehaviour
     public GameObject creditsMenu;
     public GameObject singlePlayerMenu;
     public GameData gameData;
-    public TMP_Dropdown whiteDropDown;
-    public TMP_Dropdown blackDropDown;
-    public TMP_Dropdown yourDropDown;
+    public Transform whiteDropDown;
+    public Transform blackDropDown;
+    public Transform yourDropDown;
     public AudioClip[] titleScreenMusic;
     public AudioSource musicSource;
     public string[] tempTeam = new string[16];
@@ -61,6 +61,11 @@ public class TitleScreenButtons : MonoBehaviour
     public Transform puzzleContent;
     public GameObject matButton;
     public Transform matContent;
+    public GameObject whiteTeamContentDisplay, blackTeamContentDisplay, yourTeamContentDisplay;
+    public GameObject teamVisualUI;
+    public GameObject mapButton;
+    public Transform mapDropdown;
+    public Transform mapGrid;
 
     void Start()
     {
@@ -70,6 +75,32 @@ public class TitleScreenButtons : MonoBehaviour
         LoadTeams();
         CreatePuzzleUI();
         SpawnMats();
+        CreateMapButtons();
+
+        for (int i = 0; i < 16; i++)
+        {
+            makeSlot(i, whiteTeamContentDisplay, true);
+        }
+
+        for (int i = 0; i < 16; i++)
+        {
+            makeSlot(i, blackTeamContentDisplay, true);
+        }
+
+        for (int i = 0; i < 16; i++)
+        {
+            makeSlot(i, yourTeamContentDisplay, true);
+        }
+    }
+
+    void CreateMapButtons()
+    {
+        for(int i = 0; i < mapList.Count; i++){
+            int temp = i;
+            GameObject mapButtonIns = Instantiate(mapButton, mapDropdown);
+            mapButtonIns.transform.GetChild(0).GetComponent<TMP_Text>().text = mapList[i].name;
+            mapButtonIns.GetComponent<Toggle>().onValueChanged.AddListener((value) => { SetMap(temp); });
+        }
     }
 
     public void DeleteAllTeams()
@@ -104,13 +135,34 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void PopulateYourDropdown()
     {
-        yourDropDown.ClearOptions();
-        blackDropDown.ClearOptions();
-        whiteDropDown.ClearOptions();
+        ClearOptions(yourDropDown);
+        ClearOptions(blackDropDown);
+        ClearOptions(whiteDropDown);
 
-        yourDropDown.AddOptions(gameData.teams.Keys.ToList());
-        blackDropDown.AddOptions(gameData.teams.Keys.ToList());
-        whiteDropDown.AddOptions(gameData.teams.Keys.ToList());
+        AddOptions(yourDropDown, gameData.teams.Keys.ToList());
+        AddOptions(blackDropDown, gameData.teams.Keys.ToList());
+        AddOptions(whiteDropDown, gameData.teams.Keys.ToList());
+
+        // SetWhiteTeam(0);
+        // SetBlackTeam(0);
+        // SetYourTeam(0);
+    }
+
+    void AddOptions(Transform content, List<string> names)
+    {
+        foreach (string name in names){
+            GameObject teamVisualUIIns = Instantiate(teamVisualUI, content);
+            teamVisualUIIns.transform.GetChild(0).GetComponent<TMP_Text>().text = name;
+            teamVisualUIIns.GetComponent<Toggle>().onValueChanged.AddListener((value) => { SetTeam(name, content); });
+        }
+    }
+
+    void ClearOptions(Transform content)
+    {
+        foreach(Transform child in content)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void MoveToSingleplayer()
@@ -146,8 +198,6 @@ public class TitleScreenButtons : MonoBehaviour
 
     public void StartGame()
     {
-        SetWhiteTeam(0);
-        SetBlackTeam(0);
         gameData.isDoingPuzzle = false;
         if (gameData.teams.Keys.Count != 0)
         {
@@ -167,43 +217,64 @@ public class TitleScreenButtons : MonoBehaviour
         }
     }
 
-    public void SetWhiteTeam(int team)
+    public void SetTeam(string name, Transform dropdown)
     {
-        Debug.Log(whiteDropDown.options[whiteDropDown.value].text);
-        gameData.whiteTeamName = whiteDropDown.options[whiteDropDown.value].text;
+        if(dropdown == whiteDropDown){
+            gameData.whiteTeamName = name;
 
-        // string[] theTeam = gameData.teams[whiteDropDown.options[whiteDropDown.value].text];
+            populateDisplayTeam(whiteTeamContentDisplay.transform, name);
+        }
+        if (dropdown == blackDropDown)
+        {
+            gameData.blackTeamName = name;
 
-        // for(int i = 0; i < 16; i++)
-        // {
-        //     Debug.Log(theTeam[i]);
-        // }
-        // Debug.Log(gameData.teams[whiteDropDown.options[whiteDropDown.value].text]);
+            populateDisplayTeam(blackTeamContentDisplay.transform, name);
+        }
+        if(dropdown == yourDropDown)
+        {
+            gameData.yourTeamName = name;
+
+            populateDisplayTeam(yourTeamContentDisplay.transform, name);
+        }
     }
 
-    public void SetBlackTeam(int team)
+    void populateDisplayTeam(Transform content, string name)
     {
-        Debug.Log(blackDropDown.options[blackDropDown.value].text);
-        gameData.blackTeamName = blackDropDown.options[blackDropDown.value].text;
-
-        // string[] theTeam = gameData.teams[blackDropDown.options[blackDropDown.value].text];
-
-        // for(int i = 0; i < 16; i++)
-        // {
-        //     Debug.Log(theTeam[i]);
-        // }
-        // Debug.Log(gameData.teams[blackDropDown.options[blackDropDown.value].text]);
-    }
-
-    public void SetYourTeam(int team)
-    {
-        Debug.Log(yourDropDown.options[yourDropDown.value].text);
-        gameData.yourTeamName = yourDropDown.options[yourDropDown.value].text;
+        foreach(Transform child in content)
+        {
+            child.GetComponent<TeamSlotRework>().SetPiece("");
+        }
+        int i = 0;
+        foreach(Transform child in content)
+        {
+            string pieceName = gameData.teams[name][i];
+            child.GetComponent<TeamSlotRework>().SetPiece(pieceName);
+            i++;
+        }
     }
 
     public void SetMap(int index)
     {
         gameData.map = mapList[index];
+        foreach (Transform child in mapGrid) {
+            if(child.gameObject.activeSelf) Destroy(child.gameObject);
+        }
+        int i = 0;
+        foreach(int tile in gameData.map.nullTiles)
+        {
+            GameObject tileIns = Instantiate(mapGrid.GetChild(0).gameObject, mapGrid);
+            tileIns.SetActive(true);
+            if (tile==2)
+            {
+                tileIns.GetComponent<Image>().enabled = false;
+            }
+            else
+            {
+                tileIns.GetComponent<Image>().color = ((i+(i/gameData.map.width))%2 == 0 ? Color.white : Color.gray);
+            }
+            i++;
+        }
+        mapGrid.GetComponent<GridLayoutGroup>().constraintCount = gameData.map.width;
     }
 
     public void ResetTeams()
@@ -232,8 +303,7 @@ public class TitleScreenButtons : MonoBehaviour
 
         matText.text = "Material Value: 0";
 
-        whiteDropDown.ClearOptions();
-        blackDropDown.ClearOptions();
+        PopulateYourDropdown();
 
         teamCreateMenu.SetActive(false);
         teamSelectMenu.SetActive(false);
@@ -467,10 +537,11 @@ public class TitleScreenButtons : MonoBehaviour
         matText.text = "Material: " + matValue;
     }
 
-    private void makeSlot(int slotNum, GameObject addTo)
+    private void makeSlot(int slotNum, GameObject addTo, bool visual = false)
     {
         GameObject slot = Instantiate(slotPrefab);
         TeamSlotRework teamSlot = slot.GetComponent<TeamSlotRework>();
+        teamSlot.visual = visual;
 
         teamSlot.slotNum = slotNum;
 
