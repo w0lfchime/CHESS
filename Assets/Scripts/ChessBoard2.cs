@@ -61,6 +61,7 @@ public class ChessBoard2 : NetworkIdentity
 	private GameObject promoteUITemp;
 	public GameObject piecePrefab;
 	public AudioMixerGroup mixerGroup;
+	public ChessPieceData pawn;
 
 	void Awake()
 	{
@@ -414,6 +415,7 @@ public class ChessBoard2 : NetworkIdentity
 
 		int selectedLayer = (layer >= abilityDict.Count) ? layer % abilityDict.Count : layer;
 
+		//Vector3 offset = piece.meshFilter.sharedMesh.bounds.size.y*Vector3.up*10;
 		GameObject abilityToggleIns = Instantiate(abilityToggle, piece.transform.position+transform.up*2, Quaternion.identity);
 		for(int i = 1; i < abilityDict.Count; i++){
 			Instantiate(abilityToggleIns.transform.GetChild(0).GetChild(0).gameObject, abilityToggleIns.transform.GetChild(0));
@@ -769,6 +771,11 @@ public class ChessBoard2 : NetworkIdentity
 				materialInstance.color = TileLocations[tilePosition.x, tilePosition.y].rend.material.color;
 			}
 
+			if (actionTraits.Contains(ActionTrait.spawn_pawn)) //if trait explodes
+			{
+				ChessPieceObject child = SpawnPiece(pawn.pieceName, new Vector2Int(tilePosition.y, tilePosition.x), cp.team);
+			}
+
 			if (actionTraits.Contains(ActionTrait.spawn_water)) // if trait spawns water
 			{
 				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
@@ -1073,7 +1080,7 @@ public class ChessBoard2 : NetworkIdentity
 
 
 	// For regular spawning
-	public void SpawnPiece(string pieceID, Vector2Int boardLoc, Team team, GameObject obj = null)
+	public ChessPieceObject SpawnPiece(string pieceID, Vector2Int boardLoc, Team team, GameObject obj = null)
 	{
 		ChessPieceData data = null;
 		
@@ -1086,7 +1093,7 @@ public class ChessBoard2 : NetworkIdentity
 			data = PieceLibrary.Instance.GetPrefab(pieceID);
 		}
 
-		if (data == null) return;
+		if (data == null) return null;
 
 		// Spawn at the tile�s world position
 		Vector3 spawnPos = gameObject.transform.position;
@@ -1132,6 +1139,8 @@ public class ChessBoard2 : NetworkIdentity
 		{
 			SelectRandomMoveset(pieceObj);
 		}
+
+		return pieceObj;
 	}
 
 	// For debug spawning

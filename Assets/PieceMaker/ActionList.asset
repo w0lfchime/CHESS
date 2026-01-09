@@ -128,3 +128,8 @@ MonoBehaviour:
     visualGrid: []
     actionEffectMult: 1
     grid: 
+  - name: Birth
+    traits: 02000000000000001d000000
+    visualGrid: []
+    actionEffectMult: 1
+    grid: 
