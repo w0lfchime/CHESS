@@ -50,6 +50,7 @@ public enum ActionTrait
     shift_focus = 7,
 
     //traits that do something
+    spawn_pawn = 29,
     spawn_water = 8,
     spawn_opposing_obstruct = 23,
     spawn_slime = 26,
