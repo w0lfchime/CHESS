@@ -5585,8 +5585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   folderDirectories:
-  - Assets/PieceMaker/Data
-  - Assets/PieceMaker/Data/Main
+  - PieceMaker/Data
+  - PieceMaker/Data/Main
   pieces: []
   emptySprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!23 &243175045
@@ -27306,7 +27306,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dbb0442b9281d54f9c090e21e7e9732, type: 2}
   - {fileID: 11400000, guid: 8fa0d15ca2741ea41a98b0c7dcf14ab8, type: 2}
   puzzleFolders:
-  - Assets/PieceMaker/PuzzleData
+  - PieceMaker/PuzzleData
   maxMaterial: 39
   matValue: 0
   teamOn: 0

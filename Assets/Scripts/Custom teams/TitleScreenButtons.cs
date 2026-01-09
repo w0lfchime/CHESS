@@ -689,19 +689,14 @@ public class TitleScreenButtons : MonoBehaviour
 
     public static List<Puzzles> FindPuzzlesDataInFolders(string[] folders)
     {
-        string filter = "t:Puzzles";
-        string[] guids = AssetDatabase.FindAssets(filter, folders);
+        List<Puzzles> puzzles = new List<Puzzles>();
 
-        var assets = new List<Puzzles>(guids.Length);
-
-        foreach (string guid in guids)
+        foreach (string name in folders)
         {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            Puzzles asset = AssetDatabase.LoadAssetAtPath<Puzzles>(path);
-            if (asset != null)
-                assets.Add(asset);
+            puzzles.AddRange(Resources.LoadAll<Puzzles>(name));
         }
 
-        return assets;
+        return puzzles;
     }
+
 }
