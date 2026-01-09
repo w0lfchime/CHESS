@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a16ca8ec4da5041a107d3aa270ab5a, type: 3}
   m_Name: Nutcracker
   m_EditorClassIdentifier: 
+  unlocked: 1
   pieceName: Nutcracker
   materialValue: 1
   model: {fileID: -229425551654329276, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
@@ -43,7 +44,7 @@ MonoBehaviour:
   - {fileID: 752492319262309027, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   - {fileID: 1877244072416195789, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   - {fileID: -8307573154506517046, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
-  model_scale_multiplier: 1
+  model_scale_multiplier: 1.8
   description: Happy holidays
   image: {fileID: 21300000, guid: c778d2e8a58aa1e49bea100fd20c7a99, type: 3}
   lifeLine: 1
