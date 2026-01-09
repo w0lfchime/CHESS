@@ -46,6 +46,7 @@ public class GameManager : NetworkIdentity
 	public Button endTurnButton;
 	public List<Sprite> buttonColors = new List<Sprite>();
 	public bool canMakeTracker = true;
+	public int[] fatherTimers = new int[2] {0, 0};
 
 	protected override void OnSpawned(bool asServer)
 	{
@@ -205,10 +206,44 @@ public class GameManager : NetworkIdentity
 
 			canMakeTracker = true;
 
+			if(CurrentTurn == Team.White)
+			{
+				fatherTimers[0]++;
+			} else
+			{
+				fatherTimers[1]++;
+			}
+
+			ChessPieceObject[] pieces = GetCurrentPieceCount();
+
+			for(int i = 0; i < pieces.Length; i++)
+			{
+				if(pieces[i].chessPieceData.name == "FatherTime")
+				{
+					if(pieces[i].team == Team.White)
+					{
+						checkFatherTimers(0);
+					} else
+					{
+						checkFatherTimers(1);
+					}
+				}
+			}
+
 			Board.TileTrigger();
 			Board.TurnSwapTrigger();
 		}
 
+	}
+
+	public void checkFatherTimers(int check)
+	{
+		if(fatherTimers[check] >= 14)
+		{
+			int winner = (check == 1 ? 0 : 1);
+
+			ChessBoard2.Instance.CheckMate(winner);
+		}
 	}
 
 	public void EndTurn(int literallyUseless)

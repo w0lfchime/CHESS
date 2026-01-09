@@ -535,6 +535,11 @@ public class ChessBoard2 : NetworkIdentity
 				}
 			}
 
+			if(TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0 && TileLocations[tilePosition.x, tilePosition.y].tileOccupants[0].GetComponent<ChessPieceObject>().chessPieceData.name == "FatherTime")
+			{
+				add = false;
+			}
+
 			if
 			(
 				TileLocations[tilePosition.x, tilePosition.y].obstructed != Tile.conditions.None &&
@@ -818,7 +823,7 @@ public class ChessBoard2 : NetworkIdentity
 	}
 
 	//Checkmate
-	private void CheckMate(int team)
+	public void CheckMate(int team)
 	{
 		DisplayVictory(team);
 	}
