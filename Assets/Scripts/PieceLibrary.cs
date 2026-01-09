@@ -17,6 +17,7 @@ public class PieceLibrary : MonoBehaviour
 
 	public List<PieceEntry> pieces = new List<PieceEntry>();
 	private Dictionary<string, ChessPieceData> lookup;
+	public Sprite emptySprite;
 
 	void Awake()
 	{
@@ -61,20 +62,30 @@ public class PieceLibrary : MonoBehaviour
 	}
 
 	public static List<ChessPieceData> FindChessPieceDataInFolders(string[] folders)
-{
-    string filter = "t:ChessPieceData";
-    string[] guids = AssetDatabase.FindAssets(filter, folders);
+	{
+		string filter = "t:ChessPieceData";
+		string[] guids = AssetDatabase.FindAssets(filter, folders);
 
-    var assets = new List<ChessPieceData>(guids.Length);
+		var assets = new List<ChessPieceData>(guids.Length);
 
-    foreach (string guid in guids)
+		foreach (string guid in guids)
+		{
+			string path = AssetDatabase.GUIDToAssetPath(guid);
+			ChessPieceData asset = AssetDatabase.LoadAssetAtPath<ChessPieceData>(path);
+			if (asset != null)
+				assets.Add(asset);
+		}
+
+		return assets;
+	}
+
+	public Sprite NameToImage(string name)
     {
-        string path = AssetDatabase.GUIDToAssetPath(guid);
-        ChessPieceData asset = AssetDatabase.LoadAssetAtPath<ChessPieceData>(path);
-        if (asset != null)
-            assets.Add(asset);
+        if(name=="") return emptySprite;
+        foreach(PieceEntry entry in PieceLibrary.Instance.pieces)
+        {
+            if(entry.id == name) return entry.data.image;
+        }
+        return null;
     }
-
-    return assets;
-}
 }

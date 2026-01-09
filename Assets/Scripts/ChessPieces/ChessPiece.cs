@@ -141,7 +141,7 @@ public abstract class ChessPiece : MonoBehaviour
             }
             
 
-            Destroy(gameObject, .01f);
+            DestroyImmediate(gameObject);
         }
     }
 

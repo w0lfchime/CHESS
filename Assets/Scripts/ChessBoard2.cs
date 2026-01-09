@@ -306,6 +306,7 @@ public class ChessBoard2 : NetworkIdentity
 
 		foreach(ChessPiece piece in pieces)
         {
+			if(piece==null) continue;
             RunAbilities(piece, piece.GetTileTags(trigger), piece.currentTile, endTurn);
         }
 

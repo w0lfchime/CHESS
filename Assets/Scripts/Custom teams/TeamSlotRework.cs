@@ -9,15 +9,10 @@ using Image = UnityEngine.UI.Image;
 public class TeamSlotRework : MonoBehaviour
 {
     public Image image;
-    public GameData gameData;
     public int slotNum;
     public int mat = 0;
+    public bool visual = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        image = gameObject.transform.GetChild(0).GetComponent<Image>();
-        gameData = GameObject.Find("GameData").GetComponent<GameData>();        
-    }
 
     // Update is called once per frame
     void Update()
@@ -28,10 +23,11 @@ public class TeamSlotRework : MonoBehaviour
 
     public void OnPointerClick()
     {
+        if(visual) return;
         TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
         DraggableUIPiece pieceData = titleScreenButtons.selectedPiece;
 
-        if (image.sprite != UIPieceSpawner.Instance.NameToImage(""))
+        if (image.sprite != PieceLibrary.Instance.NameToImage(""))
         {
             SetPiece("");
         }
@@ -43,12 +39,21 @@ public class TeamSlotRework : MonoBehaviour
 
     public void SetPiece(string pieceId)
     {
+        if (visual)
+        {
+            if(pieceId == "" || pieceId == null)
+            {
+                image.sprite = PieceLibrary.Instance.emptySprite;
+                return;
+            }
+            image.sprite = PieceLibrary.Instance.NameToImage(pieceId);
+            return;
+        }
         TitleScreenButtons titleScreenButtons = TitleScreenButtons.Instance;
         if(pieceId == "" || pieceId == null)
         {
-            image.sprite = UIPieceSpawner.Instance.NameToImage("");
+            image.sprite = PieceLibrary.Instance.NameToImage("");
             titleScreenButtons.tempTeam[slotNum] = null;
-            gameData = null;
             titleScreenButtons.matValue -= mat;
             mat = 0;
             titleScreenButtons.updateMatText();
@@ -71,7 +76,7 @@ public class TeamSlotRework : MonoBehaviour
                     titleScreenButtons.matValue += mat;
                     currentMat += mat;
 
-                    image.sprite = UIPieceSpawner.Instance.NameToImage(pieceId);
+                    image.sprite = PieceLibrary.Instance.NameToImage(pieceId);
 
                     titleScreenButtons.updateMatText();
                     titleScreenButtons.editMatTextNotError(pieceId + " " + ((currentMat >= 0) ? "+" + currentMat : currentMat.ToString()));
