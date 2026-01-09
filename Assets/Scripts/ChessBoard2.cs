@@ -323,6 +323,7 @@ public class ChessBoard2 : NetworkIdentity
 	{
 		if (target == null || target.team == newTeam) return;
 
+		Team oldTeam = target.team;
 		target.team = newTeam;
 
 		ChessPieceObject targetObj = target.GetComponent<ChessPieceObject>();
@@ -344,6 +345,13 @@ public class ChessBoard2 : NetworkIdentity
 		Vector3 euler = target.transform.eulerAngles;
 		euler.y += 180f;
 		target.transform.eulerAngles = euler;
+
+		// If a lifeline piece swapped sides, the converter wins immediately
+		if (target.isLifeline && oldTeam != newTeam)
+		{
+			int winningTeam = newTeam == Team.White ? 0 : 1;
+			CheckMate(winningTeam);
+		}
 	}
 
 	private bool TriggerOnePiece(ChessPiece piece, TriggerType trigger, Tile selectedTile = null, bool layered = false, bool endTurn = false)

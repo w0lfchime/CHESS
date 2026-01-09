@@ -143,3 +143,8 @@ MonoBehaviour:
     visualGrid: []
     actionEffectMult: 1
     grid: 
+  - name: Convert Team
+    traits: 0400000020000000
+    visualGrid: []
+    actionEffectMult: 1
+    grid: 
