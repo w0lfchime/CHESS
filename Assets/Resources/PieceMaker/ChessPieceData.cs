@@ -65,6 +65,7 @@ public enum ActionTrait
     command_respawn = 17,
     command_swapcolor = 21,
     command_pull_piece = 25,
+    command_convert_team = 32,
 
     spawn_explosion_effect = 10,
 

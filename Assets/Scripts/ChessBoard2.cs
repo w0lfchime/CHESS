@@ -319,6 +319,33 @@ public class ChessBoard2 : NetworkIdentity
 		return true;
 	}
 
+	private void ConvertPieceTeam(ChessPiece target, Team newTeam)
+	{
+		if (target == null || target.team == newTeam) return;
+
+		target.team = newTeam;
+
+		ChessPieceObject targetObj = target.GetComponent<ChessPieceObject>();
+		MeshRenderer renderer = target.GetComponent<MeshRenderer>();
+
+		if (targetObj != null && renderer != null)
+		{
+			Material[] mats = newTeam == Team.White ? targetObj.chessPieceData.whiteMaterialList.ToArray() : targetObj.chessPieceData.blackMaterialList.ToArray();
+			if (mats != null && mats.Length > 0)
+			{
+				mats[0] = newTeam == Team.White ? WhitePieceMat : BlackPieceMat;
+				renderer.materials = mats;
+			}
+		}
+
+		target.gameObject.layer = newTeam == Team.White ? LayerMask.NameToLayer("BlackOutline") : LayerMask.NameToLayer("WhiteOutline");
+
+		// Flip facing 180 degrees when team changes (preserves existing tilt)
+		Vector3 euler = target.transform.eulerAngles;
+		euler.y += 180f;
+		target.transform.eulerAngles = euler;
+	}
+
 	private bool TriggerOnePiece(ChessPiece piece, TriggerType trigger, Tile selectedTile = null, bool layered = false, bool endTurn = false)
 	{
 		if (layered)
@@ -656,6 +683,14 @@ public class ChessBoard2 : NetworkIdentity
 					ocp.Kill();
 				}
 
+			}
+
+			if (actionTraits.Contains(ActionTrait.command_convert_team))
+			{
+				if (ocp != null && ocp.team != cp.team)
+				{
+					ConvertPieceTeam(ocp, cp.team);
+				}
 			}
 
 			if (actionTraits.Contains(ActionTrait.command_pushback))
