@@ -17063,6 +17063,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: -4.5, y: -0.25}
   turnAmount: 15
+  moveSpeed: 5
+  rotationSpeed: 360
+  JohnPawn: {fileID: 1414055693255944221}
+  zDepth: 90
 --- !u!1 &688805193
 GameObject:
   m_ObjectHideFlags: 0

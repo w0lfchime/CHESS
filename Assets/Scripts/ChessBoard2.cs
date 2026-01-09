@@ -460,11 +460,13 @@ public class ChessBoard2 : NetworkIdentity
 			Vector2Int tilePosition = new Vector2Int(tile.Item1.y, tile.Item1.x) + piecePosition;
 			List<ActionTrait> actionTraits = tile.Item2.ToList();
 
-			try
-			{
-				var test = TileLocations[tilePosition.x, tilePosition.y];
-			}
-			catch
+			//check if the tile is out of bounds
+			if (tilePosition.x < 0 || tilePosition.y < 0 ||
+				tilePosition.x >= TileLocations.GetLength(0) ||
+				tilePosition.y >= TileLocations.GetLength(1)) continue;
+
+			//check if the tile is null
+			if (TileLocations[tilePosition.x, tilePosition.y] == null)
 			{
 				continue;
 			}
@@ -509,7 +511,14 @@ public class ChessBoard2 : NetworkIdentity
 				}
 			}
 
-			if(actionTraits.Contains(ActionTrait.apply_to_empty_space) && !actionTraits.Contains(ActionTrait.apply_to_ownteam_space) && !actionTraits.Contains(ActionTrait.apply_to_opposingteam_space)&& isObstructed(cp, TileLocations[tilePosition.x, tilePosition.y].obstructed)) add = false;
+			if
+			(
+				TileLocations[tilePosition.x, tilePosition.y].obstructed != Tile.conditions.None &&
+				actionTraits.Contains(ActionTrait.apply_to_empty_space) && 
+				!actionTraits.Contains(ActionTrait.apply_to_ownteam_space) && 
+				!actionTraits.Contains(ActionTrait.apply_to_opposingteam_space)&& 
+				isObstructed(cp, TileLocations[tilePosition.x, tilePosition.y].obstructed)
+			) add = false;
 
 			(Vector2Int, ActionTrait[]) newTile = (tilePosition, tile.Item2);
 			if (add) returnList.Add(newTile);
@@ -518,7 +527,7 @@ public class ChessBoard2 : NetworkIdentity
 		return returnList;
 	}
 
-	bool isObstructed(ChessPiece cp, Tile.conditions conditions)
+	bool isObstructed(ChessPiece cp, Tile.conditions conditions = Tile.conditions.None)
 	{
 		if(cp.team == Team.White && conditions.HasFlag(Tile.conditions.White)) return true;
 		if(cp.team == Team.Black && conditions.HasFlag(Tile.conditions.Black)) return true;
