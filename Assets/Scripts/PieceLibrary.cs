@@ -47,7 +47,7 @@ public class PieceLibrary : MonoBehaviour
 
 	public ChessPieceData GetPrefab(string id)
 	{
-		if(id==null) return null;
+		if(id==null||id=="") return null;
 		if (lookup.TryGetValue(id, out var data))
 			return data;
 		Debug.LogError($"Piece id {id} not found!");
