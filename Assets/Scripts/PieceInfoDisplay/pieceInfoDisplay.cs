@@ -10,7 +10,7 @@ public class pieceInfoDisplay : MonoBehaviour
     public PieceInfoText pieceInfoText;
     public pieceInfoPicture pieceInfoPicture;
     public PieceInfoName pieceInfoName;
-    public static bool inDisplay = true;
+    public static bool inDisplay = false;
     private static bool isAnimating = false;
     public UnityEngine.Vector3 originalPosition;
     void Start()
@@ -45,11 +45,19 @@ public class pieceInfoDisplay : MonoBehaviour
         pieceInfoPicture.setPicture(pieceData.image);
         pieceInfoName.disTex(pieceData.pieceName);
     }
-    public void unDisplay()
+    public void unDisplay(Boolean redisplay = false, ChessPieceData newData = null)
     {
         if (isAnimating) return;
         isAnimating = true;
         StartCoroutine(moveStep(-1));
+        if(redisplay && newData != null){
+            StartCoroutine(redisplayAfterDelay(newData));
+        }
+    }
+    IEnumerator redisplayAfterDelay(ChessPieceData newData)
+    {
+        yield return new WaitForSeconds(0.2f);
+        display(newData);
     }
 
 }
