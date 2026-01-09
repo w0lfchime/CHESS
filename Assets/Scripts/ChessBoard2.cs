@@ -50,7 +50,7 @@ public class ChessBoard2 : NetworkIdentity
 
 	private int abilityClickLayer;
 
-	public int[] turns = new int[] {0, 0};
+	public int[] turns = new int[] { 0, 0 };
 	public bool isPuzzleDone = false;
 	public GameObject abilityToggle;
 	private GameObject abilityToggleTemp;
@@ -149,23 +149,23 @@ public class ChessBoard2 : NetworkIdentity
 	[ServerRpc]
 	void SendInteractToServer(int y, int x)
 	{
-		InteractTrigger(TileLocations[x,y], true);
+		InteractTrigger(TileLocations[x, y], true);
 	}
 
 	[ObserversRpc]
 	void SendInteractToClient(int y, int x)
 	{
-		InteractTrigger(TileLocations[x,y], true);
+		InteractTrigger(TileLocations[x, y], true);
 	}
 
 	//triggered when a tile is clicked, a little weird since the first click will give you green spaces and the second click will be on those spaces
 	public void InteractTrigger(Tile tile, bool RPC = false, TriggerConditions conditions = TriggerConditions.None)
 	{
-		if(abilityToggleTemp!=null) Destroy(abilityToggleTemp);
+		if (abilityToggleTemp != null) Destroy(abilityToggleTemp);
 
-		if((NetworkManager.main.isServer || NetworkManager.main.isClient) && (GameManager.Instance.CurrentTurn != Team.White) == NetworkManager.main.isServer && !RPC) return;
-		if(NetworkManager.main.isClient && !RPC) SendInteractToServer(tile.TileBoardX, tile.TileBoardY);
-		if(NetworkManager.main.isServer && !RPC) SendInteractToClient(tile.TileBoardX, tile.TileBoardY);
+		if ((NetworkManager.main.isServer || NetworkManager.main.isClient) && (GameManager.Instance.CurrentTurn != Team.White) == NetworkManager.main.isServer && !RPC) return;
+		if (NetworkManager.main.isClient && !RPC) SendInteractToServer(tile.TileBoardX, tile.TileBoardY);
+		if (NetworkManager.main.isServer && !RPC) SendInteractToClient(tile.TileBoardX, tile.TileBoardY);
 
 
 		Debug.Log("Ran " + tile);
@@ -211,9 +211,9 @@ public class ChessBoard2 : NetworkIdentity
 				if (activeChessPiece.team != GameManager.Instance.CurrentTurn) RemoveHighlightTiles(activeChessPiece);
 			}
 		}
-		
+
 		if (selected == null || activeChessPiece != selected) abilityClickLayer = 0;
-		
+
 	}
 
 	//triggered inbetween turns
@@ -221,7 +221,7 @@ public class ChessBoard2 : NetworkIdentity
 	{
 		// Randomize Frankenstein movesets for the new turn
 		RandomizeFrankensteinMovesets();
-		
+
 		TriggerAllPieces(TriggerType.OnTurnSwap, false, conditions);
 	}
 
@@ -231,16 +231,17 @@ public class ChessBoard2 : NetworkIdentity
 		foreach (Tile tile in TileLocations)
 		{
 			if (tile != null)
-            {
+			{
 				tile.UpdateEffects(true);
-            }
-        }
+			}
+		}
 	}
 
 	//Updates tiles between turns
 	public void DeathTrigger(ChessPiece piece)
 	{
 		TriggerOnePiece(piece, TriggerType.OnDeath);
+		Debug.Log(GameManager.Instance.GetCurrentPieceCount());
 	}
 
 	public void MoveTrigger(ChessPiece piece, TriggerConditions conditions = TriggerConditions.None)
@@ -250,9 +251,9 @@ public class ChessBoard2 : NetworkIdentity
 
 	void SpawnPromoteUI(ChessPiece piece)
 	{
-		if(piece.GetComponent<ChessPieceObject>().chessPieceData.promotable.Count == 0) return;
-		promoteUITemp = Instantiate(promoteUI, piece.currentTile.transform.position + Vector3.up*3, Quaternion.identity);
-		foreach(ChessPieceData data in piece.GetComponent<ChessPieceObject>().chessPieceData.promotable)
+		if (piece.GetComponent<ChessPieceObject>().chessPieceData.promotable.Count == 0) return;
+		promoteUITemp = Instantiate(promoteUI, piece.currentTile.transform.position + Vector3.up * 3, Quaternion.identity);
+		foreach (ChessPieceData data in piece.GetComponent<ChessPieceObject>().chessPieceData.promotable)
 		{
 			GameObject UIPiece = Instantiate(promoteUITemp.transform.GetChild(0).GetChild(0).gameObject, promoteUITemp.transform.GetChild(0));
 			UIPiece.transform.GetChild(0).GetComponent<Image>().sprite = data.image;
@@ -268,55 +269,58 @@ public class ChessBoard2 : NetworkIdentity
 		Destroy(promoteUITemp);
 
 		GameManager.Instance.EndTurn(); // Switch turn
-		if(NetworkManager.main.isServer) EndClientTurn();
-		if(NetworkManager.main.isClient) EndServerTurn();
+		if (NetworkManager.main.isServer) EndClientTurn();
+		if (NetworkManager.main.isClient) EndServerTurn();
 	}
 
 	bool TriggerConditionTester(TriggerConditions conditions, ChessPiece piece)
 	{
-		if(conditions==TriggerConditions.None) return true;
+		if (conditions == TriggerConditions.None) return true;
 
-		if(conditions.HasFlag(TriggerConditions.OnWhiteSquare))
+		if (conditions.HasFlag(TriggerConditions.OnWhiteSquare))
 		{
-			if(piece.currentTile.isWhite) return true;
+			if (piece.currentTile.isWhite) return true;
 		}
-		if(conditions.HasFlag(TriggerConditions.OnBlackSquare))
+		if (conditions.HasFlag(TriggerConditions.OnBlackSquare))
 		{
-			if(!piece.currentTile.isWhite) return true;
+			if (!piece.currentTile.isWhite) return true;
 		}
 
 		return false;
 	}
 
 
-	private bool TriggerAllPieces(TriggerType trigger,  bool endTurn = false, TriggerConditions conditions = TriggerConditions.None)
+	private bool TriggerAllPieces(TriggerType trigger, bool endTurn = false, TriggerConditions conditions = TriggerConditions.None)
 	{
 		List<ChessPiece> pieces = new List<ChessPiece>();
 		foreach (Tile tile in TileLocations)
 		{
 			if (tile != null)
-            {
+			{
 				foreach (ChessPiece piece in tile.tileOccupants) // assuming one occupant for now
 				{
 					pieces.Add(piece);
 				}
-            }
-			
+			}
+
 		}
 
-		foreach(ChessPiece piece in pieces)
-        {
-            RunAbilities(piece, piece.GetTileTags(trigger), piece.currentTile, endTurn);
-        }
+		foreach (ChessPiece piece in pieces)
+		{
+			RunAbilities(piece, piece.GetTileTags(trigger), piece.currentTile, endTurn);
+		}
 
 		return true;
 	}
 
 	private bool TriggerOnePiece(ChessPiece piece, TriggerType trigger, Tile selectedTile = null, bool layered = false, bool endTurn = false)
 	{
-		if (layered) {
+		if (layered)
+		{
 			RunAbilities(piece, GetAbilityLayer(piece, trigger, abilityClickLayer, false), selectedTile, endTurn);
-		} else {
+		}
+		else
+		{
 			RunAbilities(piece, piece.GetTileTags(trigger), selectedTile, endTurn);
 		}
 
@@ -336,33 +340,37 @@ public class ChessBoard2 : NetworkIdentity
 			{
 				List<(Vector2Int, ActionTrait[])> allTriggeredTiles = action.grid;
 				allTriggeredTiles = FilterTiles(piece, allTriggeredTiles);
-				
+
 				bool result = RunTiles(piece, tile, allTriggeredTiles, action.actionEffectMult);
 				if (!result) break;
 				did_anything_happen += result ? 1 : 0;
 			}
-			if(ability.sound!=null) PlayClipAt(ability.sound, piece.transform.position, mixerGroup, 1);
+			if (ability.sound != null) PlayClipAt(ability.sound, piece.transform.position, mixerGroup, 1);
 		}
 
 		if (did_anything_happen > 0)
 		{
 			piece.moves++;
-			if(endTurn) {
-				if(piece.team == Team.Black && GameData.Instance.map.height-1 == piece.currentTile.TileBoardY && piece.GetComponent<ChessPieceObject>().chessPieceData.promotable.Count > 0)
+			if (endTurn)
+			{
+				if (piece.team == Team.Black && GameData.Instance.map.height - 1 == piece.currentTile.TileBoardY && piece.GetComponent<ChessPieceObject>().chessPieceData.promotable.Count > 0)
 				{
 					SpawnPromoteUI(piece);
-				}else if(piece.team == Team.White && 0 == piece.currentTile.TileBoardY && piece.GetComponent<ChessPieceObject>().chessPieceData.promotable.Count > 0)
+				}
+				else if (piece.team == Team.White && 0 == piece.currentTile.TileBoardY && piece.GetComponent<ChessPieceObject>().chessPieceData.promotable.Count > 0)
 				{
 					SpawnPromoteUI(piece);
-				}else{
+				}
+				else
+				{
 					GameManager.Instance.EndTurn(); // Switch turn
-					if(NetworkManager.main.isServer) EndClientTurn();
-					if(NetworkManager.main.isClient) EndServerTurn();
+					if (NetworkManager.main.isServer) EndClientTurn();
+					if (NetworkManager.main.isClient) EndServerTurn();
 				}
 			}
 		}
 
-		if(abilityToggleTemp!=null) Destroy(abilityToggleTemp);
+		if (abilityToggleTemp != null) Destroy(abilityToggleTemp);
 	}
 
 	[ServerRpc(requireOwnership: false)]
@@ -380,7 +388,7 @@ public class ChessBoard2 : NetworkIdentity
 	{
 		foreach (TriggerType trigger in triggers)
 		{
-			List <Ability_TG> abilityLayer = GetAbilityLayer(piece, trigger, layer, true);
+			List<Ability_TG> abilityLayer = GetAbilityLayer(piece, trigger, layer, true);
 			foreach (Ability_TG ability in abilityLayer)
 			{
 				if (ability.actions.Count > 0 && TriggerConditionTester(ability.triggerConditions, piece))
@@ -411,8 +419,9 @@ public class ChessBoard2 : NetworkIdentity
 
 		int selectedLayer = (layer >= abilityDict.Count) ? layer % abilityDict.Count : layer;
 
-		GameObject abilityToggleIns = Instantiate(abilityToggle, piece.transform.position+transform.up*2, Quaternion.identity);
-		for(int i = 1; i < abilityDict.Count; i++){
+		GameObject abilityToggleIns = Instantiate(abilityToggle, piece.transform.position + transform.up * 2, Quaternion.identity);
+		for (int i = 1; i < abilityDict.Count; i++)
+		{
 			Instantiate(abilityToggleIns.transform.GetChild(0).GetChild(0).gameObject, abilityToggleIns.transform.GetChild(0));
 		}
 		abilityToggleIns.transform.GetChild(0).GetChild(selectedLayer).GetComponent<Toggle>().isOn = true;
@@ -426,13 +435,14 @@ public class ChessBoard2 : NetworkIdentity
 		foreach (Tile tile in TileLocations)
 		{
 			if (tile != null)
-            {
-                if (selected == null)
+			{
+				if (selected == null)
 				{
 					tile.UnHighlight(0);
-				}else tile.UnHighlight(Vector2.Distance(new Vector2(tile.TileBoardX, tile.TileBoardY), new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
-            }
-			
+				}
+				else tile.UnHighlight(Vector2.Distance(new Vector2(tile.TileBoardX, tile.TileBoardY), new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
+			}
+
 		}
 
 		availableMoves.Clear();
@@ -443,10 +453,10 @@ public class ChessBoard2 : NetworkIdentity
 		for (int i = 0; i < availableMoves.Count; i++)
 		{
 			if (TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y] != null)
-            {
-                Vector2 pos = new Vector2(TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardX, TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardY);
+			{
+				Vector2 pos = new Vector2(TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardX, TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardY);
 				TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].Highlight(Vector2.Distance(pos, new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
-            }
+			}
 		}
 	}
 
@@ -491,7 +501,7 @@ public class ChessBoard2 : NetworkIdentity
 				foreach (Vector2Int pos in path)
 				{
 					if (TileLocations[pos.x, pos.y] != null && isObstructed(cp, TileLocations[pos.x, pos.y].obstructed))
-					{ 
+					{
 						add = false;
 						break;
 					}
@@ -504,7 +514,7 @@ public class ChessBoard2 : NetworkIdentity
 				foreach (Vector2Int pos in path)
 				{
 					if (TileLocations[pos.x, pos.y] != null && !isObstructed(cp, TileLocations[pos.x, pos.y].obstructed))
-					{ 
+					{
 						add = false;
 						break;
 					}
@@ -514,9 +524,9 @@ public class ChessBoard2 : NetworkIdentity
 			if
 			(
 				TileLocations[tilePosition.x, tilePosition.y].obstructed != Tile.conditions.None &&
-				actionTraits.Contains(ActionTrait.apply_to_empty_space) && 
-				!actionTraits.Contains(ActionTrait.apply_to_ownteam_space) && 
-				!actionTraits.Contains(ActionTrait.apply_to_opposingteam_space)&& 
+				actionTraits.Contains(ActionTrait.apply_to_empty_space) &&
+				!actionTraits.Contains(ActionTrait.apply_to_ownteam_space) &&
+				!actionTraits.Contains(ActionTrait.apply_to_opposingteam_space) &&
 				isObstructed(cp, TileLocations[tilePosition.x, tilePosition.y].obstructed)
 			) add = false;
 
@@ -529,8 +539,8 @@ public class ChessBoard2 : NetworkIdentity
 
 	bool isObstructed(ChessPiece cp, Tile.conditions conditions = Tile.conditions.None)
 	{
-		if(cp.team == Team.White && conditions.HasFlag(Tile.conditions.White)) return true;
-		if(cp.team == Team.Black && conditions.HasFlag(Tile.conditions.Black)) return true;
+		if (cp.team == Team.White && conditions.HasFlag(Tile.conditions.White)) return true;
+		if (cp.team == Team.Black && conditions.HasFlag(Tile.conditions.Black)) return true;
 		return false;
 	}
 
@@ -543,14 +553,14 @@ public class ChessBoard2 : NetworkIdentity
 		Vector2Int previousPosition = new Vector2Int(cp.currentTile.TileBoardY, cp.currentTile.TileBoardX);
 
 		Vector2Int randomPositionFromSelected = -Vector2Int.one;
-		if(allTriggeredTiles.Count >= 1) randomPositionFromSelected = allTriggeredTiles[UnityEngine.Random.Range(0, allTriggeredTiles.Count-1)].Item1;
+		if (allTriggeredTiles.Count >= 1) randomPositionFromSelected = allTriggeredTiles[UnityEngine.Random.Range(0, allTriggeredTiles.Count - 1)].Item1;
 
 		foreach ((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
 		{
 			Vector2Int tilePosition = tile.Item1;
 
 			ChessPiece ocp = null;
-			if(TileLocations[tilePosition.x, tilePosition.y] != null && TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0) ocp = TileLocations[tilePosition.x, tilePosition.y].GetAllOccupants().ElementAt(0);
+			if (TileLocations[tilePosition.x, tilePosition.y] != null && TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0) ocp = TileLocations[tilePosition.x, tilePosition.y].GetAllOccupants().ElementAt(0);
 
 			List<ActionTrait> actionTraits = tile.Item2.ToList();
 
@@ -560,13 +570,15 @@ public class ChessBoard2 : NetworkIdentity
 			{
 				continue;
 			}
-			if(actionTraits.Contains(ActionTrait.remove_all_but_one_random) && tilePosition != randomPositionFromSelected) continue;
-			if (actionTraits.Contains(ActionTrait.remove_unselected_line)){
+			if (actionTraits.Contains(ActionTrait.remove_all_but_one_random) && tilePosition != randomPositionFromSelected) continue;
+			if (actionTraits.Contains(ActionTrait.remove_unselected_line))
+			{
 				List<Vector2Int> path = GridLine.GetLine(previousPosition, new Vector2Int(selectedTile.TileBoardY, selectedTile.TileBoardX));
-				if(!path.Contains(tilePosition)){
+				if (!path.Contains(tilePosition))
+				{
 					continue;
 				}
-			} 
+			}
 
 			wasTileSelected = true;
 
@@ -590,7 +602,7 @@ public class ChessBoard2 : NetworkIdentity
 			if (actionTraits.Contains(ActionTrait.command_pushback))
 			{
 				Vector2Int targetIndex = tilePosition;
-				Vector2Int cpIndex     = previousPosition;
+				Vector2Int cpIndex = previousPosition;
 
 				Vector2Int dir = targetIndex - cpIndex;
 
@@ -655,7 +667,7 @@ public class ChessBoard2 : NetworkIdentity
 					{
 						// Remove from current position
 						TileLocations[targetIndex.x, targetIndex.y].RemovePiece(ocp);
-						
+
 						// Piece dies when pulled onto fisherman
 						if (ocp.isLifeline)
 						{
@@ -672,11 +684,11 @@ public class ChessBoard2 : NetworkIdentity
 							TileLocations[newIndex.x, newIndex.y] == null;
 
 						// Check if destination tile is occupied
-						bool isOccupied = !outOfBounds && 
+						bool isOccupied = !outOfBounds &&
 							TileLocations[newIndex.x, newIndex.y].tileOccupants.Count > 0;
 
 						// Check if destination tile is obstructed
-						bool isBlocked = !outOfBounds && 
+						bool isBlocked = !outOfBounds &&
 							isObstructed(ocp, TileLocations[newIndex.x, newIndex.y].obstructed);
 
 						if (outOfBounds || isOccupied || isBlocked)
@@ -735,8 +747,8 @@ public class ChessBoard2 : NetworkIdentity
 			if (actionTraits.Contains(ActionTrait.spawn_opposing_obstruct)) // if trait spawns water
 			{
 				float distance = Vector2.Distance(new Vector2(cp.currentTile.TileBoardX, cp.currentTile.TileBoardY), new Vector2(TileLocations[tilePosition.x, tilePosition.y].TileBoardX, TileLocations[tilePosition.x, tilePosition.y].TileBoardY));
-				if(cp.team == Team.Black) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scarewhite", (int)actionEffectMult, distance);
-				if(cp.team == Team.White) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scareblack", (int)actionEffectMult, distance);
+				if (cp.team == Team.Black) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scarewhite", (int)actionEffectMult, distance);
+				if (cp.team == Team.White) TileLocations[tilePosition.x, tilePosition.y].AddEffect("scareblack", (int)actionEffectMult, distance);
 			}
 
 			if (actionTraits.Contains(ActionTrait.command_removetile)) // if trait removes the tile
@@ -746,7 +758,7 @@ public class ChessBoard2 : NetworkIdentity
 
 			if (actionTraits.Contains(ActionTrait.command_respawn)) // if trait respawns a piece
 			{
-				if(ocp.originalTile.tileOccupants.Count == 0)
+				if (ocp.originalTile.tileOccupants.Count == 0)
 				{
 					SpawnPiece("null", new Vector2Int(ocp.originalTile.TileBoardX, ocp.originalTile.TileBoardY), ocp.team, ocp.gameObject);
 				}
@@ -773,7 +785,7 @@ public class ChessBoard2 : NetworkIdentity
 	{
 		DisplayVictory(team);
 	}
-	
+
 	// Randomize movesets for all Frankenstein pieces on the board
 	private void RandomizeFrankensteinMovesets()
 	{
@@ -783,7 +795,7 @@ public class ChessBoard2 : NetworkIdentity
 			{
 				foreach (ChessPiece piece in tile.tileOccupants)
 				{
-					if(piece == null) continue;
+					if (piece == null) continue;
 					ChessPieceObject pieceObj = piece.GetComponent<ChessPieceObject>();
 					if (pieceObj != null && pieceObj.chessPieceData.isFrankenstein)
 					{
@@ -793,28 +805,28 @@ public class ChessBoard2 : NetworkIdentity
 			}
 		}
 	}
-	
+
 	// Select a random moveset for a Frankenstein piece based on weights
 	private void SelectRandomMoveset(ChessPieceObject frankensteinPiece)
 	{
 		ChessPieceData data = frankensteinPiece.chessPieceData;
-		
+
 		if (data.frankensteinMovesets.Count == 0)
 		{
 			Debug.LogWarning($"Frankenstein piece {frankensteinPiece.name} has no movesets configured!");
 			return;
 		}
-		
+
 		// Calculate total weight
 		float totalWeight = 0f;
 		foreach (WeightedMoveset moveset in data.frankensteinMovesets)
 		{
 			totalWeight += moveset.weightPercentage;
 		}
-		
+
 		// Select random value
 		float randomValue = UnityEngine.Random.Range(0f, totalWeight);
-		
+
 		// Find the selected moveset
 		float cumulativeWeight = 0f;
 		foreach (WeightedMoveset moveset in data.frankensteinMovesets)
@@ -827,7 +839,7 @@ public class ChessBoard2 : NetworkIdentity
 				return;
 			}
 		}
-		
+
 		// Fallback to first moveset
 		frankensteinPiece.activeFrankensteinMoveset = data.frankensteinMovesets[0].movesetData;
 	}
@@ -841,14 +853,14 @@ public class ChessBoard2 : NetworkIdentity
 			winText.text = "White wins!";
 		}
 		else
-        {
+		{
 			winText.text = "Black wins!";
-        }
+		}
 	}
 
 	public void movePuzzlePiece()
 	{
-		if(!isPuzzleDone)
+		if (!isPuzzleDone)
 		{
 			Puzzles puzzle = GameData.Instance.puzzle;
 			string[] tempList = puzzle.blackTeamMovements[turns[0]].Split(" ");
@@ -861,7 +873,7 @@ public class ChessBoard2 : NetworkIdentity
 			InteractTrigger(tile1);
 			StartCoroutine(delayTime(0.5f, tile2));
 		}
-		
+
 
 		turns[0]++;
 	}
@@ -891,20 +903,20 @@ public class ChessBoard2 : NetworkIdentity
 		// 		return true;
 		// 	}
 		// }
-		for(int i = 0; i < tempList.Length; i++)
+		for (int i = 0; i < tempList.Length; i++)
 		{
 			Debug.Log(tempList[i]);
 		}
-		for(int i = 0; i < tempList.Length; i += 4)
+		for (int i = 0; i < tempList.Length; i += 4)
 		{
-			if(tempList[i] == null || tempList[i] == "")
+			if (tempList[i] == null || tempList[i] == "")
 			{
 				continue;
 			}
 			Tile firstTile = allClickedOnTiles[allClickedOnTiles.Count - 2];
 			Tile secondTile = allClickedOnTiles[allClickedOnTiles.Count - 1];
 
-			if(firstTile.TileBoardX == int.Parse(tempList[i]) && firstTile.TileBoardY == int.Parse(tempList[i + 1]) && secondTile.TileBoardX == int.Parse(tempList[i + 2]) && secondTile.TileBoardY == int.Parse(tempList[i + 3]))
+			if (firstTile.TileBoardX == int.Parse(tempList[i]) && firstTile.TileBoardY == int.Parse(tempList[i + 1]) && secondTile.TileBoardX == int.Parse(tempList[i + 2]) && secondTile.TileBoardY == int.Parse(tempList[i + 3]))
 			{
 				return true;
 			}
@@ -922,7 +934,8 @@ public class ChessBoard2 : NetworkIdentity
 		{
 			whiteTeam = GameData.Instance.teams[GameData.Instance.yourTeamName];
 			blackTeam = theirTeam;
-		}else if (NetworkManager.main.isClient)
+		}
+		else if (NetworkManager.main.isClient)
 		{
 			whiteTeam = theirTeam;
 			blackTeam = GameData.Instance.teams[GameData.Instance.yourTeamName];
@@ -936,21 +949,22 @@ public class ChessBoard2 : NetworkIdentity
 		int whiteIndex = int.Parse(whiteTeam[whiteTeam.Length - 1]);
 		int blackIndex = int.Parse(blackTeam[blackTeam.Length - 1]);
 
-		if(whiteIndex == blackIndex)
+		if (whiteIndex == blackIndex)
 		{
 			blackIndex--;
 
-			if(blackIndex < 0)
+			if (blackIndex < 0)
 			{
 				blackIndex = GameData.Instance.matList.Count - 1;
-			} else if(blackIndex >= GameData.Instance.matList.Count)
+			}
+			else if (blackIndex >= GameData.Instance.matList.Count)
 			{
 				blackIndex = 0;
 			}
 		}
 
 		WhitePieceMat = GameData.Instance.matList[whiteIndex].material;
-		BlackPieceMat = GameData.Instance.matList[blackIndex].material;		
+		BlackPieceMat = GameData.Instance.matList[blackIndex].material;
 
 		// GameManager.Instance.CurrentTurn = Team.Black;
 
@@ -972,7 +986,7 @@ public class ChessBoard2 : NetworkIdentity
 		}
 
 		pieceOn = 0;
-		
+
 		// spawn white pieces
 		for (int i = map.startingBlackTiles[1]; i >= map.startingBlackTiles[1] - 2; i--)
 		{
@@ -990,28 +1004,28 @@ public class ChessBoard2 : NetworkIdentity
 
 
 	[ServerRpc(requireOwnership: false)]
-    public void SendTeamToServer(string[] team)
-    {
+	public void SendTeamToServer(string[] team)
+	{
 		GameManager.Instance.Initialize();
-        Debug.Log("SendTeamToServer RPC received");
-        SpawnAllPieces(team);
-    }
+		Debug.Log("SendTeamToServer RPC received");
+		SpawnAllPieces(team);
+	}
 
-    [ObserversRpc(bufferLast: true)]
-    public void SendTeamToClient(string[] team)
-    {
+	[ObserversRpc(bufferLast: true)]
+	public void SendTeamToClient(string[] team)
+	{
 		GameManager.Instance.Initialize();
-        Debug.Log("SendTeamToClient RPC received");
-        SpawnAllPieces(team);
-    }
+		Debug.Log("SendTeamToClient RPC received");
+		SpawnAllPieces(team);
+	}
 	public void SpawnAllPuzzlePieces()
 	{
 		Puzzles puzzle = GameData.Instance.puzzle;
 
 		// spawn black
-		foreach(PieceBoardData pieceBoardData in puzzle.teamSpawning)
+		foreach (PieceBoardData pieceBoardData in puzzle.teamSpawning)
 		{
-			if(pieceBoardData.data==null) continue;
+			if (pieceBoardData.data == null) continue;
 			SpawnPiece(pieceBoardData.data.pieceName, pieceBoardData.pos, pieceBoardData.team);
 		}
 	}
@@ -1021,10 +1035,10 @@ public class ChessBoard2 : NetworkIdentity
 	public void SpawnPiece(string pieceID, Vector2Int boardLoc, Team team, GameObject obj = null)
 	{
 		ChessPieceData data = null;
-		
-		if(obj)
+
+		if (obj)
 		{
-			
+
 		}
 		else
 		{
@@ -1070,7 +1084,7 @@ public class ChessBoard2 : NetworkIdentity
 
 		piece.originalTile = TileLocations[boardLoc.y, boardLoc.x];
 		TileLocations[boardLoc.y, boardLoc.x].AddPiece(piece);
-		
+
 		// Initialize Frankenstein moveset if this is a Frankenstein piece
 		ChessPieceObject pieceObj = piece.GetComponent<ChessPieceObject>();
 		if (pieceObj != null && pieceObj.chessPieceData.isFrankenstein)
@@ -1084,9 +1098,9 @@ public class ChessBoard2 : NetworkIdentity
 	{
 		ChessPieceData data = null;
 
-		if(obj)
+		if (obj)
 		{
-			
+
 		}
 		else
 		{
@@ -1156,73 +1170,73 @@ public class ChessBoard2 : NetworkIdentity
 	}
 
 	public static AudioSource PlayClipAt(AudioClip clip, Vector3 position, AudioMixerGroup outputGroup = null, float volume = 1.0f, float pitch = 1.0f)
-    {
-        GameObject tempGO = new GameObject("TempAudio"); // create the temp object
-        tempGO.transform.position = position; // set its position
-        AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
-        
-        aSource.clip = clip; // define the clip
-        aSource.volume = volume; // set the volume
-        aSource.pitch = pitch; // set the pitch
-        
-        // Assign the output Audio Mixer Group if one is provided
-        if (outputGroup != null)
-        {
-            aSource.outputAudioMixerGroup = outputGroup;
-        }
-        
-        // Set other desired properties here (e.g., spatial blend, priority, etc.)
-        // aSource.spatialBlend = 1.0f; // Set to 3D sound if needed
+	{
+		GameObject tempGO = new GameObject("TempAudio"); // create the temp object
+		tempGO.transform.position = position; // set its position
+		AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
 
-        aSource.Play(); // start the sound
-        GameObject.Destroy(tempGO, clip.length); // destroy object after clip duration
+		aSource.clip = clip; // define the clip
+		aSource.volume = volume; // set the volume
+		aSource.pitch = pitch; // set the pitch
 
-        return aSource; // return the AudioSource reference if needed for further dynamic changes
-    }
+		// Assign the output Audio Mixer Group if one is provided
+		if (outputGroup != null)
+		{
+			aSource.outputAudioMixerGroup = outputGroup;
+		}
+
+		// Set other desired properties here (e.g., spatial blend, priority, etc.)
+		// aSource.spatialBlend = 1.0f; // Set to 3D sound if needed
+
+		aSource.Play(); // start the sound
+		GameObject.Destroy(tempGO, clip.length); // destroy object after clip duration
+
+		return aSource; // return the AudioSource reference if needed for further dynamic changes
+	}
 }
 
 public static class GridLine
 {
-    // Returns all grid cells (Vector2Int) that a line from start → end passes through
-    public static List<Vector2Int> GetLine(Vector2Int start, Vector2Int end)
-    {
-        List<Vector2Int> cells = new List<Vector2Int>();
+	// Returns all grid cells (Vector2Int) that a line from start → end passes through
+	public static List<Vector2Int> GetLine(Vector2Int start, Vector2Int end)
+	{
+		List<Vector2Int> cells = new List<Vector2Int>();
 
-        int x0 = start.x;
-        int y0 = start.y;
-        int x1 = end.x;
-        int y1 = end.y;
+		int x0 = start.x;
+		int y0 = start.y;
+		int x1 = end.x;
+		int y1 = end.y;
 
-        int dx = Mathf.Abs(x1 - x0);
-        int dy = Mathf.Abs(y1 - y0);
+		int dx = Mathf.Abs(x1 - x0);
+		int dy = Mathf.Abs(y1 - y0);
 
-        int sx = x0 < x1 ? 1 : -1;
-        int sy = y0 < y1 ? 1 : -1;
+		int sx = x0 < x1 ? 1 : -1;
+		int sy = y0 < y1 ? 1 : -1;
 
-        int err = dx - dy;
-        int err2;
+		int err = dx - dy;
+		int err2;
 
-        while (true)
-        {
-			if(new Vector2Int(x0, y0) != start && new Vector2Int(x0, y0) != end) cells.Add(new Vector2Int(x0, y0));
+		while (true)
+		{
+			if (new Vector2Int(x0, y0) != start && new Vector2Int(x0, y0) != end) cells.Add(new Vector2Int(x0, y0));
 
-            if (x0 == x1 && y0 == y1) break;
+			if (x0 == x1 && y0 == y1) break;
 
-            err2 = 2 * err;
+			err2 = 2 * err;
 
-            if (err2 > -dy)
-            {
-                err -= dy;
-                x0 += sx;
-            }
+			if (err2 > -dy)
+			{
+				err -= dy;
+				x0 += sx;
+			}
 
-            if (err2 < dx)
-            {
-                err += dx;
-                y0 += sy;
-            }
-        }
-		
-        return cells;
-    }
+			if (err2 < dx)
+			{
+				err += dx;
+				y0 += sy;
+			}
+		}
+
+		return cells;
+	}
 }

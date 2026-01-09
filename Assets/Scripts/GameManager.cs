@@ -42,52 +42,52 @@ public class GameManager : NetworkIdentity
 	// Stuff for adding a move to the move log
 	public GameObject moveTrackerContent;
 	public GameObject moveTrackerElementPrefab;
-	
+
 	public Button endTurnButton;
 	public List<Sprite> buttonColors = new List<Sprite>();
 	public bool canMakeTracker = true;
 
 	protected override void OnSpawned(bool asServer)
-    {
-        base.OnSpawned(asServer);
+	{
+		base.OnSpawned(asServer);
 
-        Camera.SetTurn(asServer ? Team.White : Team.Black);
+		Camera.SetTurn(asServer ? Team.White : Team.Black);
 
-        if (asServer)
-        {
-            Debug.Log("SERVER: sending to client");
-            Board.SendTeamToClient(GameData.Instance.teams[GameData.Instance.yourTeamName]);
+		if (asServer)
+		{
+			Debug.Log("SERVER: sending to client");
+			Board.SendTeamToClient(GameData.Instance.teams[GameData.Instance.yourTeamName]);
 
 			int seed = Random.Range(0, 999999);
 			Random.InitState(seed);
 			SetSeed(seed);
-			print("RANDOM SEED: "+seed);
-        }
-        else
-        {
-            Debug.Log("CLIENT: sending to server");
-            Board.SendTeamToServer(GameData.Instance.teams[GameData.Instance.yourTeamName]);
-        }
-    }
+			print("RANDOM SEED: " + seed);
+		}
+		else
+		{
+			Debug.Log("CLIENT: sending to server");
+			Board.SendTeamToServer(GameData.Instance.teams[GameData.Instance.yourTeamName]);
+		}
+	}
 
 	[ObserversRpc(bufferLast: true)]
 	public void SetSeed(int seed)
 	{
-		print("RANDOM SEED: "+seed);
+		print("RANDOM SEED: " + seed);
 		UnityEngine.Random.InitState(seed);
 	}
 
-    void Awake()
-    {
-        Instance = this;
-    }
+	void Awake()
+	{
+		Instance = this;
+	}
 
 	void Start()
 	{
-		if(!NetworkManager.main.isServer && !NetworkManager.main.isClient) Initialize();
+		if (!NetworkManager.main.isServer && !NetworkManager.main.isClient) Initialize();
 	}
 
-    public void Initialize()
+	public void Initialize()
 	{
 		Instance = this;
 
@@ -96,18 +96,19 @@ public class GameManager : NetworkIdentity
 		// Example: start with White
 		Board.InitBoard();
 
-		if(!GameData.Instance.isDoingPuzzle)
+		if (!GameData.Instance.isDoingPuzzle)
 		{
 
-			if(!NetworkManager.main.isServer && !NetworkManager.main.isClient)
+			if (!NetworkManager.main.isServer && !NetworkManager.main.isClient)
 			{
 				Board.SpawnAllPieces(null);
 			}
-		} else
+		}
+		else
 		{
 			Board.SpawnAllPuzzlePieces();
 		}
-		
+
 		StartGame(Team.White);
 	}
 
@@ -116,7 +117,7 @@ public class GameManager : NetworkIdentity
 		if (Input.GetKeyDown(KeyCode.Tilde))
 		{
 			DebugUIVIsible = !DebugUIVIsible;
-			ShowCanvasGroup(DebugUI, DebugUIVIsible);	
+			ShowCanvasGroup(DebugUI, DebugUIVIsible);
 		}
 
 		// Handle escape key for pause menu
@@ -126,9 +127,9 @@ public class GameManager : NetworkIdentity
 			TogglePauseMenu();
 		}
 
-		if(GameData.Instance.isDoingPuzzle)
+		if (GameData.Instance.isDoingPuzzle)
 		{
-			if(CurrentTurn == Team.Black && !ranPuzzleMoveOnce)
+			if (CurrentTurn == Team.Black && !ranPuzzleMoveOnce)
 			{
 				ranPuzzleMoveOnce = true;
 				Board.movePuzzlePiece();
@@ -148,27 +149,28 @@ public class GameManager : NetworkIdentity
 	}
 
 	public void EndTurn()
-	{		
+	{
 		endTurnButton.GetComponent<Image>().sprite = (CurrentTurn == Team.Black) ? buttonColors[0] : buttonColors[1];
 		SpriteState state = endTurnButton.spriteState;
 		state.highlightedSprite = (CurrentTurn == Team.Black) ? buttonColors[2] : buttonColors[3];
 		endTurnButton.spriteState = state;
-		
-		if(GameData.Instance.isDoingPuzzle && CurrentTurn == Team.White && !Board.checkWhitePuzzle())
+
+		if (GameData.Instance.isDoingPuzzle && CurrentTurn == Team.White && !Board.checkWhitePuzzle())
 		{
 			Debug.Log("Wrong Move");
 			StartCoroutine(WaitForIncorrectPuzzle());
-			
-		} else
+
+		}
+		else
 		{
-			if(CurrentTurn == Team.White && GameData.Instance.isDoingPuzzle)
+			if (CurrentTurn == Team.White && GameData.Instance.isDoingPuzzle)
 			{
 				Board.turns[1]++;
 
-				if(Board.turns[1] == GameData.Instance.puzzle.whiteTeamMovements.Length)
+				if (Board.turns[1] == GameData.Instance.puzzle.whiteTeamMovements.Length)
 				{
-					if(GameData.Instance.puzzle.unlockData!=null) PlayerPrefs.SetInt("unlocked " + GameData.Instance.puzzle.unlockData.pieceName, 1);
-					if(GameData.Instance.puzzle.unlockMat!=-1) PlayerPrefs.SetInt("unlocked color" + GameData.Instance.puzzle.unlockMat, 1);
+					if (GameData.Instance.puzzle.unlockData != null) PlayerPrefs.SetInt("unlocked " + GameData.Instance.puzzle.unlockData.pieceName, 1);
+					if (GameData.Instance.puzzle.unlockMat != -1) PlayerPrefs.SetInt("unlocked color" + GameData.Instance.puzzle.unlockMat, 1);
 					Board.DisplayVictory(0);
 					Board.winText.text = "Puzzle complete!";
 					Board.isPuzzleDone = true;
@@ -181,7 +183,7 @@ public class GameManager : NetworkIdentity
 			ranPuzzleMoveOnce = false;
 
 			turnCount++;
-		
+
 			Debug.Log($"Turn ended. Now it's {CurrentTurn}'s move.");
 
 			// Update camera to face the active team
@@ -192,7 +194,7 @@ public class GameManager : NetworkIdentity
 
 			TurnStatusText.text = "Turn: " + CurrentTurn.ToString();
 
-			if(canMakeTracker)
+			if (canMakeTracker)
 			{
 				GameObject newMoveSpot = Instantiate(moveTrackerElementPrefab);
 				newMoveSpot.GetComponentInChildren<TextMeshProUGUI>().text = Board.allClickedOnPieces[Board.allClickedOnPieces.Count - 1].GetComponent<ChessPieceObject>().chessPieceData.name + " at (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 2].TileBoardY + ") -> (" + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardX + ", " + Board.allClickedOnTiles[Board.allClickedOnTiles.Count - 1].TileBoardY + ")";
@@ -200,13 +202,13 @@ public class GameManager : NetworkIdentity
 				newMoveSpot.transform.SetParent(moveTrackerContent.transform);
 				newMoveSpot.transform.SetAsFirstSibling();
 			}
-			
+
 			canMakeTracker = true;
 
 			Board.TileTrigger();
 			Board.TurnSwapTrigger();
 		}
-		
+
 	}
 
 	public void EndTurn(int literallyUseless)
@@ -225,7 +227,8 @@ public class GameManager : NetworkIdentity
 	public void ResetGame()
 	{
 		Time.timeScale = 1f;
-		if(!NetworkManager.main.isServer && !NetworkManager.main.isClient){
+		if (!NetworkManager.main.isServer && !NetworkManager.main.isClient)
+		{
 			SceneManager.LoadScene("Welcome2Chess");
 		}
 		else
@@ -237,13 +240,13 @@ public class GameManager : NetworkIdentity
 	public void TogglePauseMenu()
 	{
 		Debug.Log("TogglePauseMenu called");
-		
+
 		if (pauseMenuManager != null)
 		{
 			GamePaused = !GamePaused;
 			Debug.Log($"Game paused state: {GamePaused}");
 			pauseMenuManager.TogglePauseMenu(GamePaused);
-			
+
 			// Pause/unpause the game time
 			Time.timeScale = GamePaused ? 0f : 1f;
 		}
@@ -264,9 +267,9 @@ public class GameManager : NetworkIdentity
 	}
 
 	public void ExitGame()
-    {
+	{
 		SceneManager.LoadScene("MainMenu");
-    }
+	}
 
 	public static void ShowCanvasGroup(CanvasGroup group, bool show)
 	{
@@ -275,5 +278,12 @@ public class GameManager : NetworkIdentity
 		group.alpha = show ? 1f : 0f;
 		group.interactable = show;
 		group.blocksRaycasts = show;
+	}
+
+	public ChessPieceObject[] GetCurrentPieceCount()
+	{
+		ChessPieceObject[] pieces = FindObjectsOfType<ChessPieceObject>();
+		return pieces;
+
 	}
 }
