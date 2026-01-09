@@ -2910,6 +2910,7 @@ MonoBehaviour:
   mixerGroup: {fileID: -6981211469889497049, guid: 6a8fb6d567abff3419b109e3a71f3567, type: 2}
   pawn: {fileID: 11400000, guid: d286f3db729156046a083d6aa867d7d7, type: 2}
   balloon: {fileID: 11400000, guid: c88b76d2cdfde8e48bd3b93c09f27877, type: 2}
+  bomb: {fileID: 11400000, guid: 829eb05afa3d5994b9a366d22614687b, type: 2}
 --- !u!114 &771100083
 MonoBehaviour:
   m_ObjectHideFlags: 0

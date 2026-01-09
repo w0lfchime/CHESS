@@ -138,3 +138,8 @@ MonoBehaviour:
     visualGrid: []
     actionEffectMult: 1
     grid: 
+  - name: Bomb
+    traits: 02000000000000001f000000
+    visualGrid: []
+    actionEffectMult: 1
+    grid: 

@@ -53,6 +53,8 @@ public enum ActionTrait
     spawn_pawn = 29,
 
     spawn_balloon = 30,
+
+    spawn_bomb = 31,
     spawn_water = 8,
     spawn_opposing_obstruct = 23,
     spawn_slime = 26,

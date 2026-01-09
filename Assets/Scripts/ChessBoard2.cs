@@ -61,8 +61,10 @@ public class ChessBoard2 : NetworkIdentity
 	private GameObject promoteUITemp;
 	public GameObject piecePrefab;
 	public AudioMixerGroup mixerGroup;
+	[Header("Spawned Piece Data")]
 	public ChessPieceData pawn;
 	public ChessPieceData balloon;
+	public ChessPieceData bomb;
 
 	void Awake()
 	{
@@ -791,6 +793,11 @@ public class ChessBoard2 : NetworkIdentity
 			if (actionTraits.Contains(ActionTrait.spawn_balloon))
 			{
 				ChessPieceObject child = SpawnPiece(balloon.pieceName, new Vector2Int(tilePosition.y, tilePosition.x), cp.team);
+			}
+
+			if (actionTraits.Contains(ActionTrait.spawn_bomb))
+			{
+				ChessPieceObject child = SpawnPiece(bomb.pieceName, new Vector2Int(tilePosition.y, tilePosition.x), cp.team);
 			}
 
 			if (actionTraits.Contains(ActionTrait.spawn_water)) // if trait spawns water
