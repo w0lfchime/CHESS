@@ -4736,9 +4736,35 @@ MonoBehaviour:
   - material: {fileID: 2100000, guid: 343f202618d833443834084b631b95f6, type: 2}
     locked: 0
   - material: {fileID: 2100000, guid: f18024d2c8f0abd49a4caa88eb8df8d4, type: 2}
-    locked: 1
+    locked: 0
   - material: {fileID: 2100000, guid: e22cc87da11b5b64eab21a44a907dcce, type: 2}
-    locked: 1
+    locked: 0
+  - material: {fileID: 2100000, guid: 1f192b2c03f69ea44980db055313de0e, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: b220422d1d0f960479aff489bcc3e48e, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: c7bb21b71d6b93b4ba05efec660441a4, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: 1beab8041a40a054dade8de2cbb3c012, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: 2b753963a6995e64d9b9656072095034, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: 855bcfff2ad40a744b773e392482fe4c, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: 4202ee653de170d41b9c15364146e078, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: 3d15721d202048948a136da304cb5d4f, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: 04d802f379ecd6849ab6ce9f6581957e, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: d6df67cf6d6574c4e845c24e5eb2c30a, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: bbec45ac7b9fab240bedb11456512484, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: f18024d2c8f0abd49a4caa88eb8df8d4, type: 2}
+    locked: 0
+  - material: {fileID: 2100000, guid: 04d802f379ecd6849ab6ce9f6581957e, type: 2}
+    locked: 0
   teamNames: []
   whiteTeamName: 
   blackTeamName: 
