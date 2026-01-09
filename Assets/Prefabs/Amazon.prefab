@@ -115,5 +115,6 @@ MonoBehaviour:
   IsTileOccupant: 1
   currentTile: {fileID: 0}
   meshFilter: {fileID: 0}
+  aura: {fileID: 5512659159781030453, guid: a96661fdc2b329b4a9e843af9b44e1f0, type: 3}
   chessPieceData: {fileID: 11400000, guid: 9c1834c6ed279ca4a85d7de56c508ed1, type: 2}
   activeFrankensteinMoveset: {fileID: 0}

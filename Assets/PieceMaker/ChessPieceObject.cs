@@ -21,6 +21,7 @@ public class Ability_TG
 public class ChessPieceObject : ChessPiece
 {
     public ChessPieceData chessPieceData;
+    public GameObject aura;
     
     // For Frankenstein piece - stores the currently active moveset
     [HideInInspector]
@@ -35,6 +36,8 @@ public class ChessPieceObject : ChessPiece
         }
 
         _isLifeline = chessPieceData.lifeLine;
+
+        if(_isLifeline) Instantiate(aura, transform);
     }
 
     public override List<Ability_TG> GetTileTags(TriggerType trigger = TriggerType.TurnAction, bool visual = false)

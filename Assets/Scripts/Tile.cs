@@ -88,6 +88,7 @@ public class Tile : MonoBehaviour
 		tileOccupants.Remove(piece);
 
 		UpdatePieces();
+		UpdateEffects(false);
 	}
 
 	public void UpdatePieces()
