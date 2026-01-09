@@ -92,6 +92,7 @@ public class Tile : MonoBehaviour
 
 	public void UpdatePieces()
 	{
+		tileOccupants.RemoveAll(item => item == null);
 		foreach (ChessPiece p in tileOccupants)
 		{
 			p.UpdatePieceData(this);

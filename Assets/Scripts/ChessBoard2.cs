@@ -582,7 +582,6 @@ public class ChessBoard2 : NetworkIdentity
 					{
 						CheckMate(1);
 					}
-					ocp.currentTile.RemovePiece(ocp);
 					ocp.Kill();
 				}
 

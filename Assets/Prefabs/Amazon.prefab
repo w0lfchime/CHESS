@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -969099142421124707}
   m_Layer: 0
   m_Name: Amazon
-  m_TagString: Untagged
+  m_TagString: piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,8 +109,11 @@ MonoBehaviour:
   _id: Amazon
   _value: 0
   _isLifeline: 0
+  interactable: 0
+  unkillable: 0
   pieceType: 0
   IsTileOccupant: 1
   currentTile: {fileID: 0}
   meshFilter: {fileID: 0}
   chessPieceData: {fileID: 11400000, guid: 9c1834c6ed279ca4a85d7de56c508ed1, type: 2}
+  activeFrankensteinMoveset: {fileID: 0}
