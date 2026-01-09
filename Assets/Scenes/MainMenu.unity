@@ -4783,7 +4783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matList:
-  - material: {fileID: -905690159841262435, guid: 0225a207483c28e438ae2cb5c9489058, type: 3}
+  - material: {fileID: 2100000, guid: a1688b5cf4e4e2c40b7816352d458842, type: 2}
     locked: 0
   - material: {fileID: 2100000, guid: 343f202618d833443834084b631b95f6, type: 2}
     locked: 0
