@@ -967,11 +967,11 @@ public class ChessBoard2 : NetworkIdentity
 
 		if (winningTeam == 0)
 		{
-			winText.text = "White wins!";
+			winText.text = "Player 1 wins!";
 		}
 		else
 		{
-			winText.text = "Black wins!";
+			winText.text = "Player 2 wins!";
 		}
 	}
 
