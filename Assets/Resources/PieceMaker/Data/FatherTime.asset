@@ -25,8 +25,9 @@ MonoBehaviour:
   - {fileID: -6535512506995588235, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   - {fileID: 3548951601036501923, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   model_scale_multiplier: 1
-  description: Time is ticking ever shorter
-  tagline: NoTaglineSet
+  description: Cannot be taken, but has a set amount of turns it needs to win by,
+    or else it loses
+  tagline: Time is ticking ever shorter
   collection: 7
   image: {fileID: 21300000, guid: 810ed60061d190549b43ea303e797a93, type: 3}
   lifeLine: 1

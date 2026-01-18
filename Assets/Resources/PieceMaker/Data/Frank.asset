@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 1110233775959259594, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   model_scale_multiplier: 1
   description: Frank
-  tagline: NoTaglineSet
+  tagline: Frank
   collection: 6
   image: {fileID: 21300000, guid: 45dacfa31abdeee4fa932828358b8734, type: 3}
   lifeLine: 0
