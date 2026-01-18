@@ -21,8 +21,8 @@ MonoBehaviour:
   blackMaterialList:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1
-  description: The better game
-  tagline: NoTaglineSet
+  description: Can jump over pieces to take them... kinda like another game I know
+  tagline: The better game
   collection: 6
   image: {fileID: 21300000, guid: 646ef8d77e663be429428539aff434a9, type: 3}
   lifeLine: 0
