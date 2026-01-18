@@ -22,6 +22,8 @@ MonoBehaviour:
   - {fileID: -1637880222114644024, guid: 3f4b816beb68fd647aaf553aa5cac4af, type: 3}
   model_scale_multiplier: 1
   description: Goopy guy
+  tagline: NoTaglineSet
+  collection: 3
   image: {fileID: 21300000, guid: 7a1ec1b88a48c0c498e1c71617fb6337, type: 3}
   lifeLine: 0
   promotable: []

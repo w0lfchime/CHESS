@@ -25,6 +25,7 @@ MonoBehaviour:
   model_scale_multiplier: 1
   description: Ribbit
   tagline: NoTaglineSet
+  collection: 3
   image: {fileID: 21300000, guid: 6719a3d6dc6239348b0321dee0143f62, type: 3}
   lifeLine: 0
   promotable:

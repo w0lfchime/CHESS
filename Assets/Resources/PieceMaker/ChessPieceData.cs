@@ -8,7 +8,13 @@ using System.IO;
 public enum Collections
 {
     The_Classics = 1,
-    Custom = 2
+    //Custom = 2,
+    Animal = 3,
+    Medieval = 4,
+    Weapons = 5,
+    Silly = 6,
+    Miscellaneous = 7
+
 }
 
 //All the action triggers. The chess board activates the triggers based on what is happening in the game.

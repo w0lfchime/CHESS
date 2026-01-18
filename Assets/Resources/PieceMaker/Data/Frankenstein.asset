@@ -26,6 +26,8 @@ MonoBehaviour:
   - {fileID: -5243988174349660497, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   model_scale_multiplier: 1
   description: He's alive... he's alive!!
+  tagline: NoTaglineSet
+  collection: 4
   image: {fileID: 21300000, guid: 93fa4ebe68548224baa85d5718a4c925, type: 3}
   lifeLine: 0
   promotable: []

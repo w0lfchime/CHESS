@@ -30,6 +30,8 @@ MonoBehaviour:
   - {fileID: 1209857149565726836, guid: 9ee665577f09e9a4eb0abbf1ce9525bc, type: 3}
   model_scale_multiplier: 1
   description: Guys please play our game Hammered its so cool and awe-
+  tagline: NoTaglineSet
+  collection: 4
   image: {fileID: 21300000, guid: da32a20b578002740926276f891a3fe5, type: 3}
   lifeLine: 0
   promotable: []

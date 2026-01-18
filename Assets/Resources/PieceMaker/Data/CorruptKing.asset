@@ -32,6 +32,8 @@ MonoBehaviour:
   - {fileID: 5163063355849896902, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   model_scale_multiplier: 1
   description: Evil stinky man
+  tagline: NoTaglineSet
+  collection: 4
   image: {fileID: 21300000, guid: a360675db45ce944388f3b3bda0996a3, type: 3}
   lifeLine: 1
   promotable: []

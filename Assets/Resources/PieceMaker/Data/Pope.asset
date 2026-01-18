@@ -23,6 +23,7 @@ MonoBehaviour:
   model_scale_multiplier: 1
   description: Not pope'n around
   tagline: NoTaglineSet
+  collection: 4
   image: {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}
   lifeLine: 0
   promotable:

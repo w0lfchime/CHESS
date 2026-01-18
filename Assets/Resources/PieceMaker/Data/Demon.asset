@@ -22,6 +22,8 @@ MonoBehaviour:
   - {fileID: 4913911580219713836, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
   model_scale_multiplier: 1
   description: I'm actually a pretty nice guy
+  tagline: NoTaglineSet
+  collection: 4
   image: {fileID: 21300000, guid: e08c8550b2fab6645b40de7dc27ba285, type: 3}
   lifeLine: 0
   promotable: []

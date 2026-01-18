@@ -42,6 +42,8 @@ MonoBehaviour:
   - {fileID: -8583780622465393609, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   model_scale_multiplier: 1
   description: '#1 potion maker'
+  tagline: NoTaglineSet
+  collection: 4
   image: {fileID: 21300000, guid: 7e925f4492a6c054685f32ed44389b2e, type: 3}
   lifeLine: 0
   promotable: []

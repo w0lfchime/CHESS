@@ -22,6 +22,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1.25
   description: Elizabeth II
+  tagline: NoTaglineSet
+  collection: 1
   image: {fileID: 21300000, guid: 1efe229995923164c91c35e53fd6051d, type: 3}
   lifeLine: 0
   promotable: []

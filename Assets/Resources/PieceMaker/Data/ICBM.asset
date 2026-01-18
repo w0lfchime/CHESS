@@ -22,6 +22,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1
   description: Target acquired
+  tagline: NoTaglineSet
+  collection: 5
   image: {fileID: 21300000, guid: 49aaafe534b9f2c4188c7dd942c0565e, type: 3}
   lifeLine: 0
   promotable: []

@@ -22,6 +22,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1
   description: Likes running cross country
+  tagline: NoTaglineSet
+  collection: 1
   image: {fileID: 21300000, guid: a1422d3e1175e4941a00669f97218a71, type: 3}
   lifeLine: 0
   promotable: []

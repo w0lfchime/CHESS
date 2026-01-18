@@ -25,6 +25,7 @@ MonoBehaviour:
   model_scale_multiplier: 1
   description: No funny business
   tagline: NoTaglineSet
+  collection: 5
   image: {fileID: 21300000, guid: 907863ae51e3c5840a10625dd81230ad, type: 3}
   lifeLine: 0
   promotable:

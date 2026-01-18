@@ -22,6 +22,8 @@ MonoBehaviour:
   - {fileID: -3162307534163198015, guid: 82df9d8875bb06147b57d5dfaa715fdc, type: 3}
   model_scale_multiplier: 1
   description: Back in my day...
+  tagline: NoTaglineSet
+  collection: 6
   image: {fileID: 21300000, guid: ac59ba9b0209b0b4ca6491397ab6b261, type: 3}
   lifeLine: 0
   promotable: []

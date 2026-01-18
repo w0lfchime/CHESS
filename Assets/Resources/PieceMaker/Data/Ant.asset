@@ -29,6 +29,7 @@ MonoBehaviour:
   model_scale_multiplier: 0.5
   description: Ant strong together
   tagline: NoTaglineSet
+  collection: 3
   image: {fileID: 21300000, guid: e2e35d4d534d9e946907d04fc6fed512, type: 3}
   lifeLine: 0
   promotable:

@@ -28,6 +28,8 @@ MonoBehaviour:
   - {fileID: 752492319262309027, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
   model_scale_multiplier: 1
   description: Please dont sue us
+  tagline: NoTaglineSet
+  collection: 6
   image: {fileID: 21300000, guid: 51e1c4864ee539a408baf83f673d3031, type: 3}
   lifeLine: 0
   promotable: []

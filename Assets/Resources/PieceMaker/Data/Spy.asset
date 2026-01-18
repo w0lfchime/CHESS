@@ -24,6 +24,8 @@ MonoBehaviour:
   - {fileID: 8975480819012031255, guid: 6310525e8d7d61e48937e6781525a8ef, type: 3}
   model_scale_multiplier: 1
   description: It could be anyone of us!
+  tagline: NoTaglineSet
+  collection: 5
   image: {fileID: 21300000, guid: 4f8412b3f8f893348b5e20154ea8da58, type: 3}
   lifeLine: 0
   promotable: []

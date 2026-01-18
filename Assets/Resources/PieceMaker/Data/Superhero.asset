@@ -28,6 +28,8 @@ MonoBehaviour:
   - {fileID: -6629797300637803691, guid: 16c86e5965b8d074ba6de51236b7cee8, type: 3}
   model_scale_multiplier: 1
   description: I'm so lonely...
+  tagline: NoTaglineSet
+  collection: 5
   image: {fileID: 21300000, guid: 60a2d4d7982d493448292301981d115f, type: 3}
   lifeLine: 0
   promotable: []
