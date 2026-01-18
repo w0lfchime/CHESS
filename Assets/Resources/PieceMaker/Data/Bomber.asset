@@ -32,7 +32,7 @@ MonoBehaviour:
   description: Some sort of bomber, man
   tagline: NoTaglineSet
   collection: 4
-  image: {fileID: 21300000, guid: ae6d1094216b93846ae5900012a0016a, type: 3}
+  image: {fileID: 21300000, guid: 5b9892dbfaee75f4c93eb1352a7a1ac7, type: 3}
   lifeLine: 0
   promotable: []
   isFrankenstein: 0
