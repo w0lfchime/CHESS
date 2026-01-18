@@ -27,8 +27,8 @@ MonoBehaviour:
   - {fileID: -6922793697723135513, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
   - {fileID: -6629797300637803691, guid: 9736ff6a7ff13104f9bab850c3ea7116, type: 3}
   model_scale_multiplier: 1
-  description: You can't park there
-  tagline: NoTaglineSet
+  description: Has a permit to push other pieces of any type anywhere
+  tagline: You can't park there
   collection: 5
   image: {fileID: 21300000, guid: 3d3b2f36328ea5e4f974bcc8d3391fb1, type: 3}
   lifeLine: 0

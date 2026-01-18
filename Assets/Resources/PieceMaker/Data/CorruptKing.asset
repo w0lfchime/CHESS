@@ -31,8 +31,9 @@ MonoBehaviour:
   - {fileID: -2315404422835026341, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   - {fileID: 5163063355849896902, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   model_scale_multiplier: 1
-  description: Evil stinky man
-  tagline: NoTaglineSet
+  description: Sits on his throne of lies using his team as a meat shield until all
+    but one is left
+  tagline: Evil stinky man
   collection: 4
   image: {fileID: 21300000, guid: a360675db45ce944388f3b3bda0996a3, type: 3}
   lifeLine: 1

@@ -21,8 +21,8 @@ MonoBehaviour:
   blackMaterialList:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1
-  description: Save for a rainy day
-  tagline: NoTaglineSet
+  description: Protects any piece behind it from getting targeted from attacks
+  tagline: Save for a rainy day
   collection: 7
   image: {fileID: 21300000, guid: f9399541153b7964c9961953721e7ad3, type: 3}
   lifeLine: 0
