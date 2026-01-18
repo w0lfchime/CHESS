@@ -5,6 +5,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using System.IO;
 
+public enum Collections
+{
+    The_Classics = 1,
+    Custom = 2
+}
+
 //All the action triggers. The chess board activates the triggers based on what is happening in the game.
 public enum TriggerType
 {
@@ -141,6 +147,7 @@ public class ChessPieceData : ScriptableObject
     public float model_scale_multiplier = 1;
     public String description = "NoDescriptionSet";
     public String tagline = "NoTaglineSet";
+    public Collections collection;
     public Sprite image = null;
     public bool lifeLine;
     public List<ChessPieceData> promotable = new List<ChessPieceData>();
@@ -183,6 +190,7 @@ public class ChessPieceDataEditor : Editor
         script.description = EditorGUILayout.TextField("Description", script.description);
         script.tagline = EditorGUILayout.TextField("Tagline", script.tagline);
         script.materialValue = EditorGUILayout.IntField("Material Value", script.materialValue);
+        script.collection = (Collections)EditorGUILayout.EnumPopup("Collection", script.collection);
         //extra variables
         EditorGUI.BeginChangeCheck();
 

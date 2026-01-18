@@ -85,6 +85,11 @@ public class PieceLibrary : MonoBehaviour
         return new List<string>(lookup.Keys);
     }
 
+    public List<ChessPieceData> GetAllData()
+    {
+        return new List<ChessPieceData>(lookup.Values);
+    }
+
     public Sprite NameToImage(string name)
     {
         if (string.IsNullOrEmpty(name))

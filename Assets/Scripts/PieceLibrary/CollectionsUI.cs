@@ -7,6 +7,7 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 public class CollectionsUI : MonoBehaviour
 {
@@ -21,29 +22,29 @@ public class CollectionsUI : MonoBehaviour
     [SerializeField] public PieceCollection[] collections;
     [SerializeField] public Material whitePieceMaterial;
     [SerializeField] public Material blackPieceMaterial;
-    private PieceCollection currentCollection;
-    private PieceDisplayInfo currentPiece;
+    private string currentCollection;
+    private ChessPieceData currentPiece;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         allCollectionsPage.SetActive(true);
-        foreach (PieceCollection collection in collections)
+        foreach (string collection in Enum.GetNames(typeof(Collections)))
         {
             Button collectionButton = Instantiate(collectionButtonPrefab);
             CollectionButtonManager buttonManager = collectionButton.GetComponent<CollectionButtonManager>();
-            buttonManager.collectionTitleText.text = collection.name;
+            buttonManager.collectionTitleText.text = collection;
 
             for (int i = 0; i < buttonManager.icons.Length; i++)
             {
-                buttonManager.icons[i].sprite = collection.icons[i];
+                buttonManager.icons[i].sprite = null;
             }
             collectionButton.transform.SetParent(buttonHolder);
 
             collectionButton.transform.localScale = Vector3.one;
             collectionButton.transform.localPosition = new Vector3(collectionButton.transform.localPosition.x, collectionButton.transform.localPosition.y, 0f);
 
-            collectionButton.onClick.AddListener(() => SetCollection(collection.name));
+            collectionButton.onClick.AddListener(() => SetCollection(collection));
 
             collectionButton.gameObject.SetActive(true);
         }
@@ -51,9 +52,9 @@ public class CollectionsUI : MonoBehaviour
 
     public void SetCollection(string collectionName)
     {
-        foreach (PieceCollection collection in collections)
+        foreach (string collection in Enum.GetNames(typeof(Collections)))
         {
-            if (collection.name == collectionName)
+            if (collection == collectionName)
             {
                 currentCollection = collection;
             }
@@ -64,18 +65,19 @@ public class CollectionsUI : MonoBehaviour
         GameObject singleCollectionPage = Instantiate(singleCollectionPagePrefab);
         CollectionPageManager collectionPageManager = singleCollectionPage.GetComponent<CollectionPageManager>();
 
-        collectionPageManager.collectionTitle.text = currentCollection.name;
+        collectionPageManager.collectionTitle.text = currentCollection;
 
         collectionPageManager.currentColor = collectionPageManager.colorToggle.isOn ? "BLACK" : "WHITE";
 
-        foreach (PieceDisplayInfo piece in currentCollection.pieces)
+        ChessPieceData firstPiece = null;
+
+        foreach (ChessPieceData piece in PieceLibrary.Instance.GetAllData())
         {
+            if(firstPiece==null) firstPiece = piece;
             Button pieceButton = Instantiate(pieceButtonPrefab);
             PieceButtonManager pieceButtonManager = pieceButton.GetComponent<PieceButtonManager>();
 
-            pieceButtonManager.pieceInfo = piece;
-
-            pieceButtonManager.icon.sprite = collectionPageManager.currentColor == "BLACK" ? piece.pieceData.image : piece.pieceData.image;
+            pieceButtonManager.icon.sprite = collectionPageManager.currentColor == "BLACK" ? piece.image : piece.image;
 
             pieceButton.onClick.AddListener(() => SetPiece(piece.name, singleCollectionPage));
 
@@ -98,7 +100,7 @@ public class CollectionsUI : MonoBehaviour
 
         singleCollectionPage.gameObject.SetActive(true);
 
-        SetPiece(currentCollection.pieces[0].name, singleCollectionPage);
+        SetPiece(firstPiece.pieceName, singleCollectionPage);
     }
 
     public void SetPiece(string pieceName, GameObject singleCollectionPage)
@@ -111,25 +113,19 @@ public class CollectionsUI : MonoBehaviour
             }
         }
 
-        foreach (PieceDisplayInfo piece in currentCollection.pieces)
-        {
-            if (piece.name == pieceName)
-            {
-                currentPiece = piece;
-            }
-        }
+        currentPiece = PieceLibrary.Instance.GetPrefab(pieceName);
 
         GameObject piecePage = Instantiate(pieceInfoDisplayPrefab);
         PieceDisplayManager pieceDisplayManager = piecePage.GetComponent<PieceDisplayManager>();
         pieceDisplayManager.currentAbility = 0;
 
-        pieceDisplayManager.titleText.text = currentPiece.pieceData.name;
-        pieceDisplayManager.taglineText.text = currentPiece.pieceData.tagline;
-        pieceDisplayManager.materialValueText.text = "+" + currentPiece.pieceData.materialValue.ToString();
-        pieceDisplayManager.descriptionText.text = currentPiece.pieceData.description;
-        pieceDisplayManager.abilityNameText.text = currentPiece.pieceData.abilities[pieceDisplayManager.currentAbility].name;
+        pieceDisplayManager.titleText.text = currentPiece.name;
+        pieceDisplayManager.taglineText.text = currentPiece.tagline;
+        pieceDisplayManager.materialValueText.text = "+" + currentPiece.materialValue.ToString();
+        pieceDisplayManager.descriptionText.text = currentPiece.description;
+        pieceDisplayManager.abilityNameText.text = currentPiece.abilities[pieceDisplayManager.currentAbility].name;
 
-        if (pieceDisplayManager.currentAbility >= currentPiece.pieceData.abilities.Count - 1)
+        if (pieceDisplayManager.currentAbility >= currentPiece.abilities.Count - 1)
         {
             pieceDisplayManager.nextAbilityButton.interactable = false;
         }
@@ -145,18 +141,18 @@ public class CollectionsUI : MonoBehaviour
             {
                 pieceDisplayManager.previousAbilityButton.interactable = false;
             }
-            if (pieceDisplayManager.currentAbility < currentPiece.pieceData.abilities.Count)
+            if (pieceDisplayManager.currentAbility < currentPiece.abilities.Count)
             {
                 pieceDisplayManager.nextAbilityButton.interactable = true;
             }
-            pieceDisplayManager.abilityNameText.text = currentPiece.pieceData.abilities[pieceDisplayManager.currentAbility].name;
+            pieceDisplayManager.abilityNameText.text = currentPiece.abilities[pieceDisplayManager.currentAbility].name;
             StartCoroutine(ChangeMoveDiagram());
         });
 
         pieceDisplayManager.nextAbilityButton.onClick.AddListener(() =>
         {
             pieceDisplayManager.currentAbility++;
-            if (pieceDisplayManager.currentAbility >= currentPiece.pieceData.abilities.Count - 1)
+            if (pieceDisplayManager.currentAbility >= currentPiece.abilities.Count - 1)
             {
                 pieceDisplayManager.nextAbilityButton.interactable = false;
             }
@@ -164,30 +160,34 @@ public class CollectionsUI : MonoBehaviour
             {
                 pieceDisplayManager.previousAbilityButton.interactable = true;
             }
-            pieceDisplayManager.abilityNameText.text = currentPiece.pieceData.abilities[pieceDisplayManager.currentAbility].name;
+            pieceDisplayManager.abilityNameText.text = currentPiece.abilities[pieceDisplayManager.currentAbility].name;
             StartCoroutine(ChangeMoveDiagram());
         });
 
+        GameObject newMeshObject = new GameObject("PieceModel");
+        MeshFilter meshFilter = newMeshObject.AddComponent<MeshFilter>();
+        MeshRenderer meshRenderer = newMeshObject.AddComponent<MeshRenderer>();
+
         bool isModelBlack = singleCollectionPage.GetComponent<CollectionPageManager>().currentColor == "BLACK";
-        GameObject pieceModel = Instantiate(currentPiece.pieceObject);
-        pieceModel.GetComponent<MeshFilter>().mesh = currentPiece.pieceData.model;
+        meshFilter.mesh = currentPiece.model;
+        newMeshObject.GetComponent<MeshFilter>().mesh = currentPiece.model;
         GameObject pieceModelHolder = pieceDisplayManager.pieceModelHolder;
 
-        pieceModel.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
-        pieceModel.transform.localPosition = Vector3.zero;
-        pieceModel.transform.localEulerAngles = new Vector3(-90f, 0f ,0f);
-        pieceModel.transform.localScale *= 30f;
-        pieceModel.layer = 5;
+        newMeshObject.transform.SetParent(pieceDisplayManager.pieceModelHolder.transform);
+        newMeshObject.transform.localPosition = Vector3.zero;
+        newMeshObject.transform.localEulerAngles = new Vector3(-90f, 0f ,0f);
+        newMeshObject.transform.localScale *= 2000f;
+        newMeshObject.layer = 5;
 
         pieceModelHolder.AddComponent<Animator>();
         pieceModelHolder.GetComponent<Animator>().runtimeAnimatorController = pieceAnimator;
 
-        Material[] matList = currentPiece.pieceData.whiteMaterialList.ToArray();
+        Material[] matList = currentPiece.whiteMaterialList.ToArray();
         matList[0] = whitePieceMaterial;
-        pieceModel.GetComponent<MeshRenderer>().materials = matList;
-        pieceModel.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
+        newMeshObject.GetComponent<MeshRenderer>().materials = matList;
+        newMeshObject.gameObject.layer = LayerMask.NameToLayer("BlackOutline");
 
-        pieceModel.SetActive(true);
+        newMeshObject.SetActive(true);
 
         piecePage.transform.SetParent(singleCollectionPage.transform);
 
@@ -210,7 +210,7 @@ public class CollectionsUI : MonoBehaviour
         {
             for (int j = 0; j < 11; j++)
             {
-                Elements element = currentPiece.pieceData.abilities[currentPDM.currentAbility].actions[0].visualGrid[i].values[j];
+                Elements element = currentPiece.abilities[currentPDM.currentAbility].actions[0].visualGrid[i].values[j];
                 Color baseColor;
 
                 if ((i + j) % 2 == 0)
@@ -274,14 +274,14 @@ public class CollectionsUI : MonoBehaviour
 
         if (currentCPM.currentColor == "BLACK")
         {
-            Material[] matList = currentPiece.pieceData.whiteMaterialList.ToArray();
+            Material[] matList = currentPiece.whiteMaterialList.ToArray();
             matList[0] = blackPieceMaterial;
             currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().materials = matList;
             currentPDM.pieceModelHolder.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("WhiteOutline");
         }
         else
         {
-            Material[] matList = currentPiece.pieceData.whiteMaterialList.ToArray();
+            Material[] matList = currentPiece.whiteMaterialList.ToArray();
             matList[0] = whitePieceMaterial;
             currentPDM.pieceModelHolder.transform.GetChild(0).GetComponent<MeshRenderer>().materials = matList;
             currentPDM.pieceModelHolder.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("BlackOutline");
