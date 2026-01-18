@@ -27305,6 +27305,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b1cf13bf2f935784eba550617890b2d1, type: 2}
   - {fileID: 11400000, guid: 5dbb0442b9281d54f9c090e21e7e9732, type: 2}
   - {fileID: 11400000, guid: 8fa0d15ca2741ea41a98b0c7dcf14ab8, type: 2}
+  - {fileID: 11400000, guid: b106766ca55db7a4b840580422cf585f, type: 2}
   puzzleFolders:
   - PieceMaker/PuzzleData
   maxMaterial: 39
