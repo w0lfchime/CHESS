@@ -23,8 +23,8 @@ MonoBehaviour:
   - {fileID: -876546973899608171, guid: 0276e585145ddee4b9653b694d4e509b, type: 3}
   - {fileID: 2312632402154369787, guid: 0276e585145ddee4b9653b694d4e509b, type: 3}
   model_scale_multiplier: 1
-  description: She looks sad
-  tagline: NoTaglineSet
+  description: Paints the opposite color of the tile she goes to
+  tagline: She looks sad
   collection: 7
   image: {fileID: 21300000, guid: 9d583cd059262584c9411bc513dbcd89, type: 3}
   lifeLine: 0
