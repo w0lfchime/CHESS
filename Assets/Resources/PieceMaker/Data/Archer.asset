@@ -29,8 +29,8 @@ MonoBehaviour:
   - {fileID: 4874126678125670354, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}
   - {fileID: -6629797300637803691, guid: 202b7c0c918b51c4e9bb06f45d37140c, type: 3}
   model_scale_multiplier: 1
-  description: Probably should just use a gun
-  tagline: NoTaglineSet
+  description: Deadly at range, just don't get too close to the enemy
+  tagline: Probably should just use a gun
   collection: 4
   image: {fileID: 21300000, guid: 18f1160bf56b3844c9ee33184e1192fb, type: 3}
   lifeLine: 0

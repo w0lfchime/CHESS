@@ -41,8 +41,8 @@ MonoBehaviour:
   - {fileID: -5717476372448401703, guid: 453b79a21e80921488823f2a129528b7, type: 3}
   - {fileID: 5024317788110480505, guid: 453b79a21e80921488823f2a129528b7, type: 3}
   model_scale_multiplier: 1
-  description: They all float down here
-  tagline: NoTaglineSet
+  description: Walks around blowing up balloons to distract your enemy
+  tagline: They all float down here
   collection: 6
   image: {fileID: 21300000, guid: 663be69d5af4f8747bbe87a577e75f61, type: 3}
   lifeLine: 0

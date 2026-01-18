@@ -29,8 +29,8 @@ MonoBehaviour:
   - {fileID: -8274133419916619345, guid: 4e142fe3db9afc447b52998aad95cfc4, type: 3}
   - {fileID: -3522955778539423533, guid: 4e142fe3db9afc447b52998aad95cfc4, type: 3}
   model_scale_multiplier: 1
-  description: Some sort of bomber, man
-  tagline: NoTaglineSet
+  description: A lil goblin that runs around planting bombs, he he ha ha
+  tagline: Some sort of bomber, man
   collection: 4
   image: {fileID: 21300000, guid: 5b9892dbfaee75f4c93eb1352a7a1ac7, type: 3}
   lifeLine: 0
