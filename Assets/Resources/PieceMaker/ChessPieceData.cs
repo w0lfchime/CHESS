@@ -140,6 +140,7 @@ public class ChessPieceData : ScriptableObject
     public List<Material> blackMaterialList = new List<Material>();
     public float model_scale_multiplier = 1;
     public String description = "NoDescriptionSet";
+    public String tagline = "NoTaglineSet";
     public Sprite image = null;
     public bool lifeLine;
     public List<ChessPieceData> promotable = new List<ChessPieceData>();
@@ -180,6 +181,7 @@ public class ChessPieceDataEditor : Editor
 
         script.pieceName = EditorGUILayout.TextField("Piece Name / ID", script.pieceName);
         script.description = EditorGUILayout.TextField("Description", script.description);
+        script.tagline = EditorGUILayout.TextField("Tagline", script.tagline);
         script.materialValue = EditorGUILayout.IntField("Material Value", script.materialValue);
         //extra variables
         EditorGUI.BeginChangeCheck();
