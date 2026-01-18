@@ -28,9 +28,11 @@ MonoBehaviour:
   - {fileID: 4874126678125670354, guid: 86fa5ae1d032cd64491f8b006755f6d9, type: 3}
   model_scale_multiplier: 1
   description: Don't catch a cold
+  tagline: NoTaglineSet
   image: {fileID: 21300000, guid: f126d52d4bbcd804aa98f54b62579613, type: 3}
   lifeLine: 0
-  promotable: []
+  promotable:
+  - {fileID: 11400000, guid: 3c708c6608664ea4ea65a4fb39b00de0, type: 2}
   isFrankenstein: 0
   frankensteinMovesets: []
   gridSize: 11
