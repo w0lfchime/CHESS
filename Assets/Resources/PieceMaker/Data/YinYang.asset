@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 1
   pieceName: YinYang
-  materialValue: 3
+  materialValue: 4
   model: {fileID: -6864089930050947202, guid: 8fb9874670cfd4d4691e62a1b075139a, type: 3}
   whiteMaterialList:
   - {fileID: -8274133419916619345, guid: 8fb9874670cfd4d4691e62a1b075139a, type: 3}
