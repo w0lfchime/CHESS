@@ -24,7 +24,9 @@ MonoBehaviour:
   - {fileID: -6478536213147159724, guid: 59b0387a68e5e2041b79bb5c24daf7fa, type: 3}
   model_scale_multiplier: 1
   description: NoDescriptionSet
-  image: {fileID: 0}
+  tagline: NoTaglineSet
+  collection: 0
+  image: {fileID: 21300000, guid: 6ae9282c043d97f4aa5bf1796cc74328, type: 3}
   lifeLine: 0
   promotable: []
   isFrankenstein: 0
