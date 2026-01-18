@@ -22,9 +22,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1
   description: Not pope'n around
+  tagline: NoTaglineSet
   image: {fileID: 21300000, guid: 28b97b722241e324e98afa03c68cdf67, type: 3}
   lifeLine: 0
-  promotable: []
+  promotable:
+  - {fileID: 11400000, guid: 0bad83e4499f3974d8470af206a5b0de, type: 2}
   isFrankenstein: 0
   frankensteinMovesets: []
   gridSize: 11
