@@ -37,12 +37,14 @@ public class CollectionsUI : MonoBehaviour
 
             for (int i = 0; i < buttonManager.icons.Length; i++)
             {
+                int count = 0;
                 foreach (ChessPieceData piece in PieceLibrary.Instance.GetAllData())
                 {
                     if (piece.collection.ToString() == collection)
                     {
+                        count++;
                         buttonManager.icons[i].sprite = piece.image;
-                        break;
+                        if(i >= count) break;
                     }
                 }
             }
