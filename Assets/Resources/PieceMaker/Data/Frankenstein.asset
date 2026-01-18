@@ -15,15 +15,15 @@ MonoBehaviour:
   unlocked: 1
   pieceName: Frankenstein
   materialValue: 3
-  model: {fileID: -2806725375699767854, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  model: {fileID: -2806725375699767854, guid: 53da4f2c5c015ec448563f3e5f2fad34, type: 3}
   whiteMaterialList:
-  - {fileID: -8449021711679869814, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: 5046226728603767883, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: -5243988174349660497, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: -8449021711679869814, guid: 53da4f2c5c015ec448563f3e5f2fad34, type: 3}
+  - {fileID: 5046226728603767883, guid: 53da4f2c5c015ec448563f3e5f2fad34, type: 3}
+  - {fileID: -5243988174349660497, guid: 53da4f2c5c015ec448563f3e5f2fad34, type: 3}
   blackMaterialList:
-  - {fileID: -8449021711679869814, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: 5046226728603767883, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
-  - {fileID: -5243988174349660497, guid: 2345ea49481bfaf4f821e3e00704a833, type: 3}
+  - {fileID: -8449021711679869814, guid: 53da4f2c5c015ec448563f3e5f2fad34, type: 3}
+  - {fileID: 5046226728603767883, guid: 53da4f2c5c015ec448563f3e5f2fad34, type: 3}
+  - {fileID: -5243988174349660497, guid: 53da4f2c5c015ec448563f3e5f2fad34, type: 3}
   model_scale_multiplier: 1
   description: He's alive... he's alive!!
   tagline: NoTaglineSet
