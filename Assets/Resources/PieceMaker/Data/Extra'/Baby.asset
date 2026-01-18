@@ -25,7 +25,9 @@ MonoBehaviour:
   - {fileID: -3846018093981099296, guid: a28e9d7c783492c4abedd7984c9bd541, type: 3}
   - {fileID: 4874126678125670354, guid: a28e9d7c783492c4abedd7984c9bd541, type: 3}
   model_scale_multiplier: 1
-  description: TMPBABY
+  description: Can either walk forward or spit and explode
+  tagline: TMPBABY
+  collection: 6
   image: {fileID: 21300000, guid: 18b5b4a10a335fc40a8428e374d5a202, type: 3}
   lifeLine: 0
   promotable: []
