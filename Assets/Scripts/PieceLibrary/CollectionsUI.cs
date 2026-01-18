@@ -124,9 +124,9 @@ public class CollectionsUI : MonoBehaviour
         pieceDisplayManager.currentAbility = 0;
 
         pieceDisplayManager.titleText.text = currentPiece.pieceData.name;
-        pieceDisplayManager.taglineText.text = currentPiece.tagLine;
+        pieceDisplayManager.taglineText.text = currentPiece.pieceData.tagline;
         pieceDisplayManager.materialValueText.text = "+" + currentPiece.pieceData.materialValue.ToString();
-        pieceDisplayManager.descriptionText.text = currentPiece.description;
+        pieceDisplayManager.descriptionText.text = currentPiece.pieceData.description;
         pieceDisplayManager.abilityNameText.text = currentPiece.pieceData.abilities[pieceDisplayManager.currentAbility].name;
 
         if (pieceDisplayManager.currentAbility >= currentPiece.pieceData.abilities.Count - 1)
