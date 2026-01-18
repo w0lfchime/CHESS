@@ -1,0 +1,20 @@
+﻿<Solution>
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="PurrNet.Runtime.csproj" />
+  <Project Path="PurrNetLobbySetup.csproj" />
+  <Project Path="PurrNet.Editor.csproj" />
+  <Project Path="Unity.PurrNet.Codegen.csproj" />
+  <Project Path="PurrNet.Profiler.Deltas.Editor.csproj" />
+  <Project Path="SimpleWebTransport.csproj" />
+  <Project Path="LiteNetLib.csproj" />
+  <Project Path="PurrNet.Edgegap.Runtime.csproj" />
+  <Project Path="projectCloner.csproj" />
+  <Project Path="PurrNet.Profiler.Deltas.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="PurrNetLobby_Editor.csproj" />
+  <Project Path="PurrNet.Steam.Runtime.csproj" />
+  <Project Path="PurrNet.Profiler.Editor.csproj" />
+  <Project Path="PurrNet.Examples.csproj" />
+  <Project Path="ToolbarExtender.Editor.csproj" />
+  <Project Path="PurrNet.Steam.Editor.csproj" />
+</Solution>

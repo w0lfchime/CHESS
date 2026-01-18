@@ -22,9 +22,11 @@ MonoBehaviour:
   - {fileID: -6922793697723135513, guid: ddda6e72f35dbbb40b1671e0d54ab2c3, type: 3}
   model_scale_multiplier: 1
   description: Destroyer of babies
+  tagline: NoTaglineSet
   image: {fileID: 21300000, guid: a539fa104164d9846a429a0a07086d26, type: 3}
   lifeLine: 0
-  promotable: []
+  promotable:
+  - {fileID: 11400000, guid: a2cfcae838f1f5845a386437ce82f385, type: 2}
   isFrankenstein: 0
   frankensteinMovesets: []
   gridSize: 11
