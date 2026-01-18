@@ -37,7 +37,14 @@ public class CollectionsUI : MonoBehaviour
 
             for (int i = 0; i < buttonManager.icons.Length; i++)
             {
-                buttonManager.icons[i].sprite = null;
+                foreach (ChessPieceData piece in PieceLibrary.Instance.GetAllData())
+                {
+                    if (piece.collection.ToString() == collection)
+                    {
+                        buttonManager.icons[i].sprite = piece.image;
+                        break;
+                    }
+                }
             }
             collectionButton.transform.SetParent(buttonHolder);
 
