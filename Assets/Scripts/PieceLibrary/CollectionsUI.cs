@@ -73,13 +73,14 @@ public class CollectionsUI : MonoBehaviour
 
         foreach (ChessPieceData piece in PieceLibrary.Instance.GetAllData())
         {
+            if(collectionName != piece.collection.ToString()) continue;
             if(firstPiece==null) firstPiece = piece;
             Button pieceButton = Instantiate(pieceButtonPrefab);
             PieceButtonManager pieceButtonManager = pieceButton.GetComponent<PieceButtonManager>();
 
             pieceButtonManager.icon.sprite = collectionPageManager.currentColor == "BLACK" ? piece.image : piece.image;
 
-            pieceButton.onClick.AddListener(() => SetPiece(piece.name, singleCollectionPage));
+            pieceButton.onClick.AddListener(() => SetPiece(piece.pieceName, singleCollectionPage));
 
             pieceButton.transform.SetParent(collectionPageManager.pieceButtonsHolder);
 
@@ -119,7 +120,7 @@ public class CollectionsUI : MonoBehaviour
         PieceDisplayManager pieceDisplayManager = piecePage.GetComponent<PieceDisplayManager>();
         pieceDisplayManager.currentAbility = 0;
 
-        pieceDisplayManager.titleText.text = currentPiece.name;
+        pieceDisplayManager.titleText.text = currentPiece.pieceName;
         pieceDisplayManager.taglineText.text = currentPiece.tagline;
         pieceDisplayManager.materialValueText.text = "+" + currentPiece.materialValue.ToString();
         pieceDisplayManager.descriptionText.text = currentPiece.description;
