@@ -370,7 +370,8 @@ public class TitleScreenButtons : MonoBehaviour
             {
                 string index = nameIndex(name).ToString();
                 PlayerPrefs.DeleteKey(index);
-                gameData.teams[name] = copy;
+                // store only the pieces (skip the name at copy[0]) to match LoadTeams expectations
+                gameData.teams[name] = copy.Skip(1).ToArray();
                 PlayerPrefs.SetString(index, string.Join(':', copy));
             }
         }
