@@ -35,25 +35,25 @@ MonoBehaviour:
     traits: 000000000400000005000000090000000b000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.59748423, g: 0.23867328, b: 0.016909828, a: 1}
     grid: 
   - name: explode
     traits: 020000000300000004000000090000000a000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.98742133, g: 0.86542654, b: 0.23909248, a: 1}
     grid: 
   - name: wet
     traits: 02000000030000000400000008000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0, g: 0.6590104, b: 1, a: 1}
     grid: 
   - name: movepush
     traits: 030000000400000000000000050000001400000006000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.6570226, g: 0.22843233, b: 0.9433962, a: 1}
     grid: 
   - name: ?obstructed
     traits: 020000000d000000
@@ -71,79 +71,79 @@ MonoBehaviour:
     traits: 04000000000000000600000009000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.91823894, g: 0.21079056, b: 0.37180454, a: 1}
     grid: 
   - name: removetile
     traits: 02000000000000000e000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0, g: 0, b: 0, a: 1}
     grid: 
   - name: respawn
     traits: 030000000400000011000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.58549446, g: 0.8238993, b: 0.1839523, a: 1}
     grid: 
   - name: bulldoze
     traits: 04000000030000001200000009000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.23563144, g: 0.36936343, b: 0.46540874, a: 1}
     grid: 
   - name: autopush
     traits: 030000000400000014000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0, g: 1, b: 0.659116, a: 1}
     grid: 
   - name: swap
     traits: 0300000004000000050000001300000000000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.45327368, g: 0.6415094, b: 0.43372488, a: 1}
     grid: 
   - name: colorswap
     traits: 03000000040000000200000015000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.61006284, g: 0.61006284, b: 0.61006284, a: 1}
     grid: 
   - name: scareopposing
     traits: 02000000030000000400000017000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.41509432, g: 0, b: 0.064001046, a: 1}
     grid: 
   - name: RandomMove
     traits: 0200000004000000160000000500000009000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.12721004, g: 0.52861696, b: 0.6037736, a: 1}
     grid: 
   - name: Pull
     traits: 0400000019000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.6415094, g: 0.36715966, b: 0.2521656, a: 1}
     grid: 
   - name: Push
     traits: 0400000014000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.5597484, g: 0.13754489, b: 0.12145477, a: 1}
     grid: 
   - name: slime
     traits: 0200000003000000040000001a000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.20303774, g: 0.74213827, b: 0.20303774, a: 1}
     grid: 
   - name: poison
     traits: 0200000003000000040000001b000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.3432455, g: 0.15181355, b: 0.47798735, a: 1}
     grid: 
   - name: DontKill
     traits: 1c000000030000000400000002000000
@@ -155,23 +155,23 @@ MonoBehaviour:
     traits: 02000000000000001d000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.8867924, g: 0.19799446, b: 0.36121985, a: 1}
     grid: 
   - name: Balloon
     traits: 02000000000000001e000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.8862746, g: 0.19607845, b: 0.36078432, a: 1}
     grid: 
   - name: Bomb
     traits: 02000000000000001f000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.8862746, g: 0.19607845, b: 0.36078432, a: 1}
     grid: 
   - name: Convert Team
     traits: 0400000020000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 0.8862746, g: 0.19607845, b: 0.36078432, a: 1}
     grid: 
