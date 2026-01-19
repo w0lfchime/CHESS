@@ -46,7 +46,11 @@ public class GameManager : NetworkIdentity
 	public Button endTurnButton;
 	public List<Sprite> buttonColors = new List<Sprite>();
 	public bool canMakeTracker = true;
-	public int[] fatherTimers = new int[2] {0, 0};
+
+	public TextMeshProUGUI fatherTimersText;
+	public GameObject fatherTimePanel;
+	public int[] fatherTimers = new int[2] {14, 14};
+	public bool[] showTimers = new bool[2];
 
 	protected override void OnSpawned(bool asServer)
 	{
@@ -90,6 +94,10 @@ public class GameManager : NetworkIdentity
 
 	public void Initialize()
 	{
+		fatherTimers[0] = 14;
+		fatherTimers[1] = 14;
+		showTimers[0] = false;
+		showTimers[1] = false;
 		Instance = this;
 
 		Cursor = this.gameObject.GetComponent<CursorManager>();
@@ -178,6 +186,43 @@ public class GameManager : NetworkIdentity
 				}
 			}
 
+			if(CurrentTurn == Team.White)
+			{
+				fatherTimers[0]--;
+			} else
+			{
+				fatherTimers[1]--;
+			}
+
+			ChessPieceObject[] pieces = GetCurrentPieceCount();
+
+			for(int i = 0; i < pieces.Length; i++)
+			{
+				if(pieces[i].chessPieceData.name == "FatherTime")
+				{
+					if(pieces[i].team == Team.White)
+					{
+						checkFatherTimers(0);
+					} else
+					{
+						checkFatherTimers(1);
+					}
+				}
+			}
+
+			if(CurrentTurn == Team.White && showTimers[1])
+			{
+				fatherTimePanel.SetActive(true);
+				updateFatherTimerText(1);
+			} else if(CurrentTurn == Team.Black && showTimers[0])
+			{
+				fatherTimePanel.SetActive(true);
+				updateFatherTimerText(0);
+			} else
+			{
+				fatherTimePanel.SetActive(false);
+			}
+
 			// Switch turn
 			CurrentTurn = (CurrentTurn == Team.White) ? Team.Black : Team.White;
 			Cursor.currentTurn = CurrentTurn;
@@ -210,30 +255,6 @@ public class GameManager : NetworkIdentity
 
 			canMakeTracker = true;
 
-			if(CurrentTurn == Team.White)
-			{
-				fatherTimers[0]++;
-			} else
-			{
-				fatherTimers[1]++;
-			}
-
-			ChessPieceObject[] pieces = GetCurrentPieceCount();
-
-			for(int i = 0; i < pieces.Length; i++)
-			{
-				if(pieces[i].chessPieceData.name == "FatherTime")
-				{
-					if(pieces[i].team == Team.White)
-					{
-						checkFatherTimers(0);
-					} else
-					{
-						checkFatherTimers(1);
-					}
-				}
-			}
-
 			Board.TileTrigger();
 			Board.TurnSwapTrigger();
 		}
@@ -242,12 +263,17 @@ public class GameManager : NetworkIdentity
 
 	public void checkFatherTimers(int check)
 	{
-		if(fatherTimers[check] >= 14)
+		if(fatherTimers[check] <= 0)
 		{
 			int winner = (check == 1 ? 0 : 1);
 
 			ChessBoard2.Instance.CheckMate(winner);
 		}
+	}
+
+	public void updateFatherTimerText(int team)
+	{
+		fatherTimersText.text = "" + fatherTimers[team];
 	}
 
 	public void EndTurn(int literallyUseless)
