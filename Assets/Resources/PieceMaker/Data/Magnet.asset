@@ -25,8 +25,8 @@ MonoBehaviour:
   - {fileID: 4874126678125670354, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   - {fileID: -3846018093981099296, guid: 5acb8223d3eca1a4a9b98434b220d5b9, type: 3}
   model_scale_multiplier: 1
-  description: Opposites attract
-  tagline: NoTaglineSet
+  description: Repels or attracts pieces depending on color of tile
+  tagline: Opposites attract
   collection: 7
   image: {fileID: 21300000, guid: a4ee5777fc3d52340abdf0fff630ad37, type: 3}
   lifeLine: 0

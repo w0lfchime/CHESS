@@ -27,8 +27,8 @@ MonoBehaviour:
   - {fileID: -6478536213147159724, guid: 86fa5ae1d032cd64491f8b006755f6d9, type: 3}
   - {fileID: 4874126678125670354, guid: 86fa5ae1d032cd64491f8b006755f6d9, type: 3}
   model_scale_multiplier: 1
-  description: Don't catch a cold
-  tagline: NoTaglineSet
+  description: Brings his potions to pieces that have crossed him one too many times
+  tagline: Don't catch a cold
   collection: 4
   image: {fileID: 21300000, guid: f126d52d4bbcd804aa98f54b62579613, type: 3}
   lifeLine: 0

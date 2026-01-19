@@ -23,8 +23,8 @@ MonoBehaviour:
   - {fileID: 4663463079005394034, guid: 33bbe08e8f076b042b3935660c57ca28, type: 3}
   - {fileID: 2839812842092981165, guid: 33bbe08e8f076b042b3935660c57ca28, type: 3}
   model_scale_multiplier: 1
-  description: It's wizard time!
-  tagline: NoTaglineSet
+  description: Can teleport anywhere, but can only take close to it
+  tagline: It's wizard time!
   collection: 4
   image: {fileID: 21300000, guid: 22e4e40c41d9b714f967b6266ffe2e86, type: 3}
   lifeLine: 0

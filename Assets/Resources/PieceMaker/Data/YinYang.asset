@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 1
   pieceName: YinYang
-  materialValue: 3
+  materialValue: 4
   model: {fileID: -6864089930050947202, guid: 8fb9874670cfd4d4691e62a1b075139a, type: 3}
   whiteMaterialList:
   - {fileID: -8274133419916619345, guid: 8fb9874670cfd4d4691e62a1b075139a, type: 3}
@@ -23,8 +23,8 @@ MonoBehaviour:
   - {fileID: -8274133419916619345, guid: 8fb9874670cfd4d4691e62a1b075139a, type: 3}
   - {fileID: -2813467912831258332, guid: 8fb9874670cfd4d4691e62a1b075139a, type: 3}
   model_scale_multiplier: 1
-  description: Duality
-  tagline: NoTaglineSet
+  description: Moves in a yin or yang pattern depending on color of tile
+  tagline: Duality
   collection: 7
   image: {fileID: 21300000, guid: baf702d9016d6b142b5617951d09a2f5, type: 3}
   lifeLine: 0

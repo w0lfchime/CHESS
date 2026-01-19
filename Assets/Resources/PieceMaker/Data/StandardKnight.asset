@@ -21,12 +21,13 @@ MonoBehaviour:
   blackMaterialList:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   model_scale_multiplier: 1
-  description: Horse
-  tagline: NoTaglineSet
+  description: Moves in an "L" pattern
+  tagline: Horse
   collection: 1
   image: {fileID: 21300000, guid: ec24d667eeade3949b2a7d593c36da83, type: 3}
   lifeLine: 0
-  promotable: []
+  promotable:
+  - {fileID: 11400000, guid: 5ef78abfb5636b94cac920e5f2b908a7, type: 2}
   isFrankenstein: 0
   frankensteinMovesets: []
   gridSize: 11
