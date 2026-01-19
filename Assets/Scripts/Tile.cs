@@ -157,10 +157,10 @@ public class Tile : MonoBehaviour
 }
 
 
-	public void Highlight(float distance)
+	public void Highlight(float distance, Color color = default)
 	{
 		if(raise!=null) StopCoroutine(raise);
-		raise = StartCoroutine(HighlightRaise(-.5f, distance));
+		raise = StartCoroutine(HighlightRaise(-.5f, distance, color));
 
 	}
 
@@ -189,7 +189,7 @@ public class Tile : MonoBehaviour
 		}
     }
 
-	IEnumerator HighlightRaise(float set, float distance)
+	IEnumerator HighlightRaise(float set, float distance, Color color = default)
 	{
 		yield return new WaitForSeconds(distance / 10f);
 		rend.gameObject.layer = LayerMask.NameToLayer("Highlight");
@@ -199,6 +199,7 @@ public class Tile : MonoBehaviour
 
 
 		float size = mpb.GetFloat("_Size");
+		if(color!=default) mpb.SetColor("_Color", color);
 
 		while (Mathf.Abs(size - set) > .01f)
 		{

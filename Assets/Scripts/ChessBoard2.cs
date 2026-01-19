@@ -38,7 +38,7 @@ public class ChessBoard2 : NetworkIdentity
 	public Tile[,] TileLocations;
 
 	public ChessPiece activeChessPiece;
-	private List<(Vector2Int, ActionTrait[])> availableMoves = new List<(Vector2Int, ActionTrait[])>();
+	private List<(Vector2Int, ActionTrait[], Color)> availableMoves = new List<(Vector2Int, ActionTrait[], Color)>();
 	public List<ChessPiece> deadWhitePieces = new List<ChessPiece>();
 	public List<ChessPiece> deadBlackPieces = new List<ChessPiece>();
 
@@ -379,7 +379,7 @@ public class ChessBoard2 : NetworkIdentity
 		{
 			foreach (Action_TG action in ability.actions)
 			{
-				List<(Vector2Int, ActionTrait[])> allTriggeredTiles = action.grid;
+				List<(Vector2Int, ActionTrait[], Color)> allTriggeredTiles = action.grid;
 				allTriggeredTiles = FilterTiles(piece, allTriggeredTiles);
 
 				bool result = RunTiles(piece, tile, allTriggeredTiles, action.actionEffectMult);
@@ -497,16 +497,16 @@ public class ChessBoard2 : NetworkIdentity
 			if (TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y] != null)
 			{
 				Vector2 pos = new Vector2(TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardX, TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].TileBoardY);
-				TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].Highlight(Vector2.Distance(pos, new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)));
+				TileLocations[availableMoves[i].Item1.x, availableMoves[i].Item1.y].Highlight(Vector2.Distance(pos, new Vector2(selected.currentTile.TileBoardX, selected.currentTile.TileBoardY)), availableMoves[i].Item3);
 			}
 		}
 	}
 
 	//checks each tile in available moves and iterates through the tags. 
-	private List<(Vector2Int, ActionTrait[])> FilterTiles(ChessPiece cp, List<(Vector2Int, ActionTrait[])> grid)
+	private List<(Vector2Int, ActionTrait[], Color)> FilterTiles(ChessPiece cp, List<(Vector2Int, ActionTrait[], Color)> grid)
 	{
-		List<(Vector2Int, ActionTrait[])> returnList = new List<(Vector2Int, ActionTrait[])>();
-		foreach ((Vector2Int, ActionTrait[]) tile in grid)
+		List<(Vector2Int, ActionTrait[], Color)> returnList = new List<(Vector2Int, ActionTrait[], Color)>();
+		foreach ((Vector2Int, ActionTrait[], Color) tile in grid)
 		{
 			Vector2Int piecePosition = new Vector2Int(cp.currentTile.TileBoardY, cp.currentTile.TileBoardX);
 			Vector2Int tilePosition = new Vector2Int(tile.Item1.y, tile.Item1.x) + piecePosition;
@@ -599,7 +599,7 @@ public class ChessBoard2 : NetworkIdentity
 				isObstructed(cp, TileLocations[tilePosition.x, tilePosition.y].obstructed)
 			) add = false;
 
-			(Vector2Int, ActionTrait[]) newTile = (tilePosition, tile.Item2);
+			(Vector2Int, ActionTrait[], Color) newTile = (tilePosition, tile.Item2, tile.Item3);
 			if (add) returnList.Add(newTile);
 		}
 
@@ -613,7 +613,7 @@ public class ChessBoard2 : NetworkIdentity
 		return false;
 	}
 
-	private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[])> allTriggeredTiles, float actionEffectMult = 1)
+	private bool RunTiles(ChessPiece cp, Tile selectedTile, List<(Vector2Int, ActionTrait[], Color)> allTriggeredTiles, float actionEffectMult = 1)
 	{
 		RemoveHighlightTiles(cp);
 
@@ -624,7 +624,7 @@ public class ChessBoard2 : NetworkIdentity
 		Vector2Int randomPositionFromSelected = -Vector2Int.one;
 		if (allTriggeredTiles.Count >= 1) randomPositionFromSelected = allTriggeredTiles[UnityEngine.Random.Range(0, allTriggeredTiles.Count - 1)].Item1;
 
-		foreach ((Vector2Int, ActionTrait[]) tile in allTriggeredTiles)
+		foreach ((Vector2Int, ActionTrait[], Color) tile in allTriggeredTiles)
 		{
 			Vector2Int tilePosition = tile.Item1;
 
