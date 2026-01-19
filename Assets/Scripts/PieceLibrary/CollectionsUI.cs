@@ -87,6 +87,8 @@ public class CollectionsUI : MonoBehaviour
             Button pieceButton = Instantiate(pieceButtonPrefab);
             PieceButtonManager pieceButtonManager = pieceButton.GetComponent<PieceButtonManager>();
 
+            pieceButtonManager.pieceData = piece;
+
             pieceButtonManager.icon.sprite = collectionPageManager.currentColor == "BLACK" ? piece.image : piece.image;
 
             pieceButton.onClick.AddListener(() => SetPiece(piece.pieceName, singleCollectionPage));
@@ -272,11 +274,11 @@ public class CollectionsUI : MonoBehaviour
             PieceButtonManager pieceButtonManager = pieceButton.GetComponent<PieceButtonManager>();
             if (currentCPM.currentColor == "BLACK")
             {
-                pieceButtonManager.icon.sprite = pieceButtonManager.pieceInfo.pieceData.image;
+                pieceButtonManager.icon.sprite = pieceButtonManager.pieceData.image;
             }
             else
             {
-                pieceButtonManager.icon.sprite = pieceButtonManager.pieceInfo.pieceData.image;
+                pieceButtonManager.icon.sprite = pieceButtonManager.pieceData.image;
             }
         }
 

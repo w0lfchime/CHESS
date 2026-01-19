@@ -164,6 +164,8 @@ public class GameManager : NetworkIdentity
 		state.highlightedSprite = (CurrentTurn == Team.Black) ? buttonColors[2] : buttonColors[3];
 		endTurnButton.spriteState = state;
 
+		endTurnButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = (CurrentTurn == Team.Black) ? Color.black : Color.white;
+
 		if (GameData.Instance.isDoingPuzzle && CurrentTurn == Team.White && !Board.checkWhitePuzzle())
 		{
 			Debug.Log("Wrong Move");
