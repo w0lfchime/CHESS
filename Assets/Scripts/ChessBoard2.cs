@@ -1096,6 +1096,12 @@ public class ChessBoard2 : NetworkIdentity
 				{
 					//Debug.Log("Spawned piece");
 					SpawnPiece(whiteTeam[pieceOn], new Vector2Int(j, i), Team.White);
+
+					if(whiteTeam[pieceOn] == "FatherTime")
+					{
+						GameManager.Instance.showTimers[0] = true;
+						GameManager.Instance.fatherTimePanel.SetActive(true);
+					}
 				}
 
 				pieceOn++;
@@ -1112,6 +1118,11 @@ public class ChessBoard2 : NetworkIdentity
 				if (blackTeam[pieceOn] != null && blackTeam[pieceOn] != "")
 				{
 					SpawnPiece(blackTeam[pieceOn], new Vector2Int(j, i), Team.Black);
+
+					if(blackTeam[pieceOn] == "FatherTime")
+					{
+						GameManager.Instance.showTimers[1] = true;
+					}
 				}
 
 				pieceOn++;
