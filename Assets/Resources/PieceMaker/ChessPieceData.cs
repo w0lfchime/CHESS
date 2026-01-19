@@ -108,6 +108,7 @@ public class Action
     [HideInInspector]
     public Wrapper<Elements>[] visualGrid;
     public float actionEffectMult = 1;
+    public Color TileColor = Color.green;
 
     [HideInInspector]
     public int[] grid;

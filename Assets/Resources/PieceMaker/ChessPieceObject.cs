@@ -6,7 +6,8 @@ using System.Linq;
 public class Action_TG
 { // TG stands for trait grid
     public float actionEffectMult = 1;
-    public List<(Vector2Int, ActionTrait[])> grid = new List<(Vector2Int, ActionTrait[])>();
+    public Color TileColor;
+    public List<(Vector2Int, ActionTrait[], Color)> grid = new List<(Vector2Int, ActionTrait[], Color)>();
 }
 
 public class Ability_TG
@@ -76,6 +77,7 @@ public class ChessPieceObject : ChessPiece
                     var action_TG = ability_TG.actions[ability_TG.actions.Count-1];
 
                     action_TG.actionEffectMult = action.actionEffectMult;
+                    action_TG.TileColor = action.TileColor;
 
                     for (int y = 0; y < dataToUse.gridSize; y++) // go through each y tile
                     {
@@ -85,14 +87,14 @@ public class ChessPieceObject : ChessPiece
                                 Vector2Int pos = new Vector2Int(x, y) - center;
                                 pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y)); // flip direction based on team
 
-                                action_TG.grid.Add((pos, action.traits));
+                                action_TG.grid.Add((pos, action.traits, action.TileColor));
                             }
                             if(action.grid[y * dataToUse.gridSize + x] == 2) //detect if ui tile is selected
                             {
                                 Vector2Int pos = new Vector2Int(x-center.x, y-center.y);
                                 pos = new Vector2Int((team == 0 ? pos.x : -pos.x), (team == 0 ? pos.y : -pos.y));
                                 for(int i = 1; i < 16; i++){
-                                    action_TG.grid.Add((i*pos, action.traits));
+                                    action_TG.grid.Add((i*pos, action.traits, action.TileColor));
                                 }
                             }
                         }
