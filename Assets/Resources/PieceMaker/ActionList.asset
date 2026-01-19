@@ -29,7 +29,7 @@ MonoBehaviour:
     traits: 0000000002000000050000000b000000
     visualGrid: []
     actionEffectMult: 1
-    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    TileColor: {r: 1, g: 0.36887306, b: 0, a: 1}
     grid: 
   - name: jumptake
     traits: 000000000400000005000000090000000b000000
