@@ -264,14 +264,16 @@ public class ChessBoard2 : NetworkIdentity
 			UIPiece.transform.GetChild(0).GetComponent<Image>().sprite = data.image;
 			UIPiece.GetComponent<Button>().onClick.AddListener(() => Promote(piece, data));
 		}
-		Destroy(promoteUITemp.transform.GetChild(0).GetChild(0).gameObject);
+		promoteUITemp.transform.GetChild(0).GetChild(0).GetComponent<Button>().onClick.AddListener(() => Promote(piece, null));
 	}
 
 	void Promote(ChessPiece piece, ChessPieceData data)
 	{
-		piece.gameObject.GetComponent<MeshFilter>().mesh = data.model;
-		piece.gameObject.GetComponent<ChessPieceObject>().chessPieceData = data;
-		Destroy(promoteUITemp);
+		if(data!=null){
+			piece.gameObject.GetComponent<MeshFilter>().mesh = data.model;
+			piece.gameObject.GetComponent<ChessPieceObject>().chessPieceData = data;
+			Destroy(promoteUITemp);
+		}
 
 		GameManager.Instance.EndTurn(); // Switch turn
 		if (NetworkManager.main.isServer) EndClientTurn();
