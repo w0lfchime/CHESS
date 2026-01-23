@@ -61,6 +61,18 @@ MonoBehaviour:
     actionEffectMult: 1
     TileColor: {r: 0, g: 1, b: 0, a: 1}
     grid: 
+  - name: ?obstructedbypiece
+    traits: 0200000021000000
+    visualGrid: []
+    actionEffectMult: 1
+    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    grid: 
+  - name: ?obstructedbyenemy
+    traits: 0200000022000000
+    visualGrid: []
+    actionEffectMult: 1
+    TileColor: {r: 0, g: 1, b: 0, a: 1}
+    grid: 
   - name: takeclose
     traits: 040000000c00000009000000
     visualGrid: []
