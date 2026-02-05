@@ -565,6 +565,37 @@ public class ChessBoard2 : NetworkIdentity
 				}
 			}
 
+			if (actionTraits.Contains(ActionTrait.remove_unobstructed_by_piece))
+			{
+				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
+				foreach (Vector2Int pos in path)
+				{
+					if (TileLocations[pos.x, pos.y] == null || !isObstructed(cp, TileLocations[pos.x, pos.y].obstructed))
+					{
+						add = false;
+						break;
+					}
+				}
+			}
+
+			if (actionTraits.Contains(ActionTrait.remove_unobstructed_by_enemy))
+			{
+				List<Vector2Int> path = GridLine.GetLine(piecePosition, tilePosition);
+				foreach (Vector2Int pos in path)
+				{
+					if (TileLocations[pos.x, pos.y] == null || !isObstructed(cp, TileLocations[pos.x, pos.y].obstructed))
+					{
+						add = false;
+						break;
+					}
+					ChessPiece obstructor = TileLocations[pos.x, pos.y].tileOccupants[0];
+					if (obstructor && obstructor.team == cp.team) {
+						add = false;
+						break;
+					}
+				}
+			}
+
 			if (TileLocations[tilePosition.x, tilePosition.y].tileOccupants.Count > 0 && TileLocations[tilePosition.x, tilePosition.y].tileOccupants[0].GetComponent<ChessPieceObject>().chessPieceData.name == "CorruptKing")
 			{
 				Debug.Log("ran");

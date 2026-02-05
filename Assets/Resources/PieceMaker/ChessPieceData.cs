@@ -58,6 +58,8 @@ public enum ActionTrait
     command_bring = 19,
     remove_obstructed = 6,
     remove_unobstructed = 13,
+    remove_unobstructed_by_piece = 33,
+    remove_unobstructed_by_enemy = 34,
 
     shift_focus = 7,
 
